@@ -5,16 +5,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Once Human - Codex & Recipe Matrix</title>
   
-  <!-- Tailwind CSS CDN -->
+  <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
   
-  <!-- FontAwesome Icons CDN -->
+  <!-- FontAwesome Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   
   <!-- Google Fonts: Orbitron, Rajdhani, Inter -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Rajdhani:wght@500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;900&family=Rajdhani:wght@500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
   <script>
     tailwind.config = {
@@ -59,7 +59,7 @@
       clip-path: polygon(0 0, calc(100% - 14px) 0, 100% 14px, 100% 100%, 0 100%);
     }
 
-    /* Reliable Ingredient Tooltip with Invisible Hover Bridge */
+    /* Reliable Ingredient Tooltip with Viewport Clamping & Invisible Hover Bridge */
     .ing-tag-container {
       position: relative;
       display: inline-block;
@@ -69,16 +69,19 @@
       visibility: hidden;
       opacity: 0;
       position: absolute;
-      bottom: calc(100% + 4px);
+      bottom: calc(100% + 6px);
       left: 50%;
       transform: translateX(-50%) translateY(4px);
-      width: 270px;
-      z-index: 60;
+      width: 260px;
+      max-width: calc(100vw - 28px);
+      word-wrap: break-word;
+      white-space: normal;
+      z-index: 9999;
       pointer-events: none;
       transition: opacity 0.15s ease-out, transform 0.15s ease-out, visibility 0.15s;
     }
 
-    /* Invisible hover bridge */
+    /* Invisible hover bridge to easily slide cursor into the tooltip */
     .ing-tooltip::after {
       content: '';
       position: absolute;
@@ -90,11 +93,22 @@
       pointer-events: auto;
     }
 
+    /* When tooltip is flipped to bottom */
+    .ing-tooltip.tooltip-flip-bottom {
+      bottom: auto;
+      top: calc(100% + 6px);
+    }
+
+    .ing-tooltip.tooltip-flip-bottom::after {
+      top: auto;
+      bottom: 100%;
+    }
+
     .ing-tag-container:hover .ing-tooltip,
     .ing-tooltip:hover {
       visibility: visible;
       opacity: 1;
-      transform: translateX(-50%) translateY(0);
+      transform: translateX(var(--tooltip-offset-x, -50%)) translateY(0);
       pointer-events: auto;
     }
 
@@ -112,14 +126,14 @@
       <!-- Title & Branding -->
       <div class="flex items-center space-x-3">
         <div class="w-10 h-10 rounded border border-hud-cyan flex items-center justify-center bg-hud-cyan/10 text-hud-cyan shadow-[0_0_15px_rgba(0,240,255,0.4)]">
-          <i class="fa-solid fa-atom text-xl"></i>
+          <i class="fa-solid fa-atom text-xl animate-spin-slow"></i>
         </div>
         <div>
           <div class="flex items-center space-x-2">
             <h1 class="text-xl sm:text-2xl font-orbitron font-black tracking-wider text-white">
               ONCE HUMAN <span class="text-hud-cyan">CODEX</span>
             </h1>
-            <span class="text-[10px] font-mono uppercase bg-hud-cyan/20 text-hud-cyan border border-hud-cyan/40 px-1.5 py-0.5 rounded">v1.4</span>
+            <span class="text-[10px] font-mono uppercase bg-hud-cyan/20 text-hud-cyan border border-hud-cyan/40 px-1.5 py-0.5 rounded">v1.3</span>
           </div>
           <p id="ui-subtitle" class="text-xs font-mono text-slate-400">HERNÍ RECEPTY • SYNERGIE • MEDICÍNA • VYNÁLEZY</p>
         </div>
@@ -195,15 +209,12 @@
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-4">
         <!-- Slot 1: Meat -->
         <div class="bg-hud-card p-3 rounded border border-hud-border">
-          <label id="lbl-slot1" class="text-[11px] font-mono text-slate-400 uppercase block mb-1">Maso / Archetyp</label>
+          <label id="lbl-slot1" class="text-[11px] font-mono text-slate-400 uppercase block mb-1">Maso / Základ</label>
           <select id="calc-slot-meat" onchange="calculateSynergies()" class="w-full bg-hud-bg border border-hud-border text-white text-xs rounded px-2.5 py-1.5 focus:border-hud-cyan outline-none">
             <option value="none">-- Prázdné --</option>
-            <option value="beast">Beast Meat (Shrapnel & DMG)</option>
-            <option value="deer">Deer Meat (Fast Gunner & Agility)</option>
-            <option value="rabbit">Rabbit Meat (Stealth & Movement)</option>
-            <option value="pork">Pork Meat (Max HP & Bulwark)</option>
-            <option value="deviated">Deviated Beast Meat (PSI & Elemental)</option>
-            <option value="fish">Fresh Pike / Carp (Crit Rate & Swim)</option>
+            <option value="beast">Beast Meat (Běžné)</option>
+            <option value="deviated_meat">Deviated Beast Meat (Zmutované)</option>
+            <option value="fish">Fresh Pike / Carp (Ryba)</option>
           </select>
         </div>
         <!-- Slot 2: Vegetable -->
@@ -211,10 +222,9 @@
           <label id="lbl-slot2" class="text-[11px] font-mono text-slate-400 uppercase block mb-1">Zelenina / Příloha</label>
           <select id="calc-slot-veg" onchange="calculateSynergies()" class="w-full bg-hud-bg border border-hud-border text-white text-xs rounded px-2.5 py-1.5 focus:border-hud-cyan outline-none">
             <option value="none">-- Prázdné --</option>
-            <option value="corn">Kukuřice / Pšenice (Stamina regen)</option>
-            <option value="deviated_veg">Deviated Pumpkin / Morel (PSI +10%)</option>
-            <option value="mushrooms">Divoké houby (Pollution RES +15%)</option>
-            <option value="berries">Lesní bobule (Hydration + Sanity)</option>
+            <option value="corn">Kukuřice / Pšenice</option>
+            <option value="deviated_veg">Deviated Pumpkin / Morel (Zmutovaná)</option>
+            <option value="mushrooms">Divoké houby</option>
           </select>
         </div>
         <!-- Slot 3: Spice / Herb -->
@@ -222,9 +232,9 @@
           <label id="lbl-slot3" class="text-[11px] font-mono text-slate-400 uppercase block mb-1">Byliny & Koření</label>
           <select id="calc-slot-spice" onchange="calculateSynergies()" class="w-full bg-hud-bg border border-hud-border text-white text-xs rounded px-2.5 py-1.5 focus:border-hud-cyan outline-none">
             <option value="none">-- Prázdné --</option>
-            <option value="pepper">Chilli / Ghost Pepper (Attack Power +10%)</option>
-            <option value="sugar">Cukr / Med (Sanity +200)</option>
-            <option value="salt">Sůl / Mořská sůl (Trvání buffu +10 min)</option>
+            <option value="pepper">Chilli / Pepper (Pálivé)</option>
+            <option value="sugar">Cukr / Med (Sladké)</option>
+            <option value="salt">Sůl / Mořská sůl</option>
           </select>
         </div>
         <!-- Slot 4: Enhancer -->
@@ -232,8 +242,8 @@
           <label id="lbl-slot4" class="text-[11px] font-mono text-slate-400 uppercase block mb-1">Zesilovač / Stardust</label>
           <select id="calc-slot-enhancer" onchange="calculateSynergies()" class="w-full bg-hud-bg border border-hud-border text-white text-xs rounded px-2.5 py-1.5 focus:border-hud-cyan outline-none">
             <option value="none">-- Bez zesilovače --</option>
-            <option value="stardust">Stardust Ore / Salt (+50% Buff Power)</option>
-            <option value="oil">Kvalitní olej (+15m trvání buffů)</option>
+            <option value="stardust">Stardust Ore / Salt (+100% Buff Power)</option>
+            <option value="oil">Čistý kuchyňský olej (+15m trvání)</option>
           </select>
         </div>
       </div>
@@ -243,7 +253,7 @@
         <div>
           <span class="text-[10px] font-mono uppercase text-hud-cyan tracking-wider">Výsledná kombinace:</span>
           <div id="calc-result-title" class="font-orbitron font-bold text-white text-sm">Základní polévka / Restovaná směs</div>
-          <p id="calc-result-effects" class="text-xs font-mono text-slate-300 mt-0.5">Vyberte suroviny výše pro zobrazení synergie a buffů.</p>
+          <p id="calc-result-effects" class="text-xs font-mono text-slate-300 mt-0.5">Vyberte alespoň jednu surovinu výše pro výpočet synergie.</p>
         </div>
         <div class="text-right flex items-center space-x-3 text-xs font-mono">
           <span class="text-amber-400"><i class="fa-solid fa-bolt mr-1"></i>Energy: <strong id="calc-res-energy">0</strong></span>
@@ -309,21 +319,22 @@
 
     <!-- Recipe Cards Grid -->
     <div id="recipes-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-      <!-- Dynamically generated cards -->
+      <!-- Dynamic cards rendered here -->
     </div>
 
     <!-- Empty State -->
     <div id="empty-state" class="hidden text-center py-16 bg-hud-surface/40 border border-hud-border rounded-lg">
-      <i class="fa-solid fa-radar text-4xl text-slate-600 mb-3"></i>
+      <i class="fa-solid fa-radar text-4xl text-slate-600 mb-3 animate-pulse"></i>
       <h3 class="font-orbitron font-bold text-white text-base">Žádný recept nenalezen</h3>
       <p class="text-xs font-mono text-slate-400 mt-1">Zkuste upravit hledaný výraz nebo resetovat filtry.</p>
     </div>
 
   </main>
 
-  <!-- ==================== DETAIL MODAL ==================== -->
+  <!-- ==================== DETAIL MODAL (WITH BREADCRUMB HISTORY) ==================== -->
   <div id="detail-modal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm">
     <div class="bg-hud-surface border border-hud-cyan/50 rounded-lg max-w-2xl w-full p-6 relative max-h-[90vh] overflow-y-auto shadow-[0_0_30px_rgba(0,240,255,0.2)]">
+      <!-- Close Button -->
       <button onclick="closeModal()" class="absolute top-4 right-4 text-slate-400 hover:text-white transition w-8 h-8 rounded border border-hud-border flex items-center justify-center bg-hud-card">
         <i class="fa-solid fa-xmark text-sm"></i>
       </button>
@@ -342,8 +353,11 @@
     </div>
   </footer>
 
-  <!-- ==================== SCRIPTS & FULL CODEX DATABASE ==================== -->
+  <!-- ==================== COMPLETE DATABASE & SCRIPTS ==================== -->
   <script>
+    /* ==========================================================================
+       LOCALIZATION DICTIONARIES
+       ========================================================================== */
     let currentLang = 'cs';
 
     const i18n = {
@@ -416,17 +430,17 @@
     };
 
     /* ==========================================================================
-       INGREDIENT ACQUISITION KNOWLEDGE BASE
+       INGREDIENTS SOURCE KNOWLEDGE BASE & RECIPE CROSS-LINK MAP
        ========================================================================== */
     const ingredientKnowledgeBase = {
       "Northern Pike / Rare Fish": {
-        locationCs: "Sladkovodní i mořský rybolov (jezero Chalk Peak, řeka u Meyer's Market).",
-        locationEn: "Freshwater & coastal fishing (Chalk Peak lake, Meyer's Market river).",
+        locationCs: "Sladkovodní i mořský rybolov (jezero Chalk Peak, řeka u Meyer's Market). Použijte kvalitní návnadu.",
+        locationEn: "Freshwater & coastal fishing (Chalk Peak lake, Meyer's Market river). Use bait.",
         recipeId: null
       },
       "Severní štika / Vzácná ryba": {
-        locationCs: "Sladkovodní i mořský rybolov (jezero Chalk Peak, řeka u Meyer's Market).",
-        locationEn: "Freshwater & coastal fishing (Chalk Peak lake, Meyer's Market river).",
+        locationCs: "Sladkovodní i mořský rybolov (jezero Chalk Peak, řeka u Meyer's Market). Použijte kvalitní návnadu.",
+        locationEn: "Freshwater & coastal fishing (Chalk Peak lake, Meyer's Market river). Use bait.",
         recipeId: null
       },
       "Flour": {
@@ -500,13 +514,13 @@
         recipeId: "b-06"
       },
       "Stardust Source": {
-        locationCs: "Získává se z očisty teritoria (Purification), bossů v Silo nebo těžby Stardust Ore.",
-        locationEn: "Obtained from Territory Purification, Silo boss clears, or Stardust Ore refining.",
+        locationCs: "Získává se z očisty teritoria (Purification), bossů v Silo nebo z těžby Stardust Ore.",
+        locationEn: "Obtained from Territory Purification, Silo boss clears, or refining Stardust Ore.",
         recipeId: null
       },
       "Zdroj hvězdného prachu (Stardust)": {
-        locationCs: "Získává se z očisty teritoria (Purification), bossů v Silo nebo těžby Stardust Ore.",
-        locationEn: "Obtained from Territory Purification, Silo boss clears, or Stardust Ore refining.",
+        locationCs: "Získává se z očisty teritoria (Purification), bossů v Silo nebo z těžby Stardust Ore.",
+        locationEn: "Obtained from Territory Purification, Silo boss clears, or refining Stardust Ore.",
         recipeId: null
       },
       "Electronic Parts": {
@@ -537,26 +551,6 @@
       "Maso šelem (Beast Meat)": {
         locationCs: "Lov divokých vlků, jelenů a prasat v lesních biotopech.",
         locationEn: "Harvested from wild wolves, deer, and boar across forests.",
-        recipeId: null
-      },
-      "Deer Meat": {
-        locationCs: "Lov divokých jelenů a srnců na loukách a v lesích Broken Delta.",
-        locationEn: "Hunting wild deer across grasslands and Broken Delta forests.",
-        recipeId: null
-      },
-      "Jelení maso": {
-        locationCs: "Lov divokých jelenů a srnců na loukách a v lesích Broken Delta.",
-        locationEn: "Hunting wild deer across grasslands and Broken Delta forests.",
-        recipeId: null
-      },
-      "Pork Meat": {
-        locationCs: "Lov divokých prasat (Boar) podél řek a v zemědělských oblastech.",
-        locationEn: "Hunting wild boars along riverbeds and farmland ruins.",
-        recipeId: null
-      },
-      "Vepřové maso": {
-        locationCs: "Lov divokých prasat (Boar) podél řek a v zemědělských oblastech.",
-        locationEn: "Hunting wild boars along riverbeds and farmland ruins.",
         recipeId: null
       },
       "Ghost Pepper / Rare Spice": {
@@ -630,10 +624,18 @@
         buffDuration: "Crafting Material",
         sourceEn: "Basic Cooking formula unlocked automatically",
         sourceCs: "Základní recept odemčený automaticky s kuchyňským stolem",
-        effectsEn: ["Fundamental bakery staple used for breads and pies"],
-        effectsCs: ["Základní pekařská surovina pro přípravu těsta a koláčů"],
-        ingredientsEn: [{ name: "Wheat", amount: "2x", isPrimary: true }],
-        ingredientsCs: [{ name: "Pšenice", amount: "2x", isPrimary: true }],
+        effectsEn: [
+          "Fundamental bakery staple used for breads and pies"
+        ],
+        effectsCs: [
+          "Základní pekařská surovina pro přípravu těsta a koláčů"
+        ],
+        ingredientsEn: [
+          { name: "Wheat", amount: "2x", isPrimary: true }
+        ],
+        ingredientsCs: [
+          { name: "Pšenice", amount: "2x", isPrimary: true }
+        ],
         descriptionEn: "Finely ground wheat flour for pastries and batters.",
         descriptionCs: "Najemno namletá pšeničná mouka na těsta a pečivo."
       },
@@ -650,10 +652,18 @@
         buffDuration: "Crafting Material",
         sourceEn: "Basic Cooking recipe",
         sourceCs: "Základní recept v kuchařské větvi",
-        effectsEn: ["Sweetener used in candies, sanity snacks and drinks"],
-        effectsCs: ["Sladidlo pro bonbóny, Sanity želé i dezerty"],
-        ingredientsEn: [{ name: "Beetroot", amount: "2x", isPrimary: true }],
-        ingredientsCs: [{ name: "Červená řepa", amount: "2x", isPrimary: true }],
+        effectsEn: [
+          "Sweetener used in candies, sanity snacks and drinks"
+        ],
+        effectsCs: [
+          "Sladidlo pro bonbóny, Sanity želé i dezerty"
+        ],
+        ingredientsEn: [
+          { name: "Beetroot", amount: "2x", isPrimary: true }
+        ],
+        ingredientsCs: [
+          { name: "Červená řepa", amount: "2x", isPrimary: true }
+        ],
         descriptionEn: "Crystallized sugar extracted from sweet crops.",
         descriptionCs: "Krystalický cukr lisovaný a vařený ze sladké zeleniny."
       },
@@ -670,10 +680,18 @@
         buffDuration: "Crafting Material",
         sourceEn: "Basic Cooking formula",
         sourceCs: "Základní kuchařský předpis",
-        effectsEn: ["High thermal cooking liquid needed for frying and canned preserves"],
-        effectsCs: ["Tekutina nutná k smažení a konzervaci masa a ryb"],
-        ingredientsEn: [{ name: "Corn", amount: "2x", isPrimary: true }],
-        ingredientsCs: [{ name: "Kukuřice", amount: "2x", isPrimary: true }],
+        effectsEn: [
+          "High thermal cooking liquid needed for frying and canned preserves"
+        ],
+        effectsCs: [
+          "Tekutina nutná k smažení a konzervaci masa a ryb"
+        ],
+        ingredientsEn: [
+          { name: "Corn", amount: "2x", isPrimary: true }
+        ],
+        ingredientsCs: [
+          { name: "Kukuřice", amount: "2x", isPrimary: true }
+        ],
         descriptionEn: "Refined seed oil essential for deep frying and seafood tins.",
         descriptionCs: "Rostlinný olej nezbytný pro pečení, smažení a výrobu konzerv."
       },
@@ -690,8 +708,12 @@
         buffDuration: "Crafting Material",
         sourceEn: "Tier 3 Metallurgy Memetics node",
         sourceCs: "Tier 3 Metalurgie v memetickém stromu",
-        effectsEn: ["Crucial alloy for mid-to-high tier guns, machinery, and defense turrets"],
-        effectsCs: ["Základní slitina pro pokročilé zbraně, obranné věže a stavby"],
+        effectsEn: [
+          "Crucial alloy for mid-to-high tier guns, machinery, and defense turrets"
+        ],
+        effectsCs: [
+          "Základní slitina pro pokročilé zbraně, obranné věže a stavby"
+        ],
         ingredientsEn: [
           { name: "Iron Ore", amount: "5x", isPrimary: true },
           { name: "Charcoal", amount: "1x" }
@@ -716,8 +738,12 @@
         buffDuration: "Crafting Material",
         sourceEn: "Ballistics Memetic node",
         sourceCs: "Balistický uzel v Memetics",
-        effectsEn: ["Primary explosive propellant for firearm cartridges and C4 charges"],
-        effectsCs: ["Hnací slož pro munici do palných zbraní, granáty i C4 nálože"],
+        effectsEn: [
+          "Primary explosive propellant for firearm cartridges and C4 charges"
+        ],
+        effectsCs: [
+          "Hnací slož pro munici do palných zbraní, granáty i C4 nálože"
+        ],
         ingredientsEn: [
           { name: "Sulfur", amount: "2x", isPrimary: true },
           { name: "Charcoal", amount: "1x" }
@@ -1024,72 +1050,6 @@
         ],
         descriptionEn: "Legendary brewed herbal infusion that drastically optimizes bodily hydration.",
         descriptionCs: "Legendární odvar z bylin, který dramaticky snižuje dehydrataci organismu."
-      },
-      {
-        id: "d-09",
-        nameEn: "French Fries",
-        nameCs: "Smažené hranolky",
-        categoryEn: "Snack",
-        categoryCs: "Pochutina",
-        rarity: "Fine",
-        workbench: "Kitchen Stove",
-        energy: 65,
-        hydration: -5,
-        buffDuration: "1200s (20 min)",
-        sourceEn: "Greywater Camp diner table",
-        sourceCs: "Greywater Camp – stůl v bistru",
-        effectsEn: [
-          "Damage taken from common Deviants reduced by 15%",
-          "Sprint speed increased by 5%"
-        ],
-        effectsCs: [
-          "Poškození utržené od běžných Deviantů sníženo o 15%",
-          "Rychlost sprintu zvýšena o 5%"
-        ],
-        ingredientsEn: [
-          { name: "Corn", amount: "2x", isPrimary: true },
-          { name: "Cooking Oil", amount: "1x" }
-        ],
-        ingredientsCs: [
-          { name: "Kukuřice", amount: "2x", isPrimary: true },
-          { name: "Olej na vaření", amount: "1x" }
-        ],
-        descriptionEn: "Crisp potato fries offering quick stamina on long scouting trips.",
-        descriptionCs: "Křupavé hranolky poskytující rychlou energii pro průzkumné výpravy."
-      },
-      {
-        id: "d-10",
-        nameEn: "Bone-in Deviated Sausage",
-        nameCs: "Klobása s kostí ze zmutovaného masa",
-        categoryEn: "Food",
-        categoryCs: "Jídlo",
-        rarity: "Epic",
-        workbench: "Kitchen Stove",
-        energy: 100,
-        hydration: 0,
-        buffDuration: "1800s (30 min)",
-        sourceEn: "Evergreen Hill abandoned butcher shop",
-        sourceCs: "Evergreen Hill – opuštěné řeznictví",
-        effectsEn: [
-          "Boss Monster Damage +15%",
-          "Weakspot hit multiplier +12%"
-        ],
-        effectsCs: [
-          "Poškození bossů a elitních monster +15%",
-          "Multiplikátor zásahu slabých míst +12%"
-        ],
-        ingredientsEn: [
-          { name: "Beast Meat", amount: "3x", isPrimary: true },
-          { name: "Ghost Pepper / Rare Spice", amount: "1x" },
-          { name: "Cooking Oil", amount: "1x" }
-        ],
-        ingredientsCs: [
-          { name: "Maso šelem (Beast Meat)", amount: "3x", isPrimary: true },
-          { name: "Přízračná chilli paprička", amount: "1x" },
-          { name: "Olej na vaření", amount: "1x" }
-        ],
-        descriptionEn: "Heavily spiced Deviated sausage maximizing damage output against giant bosses.",
-        descriptionCs: "Kořeněná klobása ze silné zvěře maximalizující poškození bossů v Silo."
       }
     ];
 
@@ -1238,42 +1198,6 @@
         ],
         descriptionEn: "Gourmet seafood banquet optimizing combat precision and aquatic agility.",
         descriptionCs: "Labužnická rybí hostina maximalizující přesnost zásahů do slabin."
-      },
-      {
-        id: "c-05",
-        nameEn: "Hunter's Swift Deer Roast",
-        nameCs: "Lovecká jelení pečeně",
-        categoryEn: "Meat Dish",
-        categoryCs: "Masový pokrm",
-        rarity: "Rare",
-        workbench: "Kitchen Stove (Free Cooking)",
-        energy: 90,
-        hydration: 10,
-        buffDuration: "1800s (30 min)",
-        sourceEn: "Free cooking: Deer Meat + Corn + Spices",
-        sourceCs: "Volné vaření: Jelení maso + Kukuřice + Koření",
-        effectsEn: [
-          "Fast Gunner trigger rate +12%",
-          "Reload speed increased by 20%",
-          "Movement speed +8%"
-        ],
-        effectsCs: [
-          "Aktivace Fast Gunner buffu +12%",
-          "Rychlost přebíjení zbraní +20%",
-          "Rychlost chůze a sprintu +8%"
-        ],
-        ingredientsEn: [
-          { name: "Deer Meat", amount: "3x", isPrimary: true },
-          { name: "Cooking Oil", amount: "1x" },
-          { name: "Sugar", amount: "1x" }
-        ],
-        ingredientsCs: [
-          { name: "Jelení maso", amount: "3x", isPrimary: true },
-          { name: "Olej na vaření", amount: "1x" },
-          { name: "Cukr", amount: "1x" }
-        ],
-        descriptionEn: "Lean venison steak optimizing rapid fire builds and agile maneuvering.",
-        descriptionCs: "Jemné jelení maso posilující buildy zaměřené na rychlost střelby a obratnost."
       }
     ];
 
@@ -1461,7 +1385,7 @@
         effectsEn: [
           "Melee Weapon Damage +25%",
           "Sanity restored by 400",
-          "Penalty: Hydration drain accelerated"
+          "Postih: Hydration drain accelerated"
         ],
         effectsCs: [
           "Poškození zbraněmi na blízko +25%",
@@ -1478,7 +1402,7 @@
           { name: "Kukuřice", amount: "3x" },
           { name: "Čistá voda", amount: "4x" }
         ],
-        descriptionEn: "Homebrewed alcoholic beverage granting courage at the expense of thirst.",
+        descriptionEn: "Homebrewed alcoholic beverage granting dutch courage at the expense of thirst.",
         descriptionCs: "Domácí kvašené pivo, které dodá sílu v boji zblízka za cenu dehydratace."
       }
     ];
@@ -1708,7 +1632,7 @@
     ];
 
     /* ==========================================================================
-       APP ENGINE LOGIC
+       APP ENGINE, FILTERING, SORTING & CALCULATION LOGIC
        ========================================================================== */
     const rarityConfig = {
       Legendary: { label: 'Legendary', bg: 'bg-amber-500/15', text: 'text-amber-400', border: 'border-amber-500/40', dot: 'bg-amber-400', order: 4 },
@@ -1946,6 +1870,7 @@
       });
 
       renderRecipeCards(filtered);
+
       document.getElementById('results-count').innerHTML = `${t.resultsCount} <strong class="text-hud-cyan">${filtered.length}</strong>`;
     }
 
@@ -1983,6 +1908,7 @@
 
         card.innerHTML = `
           <div>
+            <!-- Header: Category & Rarity Badge -->
             <div class="flex items-center justify-between gap-2 mb-2">
               <span class="text-[10px] font-mono uppercase px-2 py-0.5 rounded bg-slate-800 text-slate-300 border border-slate-700">
                 ${categoryText}
@@ -1993,11 +1919,13 @@
               </span>
             </div>
 
+            <!-- Title & Secondary Name -->
             <h3 class="font-orbitron font-bold text-base text-white group-hover:text-hud-cyan transition leading-tight mb-0.5">
               ${primaryName}
             </h3>
             <div class="text-xs font-mono text-slate-400 mb-3">${secondaryName}</div>
 
+            <!-- Stats Ribbon (Energy, Hydration, Duration) -->
             ${(item.energy > 0 || item.hydration > 0 || item.buffDuration) ? `
               <div class="flex items-center space-x-3 text-[11px] font-mono bg-hud-bg/80 border border-hud-border px-3 py-1.5 rounded mb-3">
                 ${item.energy > 0 ? `<span class="text-amber-400"><i class="fa-solid fa-bolt mr-1"></i>${item.energy} E</span>` : ''}
@@ -2006,6 +1934,7 @@
               </div>
             ` : ''}
 
+            <!-- Effects Checklist -->
             <div class="space-y-1.5 mb-4">
               ${effects.map(effect => `
                 <div class="text-xs text-slate-300 flex items-start space-x-1.5">
@@ -2015,6 +1944,7 @@
               `).join('')}
             </div>
 
+            <!-- Ingredients -->
             <div class="mb-3">
               <span class="text-[10px] font-mono uppercase text-slate-500 tracking-wider block mb-1.5 flex items-center justify-between">
                 <span><i class="fa-solid fa-layer-group text-hud-cyan mr-1"></i>${t.materialsTitle}</span>
@@ -2027,7 +1957,7 @@
                   const locText = meta ? (currentLang === 'cs' ? meta.locationCs : meta.locationEn) : (currentLang === 'cs' ? 'Naleziště v otevřeném světě.' : 'Open world gathering.');
                   
                   return `
-                    <div class="ing-tag-container">
+                    <div class="ing-tag-container" onmouseenter="adjustTooltipPosition(this)">
                       <span 
                         ${isCrafted ? `onclick="event.stopPropagation(); navigateToRecipe('${meta.recipeId}');"` : ''}
                         class="text-[11px] font-mono px-2 py-0.5 rounded bg-hud-bg border transition-all inline-flex items-center gap-1 ${
@@ -2063,12 +1993,14 @@
               </div>
             </div>
 
+            <!-- Source location badge if present -->
             <div class="mb-2 bg-slate-900/60 p-2 rounded border border-slate-800 text-[11px] font-mono text-slate-400">
               <span class="text-slate-500 block text-[9px] uppercase"><i class="fa-solid fa-location-crosshairs text-hud-cyan mr-1"></i>${t.sourceTitle}:</span>
               <span class="text-slate-300">${source}</span>
             </div>
           </div>
 
+          <!-- Card Footer Action -->
           <div class="pt-3 border-t border-hud-border flex items-center justify-between text-xs font-mono text-slate-400">
             <span class="truncate max-w-[200px]" title="${item.workbench}">
               <i class="fa-solid fa-toolbox text-hud-cyan mr-1"></i>${item.workbench}
@@ -2084,7 +2016,7 @@
     }
 
     /* ==========================================================================
-       DETAIL MODAL & BREADCRUMBS
+       DETAIL MODAL, RECIPE CROSS-LINKING & BREADCRUMBS
        ========================================================================== */
     function openModal(id, pushHistory = false) {
       const all = getAllRecipes();
@@ -2118,6 +2050,7 @@
       const previousName = previousRecipe ? (currentLang === 'cs' ? previousRecipe.nameCs : previousRecipe.nameEn) : '';
 
       content.innerHTML = `
+        <!-- History / Back Breadcrumb -->
         ${hasHistory ? `
           <div class="mb-3">
             <button onclick="goBackInModal()" class="text-xs font-mono text-hud-cyan hover:text-cyan-200 bg-cyan-950/60 border border-hud-cyan/40 rounded px-2.5 py-1 flex items-center gap-1.5 transition">
@@ -2156,6 +2089,7 @@
           </div>
         </div>
 
+        <!-- Detailed Ingredients breakdown with direct cross-links -->
         <div class="mb-4">
           <h5 class="text-xs font-mono uppercase text-slate-400 mb-2 flex items-center gap-1.5">
             <i class="fa-solid fa-cubes-stacked text-amber-400"></i> ${t.materialsTitle}
@@ -2254,6 +2188,35 @@
       setTimeout(() => copyNotice.remove(), 2500);
     }
 
+    /* Dynamic Tooltip Viewport Boundary Clamping */
+    function adjustTooltipPosition(container) {
+      const tooltip = container.querySelector('.ing-tooltip');
+      if (!tooltip) return;
+
+      // Reset to defaults first for clean measurement
+      tooltip.classList.remove('tooltip-flip-bottom');
+      tooltip.style.setProperty('--tooltip-offset-x', '-50%');
+
+      const rect = tooltip.getBoundingClientRect();
+      const padding = 12; // Margin from viewport edges
+
+      // Prevent clipping on left side of viewport
+      if (rect.left < padding) {
+        const overflow = padding - rect.left;
+        tooltip.style.setProperty('--tooltip-offset-x', `calc(-50% + ${overflow}px)`);
+      } 
+      // Prevent clipping on right side of viewport
+      else if (rect.right > window.innerWidth - padding) {
+        const overflow = rect.right - (window.innerWidth - padding);
+        tooltip.style.setProperty('--tooltip-offset-x', `calc(-50% - ${overflow}px)`);
+      }
+
+      // Check if tooltip overflows top edge of screen
+      if (rect.top < 60) {
+        tooltip.classList.add('tooltip-flip-bottom');
+      }
+    }
+
     /* ==========================================================================
        CHEF MATRIX SYNERGY CALCULATOR LOGIC
        ========================================================================== */
@@ -2265,14 +2228,14 @@
 
       let energy = 0;
       let hydro = 0;
-      let titleCs = "Kombinovaná směs";
-      let titleEn = "Combined Synergy Dish";
+      let titleCs = "Směs surovin";
+      let titleEn = "Mixed Ingredients";
       let effectsCs = [];
       let effectsEn = [];
 
       if (meat === 'none' && veg === 'none' && spice === 'none') {
         document.getElementById('calc-result-title').innerText = currentLang === 'cs' ? "Základní polévka / Restovaná směs" : "Basic Soup / Roast";
-        document.getElementById('calc-result-effects').innerText = currentLang === 'cs' ? "Vyberte suroviny výše pro zobrazení synergie a buffů." : "Select ingredients above to preview synergistic effects.";
+        document.getElementById('calc-result-effects').innerText = currentLang === 'cs' ? "Vyberte alespoň jednu surovinu výše pro výpočet synergie." : "Select at least one ingredient above to simulate synergy.";
         document.getElementById('calc-res-energy').innerText = "0";
         document.getElementById('calc-res-hydro').innerText = "0";
         return;
@@ -2280,61 +2243,45 @@
 
       if (meat === 'beast') {
         energy += 40;
-        effectsCs.push("Shrapnel & Weapon DMG +10%");
-        effectsEn.push("Shrapnel & Weapon DMG +10%");
-      } else if (meat === 'deer') {
-        energy += 35;
-        effectsCs.push("Fast Gunner Rate +12%, Movement Speed +8%");
-        effectsEn.push("Fast Gunner Rate +12%, Movement Speed +8%");
-      } else if (meat === 'rabbit') {
-        energy += 30;
-        effectsCs.push("Crouched Stealth Detection Range -30%");
-        effectsEn.push("Crouched Stealth Detection Range -30%");
-      } else if (meat === 'pork') {
-        energy += 45;
-        effectsCs.push("Max HP +350, Bulwark DEF +10%");
-        effectsEn.push("Max HP +350, Bulwark DEF +10%");
-      } else if (meat === 'deviated') {
+        effectsCs.push("Max HP +150");
+        effectsEn.push("Max HP +150");
+      } else if (meat === 'deviated_meat') {
         energy += 50;
-        effectsCs.push("PSI Intensity +15%, Elemental DMG +12%");
-        effectsEn.push("PSI Intensity +15%, Elemental DMG +12%");
+        effectsCs.push("Elemental Damage +10%");
+        effectsEn.push("Elemental Damage +10%");
       } else if (meat === 'fish') {
         energy += 35;
         hydro += 10;
-        effectsCs.push("Crit Rate +6%, Swimming Speed +25%");
-        effectsEn.push("Crit Rate +6%, Swimming Speed +25%");
+        effectsCs.push("Crit Rate +5%");
+        effectsEn.push("Crit Rate +5%");
       }
 
       if (veg === 'corn') {
         energy += 25;
         hydro += 15;
-        effectsCs.push("Stamina regen +12%");
-        effectsEn.push("Stamina regen +12%");
+        effectsCs.push("Stamina regen +10%");
+        effectsEn.push("Stamina regen +10%");
       } else if (veg === 'deviated_veg') {
         energy += 30;
-        effectsCs.push("PSI Intensity +10%");
-        effectsEn.push("PSI Intensity +10%");
+        effectsCs.push("PSI Intensity +8%");
+        effectsEn.push("PSI Intensity +8%");
       } else if (veg === 'mushrooms') {
         energy += 20;
         hydro += 10;
         effectsCs.push("Pollution RES +15%");
         effectsEn.push("Pollution RES +15%");
-      } else if (veg === 'berries') {
-        hydro += 25;
-        effectsCs.push("Sanity +150");
-        effectsEn.push("Sanity +150");
       }
 
       if (spice === 'pepper') {
-        effectsCs.push("Attack Power +10%");
-        effectsEn.push("Attack Power +10%");
+        effectsCs.push("Attack Power +8% (pálivý buff)");
+        effectsEn.push("Attack Power +8% (spicy buff)");
       } else if (spice === 'sugar') {
         hydro += 10;
-        effectsCs.push("Sanity +200");
-        effectsEn.push("Sanity +200");
+        effectsCs.push("Sanity +200 při konzumaci");
+        effectsEn.push("Sanity +200 on consume");
       } else if (spice === 'salt') {
         effectsCs.push("Trvání jídla prodlouženo o 10 min");
-        effectsEn.push("Buff duration +10 min");
+        effectsEn.push("Food duration +10 min");
       }
 
       if (enh === 'stardust') {
@@ -2343,8 +2290,8 @@
         titleCs = "Hvězdný synergický pokrm";
         titleEn = "Stardust Synergistic Dish";
       } else if (enh === 'oil') {
-        effectsCs.push("Trvání všech buffů prodlouženo na 35 minut");
-        effectsEn.push("All buff durations extended to 35 min");
+        effectsCs.push("Zlatavá kůrka: Trvání buffů prodlouženo na 35 minut");
+        effectsEn.push("Golden Crust: Buff duration extended to 35 min");
         titleCs = "Křupavá pečená specialita";
         titleEn = "Crispy Roasted Delicacy";
       }
