@@ -3,13 +3,19 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Once Human - Master Recipe & Technology Codex</title>
+  <title>Once Human - Codex & Recipe Matrix</title>
+  
+  <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Rajdhani:wght@500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- FontAwesome Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   
+  <!-- Google Fonts: Orbitron, Rajdhani, Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;900&family=Rajdhani:wght@500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
   <script>
     tailwind.config = {
       darkMode: 'class',
@@ -17,16 +23,14 @@
         extend: {
           colors: {
             hud: {
-              bg: '#06090e',
-              surface: '#0b111a',
-              card: '#101826',
-              cardHover: '#152136',
-              border: '#1c2b42',
-              borderBright: '#2a4165',
+              bg: '#05080f',
+              surface: '#0d1522',
+              card: '#111b2b',
+              border: '#1e334d',
               cyan: '#00f0ff',
               gold: '#ffb703',
-              purple: '#a855f7',
-              red: '#ef4444',
+              purple: '#b5179e',
+              danger: '#ef4444',
               green: '#10b981'
             }
           },
@@ -37,524 +41,782 @@
           }
         }
       }
-    }
+    };
   </script>
+
   <style>
     body {
-      background-color: #06090e;
+      background-color: #05080f;
       background-image: 
-        radial-gradient(circle at 15% 15%, rgba(0, 240, 255, 0.05) 0%, transparent 40%),
-        radial-gradient(circle at 85% 80%, rgba(255, 183, 3, 0.04) 0%, transparent 40%),
-        radial-gradient(circle at 50% 50%, rgba(168, 85, 247, 0.03) 0%, transparent 50%),
-        linear-gradient(rgba(255,255,255,0.015) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255,255,255,0.015) 1px, transparent 1px);
-      background-size: 100% 100%, 100% 100%, 100% 100%, 32px 32px, 32px 32px;
-    }
-    
-    .tech-border {
-      position: relative;
-      border: 1px solid #1c2b42;
-      clip-path: polygon(
-        0 12px, 12px 0, 
-        calc(100% - 12px) 0, 100% 12px, 
-        100% calc(100% - 12px), calc(100% - 12px) 100%, 
-        12px 100%, 0 calc(100% - 12px)
-      );
-    }
-    .tech-border::before {
-      content: '';
-      position: absolute;
-      top: 0; left: 0; width: 10px; height: 10px;
-      border-top: 2px solid #00f0ff;
-      border-left: 2px solid #00f0ff;
-      pointer-events: none;
-    }
-    .tech-border::after {
-      content: '';
-      position: absolute;
-      bottom: 0; right: 0; width: 10px; height: 10px;
-      border-bottom: 2px solid #00f0ff;
-      border-right: 2px solid #00f0ff;
-      pointer-events: none;
+        radial-gradient(circle at 50% 0%, rgba(0, 240, 255, 0.08) 0%, transparent 60%),
+        radial-gradient(circle at 90% 90%, rgba(181, 23, 158, 0.05) 0%, transparent 50%),
+        linear-gradient(to right, rgba(255,255,255,0.015) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255,255,255,0.015) 1px, transparent 1px);
+      background-size: 100% 100%, 100% 100%, 40px 40px, 40px 40px;
     }
 
-    .corner-gold::before, .corner-gold::after {
-      border-color: #ffb703 !important;
+    /* Sci-Fi HUD Corner Cutouts */
+    .hud-cut-tr {
+      clip-path: polygon(0 0, calc(100% - 14px) 0, 100% 14px, 100% 100%, 0 100%);
     }
-    .corner-purple::before, .corner-purple::after {
-      border-color: #a855f7 !important;
+
+    /* Reliable Ingredient Tooltip with Invisible Hover Bridge */
+    .ing-tag-container {
+      position: relative;
+      display: inline-block;
+    }
+
+    .ing-tooltip {
+      visibility: hidden;
+      opacity: 0;
+      position: absolute;
+      bottom: calc(100% + 4px);
+      left: 50%;
+      transform: translateX(-50%) translateY(4px);
+      width: 270px;
+      z-index: 60;
+      pointer-events: none;
+      transition: opacity 0.15s ease-out, transform 0.15s ease-out, visibility 0.15s;
+    }
+
+    /* Invisible hover bridge to prevent tooltip from disappearing when mouse moves over the gap */
+    .ing-tooltip::after {
+      content: '';
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      height: 14px;
+      background: transparent;
+      pointer-events: auto;
+    }
+
+    .ing-tag-container:hover .ing-tooltip,
+    .ing-tooltip:hover {
+      visibility: visible;
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+      pointer-events: auto;
     }
 
     ::-webkit-scrollbar { width: 6px; height: 6px; }
-    ::-webkit-scrollbar-track { background: #06090e; }
-    ::-webkit-scrollbar-thumb { background: #1c2b42; border-radius: 3px; }
+    ::-webkit-scrollbar-track { background: #05080f; }
+    ::-webkit-scrollbar-thumb { background: #1e334d; border-radius: 3px; }
     ::-webkit-scrollbar-thumb:hover { background: #00f0ff; }
   </style>
 </head>
-<body class="text-slate-200 min-h-screen flex flex-col font-sans selection:bg-cyan-500/30 selection:text-cyan-200">
+<body class="text-slate-200 min-h-screen flex flex-col font-sans antialiased selection:bg-hud-cyan selection:text-black">
 
-  <!-- HUD Top Bar -->
-  <header class="border-b border-hud-border bg-hud-surface/95 backdrop-blur-md sticky top-0 z-40">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 flex flex-wrap items-center justify-between gap-3">
-      
-      <!-- Brand & Title -->
-      <div class="flex items-center gap-3">
-        <div class="w-10 h-10 rounded-lg bg-cyan-500/10 border border-cyan-500/40 flex items-center justify-center text-cyan-400 text-lg shadow-lg shadow-cyan-500/10">
-          <i class="fa-solid fa-microchip"></i>
+  <!-- ==================== HEADER HUD BAR ==================== -->
+  <header class="sticky top-0 z-40 bg-hud-surface/90 backdrop-blur-md border-b border-hud-border shadow-lg">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+      <!-- Title & Branding -->
+      <div class="flex items-center space-x-3">
+        <div class="w-10 h-10 rounded border border-hud-cyan flex items-center justify-center bg-hud-cyan/10 text-hud-cyan shadow-[0_0_15px_rgba(0,240,255,0.4)]">
+          <i class="fa-solid fa-atom text-xl animate-spin-slow"></i>
         </div>
         <div>
-          <div class="flex items-center gap-2">
-            <span class="font-orbitron font-black text-lg tracking-wider text-white">ONCE HUMAN</span>
-            <span class="px-2 py-0.5 text-[10px] font-mono tracking-widest bg-cyan-500/10 border border-cyan-500/30 text-cyan-400 rounded">METAVERSE CODEX v2.5</span>
+          <div class="flex items-center space-x-2">
+            <h1 class="text-xl sm:text-2xl font-orbitron font-black tracking-wider text-white">
+              ONCE HUMAN <span class="text-hud-cyan">CODEX</span>
+            </h1>
+            <span class="text-[10px] font-mono uppercase bg-hud-cyan/20 text-hud-cyan border border-hud-cyan/40 px-1.5 py-0.5 rounded">v1.3</span>
           </div>
-          <p id="ui-subtitle" class="text-xs text-slate-400 font-rajdhani font-medium tracking-wide">
-            OFICIÁLNÍ RECEPTY • KREATIVNÍ VAŘENÍ • MEDICÍNA • TECHNICKÉ VYNÁLEZY
-          </p>
+          <p id="ui-subtitle" class="text-xs font-mono text-slate-400">HERNÍ RECEPTY • SYNERGIE • MEDICÍNA • VYNÁLEZY</p>
         </div>
       </div>
 
-      <!-- Controls: Language, Export, Total Items -->
-      <div class="flex items-center gap-3">
-        <div class="flex items-center bg-hud-bg border border-hud-border rounded-lg p-0.5 font-mono text-xs">
-          <button id="lang-btn-cs" onclick="setLanguage('cs')" class="px-2.5 py-1 rounded text-cyan-400 bg-cyan-500/20 font-bold transition">
-            🇨🇿 CS
+      <!-- Action Buttons (Language & GitHub) -->
+      <div class="flex items-center space-x-2 sm:space-x-3">
+        <!-- Language Switcher -->
+        <div class="flex items-center bg-hud-card border border-hud-border rounded p-1">
+          <button id="lang-cs" onclick="setLanguage('cs')" class="px-2.5 py-1 rounded text-xs font-mono font-bold transition-all bg-hud-cyan text-black shadow">
+            CZ
           </button>
-          <button id="lang-btn-en" onclick="setLanguage('en')" class="px-2.5 py-1 rounded text-slate-400 hover:text-white font-bold transition">
-            🇬🇧 EN
+          <button id="lang-en" onclick="setLanguage('en')" class="px-2.5 py-1 rounded text-xs font-mono font-bold transition-all text-slate-400 hover:text-white">
+            EN
           </button>
         </div>
 
-        <a 
-          href="https://github.com/bandaska-cz/Once-Human-Codex" 
-          target="_blank" 
-          rel="noopener noreferrer" 
-          class="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-slate-800/80 hover:bg-slate-700/90 border border-hud-border hover:border-cyan-400 text-xs font-mono text-slate-300 hover:text-cyan-300 transition shadow-sm hover:shadow-[0_0_12px_rgba(0,240,255,0.25)]"
-          title="GitHub Repository & Community Contributions"
-        >
-          <svg class="w-4 h-4 fill-current text-cyan-400" viewBox="0 0 24 24">
-            <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
-          </svg>
-          <span class="font-bold">GitHub</span>
+        <!-- GitHub Repository Button -->
+        <a href="https://github.com/bandaska-cz/Once-Human-Codex" 
+           target="_blank" 
+           rel="noopener noreferrer" 
+           title="View on GitHub"
+           class="inline-flex items-center space-x-1.5 bg-hud-card hover:bg-hud-cyan/10 border border-hud-border hover:border-hud-cyan text-slate-200 hover:text-white px-3 py-1.5 rounded transition-all text-xs font-mono">
+          <i class="fa-brands fa-github text-base text-hud-cyan"></i>
+          <span class="hidden sm:inline">GitHub</span>
         </a>
-
-        <div class="hidden md:flex items-center gap-2 px-3 py-1.5 rounded bg-hud-bg border border-hud-border text-xs font-mono">
-          <span class="w-2 h-2 rounded-full bg-cyan-400 animate-ping"></span>
-          <span id="ui-total-label" class="text-slate-400">Celkem:</span>
-          <span id="stat-count" class="text-cyan-400 font-bold">0</span>
-        </div>
       </div>
-
-    </div>
-
-    <!-- Navigation 4-Tabs System -->
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-1 grid grid-cols-2 lg:grid-cols-4 gap-2">
-      <button id="tab-btn-discovered" onclick="switchTab('discovered')" class="flex items-center justify-center gap-2 py-3 px-3 font-orbitron font-bold text-xs uppercase tracking-wider border-b-2 border-cyan-400 text-cyan-400 bg-cyan-500/10 rounded-t-lg transition">
-        <i class="fa-solid fa-book-bookmark"></i>
-        <span id="ui-tab-1">1. Discovered Recipes</span>
-      </button>
-      <button id="tab-btn-creative" onclick="switchTab('creative')" class="flex items-center justify-center gap-2 py-3 px-3 font-orbitron font-bold text-xs uppercase tracking-wider border-b-2 border-transparent text-slate-400 hover:text-slate-200 hover:bg-slate-800/40 rounded-t-lg transition">
-        <i class="fa-solid fa-fire-burner"></i>
-        <span id="ui-tab-2">2. Creative Cooking</span>
-      </button>
-      <button id="tab-btn-medicine" onclick="switchTab('medicine')" class="flex items-center justify-center gap-2 py-3 px-3 font-orbitron font-bold text-xs uppercase tracking-wider border-b-2 border-transparent text-slate-400 hover:text-slate-200 hover:bg-slate-800/40 rounded-t-lg transition">
-        <i class="fa-solid fa-flask-vial"></i>
-        <span id="ui-tab-3">3. Medicine & Ferment</span>
-      </button>
-      <button id="tab-btn-inventions" onclick="switchTab('inventions')" class="flex items-center justify-center gap-2 py-3 px-3 font-orbitron font-bold text-xs uppercase tracking-wider border-b-2 border-transparent text-slate-400 hover:text-slate-200 hover:bg-slate-800/40 rounded-t-lg transition">
-        <i class="fa-solid fa-satellite-dish"></i>
-        <span id="ui-tab-4">4. Tech & Inventions</span>
-      </button>
     </div>
   </header>
 
-  <!-- Interactive Creative Cooking Synergy Calculator / Guide -->
-  <section id="creative-synergy-banner" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-5 w-full hidden">
-    <div class="bg-gradient-to-r from-purple-950/40 via-hud-surface to-cyan-950/30 border border-purple-500/40 rounded-xl p-4 sm:p-5 relative tech-border corner-purple">
-      <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-4 mb-4">
+  <!-- ==================== MAIN CONTENT CONTAINER ==================== -->
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 flex-1 w-full">
+    
+    <!-- Tab Navigation Bar -->
+    <div class="flex flex-wrap gap-2 mb-6 border-b border-hud-border/60 pb-3">
+      <button onclick="switchTab('discovered')" id="tab-btn-discovered" class="tab-button px-4 py-2.5 rounded font-orbitron text-xs sm:text-sm font-semibold tracking-wide transition-all bg-hud-cyan text-black shadow-[0_0_15px_rgba(0,240,255,0.4)] flex items-center space-x-2">
+        <i class="fa-solid fa-utensils"></i>
+        <span id="tab-txt-discovered">Discovered Recipes</span>
+      </button>
+
+      <button onclick="switchTab('creative')" id="tab-btn-creative" class="tab-button px-4 py-2.5 rounded font-orbitron text-xs sm:text-sm font-semibold tracking-wide transition-all bg-hud-surface text-slate-300 hover:text-white border border-hud-border flex items-center space-x-2">
+        <i class="fa-solid fa-mortar-pestle"></i>
+        <span id="tab-txt-creative">Creative Cooking & Synergies</span>
+      </button>
+
+      <button onclick="switchTab('medicine')" id="tab-btn-medicine" class="tab-button px-4 py-2.5 rounded font-orbitron text-xs sm:text-sm font-semibold tracking-wide transition-all bg-hud-surface text-slate-300 hover:text-white border border-hud-border flex items-center space-x-2">
+        <i class="fa-solid fa-flask-vial"></i>
+        <span id="tab-txt-medicine">Medicine & Fermentation</span>
+      </button>
+
+      <button onclick="switchTab('inventions')" id="tab-btn-inventions" class="tab-button px-4 py-2.5 rounded font-orbitron text-xs sm:text-sm font-semibold tracking-wide transition-all bg-hud-surface text-slate-300 hover:text-white border border-hud-border flex items-center space-x-2">
+        <i class="fa-solid fa-microchip"></i>
+        <span id="tab-txt-inventions">Tech Inventions & Tactical</span>
+      </button>
+    </div>
+
+    <!-- Interactive Cooking Synergy Matrix / Calculator (Visible in Creative Tab) -->
+    <div id="creative-calculator-panel" class="hidden mb-8 bg-hud-surface border border-hud-purple/50 rounded-lg p-5 relative overflow-hidden shadow-2xl">
+      <div class="flex flex-col md:flex-row items-start md:items-center justify-between pb-4 mb-4 border-b border-hud-border gap-2">
         <div>
-          <span class="px-2 py-0.5 text-[10px] font-mono uppercase bg-purple-500/20 text-purple-300 border border-purple-500/40 rounded">CHEF SYSTEM & SYNERGY MATRIX</span>
-          <h2 id="ui-calc-title" class="text-base sm:text-lg font-orbitron font-bold text-white mt-1">Interaktivní kalkulátor synergií volného vaření</h2>
-          <p id="ui-calc-desc" class="text-xs text-slate-400 font-rajdhani">Vyberte ingredience a zjistěte výsledný buff, modifikátor poškození a trade-off trvání.</p>
+          <div class="flex items-center space-x-2">
+            <span class="w-3 h-3 rounded-full bg-hud-purple animate-ping"></span>
+            <h2 id="calc-title" class="font-orbitron font-bold text-white text-base sm:text-lg">CHEF MATRIX: VOLNÉ VAŘENÍ A SYNERGIE</h2>
+          </div>
+          <p id="calc-desc" class="text-xs font-mono text-slate-400 mt-1">Naklikejte kombinaci surovin a získejte předpokládaný bonusový buff</p>
         </div>
-        <button onclick="resetCalculator()" class="text-xs font-mono text-purple-300 hover:text-white bg-purple-900/40 px-3 py-1.5 rounded border border-purple-500/40 flex items-center gap-1.5">
-          <i class="fa-solid fa-rotate-left"></i> <span id="ui-calc-reset">Reset kalkulátoru</span>
+        <button onclick="resetSynergyCalc()" class="text-xs font-mono px-3 py-1 bg-hud-border/40 hover:bg-hud-border border border-slate-600 rounded text-slate-300 transition">
+          <i class="fa-solid fa-rotate-left mr-1"></i> Reset
         </button>
       </div>
 
       <!-- Ingredient Selectors -->
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 text-xs font-mono">
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-4">
         <!-- Slot 1: Meat -->
-        <div class="bg-hud-bg p-3 rounded-lg border border-hud-border">
-          <label id="ui-slot-1-label" class="block text-amber-400 uppercase text-[10px] mb-1 font-bold">1. Maso (Meat Archetype)</label>
-          <select id="calc-meat" onchange="calculateSynergy()" class="w-full bg-slate-900 border border-slate-700 rounded p-1.5 text-slate-200">
-            <option value="none">-- Vyberte maso --</option>
-            <option value="bear">Pristine Bear Meat (+3% Shrapnel DMG)</option>
-            <option value="beef">Pristine Beef (+3% Frost Vortex DMG)</option>
-            <option value="rabbit">Pristine Rabbit Meat (+3% ATK v Fast Gunner)</option>
-            <option value="pork">Pristine Pork Meat (+3% Unstable Bomber DMG)</option>
-            <option value="goat">Pristine Goat Meat (+3% Burn DMG)</option>
-            <option value="turtle">Fine Turtle Meat (+3% Fortress Warfare DMG)</option>
-            <option value="poultry">Pristine Poultry (+3% Bounce DMG)</option>
-            <option value="deer">Pristine Deer Meat (+3% Bullseye Vulnerability)</option>
+        <div class="bg-hud-card p-3 rounded border border-hud-border">
+          <label id="lbl-slot1" class="text-[11px] font-mono text-slate-400 uppercase block mb-1">Maso / Základ</label>
+          <select id="calc-slot-meat" onchange="calculateSynergies()" class="w-full bg-hud-bg border border-hud-border text-white text-xs rounded px-2.5 py-1.5 focus:border-hud-cyan outline-none">
+            <option value="none">-- Prázdné --</option>
+            <option value="beast">Beast Meat (Běžné)</option>
+            <option value="deviated_meat">Deviated Beast Meat (Zmutované)</option>
+            <option value="fish">Fresh Pike / Carp (Ryba)</option>
           </select>
         </div>
-
-        <!-- Slot 2: Crop / Veggie -->
-        <div class="bg-hud-bg p-3 rounded-lg border border-hud-border">
-          <label id="ui-slot-2-label" class="block text-emerald-400 uppercase text-[10px] mb-1 font-bold">2. Plodina / Zelenina</label>
-          <select id="calc-crop" onchange="calculateSynergy()" class="w-full bg-slate-900 border border-slate-700 rounded p-1.5 text-slate-200">
-            <option value="none">-- Vyberte plodinu --</option>
-            <option value="dev_cucumber">Deviated Cucumber (+30% Max Load limit)</option>
-            <option value="dev_tomato">Deviated Tomato (+10% Deviation Catch rate)</option>
-            <option value="dev_wheat">Deviated Wheat (+20% Gathering Yield)</option>
-            <option value="dev_cabbage">Deviated Cabbage (+50% Mining Yield final strike)</option>
-            <option value="dev_mushroom">Deviated Mushroom (Sanity Regen 1% / 5s)</option>
-            <option value="dev_onion">Deviated Onion (+20 min Full Hydration)</option>
+        <!-- Slot 2: Vegetable -->
+        <div class="bg-hud-card p-3 rounded border border-hud-border">
+          <label id="lbl-slot2" class="text-[11px] font-mono text-slate-400 uppercase block mb-1">Zelenina / Příloha</label>
+          <select id="calc-slot-veg" onchange="calculateSynergies()" class="w-full bg-hud-bg border border-hud-border text-white text-xs rounded px-2.5 py-1.5 focus:border-hud-cyan outline-none">
+            <option value="none">-- Prázdné --</option>
+            <option value="corn">Kukuřice / Pšenice</option>
+            <option value="deviated_veg">Deviated Pumpkin / Morel (Zmutovaná)</option>
+            <option value="mushrooms">Divoké houby</option>
           </select>
         </div>
-
-        <!-- Slot 3: Herb / Dairy -->
-        <div class="bg-hud-bg p-3 rounded-lg border border-hud-border">
-          <label id="ui-slot-3-label" class="block text-cyan-400 uppercase text-[10px] mb-1 font-bold">3. Bylina / Mléko / Ryba</label>
-          <select id="calc-third" onchange="calculateSynergy()" class="w-full bg-slate-900 border border-slate-700 rounded p-1.5 text-slate-200">
-            <option value="none">-- Vyberte bylinu/mléko --</option>
-            <option value="dev_saffron">Deviated Saffron (+4% Max Stamina, -20% non-herb duration)</option>
-            <option value="stardust_milk">Stardust Cow Milk (Rychlá regenerace Sanity, -90% Durability)</option>
-            <option value="caviar">Caviar / Jikry (+50% bonus k efektům ryb)</option>
-            <option value="croc_egg">Crocodile Egg (+5% Shock DMG / Ultraman base)</option>
+        <!-- Slot 3: Spice / Herb -->
+        <div class="bg-hud-card p-3 rounded border border-hud-border">
+          <label id="lbl-slot3" class="text-[11px] font-mono text-slate-400 uppercase block mb-1">Byliny & Koření</label>
+          <select id="calc-slot-spice" onchange="calculateSynergies()" class="w-full bg-hud-bg border border-hud-border text-white text-xs rounded px-2.5 py-1.5 focus:border-hud-cyan outline-none">
+            <option value="none">-- Prázdné --</option>
+            <option value="pepper">Chilli / Pepper (Pálivé)</option>
+            <option value="sugar">Cukr / Med (Sladké)</option>
+            <option value="salt">Sůl / Mořská sůl</option>
           </select>
         </div>
-
-        <!-- Slot 4: Modifier / Seasoning -->
-        <div class="bg-hud-bg p-3 rounded-lg border border-hud-border">
-          <label id="ui-slot-4-label" class="block text-purple-400 uppercase text-[10px] mb-1 font-bold">4. Zesilovač (Seasoning/Dairy)</label>
-          <select id="calc-mod" onchange="calculateSynergy()" class="w-full bg-slate-900 border border-slate-700 rounded p-1.5 text-slate-200">
+        <!-- Slot 4: Enhancer -->
+        <div class="bg-hud-card p-3 rounded border border-hud-border">
+          <label id="lbl-slot4" class="text-[11px] font-mono text-slate-400 uppercase block mb-1">Zesilovač / Stardust</label>
+          <select id="calc-slot-enhancer" onchange="calculateSynergies()" class="w-full bg-hud-bg border border-hud-border text-white text-xs rounded px-2.5 py-1.5 focus:border-hud-cyan outline-none">
             <option value="none">-- Bez zesilovače --</option>
-            <option value="cheese">Cheese / Sýr (+30% síla pokrmu, -30% trvání)</option>
-            <option value="butter">Butter / Máslo (+30% síla, nemasité efekty -50%)</option>
-            <option value="stardust_cheese">Stardust Cheese (+50% síla pokrmu, -0.1% Sanity/5s)</option>
-            <option value="peppercorn">Deviated Peppercorn (+20% šance na úspěch, -50% trvání)</option>
-            <option value="stardust_salt">Stardust Salt (Nekazí se, Sanity -0.1%/5s)</option>
+            <option value="stardust">Stardust Ore / Salt (+100% Buff Power)</option>
+            <option value="oil">Čistý kuchyňský olej (+15m trvání)</option>
           </select>
         </div>
       </div>
 
-      <!-- Live Calculation Result Panel -->
-      <div id="calc-result-box" class="mt-3 bg-hud-bg/90 border border-purple-500/30 p-3 rounded-lg flex flex-wrap items-center justify-between gap-3 font-mono text-xs">
-        <div class="flex items-center gap-2">
-          <span class="w-2.5 h-2.5 rounded-full bg-purple-400 animate-pulse"></span>
-          <span class="text-slate-400">Kombinovaný efekt:</span>
-          <span id="calc-result-text" class="text-cyan-300 font-bold">Zvolte alespoň jednu ingredienci pro kalkulaci buffů.</span>
+      <!-- Result Card -->
+      <div id="calc-result" class="p-3 bg-hud-bg/80 border border-hud-cyan/40 rounded flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
+        <div>
+          <span class="text-[10px] font-mono uppercase text-hud-cyan tracking-wider">Výsledná kombinace:</span>
+          <div id="calc-result-title" class="font-orbitron font-bold text-white text-sm">Základní polévka / Restovaná směs</div>
+          <p id="calc-result-effects" class="text-xs font-mono text-slate-300 mt-0.5">Vyberte alespoň jednu surovinu výše pro výpočet synergie.</p>
         </div>
-        <div id="calc-tradeoffs" class="text-amber-400 text-[11px]"></div>
+        <div class="text-right flex items-center space-x-3 text-xs font-mono">
+          <span class="text-amber-400"><i class="fa-solid fa-bolt mr-1"></i>Energy: <strong id="calc-res-energy">0</strong></span>
+          <span class="text-hud-cyan"><i class="fa-solid fa-droplet mr-1"></i>Hydration: <strong id="calc-res-hydro">0</strong></span>
+        </div>
       </div>
     </div>
-  </section>
 
-  <!-- Filter & Controls Toolbar -->
-  <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5 w-full">
-    <div class="bg-hud-surface/90 border border-hud-border rounded-xl p-4 sm:p-5 shadow-2xl backdrop-blur-sm space-y-4">
-      
-      <!-- Upper row: Search, Sorting, Reset -->
-      <div class="grid grid-cols-1 md:grid-cols-12 gap-4">
-        
-        <!-- Search input -->
-        <div class="md:col-span-6 relative">
-          <label id="ui-search-label" class="block text-[11px] font-mono uppercase text-slate-400 mb-1 flex items-center justify-between">
-            <span><i class="fa-solid fa-magnifying-glass text-cyan-400 mr-1.5"></i>Vyhledávání</span>
-            <span id="ui-search-hint" class="text-[10px] text-slate-500">Název, ingredience, lokace, buffy</span>
-          </label>
-          <div class="relative">
-            <input 
-              type="text" 
-              id="search-input" 
-              placeholder="Např. Stargazy, Ultraman, Acid, Activator, Turret..." 
-              class="w-full bg-hud-bg border border-hud-border rounded-lg pl-10 pr-10 py-2.5 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400 transition"
-              oninput="handleSearch()"
-            >
-            <i class="fa-solid fa-terminal absolute left-3.5 top-3 text-slate-500 text-xs"></i>
-            <button id="clear-search-btn" onclick="clearSearch()" class="hidden absolute right-3 top-2.5 text-slate-400 hover:text-white text-sm">
-              <i class="fa-solid fa-xmark"></i>
-            </button>
-          </div>
-        </div>
-
-        <!-- Sorting criteria -->
-        <div class="md:col-span-3">
-          <label id="ui-sort-label" class="block text-[11px] font-mono uppercase text-slate-400 mb-1">
-            <i class="fa-solid fa-arrow-down-a-z text-cyan-400 mr-1.5"></i>Řadit podle
-          </label>
-          <select 
-            id="sort-criteria" 
-            onchange="applyFiltersAndSort()" 
-            class="w-full bg-hud-bg border border-hud-border rounded-lg px-3 py-2.5 text-sm text-white focus:outline-none focus:border-cyan-400 transition cursor-pointer"
+    <!-- Search & Filter Controls -->
+    <div class="bg-hud-surface border border-hud-border rounded-lg p-4 mb-6 shadow-md">
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-3 items-center">
+        <!-- Search Input -->
+        <div class="lg:col-span-5 relative">
+          <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-3 text-slate-400 text-xs"></i>
+          <input 
+            type="text" 
+            id="searchInput" 
+            oninput="handleSearch(this.value)" 
+            placeholder="Hledat recept, surovinu, účinek nebo lokaci..." 
+            class="w-full bg-hud-bg border border-hud-border rounded pl-9 pr-8 py-2 text-xs sm:text-sm text-white placeholder-slate-500 focus:outline-none focus:border-hud-cyan transition"
           >
-            <option value="name-asc">Název (A → Z)</option>
-            <option value="name-desc">Název (Z → A)</option>
-            <option value="ingredient-asc">Primární surovina (A → Z)</option>
-            <option value="rarity-desc">Rarita (Nejvyšší → Nejnižší)</option>
-            <option value="rarity-asc">Rarita (Nejnižší → Nejvyšší)</option>
-          </select>
-        </div>
-
-        <!-- Reset filters -->
-        <div class="md:col-span-3 flex items-end">
-          <button 
-            onclick="resetFilters()" 
-            class="w-full bg-slate-800/80 hover:bg-slate-700 border border-hud-border hover:border-slate-500 text-slate-300 py-2.5 px-4 rounded-lg text-sm font-rajdhani font-semibold tracking-wider flex items-center justify-center gap-2 transition"
-          >
-            <i class="fa-solid fa-arrows-rotate"></i>
-            <span id="ui-reset-btn">Resetovat filtry</span>
+          <button id="clearSearchBtn" onclick="clearSearch()" class="hidden absolute right-3 top-2.5 text-slate-400 hover:text-white">
+            <i class="fa-solid fa-xmark text-xs"></i>
           </button>
         </div>
 
+        <!-- Category Dropdown -->
+        <div class="lg:col-span-2">
+          <select id="filterCategory" onchange="handleCategoryFilter(this.value)" class="w-full bg-hud-bg border border-hud-border rounded px-3 py-2 text-xs sm:text-sm text-slate-300 focus:outline-none focus:border-hud-cyan transition">
+            <option value="all">Všechny kategorie</option>
+          </select>
+        </div>
+
+        <!-- Rarity Dropdown -->
+        <div class="lg:col-span-2">
+          <select id="filterRarity" onchange="handleRarityFilter(this.value)" class="w-full bg-hud-bg border border-hud-border rounded px-3 py-2 text-xs sm:text-sm text-slate-300 focus:outline-none focus:border-hud-cyan transition">
+            <option value="all">Všechny rarity</option>
+            <option value="Legendary">Legendary (Zlatá)</option>
+            <option value="Epic">Epic (Fialová)</option>
+            <option value="Rare">Rare (Modrá)</option>
+            <option value="Fine">Fine / Uncommon (Zelená)</option>
+            <option value="Common">Common (Šedá)</option>
+          </select>
+        </div>
+
+        <!-- Sort By Dropdown -->
+        <div class="lg:col-span-3">
+          <select id="sortCriterion" onchange="handleSortChange(this.value)" class="w-full bg-hud-bg border border-hud-border rounded px-3 py-2 text-xs sm:text-sm text-slate-300 focus:outline-none focus:border-hud-cyan transition">
+            <option value="name-asc">Název receptu (A → Z)</option>
+            <option value="name-desc">Název receptu (Z → A)</option>
+            <option value="ing-asc">Primární ingredience (A → Z)</option>
+            <option value="rarity-desc">Rarita (Nejvyšší → Nejnižší)</option>
+          </select>
+        </div>
       </div>
 
-      <!-- Lower row: Category and Rarity Badges -->
-      <div class="pt-3 border-t border-hud-border/50 flex flex-wrap items-center gap-3">
-        <span id="ui-filter-label" class="text-xs font-mono uppercase text-slate-400 flex items-center gap-1.5">
-          <i class="fa-solid fa-sliders text-cyan-400"></i> Filtry:
-        </span>
-        <div id="category-filters" class="flex flex-wrap gap-1.5"></div>
-        <div id="rarity-filters" class="flex flex-wrap gap-1.5 sm:ml-auto"></div>
+      <!-- Quick Stats & Counter -->
+      <div class="mt-3 pt-3 border-t border-hud-border/40 flex items-center justify-between text-[11px] font-mono text-slate-400">
+        <span id="results-count">Zobrazeno záznamů: <strong class="text-hud-cyan">0</strong></span>
+        <span id="total-db-count">Celkem v databázi: <strong class="text-white">0</strong></span>
       </div>
-
     </div>
-  </section>
 
-  <!-- Main Content Grid -->
-  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-16 flex-1 w-full">
-    
-    <!-- Results Header -->
-    <div class="flex items-center justify-between mb-4">
-      <div class="flex items-center gap-2 text-sm text-slate-400 font-mono">
-        <span id="ui-shown-label">Zobrazeno záznamů:</span>
-        <span id="filtered-count" class="font-bold text-cyan-400">0</span>
-      </div>
-      <div id="tab-subtitle-indicator" class="text-xs font-mono text-cyan-400/80"></div>
+    <!-- Recipe Cards Grid -->
+    <div id="recipes-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+      <!-- Dynamic cards rendered here -->
     </div>
-
-    <!-- Grid Container -->
-    <div id="recipes-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5"></div>
 
     <!-- Empty State -->
-    <div id="empty-state" class="hidden py-16 text-center">
-      <div class="w-16 h-16 mx-auto mb-4 rounded-full bg-slate-800/80 border border-slate-700 flex items-center justify-center text-slate-500 text-2xl">
-        <i class="fa-solid fa-filter-circle-xmark"></i>
-      </div>
-      <h3 id="ui-empty-title" class="text-lg font-orbitron font-bold text-slate-300">Nenalezeny žádné záznamy</h3>
-      <p id="ui-empty-desc" class="text-slate-500 text-sm mt-1 max-w-md mx-auto">Upravte hledaný výraz nebo zvolte jiné filtry kategorií.</p>
-      <button onclick="resetFilters()" class="mt-4 px-4 py-2 bg-cyan-500/20 text-cyan-400 border border-cyan-500/40 rounded-lg text-xs font-mono uppercase tracking-wider hover:bg-cyan-500/30 transition">
-        <span id="ui-empty-btn">Resetovat filtry</span>
-      </button>
+    <div id="empty-state" class="hidden text-center py-16 bg-hud-surface/40 border border-hud-border rounded-lg">
+      <i class="fa-solid fa-radar text-4xl text-slate-600 mb-3 animate-pulse"></i>
+      <h3 class="font-orbitron font-bold text-white text-base">Žádný recept nenalezen</h3>
+      <p class="text-xs font-mono text-slate-400 mt-1">Zkuste upravit hledaný výraz nebo resetovat filtry.</p>
     </div>
 
   </main>
 
-  <!-- Footer -->
-  <footer class="border-t border-hud-border/60 bg-hud-surface py-6 text-center text-xs text-slate-400 font-rajdhani">
-    <div class="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-3">
-      <div>
-        <span class="text-slate-300 font-bold">Once Human Metaverse Codex</span> • <span id="ui-footer-info">Bilingual Standalone Tool</span>
-      </div>
-      <div class="flex items-center gap-4 text-slate-400 font-mono text-[11px]">
-        <span><i class="fa-solid fa-bowl-food text-amber-500 mr-1"></i>Culinary Arts</span>
-        <span><i class="fa-solid fa-syringe text-emerald-400 mr-1"></i>Pharma & Chemistry</span>
-        <span><i class="fa-solid fa-gear text-cyan-400 mr-1"></i>Memetic Tech</span>
-      </div>
-    </div>
-  </footer>
-
-  <!-- Detail Modal -->
-  <div id="detail-modal" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
-    <div class="bg-hud-surface border border-cyan-500/50 rounded-2xl max-w-xl w-full p-6 shadow-2xl relative tech-border">
-      <button onclick="closeModal()" class="absolute top-4 right-4 text-slate-400 hover:text-white w-8 h-8 rounded-full bg-slate-800 flex items-center justify-center transition">
-        <i class="fa-solid fa-xmark"></i>
+  <!-- ==================== DETAIL MODAL (WITH BREADCRUMB HISTORY) ==================== -->
+  <div id="detail-modal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm">
+    <div class="bg-hud-surface border border-hud-cyan/50 rounded-lg max-w-2xl w-full p-6 relative max-h-[90vh] overflow-y-auto shadow-[0_0_30px_rgba(0,240,255,0.2)]">
+      <!-- Close Button -->
+      <button onclick="closeModal()" class="absolute top-4 right-4 text-slate-400 hover:text-white transition w-8 h-8 rounded border border-hud-border flex items-center justify-center bg-hud-card">
+        <i class="fa-solid fa-xmark text-sm"></i>
       </button>
-      <div id="modal-content"></div>
+
+      <div id="modal-content">
+        <!-- Rendered dynamically -->
+      </div>
     </div>
   </div>
 
+  <!-- ==================== FOOTER ==================== -->
+  <footer class="mt-12 bg-hud-surface border-t border-hud-border py-6 text-center text-xs font-mono text-slate-500">
+    <div class="max-w-7xl mx-auto px-4">
+      <p>ONCE HUMAN COMMUNITY CODEX • DATA INTENDED FOR SURVIVAL AND COMBAT OPTIMIZATION</p>
+      <p class="mt-1 text-[10px] text-slate-600">All trademarks, logos and game assets belong to Starry Studio / NetEase Games.</p>
+    </div>
+  </footer>
+
+  <!-- ==================== COMPLETE DATABASE & SCRIPTS ==================== -->
   <script>
     /* ==========================================================================
-       LOCALIZATION & TEXT DICTIONARY
+       LOCALIZATION DICTIONARIES
        ========================================================================== */
-    let currentLang = 'cs'; // 'cs' | 'en'
+    let currentLang = 'cs';
 
     const i18n = {
       cs: {
-        subtitle: "OFICIÁLNÍ RECEPTY • KREATIVNÍ VAŘENÍ • MEDICÍNA • TECHNICKÉ VYNÁLEZY",
-        totalLabel: "Celkem:",
-        tab1: "1. Discovered Recipes",
-        tab2: "2. Creative Cooking",
-        tab3: "3. Medicine & Ferment",
-        tab4: "4. Tech & Inventions",
-        calcTitle: "Interaktivní kalkulátor synergií volného vaření",
-        calcDesc: "Vyberte ingredience a zjistěte výsledný buff, modifikátor poškození a trade-off trvání.",
-        calcReset: "Reset kalkulátoru",
-        slot1Label: "1. Maso (Meat Archetype)",
-        slot2Label: "2. Plodina / Zelenina",
-        slot3Label: "3. Bylina / Mléko / Ryba",
-        slot4Label: "4. Zesilovač (Seasoning/Dairy)",
-        searchLabel: "Vyhledávání",
-        searchHint: "Název, ingredience, lokace, buffy",
-        searchPlaceholder: "Např. Stargazy, Ultraman, Acid, Activator, Turret...",
-        sortLabel: "Řadit podle",
-        sortOptions: {
-          nameAsc: "Název (A → Z)",
-          nameDesc: "Název (Z → A)",
-          ingrAsc: "Primární surovina (A → Z)",
-          rarityDesc: "Rarita (Nejvyšší → Nejnižší)",
-          rarityAsc: "Rarita (Nejnižší → Nejvyšší)"
-        },
-        resetBtn: "Resetovat filtry",
-        filterLabel: "Filtry:",
+        subtitle: "HERNÍ RECEPTY • SYNERGIE • MEDICÍNA • VYNÁLEZY",
+        tabDiscovered: "Discovered Recipes (Oficiální)",
+        tabCreative: "Creative Cooking & Synergie",
+        tabMedicine: "Medicína & Fermentace",
+        tabInventions: "Vynálezy & Taktika",
+        calcTitle: "CHEF MATRIX: VOLNÉ VAŘENÍ A SYNERGIE",
+        calcDesc: "Naklikejte kombinaci surovin a získejte předpokládaný bonusový buff",
+        searchPlaceholder: "Hledat recept, surovinu, účinek nebo lokaci...",
         allCategories: "Všechny kategorie",
         allRarities: "Všechny rarity",
-        shownLabel: "Zobrazeno záznamů:",
-        emptyTitle: "Nenalezeny žádné záznamy",
-        emptyDesc: "Upravte hledaný výraz nebo zvolte jiné filtry kategorií.",
-        emptyBtn: "Resetovat filtry",
-        footerInfo: "Bilingvní samostatný nástroj",
-        energy: "Energie",
-        hydration: "Hydratace",
-        duration: "Trvání",
-        effectsTitle: "Efekty a Bonusy",
-        materialsTitle: "Suroviny & Ingredience",
-        sourceTitle: "Zdroje & Naleziště",
-        keyIngr: "Klíčová:",
-        baseMat: "Základ:",
-        detailBtn: "Detail",
+        sortNameAsc: "Název receptu (A → Z)",
+        sortNameDesc: "Název receptu (Z → A)",
+        sortIngAsc: "Primární ingredience (A → Z)",
+        sortRarityDesc: "Rarita (Nejvyšší → Nejnižší)",
+        resultsCount: "Zobrazeno záznamů:",
+        totalCount: "Celkem v databázi:",
+        noResultsTitle: "Žádný recept nenalezen",
+        noResultsDesc: "Zkuste upravit hledaný výraz nebo resetovat filtry.",
+        materialsTitle: "Potřebné suroviny:",
+        effectsTitle: "Účinky a buffy:",
+        sourceTitle: "Získání receptu",
+        detailBtn: "Otevřít detail",
         copyBtn: "Kopírovat název",
-        copiedNotice: "Zkopírováno do schránky",
-        workbenchLabel: "Výrobní stůl:"
+        copiedNotice: "Název zkopírován do schránky",
+        keyIngr: "Klíčová:",
+        workbenchLabel: "Výrobní stůl:",
+        craftedBadge: "⚡ Vyrobitelná surovina - Klikněte pro recept",
+        craftedVia: "Vyrábí se receptem:",
+        openRecipeBtn: "Otevřít recept",
+        backToRecipe: "← Zpět na předchozí recept",
+        locationWhereToFind: "Kde najít / Jak získat:"
       },
       en: {
         subtitle: "OFFICIAL RECIPES • CREATIVE COOKING • MEDICINE • TECH INVENTIONS",
-        totalLabel: "Total:",
-        tab1: "1. Discovered Recipes",
-        tab2: "2. Creative Cooking",
-        tab3: "3. Medicine & Ferment",
-        tab4: "4. Tech & Inventions",
-        calcTitle: "Interactive Creative Cooking Synergy Calculator",
-        calcDesc: "Select ingredients to compute resulting buffs, damage archetypes, and duration trade-offs.",
-        calcReset: "Reset Calculator",
-        slot1Label: "1. Meat (Damage Archetype)",
-        slot2Label: "2. Crop / Deviated Veggie",
-        slot3Label: "3. Herb / Dairy / Seafood",
-        slot4Label: "4. Multiplier (Seasoning/Dairy)",
-        searchLabel: "Global Search",
-        searchHint: "Name, ingredients, location, buffs",
-        searchPlaceholder: "E.g. Stargazy, Ultraman, Acid, Activator, Turret...",
-        sortLabel: "Sort By",
-        sortOptions: {
-          nameAsc: "Name (A → Z)",
-          nameDesc: "Name (Z → A)",
-          ingrAsc: "Primary Ingredient (A → Z)",
-          rarityDesc: "Rarity (Highest → Lowest)",
-          rarityAsc: "Rarity (Lowest → Highest)"
-        },
-        resetBtn: "Reset Filters",
-        filterLabel: "Filters:",
+        tabDiscovered: "Discovered Recipes",
+        tabCreative: "Creative Cooking & Synergies",
+        tabMedicine: "Medicine & Fermentation",
+        tabInventions: "Tech Inventions & Tactical",
+        calcTitle: "CHEF MATRIX: FREE COOKING & SYNERGIES",
+        calcDesc: "Select ingredient combinations to simulate resulting synergistic buffs",
+        searchPlaceholder: "Search recipe, ingredient, buff effect, or source location...",
         allCategories: "All Categories",
         allRarities: "All Rarities",
-        shownLabel: "Shown Records:",
-        emptyTitle: "No records found",
-        emptyDesc: "Adjust your query or pick different category/rarity pills.",
-        emptyBtn: "Reset Filters",
-        footerInfo: "Bilingual Standalone Tool",
-        energy: "Energy",
-        hydration: "Hydration",
-        duration: "Duration",
-        effectsTitle: "Buffs & Operational Effects",
-        materialsTitle: "Ingredients & Materials",
-        sourceTitle: "Source & Discovery Location",
-        keyIngr: "Primary:",
-        baseMat: "Core:",
-        detailBtn: "Details",
+        sortNameAsc: "Recipe Name (A → Z)",
+        sortNameDesc: "Recipe Name (Z → A)",
+        sortIngAsc: "Primary Ingredient (A → Z)",
+        sortRarityDesc: "Rarity (Highest → Lowest)",
+        resultsCount: "Showing records:",
+        totalCount: "Total in database:",
+        noResultsTitle: "No recipe found",
+        noResultsDesc: "Try adjusting search query or reset filter controls.",
+        materialsTitle: "Required Materials:",
+        effectsTitle: "Effects & Buffs:",
+        sourceTitle: "Formula Source",
+        detailBtn: "View Details",
         copyBtn: "Copy Name",
-        copiedNotice: "Copied to clipboard",
-        workbenchLabel: "Workbench:"
+        copiedNotice: "Recipe name copied to clipboard",
+        keyIngr: "Key:",
+        workbenchLabel: "Workbench:",
+        craftedBadge: "⚡ Crafted Item - Click to open recipe",
+        craftedVia: "Crafted via recipe:",
+        openRecipeBtn: "Open recipe",
+        backToRecipe: "← Back to previous recipe",
+        locationWhereToFind: "Where to find / How to get:"
       }
     };
 
     /* ==========================================================================
-       DATABÁZE TAB 1: DISCOVERED & MEMETIC RECIPES (OFICIÁLNÍ JÍDLA A NÁPOJE)
+       INGREDIENTS SOURCE KNOWLEDGE BASE & RECIPE CROSS-LINK MAP
+       ========================================================================== */
+    const ingredientKnowledgeBase = {
+      "Northern Pike / Rare Fish": {
+        locationCs: "Sladkovodní i mořský rybolov (jezero Chalk Peak, řeka u Meyer's Market). Použijte kvalitní návnadu.",
+        locationEn: "Freshwater & coastal fishing (Chalk Peak lake, Meyer's Market river). Use bait.",
+        recipeId: null
+      },
+      "Severní štika / Vzácná ryba": {
+        locationCs: "Sladkovodní i mořský rybolov (jezero Chalk Peak, řeka u Meyer's Market). Použijte kvalitní návnadu.",
+        locationEn: "Freshwater & coastal fishing (Chalk Peak lake, Meyer's Market river). Use bait.",
+        recipeId: null
+      },
+      "Flour": {
+        locationCs: "Zpracování pšenice na Supplies Workbench / Kitchen Stove.",
+        locationEn: "Refined from Wheat at Supplies Workbench or Kitchen Stove.",
+        recipeId: "b-02"
+      },
+      "Pšeničná mouka": {
+        locationCs: "Zpracování pšenice na Supplies Workbench / Kitchen Stove.",
+        locationEn: "Refined from Wheat at Supplies Workbench or Kitchen Stove.",
+        recipeId: "b-02"
+      },
+      "Purified Water": {
+        locationCs: "Filtrování špinavé vody (Dirty Water) u táboráku nebo ve Water Filter stanici.",
+        locationEn: "Boil Dirty Water at Campfire or refine via Water Filter facility.",
+        recipeId: "b-01"
+      },
+      "Čistá voda": {
+        locationCs: "Filtrování špinavé vody (Dirty Water) u táboráku nebo ve Water Filter stanici.",
+        locationEn: "Boil Dirty Water at Campfire or refine via Water Filter facility.",
+        recipeId: "b-01"
+      },
+      "Sugar": {
+        locationCs: "Výroba z cukrové řepy (Beetroot) nebo kukuřice u kuchyňského stolu.",
+        locationEn: "Crafted from Beetroot or Corn at Kitchen Stove / Supplies Workbench.",
+        recipeId: "b-03"
+      },
+      "Cukr": {
+        locationCs: "Výroba z cukrové řepy (Beetroot) nebo kukuřice u kuchyňského stolu.",
+        locationEn: "Crafted from Beetroot or Corn at Kitchen Stove / Supplies Workbench.",
+        recipeId: "b-03"
+      },
+      "Cooking Oil": {
+        locationCs: "Lisování kukuřice nebo slunečnicových semen na sporáku.",
+        locationEn: "Extracted from Corn or seeds at Kitchen Stove.",
+        recipeId: "b-04"
+      },
+      "Olej na vaření": {
+        locationCs: "Lisování kukuřice nebo slunečnicových semen na sporáku.",
+        locationEn: "Extracted from Corn or seeds at Kitchen Stove.",
+        recipeId: "b-04"
+      },
+      "Acid": {
+        locationCs: "Zkvašení zkaženého masa v Fermentation Barrel nebo filtrace zamořené vody.",
+        locationEn: "Fermented from Spoiled Meat in Fermentation Barrel or extracted from polluted water.",
+        recipeId: "m-05"
+      },
+      "Kyselina (Acid)": {
+        locationCs: "Zkvašení zkaženého masa v Fermentation Barrel nebo filtrace zamořené vody.",
+        locationEn: "Fermented from Spoiled Meat in Fermentation Barrel or extracted from polluted water.",
+        recipeId: "m-05"
+      },
+      "Steel Ingot": {
+        locationCs: "Tavení železné rudy a uhlí v elektrické peci (Electric Furnace).",
+        locationEn: "Smelted from Iron Ore and Charcoal inside Electric Furnace.",
+        recipeId: "b-05"
+      },
+      "Ocelový ingot": {
+        locationCs: "Tavení železné rudy a uhlí v elektrické peci (Electric Furnace).",
+        locationEn: "Smelted from Iron Ore and Charcoal inside Electric Furnace.",
+        recipeId: "b-05"
+      },
+      "Gunpowder": {
+        locationCs: "Smíchání síry a uhlí na Supplies Workbench.",
+        locationEn: "Crafted from Sulfur and Charcoal at Supplies Workbench.",
+        recipeId: "b-06"
+      },
+      "Střelný prach": {
+        locationCs: "Smíchání síry a uhlí na Supplies Workbench.",
+        locationEn: "Crafted from Sulfur and Charcoal at Supplies Workbench.",
+        recipeId: "b-06"
+      },
+      "Stardust Source": {
+        locationCs: "Získává se z očisty teritoria (Purification), bossů v Silo nebo z těžby Stardust Ore.",
+        locationEn: "Obtained from Territory Purification, Silo boss clears, or refining Stardust Ore.",
+        recipeId: null
+      },
+      "Zdroj hvězdného prachu (Stardust)": {
+        locationCs: "Získává se z očisty teritoria (Purification), bossů v Silo nebo z těžby Stardust Ore.",
+        locationEn: "Obtained from Territory Purification, Silo boss clears, or refining Stardust Ore.",
+        recipeId: null
+      },
+      "Electronic Parts": {
+        locationCs: "Demontáž elektronického šrotu (CPU, obvody, telefony) na Disassembly Workbench.",
+        locationEn: "Scrapped from electronics (circuit boards, radios) at Disassembly Workbench.",
+        recipeId: null
+      },
+      "Elektronické součástky": {
+        locationCs: "Demontáž elektronického šrotu (CPU, obvody, telefony) na Disassembly Workbench.",
+        locationEn: "Scrapped from electronics (circuit boards, radios) at Disassembly Workbench.",
+        recipeId: null
+      },
+      "Bird Egg": {
+        locationCs: "Sběr ptačích hnízd v korunách stromů a skalních převisech.",
+        locationEn: "Gathered from wild bird nests in forests and cliffs.",
+        recipeId: null
+      },
+      "Ptačí vejce": {
+        locationCs: "Sběr ptačích hnízd v korunách stromů a skalních převisech.",
+        locationEn: "Gathered from wild bird nests in forests and cliffs.",
+        recipeId: null
+      },
+      "Beast Meat": {
+        locationCs: "Lov divokých vlků, jelenů a prasat v lesních biotopech.",
+        locationEn: "Harvested from wild wolves, deer, and boar across forests.",
+        recipeId: null
+      },
+      "Maso šelem (Beast Meat)": {
+        locationCs: "Lov divokých vlků, jelenů a prasat v lesních biotopech.",
+        locationEn: "Harvested from wild wolves, deer, and boar across forests.",
+        recipeId: null
+      },
+      "Ghost Pepper / Rare Spice": {
+        locationCs: "Vzácný sběr v opuštěných městech a na polích v oblasti Iron River.",
+        locationEn: "Foraged in Iron River abandoned farms and city ruins.",
+        recipeId: null
+      },
+      "Přízračná chilli paprička": {
+        locationCs: "Vzácný sběr v opuštěných městech a na polích v oblasti Iron River.",
+        locationEn: "Foraged in Iron River abandoned farms and city ruins.",
+        recipeId: null
+      }
+    };
+
+    function getIngredientMeta(ingName) {
+      if (ingredientKnowledgeBase[ingName]) return ingredientKnowledgeBase[ingName];
+      for (const key in ingredientKnowledgeBase) {
+        if (ingName.toLowerCase().includes(key.toLowerCase()) || key.toLowerCase().includes(ingName.toLowerCase())) {
+          return ingredientKnowledgeBase[key];
+        }
+      }
+      return null;
+    }
+
+    let modalHistory = [];
+
+    /* ==========================================================================
+       TAB 1: DISCOVERED & MEMETIC RECIPES
        ========================================================================== */
     const discoveredRecipes = [
       {
-        id: "d-01",
-        nameEn: "Stargazy Pie",
-        nameCs: "Hvězdný koláč (Stargazy Pie)",
-        categoryEn: "Food",
-        categoryCs: "Jídlo",
-        rarity: "Legendary",
-        workbench: "Integrated Kitchen / Electric Stove",
-        energy: 100,
-        hydration: 0,
-        buffDuration: "30 min",
-        sourceEn: "Recipe Formula found at Meyer's Market or High Banks kitchen container",
-        sourceCs: "Recept k nalezení v kuchyni v Meyer's Market nebo v High Banks",
+        id: "b-01",
+        nameEn: "Purified Water",
+        nameCs: "Čistá filtrovaná voda",
+        categoryEn: "Drink",
+        categoryCs: "Nápoj",
+        rarity: "Common",
+        workbench: "Campfire / Water Filter",
+        energy: 0,
+        hydration: 50,
+        buffDuration: "Instant",
+        sourceEn: "Basic Survival Memetic unlocked from the start",
+        sourceCs: "Základní přežití v Memetics dostupné od začátku hry",
         effectsEn: [
-          "Max HP +20%",
-          "Crit DMG +15%",
-          "Critical hits trigger Stardust resonance explosions dealing AoE blast damage"
+          "Restores 50 Hydration instantly",
+          "Essential base liquid for chemistry and cooking"
         ],
         effectsCs: [
-          "Max HP +20%",
-          "Kritické poškození (Crit DMG) +15%",
-          "Kritické zásahy způsobují Stardust exploze s plošným poškozením"
+          "Okamžitě doplní 50 bodů hydratace",
+          "Klíčová kapalina pro kulinářské i chemické recepty"
+        ],
+        ingredientsEn: [
+          { name: "Dirty Water", amount: "2x", isPrimary: true }
+        ],
+        ingredientsCs: [
+          { name: "Špinavá voda", amount: "2x", isPrimary: true }
+        ],
+        descriptionEn: "Clean boiled water safe from cosmic parasites.",
+        descriptionCs: "Převařená čistá pitná voda bez parazitů a nákazy."
+      },
+      {
+        id: "b-02",
+        nameEn: "Wheat Flour",
+        nameCs: "Pšeničná mouka",
+        categoryEn: "Food",
+        categoryCs: "Jídlo",
+        rarity: "Common",
+        workbench: "Kitchen Stove / Supplies Workbench",
+        energy: 10,
+        hydration: 0,
+        buffDuration: "Crafting Material",
+        sourceEn: "Basic Cooking formula unlocked automatically",
+        sourceCs: "Základní recept odemčený automaticky s kuchyňským stolem",
+        effectsEn: [
+          "Fundamental bakery staple used for breads and pies"
+        ],
+        effectsCs: [
+          "Základní pekařská surovina pro přípravu těsta a koláčů"
+        ],
+        ingredientsEn: [
+          { name: "Wheat", amount: "2x", isPrimary: true }
+        ],
+        ingredientsCs: [
+          { name: "Pšenice", amount: "2x", isPrimary: true }
+        ],
+        descriptionEn: "Finely ground wheat flour for pastries and batters.",
+        descriptionCs: "Najemno namletá pšeničná mouka na těsta a pečivo."
+      },
+      {
+        id: "b-03",
+        nameEn: "Refined Sugar",
+        nameCs: "Rafinovaný cukr",
+        categoryEn: "Food",
+        categoryCs: "Jídlo",
+        rarity: "Common",
+        workbench: "Kitchen Stove",
+        energy: 10,
+        hydration: 0,
+        buffDuration: "Crafting Material",
+        sourceEn: "Basic Cooking recipe",
+        sourceCs: "Základní recept v kuchařské větvi",
+        effectsEn: [
+          "Sweetener used in candies, sanity snacks and drinks"
+        ],
+        effectsCs: [
+          "Sladidlo pro bonbóny, Sanity želé i dezerty"
+        ],
+        ingredientsEn: [
+          { name: "Beetroot", amount: "2x", isPrimary: true }
+        ],
+        ingredientsCs: [
+          { name: "Červená řepa", amount: "2x", isPrimary: true }
+        ],
+        descriptionEn: "Crystallized sugar extracted from sweet crops.",
+        descriptionCs: "Krystalický cukr lisovaný a vařený ze sladké zeleniny."
+      },
+      {
+        id: "b-04",
+        nameEn: "Cooking Oil",
+        nameCs: "Rostlinný olej na vaření",
+        categoryEn: "Food",
+        categoryCs: "Jídlo",
+        rarity: "Common",
+        workbench: "Kitchen Stove",
+        energy: 10,
+        hydration: 0,
+        buffDuration: "Crafting Material",
+        sourceEn: "Basic Cooking formula",
+        sourceCs: "Základní kuchařský předpis",
+        effectsEn: [
+          "High thermal cooking liquid needed for frying and canned preserves"
+        ],
+        effectsCs: [
+          "Tekutina nutná k smažení a konzervaci masa a ryb"
+        ],
+        ingredientsEn: [
+          { name: "Corn", amount: "2x", isPrimary: true }
+        ],
+        ingredientsCs: [
+          { name: "Kukuřice", amount: "2x", isPrimary: true }
+        ],
+        descriptionEn: "Refined seed oil essential for deep frying and seafood tins.",
+        descriptionCs: "Rostlinný olej nezbytný pro pečení, smažení a výrobu konzerv."
+      },
+      {
+        id: "b-05",
+        nameEn: "Steel Ingot",
+        nameCs: "Ocelový ingot",
+        categoryEn: "Refining",
+        categoryCs: "Tavení & Kovy",
+        rarity: "Rare",
+        workbench: "Electric Furnace",
+        energy: 0,
+        hydration: 0,
+        buffDuration: "Crafting Material",
+        sourceEn: "Tier 3 Metallurgy Memetics node",
+        sourceCs: "Tier 3 Metalurgie v memetickém stromu",
+        effectsEn: [
+          "Crucial alloy for mid-to-high tier guns, machinery, and defense turrets"
+        ],
+        effectsCs: [
+          "Základní slitina pro pokročilé zbraně, obranné věže a stavby"
+        ],
+        ingredientsEn: [
+          { name: "Iron Ore", amount: "5x", isPrimary: true },
+          { name: "Charcoal", amount: "1x" }
+        ],
+        ingredientsCs: [
+          { name: "Železná ruda", amount: "5x", isPrimary: true },
+          { name: "Dřevěné uhlí", amount: "1x" }
+        ],
+        descriptionEn: "High-grade tempered steel alloy forged under intense heat.",
+        descriptionCs: "Vysokopevnostní ocelová slitina tavená v elektrické peci."
+      },
+      {
+        id: "b-06",
+        nameEn: "Gunpowder",
+        nameCs: "Střelný prach",
+        categoryEn: "Ammunition",
+        categoryCs: "Munice & Trhaviny",
+        rarity: "Fine",
+        workbench: "Supplies Workbench",
+        energy: 0,
+        hydration: 0,
+        buffDuration: "Crafting Material",
+        sourceEn: "Ballistics Memetic node",
+        sourceCs: "Balistický uzel v Memetics",
+        effectsEn: [
+          "Primary explosive propellant for firearm cartridges and C4 charges"
+        ],
+        effectsCs: [
+          "Hnací slož pro munici do palných zbraní, granáty i C4 nálože"
+        ],
+        ingredientsEn: [
+          { name: "Sulfur", amount: "2x", isPrimary: true },
+          { name: "Charcoal", amount: "1x" }
+        ],
+        ingredientsCs: [
+          { name: "Síra", amount: "2x", isPrimary: true },
+          { name: "Dřevěné uhlí", amount: "1x" }
+        ],
+        descriptionEn: "Granular explosive powder for munitions synthesis.",
+        descriptionCs: "Výbušná směs nezbytná k výrobě střeliva a trhavin."
+      },
+      {
+        id: "d-01",
+        nameEn: "Stargazy Pie",
+        nameCs: "Hvězdný rybí koláč",
+        categoryEn: "Food",
+        categoryCs: "Jídlo",
+        rarity: "Epic",
+        workbench: "Kitchen Stove",
+        energy: 100,
+        hydration: 0,
+        buffDuration: "1800s (30 min)",
+        sourceEn: "Tall Grass Inn settlement kitchen counter",
+        sourceCs: "Tall Grass Inn – kuchyňská linka v restauraci",
+        effectsEn: [
+          "Max Stamina +25",
+          "Mining yield bonus +40%",
+          "Reduces sprinting stamina drain by 20%"
+        ],
+        effectsCs: [
+          "Maximální výdrž (Stamina) +25",
+          "Výtěžnost těžby krumpáčem +40%",
+          "Snížení spotřeby staminy při sprintu o 20%"
         ],
         ingredientsEn: [
           { name: "Northern Pike / Rare Fish", amount: "1x", isPrimary: true },
           { name: "Flour", amount: "3x" },
           { name: "Bird Egg", amount: "2x" },
-          { name: "Purified Water", amount: "2x" }
+          { name: "Cooking Oil", amount: "1x" }
         ],
         ingredientsCs: [
           { name: "Severní štika / Vzácná ryba", amount: "1x", isPrimary: true },
           { name: "Pšeničná mouka", amount: "3x" },
           { name: "Ptačí vejce", amount: "2x" },
-          { name: "Čistá voda", amount: "2x" }
+          { name: "Olej na vaření", amount: "1x" }
         ],
-        descriptionEn: "Iconic British fish pie modified with mutated fish heads. Crit hits shake spacetime.",
-        descriptionCs: "Ikonické jídlo s rybími hlavami hledícími k nebi. Spouští explozivní rezonance při kriticích."
+        descriptionEn: "Traditional crusty pie with fish heads gazing at celestial horrors.",
+        descriptionCs: "Tradiční koláč s rybími hlavami hledícími vstříc hvězdným anomáliím."
       },
       {
         id: "d-02",
         nameEn: "Ghost Cookies",
-        nameCs: "Přízračné sušenky (Ghost Cookies)",
+        nameCs: "Přízračné sušenky",
         categoryEn: "Dessert",
         categoryCs: "Dezert",
-        rarity: "Epic",
-        workbench: "Electric Stove",
-        energy: 60,
-        hydration: 0,
-        buffDuration: "20 min",
-        sourceEn: "Found in Greywater Camp bar cabinets or kitchen crates",
-        sourceCs: "V šuplících a skříňkách baru v Greywater Camp",
+        rarity: "Legendary",
+        workbench: "Kitchen Stove",
+        energy: 80,
+        hydration: -10,
+        buffDuration: "1200s (20 min)",
+        sourceEn: "Meyer's Market bakery cabinet inside safe zone",
+        sourceCs: "Meyer's Market – vitrína pekařství v bezpečné zóně",
         effectsEn: [
-          "Enemies take 1.5s longer to detect you",
-          "Crouch movement speed +30%",
-          "Sneak attack damage +25%"
+          "Stealth visibility range to Deviants reduced by 50%",
+          "Crouched movement speed increased by 30%",
+          "Sanity drain reduced by 35% in Polluted zones"
         ],
         effectsCs: [
-          "Nepřátelé potřebují o 1,5s déle k vašemu odhalení",
-          "Rychlost pohybu v přikrčení (Crouch) +30%",
-          "Poškození ze zálohy (Sneak Attack) +25%"
+          "Detekční rádius nepřátel vůči hráči snížen o 50%",
+          "Rychlost pohybu v podřepu zvýšena o 30%",
+          "Pokles Sanity ve znečištěných oblastech snížen o 35%"
         ],
         ingredientsEn: [
-          { name: "Ghost Pepper / Rare Spice", amount: "2x", isPrimary: true },
-          { name: "Flour", amount: "3x" },
-          { name: "Sugar", amount: "2x" }
+          { name: "Flour", amount: "3x", isPrimary: true },
+          { name: "Sugar", amount: "2x" },
+          { name: "Ghost Pepper / Rare Spice", amount: "1x" },
+          { name: "Purified Water", amount: "1x" }
         ],
         ingredientsCs: [
-          { name: "Přízračná chilli paprička", amount: "2x", isPrimary: true },
-          { name: "Pšeničná mouka", amount: "3x" },
-          { name: "Cukr", amount: "2x" }
+          { name: "Pšeničná mouka", amount: "3x", isPrimary: true },
+          { name: "Cukr", amount: "2x" },
+          { name: "Přízračná chilli paprička", amount: "1x" },
+          { name: "Čistá voda", amount: "1x" }
         ],
-        descriptionEn: "Cookies masking biological body scent. Premier choice for stealth infiltrations.",
-        descriptionCs: "Sušenky neutralizující tělesný pach. Skvělé pro tiché odstřelovače a infiltrace."
+        descriptionEn: "Translucent crispy cookies baked with dimensional herbs.",
+        descriptionCs: "Průsvitné křupavé sušenky pečené z bylin z dimenzionálních trhlin."
       },
       {
         id: "d-03",
@@ -563,841 +825,759 @@
         categoryEn: "Drink",
         categoryCs: "Nápoj",
         rarity: "Epic",
-        workbench: "Stove / Kitchen Set",
-        energy: 40,
+        workbench: "Kitchen Stove / Drink Station",
+        energy: 30,
         hydration: 80,
-        buffDuration: "20 min",
-        sourceEn: "Discovered inside Tall Grass Inn restaurant counter",
-        sourceCs: "Nalezeno za barem v restauraci Tall Grass Inn",
+        buffDuration: "900s (15 min)",
+        sourceEn: "Blackfell City Diner kitchen shelf",
+        sourceCs: "Město Blackfell – regál v jídelně Diner",
         effectsEn: [
-          "Fall speed decreased by 50%",
-          "Jump height +40%",
-          "Negates 100% of falling damage"
+          "Fall damage reduced by 70%",
+          "Jump height increased by 40%",
+          "Immune to crippling limb fractures from drops"
         ],
         effectsCs: [
-          "Rychlost pádu snížena o 50%",
-          "Výška skoku +40%",
-          "Zcela ruší veškeré poškození z dopadu (Fall DMG)"
+          "Poškození pádem sníženo o 70%",
+          "Výška skoku zvýšena o 40%",
+          "Imunita proti zlomeninám nohou při seskoku"
         ],
         ingredientsEn: [
-          { name: "Stardust Ore", amount: "2x", isPrimary: true },
-          { name: "Pure Milk", amount: "3x" },
+          { name: "Purified Water", amount: "2x", isPrimary: true },
           { name: "Sugar", amount: "2x" },
-          { name: "Ice Cube", amount: "2x" }
+          { name: "Beast Milk / Coconut", amount: "2x" },
+          { name: "Stardust Source", amount: "1x" }
         ],
         ingredientsCs: [
-          { name: "Stardust Ore", amount: "2x", isPrimary: true },
-          { name: "Čerstvé mléko", amount: "3x" },
+          { name: "Čistá voda", amount: "2x", isPrimary: true },
           { name: "Cukr", amount: "2x" },
-          { name: "Kostky ledu", amount: "2x" }
+          { name: "Mléko šelem / Kokos", amount: "2x" },
+          { name: "Zdroj hvězdného prachu (Stardust)", amount: "1x" }
         ],
-        descriptionEn: "Milky shake defying gravitational pull. Grants gliding and massive leap heights.",
-        descriptionCs: "Nápoj vzdorující gravitaci. Umožňuje bezpečné seskoky z útesů a věží."
+        descriptionEn: "Whimsical glowing milkshake that momentarily decouples body weight.",
+        descriptionCs: "Jemně světélkující mléčný koktejl, který částečně ruší gravitaci těla."
       },
       {
         id: "d-04",
-        nameEn: "Safety Sandwich",
-        nameCs: "Bezpečnostní sendvič",
-        categoryEn: "Food",
-        categoryCs: "Jídlo",
-        rarity: "Rare",
-        workbench: "Stove",
-        energy: 85,
-        hydration: 10,
-        buffDuration: "30 min",
-        sourceEn: "Deadsville settlement chef quest reward",
-        sourceCs: "Odměna za kuchařský úkol v osadě Deadsville",
-        effectsEn: [
-          "Pollution Resistance +12",
-          "Sanity drops halted in low to mid contamination zones",
-          "Max HP +10%"
-        ],
-        effectsCs: [
-          "Odolnost proti znečištění (Pollution Resist) +12",
-          "Zastaví ztrátu Sanity v mírně kontaminovaných oblastech",
-          "Max HP +10%"
-        ],
-        ingredientsEn: [
-          { name: "Beast Meat", amount: "2x", isPrimary: true },
-          { name: "Bread / Flour", amount: "2x" },
-          { name: "Cabbage", amount: "1x" }
-        ],
-        ingredientsCs: [
-          { name: "Maso šelem (Beast Meat)", amount: "2x", isPrimary: true },
-          { name: "Chléb / Mouka", amount: "2x" },
-          { name: "Zelí", amount: "1x" }
-        ],
-        descriptionEn: "Wholesome sandwich that shields internal organs from early Stardust rot.",
-        descriptionCs: "Vydatná svačina chránící vnitřní orgány před počátečním vlivem nákazy."
-      },
-      {
-        id: "d-05",
         nameEn: "Bacon Burger",
         nameCs: "Slaninový burger",
         categoryEn: "Food",
         categoryCs: "Jídlo",
         rarity: "Rare",
-        workbench: "Stove",
+        workbench: "Kitchen Stove",
         energy: 100,
-        hydration: 0,
-        buffDuration: "30 min",
-        sourceEn: "Sunbury diner kitchen container",
-        sourceCs: "V kuchyni bistra v opuštěném Sunbury",
+        hydration: -5,
+        buffDuration: "1800s (30 min)",
+        sourceEn: "Deadsville camp general store side quest reward",
+        sourceCs: "Odměna za vedlejší úkol v Deadsville osadě",
         effectsEn: [
-          "Firearm Weapon DMG +10%",
-          "Max Load carry weight +15 kg"
+          "Weapon DMG +12%",
+          "Max HP +300",
+          "Weakspot hit damage increased by 10%"
         ],
         effectsCs: [
-          "Poškození střelnými zbraněmi (Weapon DMG) +10%",
-          "Nosnost batohu (Max Load) +15 kg"
+          "Poškození zbraněmi (Weapon DMG) +12%",
+          "Maximální životy (Max HP) +300",
+          "Poškození při zásahu slabin (Weakspot) +10%"
         ],
         ingredientsEn: [
-          { name: "Pork / Beast Meat", amount: "3x", isPrimary: true },
+          { name: "Beast Meat", amount: "3x", isPrimary: true },
           { name: "Flour", amount: "2x" },
-          { name: "Animal Fat", amount: "1x" }
+          { name: "Cooking Oil", amount: "1x" }
         ],
         ingredientsCs: [
-          { name: "Vepřové / Maso šelem", amount: "3x", isPrimary: true },
-          { name: "Mouka", amount: "2x" },
-          { name: "Živočišný tuk", amount: "1x" }
+          { name: "Maso šelem (Beast Meat)", amount: "3x", isPrimary: true },
+          { name: "Pšeničná mouka", amount: "2x" },
+          { name: "Olej na vaření", amount: "1x" }
         ],
-        descriptionEn: "High-calorie burger maximizing muscular power and weapon recoil control.",
-        descriptionCs: "Vydatný kalorický burger zvyšující fyzickou sílu a stabilitu při střelbě."
+        descriptionEn: "Hearty double-smoked beast burger packed with combat proteins.",
+        descriptionCs: "Vydatný burger s uzenou slaninou z divoké zvěře, ideální pro přestřelky."
+      },
+      {
+        id: "d-05",
+        nameEn: "Safety Sandwich",
+        nameCs: "Bezpečnostní sendvič",
+        categoryEn: "Food",
+        categoryCs: "Jídlo",
+        rarity: "Fine",
+        workbench: "Campfire / Stove",
+        energy: 70,
+        hydration: 10,
+        buffDuration: "1200s (20 min)",
+        sourceEn: "Daybreak Delta lighthouse storage chest",
+        sourceCs: "Truhla ve skladišti majáku v Daybreak Delta",
+        effectsEn: [
+          "Pollution resistance +25%",
+          "Slowly regenerates Sanity (+2/s) while outside combat"
+        ],
+        effectsCs: [
+          "Odolnost vůči znečištění (Pollution RES) +25%",
+          "Mimo boj pomalu regeneruje Sanity (+2 za sekundu)"
+        ],
+        ingredientsEn: [
+          { name: "Flour", amount: "2x", isPrimary: true },
+          { name: "Vegetables / Lettuce", amount: "2x" },
+          { name: "Purified Water", amount: "1x" }
+        ],
+        ingredientsCs: [
+          { name: "Pšeničná mouka", amount: "2x", isPrimary: true },
+          { name: "Zelenina / Salát", amount: "2x" },
+          { name: "Čistá voda", amount: "1x" }
+        ],
+        descriptionEn: "Crisp vegetable sandwich favored by scouts traversing polluted zones.",
+        descriptionCs: "Křupavý zeleninový sendvič oblíbený průzkumníky zamořených oblastí."
       },
       {
         id: "d-06",
-        nameEn: "Canned Seafood in Oil",
-        nameCs: "Rybí konzerva v oleji",
-        categoryEn: "Canned Food",
-        categoryCs: "Konzerva",
-        rarity: "Epic",
-        workbench: "Integrated Kitchen",
-        energy: 80,
+        nameEn: "Canned Seafood",
+        nameCs: "Mořská rybí konzerva",
+        categoryEn: "Preserves",
+        categoryCs: "Konzervy",
+        rarity: "Rare",
+        workbench: "Kitchen Stove",
+        energy: 90,
         hydration: 20,
-        buffDuration: "30 min",
-        sourceEn: "Blackfell Dock warehouse locker",
-        sourceCs: "V přístavním skladu Blackfell v plechové skříňce",
+        buffDuration: "1800s (30 min)",
+        sourceEn: "Sunbury harbor fishery processing plant",
+        sourceCs: "Rybárna a zpracovatelský závod v přístavu Sunbury",
         effectsEn: [
-          "Mining yield +66% for all ore types",
-          "Pickaxe durability loss reduced by 50%",
-          "Never spoils inside inventory"
+          "Mining yield +30%",
+          "Logging yield +30%",
+          "Infinite shelf-life (never spoils in inventory)"
         ],
         effectsCs: [
-          "Výnos těžby všech rud +66%",
-          "Opotřebení krumpáčů sníženo o 50%",
-          "V inventáři se nikdy nezkazí"
+          "Výnos těžby rud +30%",
+          "Výnos kácení dřeva +30%",
+          "Nekonečná trvanlivost (nikdy se v batohu nezkazí)"
         ],
         ingredientsEn: [
-          { name: "Barracuda / Sea Fish", amount: "2x", isPrimary: true },
-          { name: "Cooking Oil", amount: "2x" },
-          { name: "Aluminum Ingot", amount: "1x" }
+          { name: "Northern Pike / Rare Fish", amount: "2x", isPrimary: true },
+          { name: "Cooking Oil", amount: "1x" },
+          { name: "Steel Ingot", amount: "1x" }
         ],
         ingredientsCs: [
-          { name: "Barakuda / Mořská ryba", amount: "2x", isPrimary: true },
-          { name: "Olej na vaření", amount: "2x" },
-          { name: "Hliníkový ingot", amount: "1x" }
+          { name: "Severní štika / Vzácná ryba", amount: "2x", isPrimary: true },
+          { name: "Olej na vaření", amount: "1x" },
+          { name: "Ocelový ingot", amount: "1x" }
         ],
-        descriptionEn: "Essential endgame diet for tungsten and silver prospectors.",
-        descriptionCs: "Nezbytná součást výbavy pro masivní těžbu pokročilých rud."
+        descriptionEn: "Airtight canned fish sealed for prolonged wilderness operations.",
+        descriptionCs: "Vakuově uzavřená konzerva zaručující nekonečnou trvanlivost."
       },
       {
         id: "d-07",
-        nameEn: "Miracle Tea",
-        nameCs: "Zázračný čaj",
-        categoryEn: "Drink",
-        categoryCs: "Nápoj",
-        rarity: "Legendary",
-        workbench: "Memetic Specialization / Kitchen",
-        energy: 20,
-        hydration: 90,
-        buffDuration: "30 min",
-        sourceEn: "Memetic Specialization roll (Level 30-35 perk)",
-        sourceCs: "Náhodný výběr v Memetic Specialization (lvl 30-35 perk)",
-        effectsEn: [
-          "Instantly purges all Pollution and sets Sanity to 100%",
-          "Grants full pollution immunity for 15 minutes",
-          "Hydration locked at optimal status"
-        ],
-        effectsCs: [
-          "Okamžitě vyčistí tělo od znečištění a vrátí Sanity na 100%",
-          "Poskytuje imunitu proti znečištění na 15 minut",
-          "Hydratace zůstává uzamčena na optimu"
-        ],
-        ingredientsEn: [
-          { name: "Stardust Flower", amount: "2x", isPrimary: true },
-          { name: "Herbal Tea Leaves", amount: "3x" },
-          { name: "Purified Water", amount: "2x" }
-        ],
-        ingredientsCs: [
-          { name: "Hvězdný květ (Stardust Flower)", amount: "2x", isPrimary: true },
-          { name: "Bylinkové čajové lístky", amount: "3x" },
-          { name: "Čistá voda", amount: "2x" }
-        ],
-        descriptionEn: "Legendary herbal infusion purging the deepest corruption.",
-        descriptionCs: "Bájný bylinný odvar, který navrací čistou mysl a imunitu."
-      },
-      {
-        id: "d-08",
         nameEn: "Borscht Deluxe",
         nameCs: "Boršč Deluxe",
         categoryEn: "Soup",
         categoryCs: "Polévka",
         rarity: "Epic",
-        workbench: "Integrated Kitchen",
-        energy: 90,
+        workbench: "Kitchen Stove",
+        energy: 100,
         hydration: 50,
-        buffDuration: "30 min",
-        sourceEn: "Chalk Peak mountaineer camp formula",
-        sourceCs: "V horském táboře v oblasti Chalk Peak",
+        buffDuration: "1800s (30 min)",
+        sourceEn: "Chalk Peak mining camp cantina",
+        sourceCs: "Jídelna těžařského kempu v Chalk Peak",
         effectsEn: [
-          "Cold Resistance +20",
-          "Max HP +15%",
-          "Melee incoming damage -10%"
+          "Cold / Heat Temperature Resistance +15",
+          "Weapon Recoil -20%",
+          "Sanity baseline stabilized at +100"
         ],
         effectsCs: [
-          "Odolnost proti mrazu (Cold Resist) +20",
-          "Max HP +15%",
-          "Snížení příchozího melee poškození o 10%"
+          "Odolnost vůči mrazu a vedru +15",
+          "Zpětný ráz zbraní (Recoil) snížen o 20%",
+          "Základní hodnota Sanity navýšena o 100"
         ],
         ingredientsEn: [
-          { name: "Beetroot", amount: "3x", isPrimary: true },
-          { name: "Prime Beef", amount: "2x" },
+          { name: "Beast Meat", amount: "2x", isPrimary: true },
+          { name: "Beetroot", amount: "3x" },
           { name: "Purified Water", amount: "2x" },
-          { name: "Salt", amount: "1x" }
+          { name: "Cooking Oil", amount: "1x" }
         ],
         ingredientsCs: [
-          { name: "Červená řepa", amount: "3x", isPrimary: true },
-          { name: "Prvotřídní hovězí maso", amount: "2x" },
+          { name: "Maso šelem (Beast Meat)", amount: "2x", isPrimary: true },
+          { name: "Červená řepa", amount: "3x" },
           { name: "Čistá voda", amount: "2x" },
-          { name: "Sůl", amount: "1x" }
+          { name: "Olej na vaření", amount: "1x" }
         ],
-        descriptionEn: "Hot nutrient-dense borscht sustaining arctic expeditions.",
-        descriptionCs: "Hustý horký boršč stvořený pro přežití v extrémním chladu."
+        descriptionEn: "Steaming hot beet soup enriched with roasted beast marrow.",
+        descriptionCs: "Horká polévka z řepy a morku zvěře chránící tělo v extrémním klimatu."
+      },
+      {
+        id: "d-08",
+        nameEn: "Miracle Tea",
+        nameCs: "Zázračný bylinný čaj",
+        categoryEn: "Drink",
+        categoryCs: "Nápoj",
+        rarity: "Legendary",
+        workbench: "Kitchen Stove",
+        energy: 20,
+        hydration: 100,
+        buffDuration: "2400s (40 min)",
+        sourceEn: "Memetic Specialization RNG perk selection (Level 20-35)",
+        sourceCs: "Memetická specializace (náhodný perk na levelu 20–35)",
+        effectsEn: [
+          "Hydration consumption reduced by 60%",
+          "Stamina recovery speed +35%",
+          "Instantly purges 150 Pollution points"
+        ],
+        effectsCs: [
+          "Spotřeba vody (žízeň) snížena o 60%",
+          "Rychlost obnovy staminy +35%",
+          "Okamžitě odstraní 150 bodů kontaminace (Pollution)"
+        ],
+        ingredientsEn: [
+          { name: "Purified Water", amount: "2x", isPrimary: true },
+          { name: "Herbal Leaves", amount: "4x" },
+          { name: "Sugar", amount: "1x" },
+          { name: "Stardust Source", amount: "1x" }
+        ],
+        ingredientsCs: [
+          { name: "Čistá voda", amount: "2x", isPrimary: true },
+          { name: "Bylinné lístky", amount: "4x" },
+          { name: "Cukr", amount: "1x" },
+          { name: "Zdroj hvězdného prachu (Stardust)", amount: "1x" }
+        ],
+        descriptionEn: "Legendary brewed herbal infusion that drastically optimizes bodily hydration.",
+        descriptionCs: "Legendární odvar z bylin, který dramaticky snižuje dehydrataci organismu."
       }
     ];
 
     /* ==========================================================================
-       DATABÁZE TAB 2: CREATIVE COOKING & SYNERGY DISHES (CHEF SYSTEM)
+       TAB 2: CREATIVE COOKING & SYNERGIES
        ========================================================================== */
     const creativeDishes = [
       {
-        id: "cr-01",
-        nameEn: "Ultraman",
-        nameCs: "Ultraman",
-        categoryEn: "Synergy Dish",
-        categoryCs: "Synergický pokrm",
-        rarity: "Legendary",
-        workbench: "Stove / Kitchen Set",
-        energy: 100,
-        hydration: 0,
-        buffDuration: "30 min",
-        sourceEn: "Chef System: 4 Egg / Roe combinations",
-        sourceCs: "Systém Chef: Kombinace 4 druhů vajec a jiker",
-        effectsEn: [
-          "Abnormal Territory state for 1800s",
-          "DMG to Normal and Elite enemies +6%",
-          "Massive protein load prevents energy drain for 20m"
-        ],
-        effectsCs: [
-          "Stav 'Abnormal Territory' po dobu 1800 sekund",
-          "Poškození běžným a elitním nepřátelům +6%",
-          "Masivní přísun proteinu zastaví hlad na 20 minut"
-        ],
-        ingredientsEn: [
-          { name: "Crocodile Egg", amount: "1x", isPrimary: true },
-          { name: "Bird Egg", amount: "1x" },
-          { name: "Deviated Bird Egg", amount: "1x" },
-          { name: "Roe / Fish Caviar", amount: "1x" }
-        ],
-        ingredientsCs: [
-          { name: "Krokodýlí vejce", amount: "1x", isPrimary: true },
-          { name: "Ptačí vejce", amount: "1x" },
-          { name: "Mutované vejce (Deviated)", amount: "1x" },
-          { name: "Jikry / Kaviár", amount: "1x" }
-        ],
-        descriptionEn: "Massive egg block cured in salt. Incurably salty yet empowers the fighter against elite hostiles.",
-        descriptionCs: "Obří solená vaječná specialita. Extrémně slaná, avšak zvyšuje poškození proti elitám."
-      },
-      {
-        id: "cr-02",
-        nameEn: "Source of Deviation",
-        nameCs: "Zdroj deviace (Source of Deviation)",
-        categoryEn: "Synergy Dish",
-        categoryCs: "Synergický pokrm",
-        rarity: "Legendary",
-        workbench: "Kitchen Set / Electric Stove",
-        energy: 100,
-        hydration: 0,
-        buffDuration: "30 min",
-        sourceEn: "Chef System: Deviated herbs, cucumber and peppercorn",
-        sourceCs: "Systém Chef: Zmutované byliny, okurka a pepř",
-        effectsEn: [
-          "Sensory Overdrive: Weapon & Status DMG +1% per 20% Sanity lost (up to +5%)",
-          "Drastically drains sanity continuously while buff is active",
-          "Unlocks erratic combat reflex boosts"
-        ],
-        effectsCs: [
-          "Smyslové přetížení: Zbraňové i status DMG +1% za každých 20% ztracené Sanity (až +5%)",
-          "Průběžně odčerpává velké množství Sanity",
-          "Rizikový pokrm pro berserker a high-risk buildy"
-        ],
-        ingredientsEn: [
-          { name: "Deviated Cucumber", amount: "1x", isPrimary: true },
-          { name: "Deviated Saffron", amount: "1x" },
-          { name: "Pristine Rabbit Meat", amount: "1x" },
-          { name: "Deviated Peppercorn", amount: "1x" }
-        ],
-        ingredientsCs: [
-          { name: "Mutovaná okurka", amount: "1x", isPrimary: true },
-          { name: "Mutovaný šafrán", amount: "1x" },
-          { name: "Prvotřídní králičí maso", amount: "1x" },
-          { name: "Mutovaný pepř", amount: "1x" }
-        ],
-        descriptionEn: "A borderline toxic delicacy made entirely of Deviated ingredients. Grants immense power at sanity's brink.",
-        descriptionCs: "Vysoce kontaminovaný pokrm ze zmutovaných surovin. Dává obrovskou sílu na hranici šílenství."
-      },
-      {
-        id: "cr-03",
-        nameEn: "Supreme Wild Vegetable Platter",
-        nameCs: "Královská mísa divoké zeleniny",
-        categoryEn: "Synergy Dish",
-        categoryCs: "Synergický pokrm",
+        id: "c-01",
+        nameEn: "Source of Deviation Dish",
+        nameCs: "Pokrm Zdroje Deviace",
+        categoryEn: "Creative Special",
+        categoryCs: "Kreativní specialita",
         rarity: "Epic",
-        workbench: "Stove / Kitchen Set",
-        energy: 100,
-        hydration: 20,
-        buffDuration: "30 min",
-        sourceEn: "Chef System: 4 high-grade deviated plants",
-        sourceCs: "Systém Chef: 4 druhy zmutovaných bylin a rostlin",
-        effectsEn: [
-          "Great One Conquest: DMG dealt against Great Ones (Bosses) +4%",
-          "Plant gathering yield +25%",
-          "Reduces sprint stamina cost by 15%"
-        ],
-        effectsCs: [
-          "Pokoritel titánů: Poškození bossům (Great Ones) +4%",
-          "Výnos sběru rostlin +25%",
-          "Snižuje spotřebu výdrže při sprintu o 15%"
-        ],
-        ingredientsEn: [
-          { name: "Deviated Scarlet Calamus", amount: "1x", isPrimary: true },
-          { name: "Deviated Saffron", amount: "1x" },
-          { name: "Deviated Coneflower", amount: "1x" },
-          { name: "Deviated Sage", amount: "1x" }
-        ],
-        ingredientsCs: [
-          { name: "Zmutovaný puškvorec", amount: "1x", isPrimary: true },
-          { name: "Zmutovaný šafrán", amount: "1x" },
-          { name: "Zmutovaná třapatka", amount: "1x" },
-          { name: "Zmutovaná šalvěj", amount: "1x" }
-        ],
-        descriptionEn: "Fantasy vegetarian feast crafted exclusively with glowing flora to vanquish Monolith bosses.",
-        descriptionCs: "Rostlinná symfonie navržená speciálně pro zvýšení poškození proti hlavním bossům."
-      },
-      {
-        id: "cr-04",
-        nameEn: "Supreme Meat Platter",
-        nameCs: "Královské masové prkénko",
-        categoryEn: "Synergy Dish",
-        categoryCs: "Synergický pokrm",
-        rarity: "Epic",
-        workbench: "Electric Stove / Kitchen Set",
-        energy: 100,
+        workbench: "Kitchen Stove (Free Cooking)",
+        energy: 90,
         hydration: 0,
-        buffDuration: "30 min",
-        sourceEn: "Chef System: 4 pristine predatory meats",
-        sourceCs: "Systém Chef: 4 druhy prvotřídního masa šelem",
+        buffDuration: "1800s (30 min)",
+        sourceEn: "Creative free-mix: Deviated Meat + Deviated Crops + Stardust Salt",
+        sourceCs: "Volné míchání: Zmutované maso + Zmutovaná zelenina + Hvězdná sůl",
         effectsEn: [
-          "Combines multiple combat bonuses into a unified feast",
-          "Max HP +150, Melee DMG +4%",
-          "Fortress Warfare & Unstable Bomber synergy active"
+          "PSI Intensity +15%",
+          "Elemental Damage (Burn, Frost, Shock) +18%",
+          "Sanity drain accelerated by 10% as penalty"
         ],
         effectsCs: [
-          "Kombinuje různé masové archetypy do jednoho pokrmu",
-          "Max HP +150, Melee poškození +4%",
-          "Aktivuje bonusy pro Fortress Warfare i Unstable Bomber"
+          "PSI Intenzita schopností +15%",
+          "Elementální poškození (Burn, Frost, Shock) +18%",
+          "Postih: Rychlost poklesu Sanity zvýšena o 10%"
         ],
         ingredientsEn: [
-          { name: "Fine Turtle Meat", amount: "1x", isPrimary: true },
-          { name: "Pristine Crocodile Meat", amount: "1x" },
-          { name: "Pristine Beast Meat", amount: "1x" },
-          { name: "Pristine Pork", amount: "1x" }
+          { name: "Deviated Beast Meat", amount: "2x", isPrimary: true },
+          { name: "Deviated Pumpkin", amount: "1x" },
+          { name: "Stardust Source", amount: "1x" }
         ],
         ingredientsCs: [
-          { name: "Vynikající želví maso", amount: "1x", isPrimary: true },
-          { name: "Krokodýlí maso", amount: "1x" },
-          { name: "Maso šelem", amount: "1x" },
-          { name: "Prvotřídní vepřové", amount: "1x" }
+          { name: "Zmutované maso šelem", amount: "2x", isPrimary: true },
+          { name: "Zmutovaná dýně", amount: "1x" },
+          { name: "Zdroj hvězdného prachu (Stardust)", amount: "1x" }
         ],
-        descriptionEn: "The definitive post-apocalyptic carnivore banquet. Yields multifaceted ballistic bonuses.",
-        descriptionCs: "Vrcholná masová hostina kombinující útočné archetypy zvířat divočiny."
+        descriptionEn: "Highly volatile dish channeling cosmic mutations directly into combat spells.",
+        descriptionCs: "Pokrm s vysokou anomální aktivitou, který posiluje bojové schopnosti."
       },
       {
-        id: "cr-05",
-        nameEn: "Aromatic Fruit and Roasted Meat",
-        nameCs: "Aromatické ovoce s pečeným masem",
-        categoryEn: "Synergy Dish",
-        categoryCs: "Synergický pokrm",
-        rarity: "Rare",
-        workbench: "Stove",
-        energy: 80,
+        id: "c-02",
+        nameEn: "Ultraman Meat Feast",
+        nameCs: "Ultraman Masová hostina",
+        categoryEn: "Creative Special",
+        categoryCs: "Kreativní specialita",
+        rarity: "Legendary",
+        workbench: "Kitchen Stove (Free Cooking)",
+        energy: 100,
         hydration: 15,
-        buffDuration: "25 min",
-        sourceEn: "Chef System: Meat + Saffron + Egg + Butter",
-        sourceCs: "Systém Chef: Maso + Šafrán + Vejce + Máslo",
+        buffDuration: "2400s (40 min)",
+        sourceEn: "Creative free-mix: 3x Rare Beast Meats + Peppercorn + Animal Fat",
+        sourceCs: "Volné míchání: 3x Vzácné maso šelem + Pepř + Zvířecí tuk",
         effectsEn: [
-          "Refreshing Platter: Crop ingredient bonus effects +50%",
-          "Other ingredient effects reduced by 25%",
-          "Max Stamina +20"
+          "Max Health +650",
+          "Physical Damage Reduction +15%",
+          "Heavy melee swing damage +30%"
         ],
         effectsCs: [
-          "Osvěžující mísa: Bonusové efekty zeleniny/plodin zvýšeny o +50%",
-          "Ostatní efekty sníženy o 25%",
-          "Max Výdrž (Stamina) +20"
+          "Maximální zdraví +650",
+          "Snížení fyzického zranění +15%",
+          "Poškození těžkým úderem zblízka +30%"
         ],
         ingredientsEn: [
-          { name: "Pristine Beast Meat", amount: "1x", isPrimary: true },
-          { name: "Deviated Saffron", amount: "1x" },
-          { name: "Crocodile Egg", amount: "1x" },
-          { name: "Butter", amount: "1x" }
+          { name: "Beast Meat", amount: "4x", isPrimary: true },
+          { name: "Cooking Oil", amount: "2x" },
+          { name: "Ghost Pepper / Rare Spice", amount: "1x" }
         ],
         ingredientsCs: [
-          { name: "Maso šelem", amount: "1x", isPrimary: true },
-          { name: "Mutovaný šafrán", amount: "1x" },
-          { name: "Krokodýlí vejce", amount: "1x" },
-          { name: "Máslo", amount: "1x" }
+          { name: "Maso šelem (Beast Meat)", amount: "4x", isPrimary: true },
+          { name: "Olej na vaření", amount: "2x" },
+          { name: "Přízračná chilli paprička", amount: "1x" }
         ],
-        descriptionEn: "Bold balance of sweetness and roast meat coated in creamy fat.",
-        descriptionCs: "Sladko-slaná kombinace šťavnatého pečeného masa zalitá jemným máslem."
+        descriptionEn: "Massive pile of grilled proteins turning survivors into unstoppable juggernauts.",
+        descriptionCs: "Hromada grilovaného masa dělající z hráče odolného nezastavitelného tanka."
       },
       {
-        id: "cr-06",
+        id: "c-03",
+        nameEn: "Supreme Wild Vegetable Platter",
+        nameCs: "Mísa divoké lesní zeleniny",
+        categoryEn: "Salad",
+        categoryCs: "Salát",
+        rarity: "Fine",
+        workbench: "Kitchen Stove (Free Cooking)",
+        energy: 60,
+        hydration: 40,
+        buffDuration: "1200s (20 min)",
+        sourceEn: "Creative free-mix: Morel Mushrooms + Forest Berries + Herb Dressing",
+        sourceCs: "Volné míchání: Smrže + Lesní plody + Bylinková zálivka",
+        effectsEn: [
+          "Sprint stamina consumption -15%",
+          "Gathering speed for herbs and plants +35%"
+        ],
+        effectsCs: [
+          "Spotřeba staminy při běhu -15%",
+          "Rychlost sběru divokých bylin a plodin +35%"
+        ],
+        ingredientsEn: [
+          { name: "Wild Morel Mushrooms", amount: "3x", isPrimary: true },
+          { name: "Forest Berries", amount: "2x" },
+          { name: "Purified Water", amount: "1x" }
+        ],
+        ingredientsCs: [
+          { name: "Divoké houby smrže", amount: "3x", isPrimary: true },
+          { name: "Lesní bobule", amount: "2x" },
+          { name: "Čistá voda", amount: "1x" }
+        ],
+        descriptionEn: "Fresh forest harvest providing steady agility throughout long forage runs.",
+        descriptionCs: "Čerstvý lesní sběr poskytující vytrvalost pro dlouhé výpravy."
+      },
+      {
+        id: "c-04",
         nameEn: "Luxury All-Fish Feast",
         nameCs: "Luxusní rybí hody",
-        categoryEn: "Synergy Dish",
-        categoryCs: "Synergický pokrm",
+        categoryEn: "Creative Special",
+        categoryCs: "Kreativní specialita",
         rarity: "Epic",
-        workbench: "Integrated Kitchen",
-        energy: 90,
+        workbench: "Kitchen Stove (Free Cooking)",
+        energy: 85,
         hydration: 25,
-        buffDuration: "30 min",
-        sourceEn: "Chef System: 3 fish types + Caviar",
-        sourceCs: "Systém Chef: 3 druhy ryb a kaviár",
+        buffDuration: "1800s (30 min)",
+        sourceEn: "Creative free-mix: 3 different species of rare fish + Butter / Oil",
+        sourceCs: "Volné míchání: 3 druhy vzácných ryb + Máslo / Rostlinný olej",
         effectsEn: [
-          "All Fish-specific bonus effects boosted by +50%",
-          "Crit DMG vs Deviated targets +8%",
-          "Weakspot DMG vs Deviated targets +8%"
+          "Critical Hit Rate +8%",
+          "Critical Hit Damage +18%",
+          "Swimming speed +25%"
         ],
         effectsCs: [
-          "Všechny rybí bonusy zvýšeny o +50%",
-          "Kritické DMG proti zmutovaným cílům +8%",
-          "Weakspot DMG proti zmutovaným cílům +8%"
+          "Šance na kritický zásah (Crit Rate) +8%",
+          "Poškození kritickým zásahem (Crit DMG) +18%",
+          "Rychlost plavání ve vodě +25%"
         ],
         ingredientsEn: [
-          { name: "Arowana / Exotic Fish", amount: "1x", isPrimary: true },
-          { name: "Bighead Carp", amount: "1x" },
-          { name: "Tilapia", amount: "1x" },
-          { name: "Caviar", amount: "1x" }
+          { name: "Northern Pike / Rare Fish", amount: "3x", isPrimary: true },
+          { name: "Cooking Oil", amount: "2x" },
+          { name: "Sugar", amount: "1x" }
         ],
         ingredientsCs: [
-          { name: "Arowana / Exotická ryba", amount: "1x", isPrimary: true },
-          { name: "Kapr velkohlavý", amount: "1x" },
-          { name: "Tilapie", amount: "1x" },
-          { name: "Kaviár", amount: "1x" }
+          { name: "Severní štika / Vzácná ryba", amount: "3x", isPrimary: true },
+          { name: "Olej na vaření", amount: "2x" },
+          { name: "Cukr", amount: "1x" }
         ],
-        descriptionEn: "Gourmet seafood platter maximizing elemental and weakspot advantages against high-tier mutants.",
-        descriptionCs: "Rybí delikatesa s kaviárem, která násobí účinky rybích pasivek."
+        descriptionEn: "Gourmet seafood banquet optimizing combat precision and aquatic agility.",
+        descriptionCs: "Labužnická rybí hostina maximalizující přesnost zásahů do slabin."
       }
     ];
 
     /* ==========================================================================
-       DATABÁZE TAB 3: MEDICINE, PHARMACY & FERMENTATION
+       TAB 3: MEDICINE, PHARMACY & FERMENTATION
        ========================================================================== */
     const medicineRecipes = [
       {
         id: "m-01",
         nameEn: "Standard Activator",
-        nameCs: "Standardní aktivátor (Léčebná injekce)",
-        categoryEn: "Activator",
-        categoryCs: "Aktivátory & Léčení",
+        nameCs: "Standardní aktivátor (Lékárnička)",
+        categoryEn: "Medicine",
+        categoryCs: "Léčivo",
         rarity: "Common",
         workbench: "Supplies Workbench",
         energy: 0,
         hydration: 0,
-        buffDuration: "Instant",
-        sourceEn: "Basic Supplies Memetic tree unlocked at level 1",
-        sourceCs: "Základní strom Supplies v Memetics (dostupné od 1. úrovně)",
+        buffDuration: "Instant + 5s HoT",
+        sourceEn: "Basic Medicine Memetics node",
+        sourceCs: "Základní lékařský uzel v Memetics",
         effectsEn: [
-          "Instantly heals 30% of Maximum HP",
-          "Restores an additional 15% HP over the next 5 seconds",
-          "Co-exists on a 15-second combat cooldown"
+          "Restores 45% of Max HP over 5 seconds",
+          "Removes Bleeding status effect"
         ],
         effectsCs: [
-          "Okamžitě vyléčí 30% maximálního zdraví",
-          "Doplňuje dalších 15% HP v průběhu následujících 5 sekund",
-          "Sdílí 15sekundový cooldown"
+          "Obnoví 45% maximálního zdraví během 5 sekund",
+          "Zastaví krvácení (Bleeding)"
         ],
         ingredientsEn: [
-          { name: "Herbs / Coneflower", amount: "2x", isPrimary: true },
+          { name: "Herbal Leaves", amount: "2x", isPrimary: true },
           { name: "Purified Water", amount: "1x" }
         ],
         ingredientsCs: [
-          { name: "Bylinky / Třapatka", amount: "2x", isPrimary: true },
+          { name: "Bylinné lístky", amount: "2x", isPrimary: true },
           { name: "Čistá voda", amount: "1x" }
         ],
-        descriptionEn: "Standard medical syringe required for daily wilderness survival and combat triage.",
-        descriptionCs: "Základní medicínská injekce nezbytná pro každodenní přežití a boj."
+        descriptionEn: "Standard battlefield injector replenishing red blood cells.",
+        descriptionCs: "Běžná injekční lékárnička pro rychlé zastavení krvácení."
       },
       {
         id: "m-02",
         nameEn: "Strong Activator",
         nameCs: "Silný aktivátor",
-        categoryEn: "Activator",
-        categoryCs: "Aktivátory & Léčení",
+        categoryEn: "Medicine",
+        categoryCs: "Léčivo",
         rarity: "Rare",
-        workbench: "Supplies Workbench / Advanced",
+        workbench: "Supplies Workbench",
         energy: 0,
         hydration: 0,
-        buffDuration: "Instant",
-        sourceEn: "Mid-tier Medical Memetics node",
-        sourceCs: "Pokročilý uzel medicíny v Memetics",
+        buffDuration: "Instant + 3s HoT",
+        sourceEn: "Advanced Pharmacy Memetics",
+        sourceCs: "Pokročilá farmacie v Memetics",
         effectsEn: [
-          "Instantly heals 50% HP",
-          "Restores 25% additional HP over 6 seconds",
-          "Removes active bleeding debuffs"
+          "Restores 75% of Max HP over 3 seconds",
+          "Removes Crippled and Bleeding status immediately"
         ],
         effectsCs: [
-          "Okamžitě vyléčí 50% maximálního HP",
-          "Regeneruje dalších 25% HP po dobu 6 sekund",
-          "Zastavuje aktivní krvácení"
+          "Obnoví 75% maximálního zdraví během 3 sekund",
+          "Okamžitě odstraní zranění končetin a krvácení"
         ],
         ingredientsEn: [
-          { name: "Refined Chemical", amount: "2x", isPrimary: true },
-          { name: "Herbal Extract", amount: "3x" },
-          { name: "Purified Water", amount: "2x" }
+          { name: "Herbal Leaves", amount: "4x", isPrimary: true },
+          { name: "Purified Water", amount: "1x" },
+          { name: "Acid", amount: "1x" }
         ],
         ingredientsCs: [
-          { name: "Zušlechtěná chemikálie", amount: "2x", isPrimary: true },
-          { name: "Bylinný extrakt", amount: "3x" },
-          { name: "Čistá voda", amount: "2x" }
+          { name: "Bylinné lístky", amount: "4x", isPrimary: true },
+          { name: "Čistá voda", amount: "1x" },
+          { name: "Kyselina (Acid)", amount: "1x" }
         ],
-        descriptionEn: "Potent military-spec medical injector for high-stakes dungeon battles.",
-        descriptionCs: "Vojenský lékařský injektor pro náročné raidy a záchranu v boji."
+        descriptionEn: "High-potency medical stimulant designed for intense combat recovery.",
+        descriptionCs: "Koncentrovaný stimulant určený k rychlé regeneraci uprostřed bossfightu."
       },
       {
         id: "m-03",
         nameEn: "Sanity Gummy",
-        nameCs: "Sanity želé (Sanity Gummy)",
-        categoryEn: "Sanity & Mental",
-        categoryCs: "Sanity & Psychika",
+        nameCs: "Sanity želé bonbón",
+        categoryEn: "Sedative",
+        categoryCs: "Sedativum",
         rarity: "Fine",
-        workbench: "Supplies Workbench",
-        energy: 10,
+        workbench: "Supplies Workbench / Stove",
+        energy: 15,
         hydration: 0,
         buffDuration: "Instant",
-        sourceEn: "Unlocked via early Camp cooking / supplies node",
-        sourceCs: "Odemčeno v rané fázi kempového vaření v Memetics",
+        sourceEn: "Pharmacy Memetic Tree",
+        sourceCs: "Větev farmacie v Memetics",
         effectsEn: [
-          "Instantly restores 200 Sanity points",
-          "Slightly raises movement speed for 10 seconds",
-          "Allows full health bar recovery blocked by contamination"
+          "Restores 500 Sanity points instantly",
+          "Suppresses hallucination and visual distortion effects"
         ],
         effectsCs: [
-          "Okamžitě obnoví 200 bodů Sanity (příčetnosti)",
-          "Mírně zvýší rychlost pohybu na 10 sekund",
-          "Uvolní zablokovanou část lišty zdraví"
+          "Okamžitě obnoví 500 bodů příčetnosti (Sanity)",
+          "Potlačí halucinace a rozmazané vidění ze znečištění"
         ],
         ingredientsEn: [
           { name: "Sugar", amount: "2x", isPrimary: true },
           { name: "Purified Water", amount: "1x" },
-          { name: "Herbal Flower", amount: "1x" }
+          { name: "Herbal Leaves", amount: "1x" }
         ],
         ingredientsCs: [
           { name: "Cukr", amount: "2x", isPrimary: true },
           { name: "Čistá voda", amount: "1x" },
-          { name: "Bylinný květ", amount: "1x" }
+          { name: "Bylinné lístky", amount: "1x" }
         ],
-        descriptionEn: "Sweet chewy candy that dispels encroaching Stardust paranoia and restores blocked HP.",
-        descriptionCs: "Sladké želé zahánějící záchvaty strachu a obnovující ztracenou příčetnost."
+        descriptionEn: "Sweet chewy candy calming the mind against Stardust madness.",
+        descriptionCs: "Sladký želé bonbón chránící mysl před šílenstvím z vesmírného prachu."
       },
       {
         id: "m-04",
         nameEn: "Immunity Booster",
-        nameCs: "Imunitní posilovač",
-        categoryEn: "Protection",
-        categoryCs: "Ochrana & Tělo",
+        nameCs: "Imunobooster",
+        categoryEn: "Medicine",
+        categoryCs: "Léčivo",
         rarity: "Rare",
         workbench: "Supplies Workbench",
         energy: 0,
         hydration: 0,
-        buffDuration: "20 min",
-        sourceEn: "Environmental Survival Memetic branch",
-        sourceCs: "Větev environmentálního přežití v Memetics",
+        buffDuration: "1800s (30 min)",
+        sourceEn: "Biochemistry Memetics",
+        sourceCs: "Biochemický výzkum v Memetics",
         effectsEn: [
-          "Pollution Resistance +25",
-          "Reduces environmental sanity decay rate by 60%",
-          "Immunity against toxic spores"
+          "Pollution Resistance +50%",
+          "Reduces Stardust infection buildup by 65%"
         ],
         effectsCs: [
-          "Odolnost proti znečištění +25",
-          "Zpomaluje ztrátu Sanity v zamořených zónách o 60%",
-          "Imunita vůči toxickým spórám"
+          "Odolnost vůči zamoření (Pollution RES) +50%",
+          "Zpomaluje hromadění infekce znečištěných zón o 65%"
         ],
         ingredientsEn: [
-          { name: "Acid", amount: "2x", isPrimary: true },
-          { name: "Coneflower", amount: "4x" },
-          { name: "Purified Water", amount: "2x" }
+          { name: "Herbal Leaves", amount: "3x", isPrimary: true },
+          { name: "Acid", amount: "2x" },
+          { name: "Purified Water", amount: "1x" }
         ],
         ingredientsCs: [
-          { name: "Kyselina (Acid)", amount: "2x", isPrimary: true },
-          { name: "Třapatka", amount: "4x" },
-          { name: "Čistá voda", amount: "2x" }
+          { name: "Bylinné lístky", amount: "3x", isPrimary: true },
+          { name: "Kyselina (Acid)", amount: "2x" },
+          { name: "Čistá voda", amount: "1x" }
         ],
-        descriptionEn: "Synthetic antibody vial reinforcing the human lymphatic system against cosmic pathogens.",
-        descriptionCs: "Lék posilující imunitní systém proti vlivu mimozemských patogenů."
+        descriptionEn: "Potent pharmaceutical serum that insulates cellular tissue against cosmic toxins.",
+        descriptionCs: "Injekční sérum posilující buněčnou stěnu před působením radiace a zamoření."
       },
       {
         id: "m-05",
         nameEn: "Fermented Pure Acid",
-        nameCs: "Fermentovaná kyselina (Acid)",
-        categoryEn: "Fermentation",
-        categoryCs: "Kvašení & Chemie",
-        rarity: "Rare",
-        workbench: "Brewing Barrel / Fermentation",
-        energy: 0,
-        hydration: 0,
-        buffDuration: "Crafting Material",
-        sourceEn: "Memetic: Mass Production / Fermentation Barrel",
-        sourceCs: "Memetický uzel: Fermentation Barrel & hromadná výroba",
-        effectsEn: [
-          "Key chemical reagent required to synthesize Tungsten and Aluminum bullets",
-          "Yields 10x Pure Acid per 20 minutes in brewing vat"
-        ],
-        effectsCs: [
-          "Klíčová chemická surovina pro výrobu wolframové a výbušné munice",
-          "Vyrobí 10x čistou kyselinu za 20 minut v kvasném sudu"
-        ],
-        ingredientsEn: [
-          { name: "Spoiled Meat / Raw Food", amount: "5x", isPrimary: true },
-          { name: "Purified Water", amount: "3x" }
-        ],
-        ingredientsCs: [
-          { name: "Zkažené maso / Potraviny", amount: "5x", isPrimary: true },
-          { name: "Čistá voda", amount: "3x" }
-        ],
-        descriptionEn: "Industrial biotechnology reaction transforming rotting biomass into precious high-grade Acid.",
-        descriptionCs: "Klíčový chemický proces přeměňující zkaženou biomasu na vysoce žádanou kyselinu."
-      },
-      {
-        id: "m-06",
-        nameEn: "Wheat Beer (Craft Ale)",
-        nameCs: "Pšeničné pivo",
+        nameCs: "Kvašená čistá kyselina (Acid)",
         categoryEn: "Fermentation",
         categoryCs: "Kvašení & Chemie",
         rarity: "Fine",
         workbench: "Fermentation Barrel",
-        energy: 30,
-        hydration: 40,
-        buffDuration: "20 min",
-        sourceEn: "Brewing Barrel recipes unlocked in Memetics",
-        sourceCs: "Recept kvasného sudu v záložce Memetics",
+        energy: 0,
+        hydration: 0,
+        buffDuration: "Crafting Material",
+        sourceEn: "Fermentation Technology Memetic",
+        sourceCs: "Fermentační technologie v Memetics",
         effectsEn: [
-          "Completely arrests sanity loss inside pollution fields",
-          "Melee DMG +8%, minor intoxicated vision shift"
+          "Fundamental solvent needed to craft mid/late game ammunition, tungsten, and armor"
         ],
         effectsCs: [
-          "Zcela zastaví úbytek Sanity v kontaminovaném prostředí",
-          "Poškození zbraněmi na blízko +8%, mírné zkreslení zraku"
+          "Základní surovina nutná pro výrobu munice, wolframových slitin a zbrojí"
+        ],
+        ingredientsEn: [
+          { name: "Spoiled Meat", amount: "10x", isPrimary: true },
+          { name: "Purified Water", amount: "3x" }
+        ],
+        ingredientsCs: [
+          { name: "Zkažené maso", amount: "10x", isPrimary: true },
+          { name: "Čistá voda", amount: "3x" }
+        ],
+        descriptionEn: "Controlled anaerobic fermentation converting biological waste into high-grade acid.",
+        descriptionCs: "Řízený rozklad organického odpadu a masa na koncentrovanou průmyslovou kyselinu."
+      },
+      {
+        id: "m-06",
+        nameEn: "Corn Wheat Beer",
+        nameCs: "Kukuřično-pšeničné pivo",
+        categoryEn: "Fermentation",
+        categoryCs: "Kvašení & Nápoj",
+        rarity: "Fine",
+        workbench: "Fermentation Barrel",
+        energy: 50,
+        hydration: -20,
+        buffDuration: "1200s (20 min)",
+        sourceEn: "Brewing Memetics perk",
+        sourceCs: "Pivovarský perk v Memetics",
+        effectsEn: [
+          "Melee Weapon Damage +25%",
+          "Sanity restored by 400",
+          "Postih: Hydration drain accelerated"
+        ],
+        effectsCs: [
+          "Poškození zbraněmi na blízko +25%",
+          "Okamžitě obnoví 400 Sanity",
+          "Postih: Zvýšená žízeň (-20 Hydration)"
         ],
         ingredientsEn: [
           { name: "Wheat", amount: "5x", isPrimary: true },
-          { name: "Purified Water", amount: "2x" },
-          { name: "Yeast", amount: "1x" }
+          { name: "Corn", amount: "3x" },
+          { name: "Purified Water", amount: "4x" }
         ],
         ingredientsCs: [
           { name: "Pšenice", amount: "5x", isPrimary: true },
-          { name: "Čistá voda", amount: "2x" },
-          { name: "Kvasnice", amount: "1x" }
+          { name: "Kukuřice", amount: "3x" },
+          { name: "Čistá voda", amount: "4x" }
         ],
-        descriptionEn: "Rich craft brew granting mental courage inside the deepest corrupted tunnels.",
-        descriptionCs: "Kvašený pšeničný nápoj dodávající odvahu a chránící před strachem."
+        descriptionEn: "Homebrewed alcoholic beverage granting dutch courage at the expense of thirst.",
+        descriptionCs: "Domácí kvašené pivo, které dodá sílu v boji zblízka za cenu dehydratace."
       }
     ];
 
     /* ==========================================================================
-       DATABÁZE TAB 4: TECHNOLOGICAL INVENTIONS & TACTICAL
+       TAB 4: TECHNOLOGICAL INVENTIONS & TACTICAL
        ========================================================================== */
     const inventionRecipes = [
       {
         id: "t-01",
         nameEn: "Shield Matrix Generator",
-        nameCs: "Generátor štítové matice",
-        categoryEn: "Tactical Gear",
-        categoryCs: "Boj & Taktika",
-        rarity: "Epic",
-        workbench: "Advanced Gear Workbench",
+        nameCs: "Generátor štítové matrice",
+        categoryEn: "Tactical Tech",
+        categoryCs: "Taktická výbava",
+        rarity: "Legendary",
+        workbench: "Gear Workbench (Tier 5)",
         energy: 0,
         hydration: 0,
-        buffDuration: "Active deployable",
-        sourceEn: "Tier 4 Memetics: Tactical Gear branch",
-        sourceCs: "Tier 4 Memetics: Větev taktického vybavení",
+        buffDuration: "Active deployable (45s)",
+        sourceEn: "Memetics: Advanced Defense Engineering Tier 5",
+        sourceCs: "Memetics: Špičkové obranné inženýrství Tier 5",
         effectsEn: [
-          "Projects an energy dome absorbing up to 8,000 incoming damage",
-          "Deflects ballistic projectiles and shields the squad during boss ultimates"
+          "Projects a 15-meter hemispherical kinetic shield (60,000 HP)",
+          "Deflects incoming projectiles and explosive shockwaves",
+          "Allows allied gunfire to pass outward freely"
         ],
         effectsCs: [
-          "Vytvoří energetickou kupoli absorbující až 8 000 poškození",
-          "Odrazí balistické projektily a chrání tým před plošnými útoky bossů"
+          "Vytvoří 15m polokulový energetický štít (60 000 HP)",
+          "Odrazí nepřátelské projektily a tlumí exploze",
+          "Spojenecké střely procházejí štítem bez omezení"
         ],
         ingredientsEn: [
-          { name: "Stardust Source", amount: "10x", isPrimary: true },
-          { name: "Special Parts", amount: "6x" },
-          { name: "Steel Ingot", amount: "8x" }
+          { name: "Electronic Parts", amount: "25x", isPrimary: true },
+          { name: "Steel Ingot", amount: "40x" },
+          { name: "Stardust Source", amount: "15x" },
+          { name: "Acid", amount: "10x" }
         ],
         ingredientsCs: [
-          { name: "Zdroj hvězdného prachu (Stardust)", amount: "10x", isPrimary: true },
-          { name: "Speciální součástky", amount: "6x" },
-          { name: "Ocelový ingot", amount: "8x" }
+          { name: "Elektronické součástky", amount: "25x", isPrimary: true },
+          { name: "Ocelový ingot", amount: "40x" },
+          { name: "Zdroj hvězdného prachu (Stardust)", amount: "15x" },
+          { name: "Kyselina (Acid)", amount: "10x" }
         ],
-        descriptionEn: "High-tier combat device creating an impenetrable force field in Silo boss fights.",
-        descriptionCs: "Špičková přenosná obranná technologie pro záchranu týmu pod těžkou palbou."
+        descriptionEn: "Portable tactical emitter converting Stardust into high-density defensive barriers.",
+        descriptionCs: "Přenosné zařízení vytvářející masivní energetickou kopuli chránící tým."
       },
       {
         id: "t-02",
-        nameEn: "Portable Climate Thermostat",
-        nameCs: "Přenosný bioklimatický termostat",
-        categoryEn: "Survival Utility",
-        categoryCs: "Přežití & Podpora",
-        rarity: "Rare",
-        workbench: "Gear Workbench / Memetics",
+        nameEn: "Bioclimatic Thermostat",
+        nameCs: "Bioklimatický termostat základny",
+        categoryEn: "Territory Facility",
+        categoryCs: "Zařízení teritoria",
+        rarity: "Epic",
+        workbench: "Building Territory Terminal",
         energy: 0,
         hydration: 0,
-        buffDuration: "20 min",
-        sourceEn: "Tier 3 Survival Memetics",
-        sourceCs: "Tier 3 Memetics v sekci Přežití",
+        buffDuration: "Permanent Territory Aura",
+        sourceEn: "Memetics: Environmental Control Systems",
+        sourceCs: "Memetics: Systémy řízení životního prostředí",
         effectsEn: [
-          "Stabilizes core body temperature in a personal bubble",
-          "Complete immunity against hypothermia and heatstroke in desert or blizzard biomes"
+          "Maintains territory temperature permanently at optimal 22°C",
+          "Accelerates indoor crop growth cycles by 35%",
+          "Completely negates hypothermia and heatstroke inside base"
         ],
         effectsCs: [
-          "Stabilizuje tělesnou teplotu v osobním mikroklimatickém poli",
-          "Kompletní ochrana před mrazem i úžehem v extrémních pouštních i arktických zónách"
+          "Udržuje teplotu v teritoriu trvale na optimálních 22 °C",
+          "Urychluje růst plodin na vnitřních záhonech o 35%",
+          "Chrání obyvatele základny před úpalem i podchlazením"
         ],
         ingredientsEn: [
-          { name: "Electronic Parts", amount: "4x", isPrimary: true },
-          { name: "Steel Ingot", amount: "5x" },
-          { name: "Storage Battery", amount: "1x" }
+          { name: "Steel Ingot", amount: "30x", isPrimary: true },
+          { name: "Electronic Parts", amount: "12x" },
+          { name: "Purified Water", amount: "20x" }
         ],
         ingredientsCs: [
-          { name: "Elektronické součástky", amount: "4x", isPrimary: true },
-          { name: "Ocelový ingot", amount: "5x" },
-          { name: "Baterie", amount: "1x" }
+          { name: "Ocelový ingot", amount: "30x", isPrimary: true },
+          { name: "Elektronické součástky", amount: "12x" },
+          { name: "Čistá voda", amount: "20x" }
         ],
-        descriptionEn: "Belt-mounted climate module providing personal environmental equilibrium.",
-        descriptionCs: "Kompaktní opaskový modul neutralizující extrémní výkyvy počasí."
+        descriptionEn: "Advanced territorial climate regulator managing thermal comfort and crop kinetics.",
+        descriptionCs: "Pokročilá ventilační a klimatizační centrála pro optimalizaci pěstování."
       },
       {
         id: "t-03",
         nameEn: "Automated Gatling Turret",
-        nameCs: "Automatická obranná věž Gatling",
-        categoryEn: "Base Defense",
-        categoryCs: "Obrana & Pasti",
+        nameCs: "Automatická věž Gatling",
+        categoryEn: "Defense",
+        categoryCs: "Obrana základny",
         rarity: "Epic",
-        workbench: "Territory Defense Mode",
+        workbench: "Territory Build Mode",
         energy: 0,
         hydration: 0,
-        buffDuration: "Permanent Territory Structure",
-        sourceEn: "Memetics: Territory Defense Specialization",
-        sourceCs: "Memetics: Specializace obrany teritoria",
+        buffDuration: "Autonomous Device",
+        sourceEn: "Memetics: Automated Defense Grid",
+        sourceCs: "Memetics: Automatizovaná obranná síť",
         effectsEn: [
-          "Autonomously locks on and suppresses enemies within a 35m radius",
-          "Fires heavy caliber rounds; crucial for Territory Purification sieges"
+          "Fires 600 rounds per minute targeting hostile Deviants",
+          "Interlocking sensor network targets weakspots automatically",
+          "Requires 15W continuous electrical power"
         ],
         effectsCs: [
-          "Automaticky zaměřuje a eliminuje nepřátele v okruhu 35 metrů",
-          "Vysoká kadence palby; klíčová při očistných rituálech (Purification)"
+          "Pálí 600 ran/min s automatickým zaměřováním nepřátel",
+          "Senzory prioritně míří na slabá místa (Weakspots)",
+          "Vyžaduje stálé napájení 15 W"
         ],
         ingredientsEn: [
-          { name: "Steel Ingot", amount: "20x", isPrimary: true },
-          { name: "Special Parts", amount: "8x" },
-          { name: "Electronic Parts", amount: "10x" },
-          { name: "Gunpowder", amount: "15x" }
+          { name: "Steel Ingot", amount: "35x", isPrimary: true },
+          { name: "Electronic Parts", amount: "15x" },
+          { name: "Gunpowder", amount: "20x" }
         ],
         ingredientsCs: [
-          { name: "Ocelový ingot", amount: "20x", isPrimary: true },
-          { name: "Speciální součástky", amount: "8x" },
-          { name: "Elektronické součástky", amount: "10x" },
-          { name: "Střelný prach", amount: "15x" }
+          { name: "Ocelový ingot", amount: "35x", isPrimary: true },
+          { name: "Elektronické součástky", amount: "15x" },
+          { name: "Střelný prach", amount: "20x" }
         ],
-        descriptionEn: "Motorized heavy gun turret that defends base generators and territory borders.",
-        descriptionCs: "Autonomní těžký kulomet na trojnožce pro obranu krystalů a teritoria."
+        descriptionEn: "Heavy caliber territorial defense turret guarding against nightly purifications.",
+        descriptionCs: "Těžká automatická kulometná věž chránící teritorium před nočními vlnami."
       },
       {
         id: "t-04",
-        nameEn: "Large Solar Generator",
-        nameCs: "Velký solární generátor",
-        categoryEn: "Power & Automation",
-        categoryCs: "Energie & Stroje",
+        nameEn: "Advanced Solar Generator",
+        nameCs: "Pokročilá solární elektrárna",
+        categoryEn: "Power Facility",
+        categoryCs: "Energetika",
         rarity: "Rare",
-        workbench: "Building Mode / Memetic Tree",
+        workbench: "Building Territory Terminal",
         energy: 0,
         hydration: 0,
-        buffDuration: "Permanent Grid Power",
-        sourceEn: "Tier 3 Power Grid Memetics",
-        sourceCs: "Tier 3 Memetics v energetickém stromu",
+        buffDuration: "Continuous Generator",
+        sourceEn: "Memetics: Renewable Energy Systems",
+        sourceCs: "Memetics: Obnovitelné zdroje energie",
         effectsEn: [
-          "Generates up to 25W clean electrical power during daylight hours",
-          "Automatically feeds connected storage batteries for continuous night draw"
+          "Produces 25W electrical power during daytime",
+          "Integrated battery stores 10W for nighttime operations",
+          "Requires zero fuel input"
         ],
         effectsCs: [
-          "Generuje až 25W čisté elektrické energie za denního světla",
-          "Plynule dobíjí bateriová úložiště pro noční napájení"
+          "Generuje 25 W elektrické energie během dne",
+          "Integrovaná baterie uchovává 10 W pro noční provoz",
+          "Nevyžaduje žádné doplňování paliva"
         ],
         ingredientsEn: [
-          { name: "Steel Ingot", amount: "15x", isPrimary: true },
-          { name: "Electronic Parts", amount: "10x" },
-          { name: "Silicon", amount: "8x" },
-          { name: "Copper Wire", amount: "12x" }
+          { name: "Electronic Parts", amount: "20x", isPrimary: true },
+          { name: "Steel Ingot", amount: "25x" },
+          { name: "Purified Water", amount: "5x" }
         ],
         ingredientsCs: [
-          { name: "Ocelový ingot", amount: "15x", isPrimary: true },
-          { name: "Elektronické součástky", amount: "10x" },
-          { name: "Křemík (Silicon)", amount: "8x" },
-          { name: "Měděný drát", amount: "12x" }
+          { name: "Elektronické součástky", amount: "20x", isPrimary: true },
+          { name: "Ocelový ingot", amount: "25x" },
+          { name: "Čistá voda", amount: "5x" }
         ],
-        descriptionEn: "Zero-noise renewable power source for automated hydroponics and refrigerators.",
-        descriptionCs: "Tichý obnovitelný zdroj energie pro chod lednic, filtrů a automatických farem."
+        descriptionEn: "Photovoltaic panel matrix providing sustainable electricity for base circuits.",
+        descriptionCs: "Fotovoltaický panel dodávající čistou elektřinu pro chod strojů."
       },
       {
         id: "t-05",
-        nameEn: "Stardust Resonant Water Filter",
-        nameCs: "Rezonanční vodní filtr Stardust",
-        categoryEn: "Water & Production",
-        categoryCs: "Energie & Stroje",
-        rarity: "Epic",
-        workbench: "Territory Facility",
+        nameEn: "Stardust Water Filtration Array",
+        nameCs: "Filtrační stanice zamořené vody",
+        categoryEn: "Territory Facility",
+        categoryCs: "Zařízení teritoria",
+        rarity: "Legendary",
+        workbench: "Building Territory Terminal",
         energy: 0,
         hydration: 0,
-        buffDuration: "Continuous Machine",
-        sourceEn: "Memetic Specialization roll / Advanced Logistics",
-        sourceCs: "Memetická specializace / Pokročilá logistika",
+        buffDuration: "Continuous Production",
+        sourceEn: "Memetic Specialization RNG unlock",
+        sourceCs: "Náhodný perk Memetické specializace (Level 40+)",
         effectsEn: [
-          "Purifies polluted lake/sea water directly into Pure Acid and Stardust Minerals",
-          "Automates Acid extraction without requiring spoiled meat vats"
+          "Passively extracts Pure Acid from polluted water deposits",
+          "Yields up to 60 Pure Acid units per real-time hour",
+          "Outputs Purified Water as clean byproduct"
         ],
         effectsCs: [
-          "Filtruje zamořenou vodu přímo na čistou kyselinu (Acid) a minerály",
-          "Automatizuje produkci kyseliny bez nutnosti kvašení masa"
+          "Automaticky získává čistou kyselinu (Acid) ze zamořené vody",
+          "Vyprodukuje až 60 jednotek kyseliny za hodinu reálného času",
+          "Jako vedlejší produkt produkuje čistou filtrovanou vodu"
         ],
         ingredientsEn: [
-          { name: "Stardust Source", amount: "20x", isPrimary: true },
-          { name: "Aluminum Ingot", amount: "15x" },
-          { name: "Refined Parts", amount: "10x" }
+          { name: "Electronic Parts", amount: "30x", isPrimary: true },
+          { name: "Steel Ingot", amount: "50x" },
+          { name: "Acid", amount: "20x" },
+          { name: "Stardust Source", amount: "10x" }
         ],
         ingredientsCs: [
-          { name: "Zdroj hvězdného prachu", amount: "20x", isPrimary: true },
-          { name: "Hliníkový ingot", amount: "15x" },
-          { name: "Zušlechtěné součástky", amount: "10x" }
+          { name: "Elektronické součástky", amount: "30x", isPrimary: true },
+          { name: "Ocelový ingot", amount: "50x" },
+          { name: "Kyselina (Acid)", amount: "20x" },
+          { name: "Zdroj hvězdného prachu (Stardust)", amount: "10x" }
         ],
         descriptionEn: "Next-gen osmometer separating cosmic anomalies from natural water.",
         descriptionCs: "Špičková filtrační stanice získávající cennou kyselinu přímo ze znečištěné vody."
@@ -1405,36 +1585,36 @@
       {
         id: "t-06",
         nameEn: "C4 Remote Explosive",
-        nameCs: "Dálkově odpalovaná C4 nálož",
-        categoryEn: "Tactical Gear",
-        categoryCs: "Boj & Taktika",
+        nameCs: "C4 Dálková trhavina",
+        categoryEn: "Tactical Tech",
+        categoryCs: "Taktická výbava",
         rarity: "Epic",
         workbench: "Supplies Workbench",
         energy: 0,
         hydration: 0,
-        buffDuration: "Deployable Weapon",
-        sourceEn: "Tier 4 Demolitions Memetic node",
-        sourceCs: "Tier 4 Demoliční uzel v Memetics",
+        buffDuration: "Consumable",
+        sourceEn: "Demolitions Memetic Branch",
+        sourceCs: "Demoliční větev v Memetics",
         effectsEn: [
-          "Adheres to walls, vehicles, and armored boss plates",
-          "Deals 12,000 localized explosive damage upon radio detonator trigger"
+          "Deals 8,500 Structural Damage to reinforced concrete base walls",
+          "Triggers devastating shockwave against elite monster clusters"
         ],
         effectsCs: [
-          "Přilne k povrchům, zdem i pancéřovaným tělům monster",
-          "Způsobí 12 000 bodů koncentrovaného demoličního poškození po rádiovém odpalu"
+          "Způsobí 8 500 poškození budovám a vyztuženým betonovým stěnám",
+          "Vytvoří ničivou tlakovou vlnu proti skupinám elitních nepřátel"
         ],
         ingredientsEn: [
-          { name: "Gunpowder", amount: "20x", isPrimary: true },
+          { name: "Gunpowder", amount: "15x", isPrimary: true },
           { name: "Electronic Parts", amount: "4x" },
-          { name: "Steel Ingot", amount: "5x" }
+          { name: "Steel Ingot", amount: "6x" }
         ],
         ingredientsCs: [
-          { name: "Střelný prach", amount: "20x", isPrimary: true },
+          { name: "Střelný prach", amount: "15x", isPrimary: true },
           { name: "Elektronické součástky", amount: "4x" },
-          { name: "Ocelový ingot", amount: "5x" }
+          { name: "Ocelový ingot", amount: "6x" }
         ],
-        descriptionEn: "High-yield plastic explosive capable of breaching fortified strongholds and staggering behemoths.",
-        descriptionCs: "Trhavina schopná prorazit opevněné stěny a ochromit obří mutanty."
+        descriptionEn: "Plastic explosive block with wireless detonator for breaching fortifications.",
+        descriptionCs: "Plastická trhavina s dálkovým odpalovačem pro prolomení opevnění."
       }
     ];
 
@@ -1449,7 +1629,7 @@
       Common: { label: 'Common', bg: 'bg-slate-500/15', text: 'text-slate-400', border: 'border-slate-500/40', dot: 'bg-slate-400', order: 0 }
     };
 
-    let activeTab = 'discovered'; // 'discovered' | 'creative' | 'medicine' | 'inventions'
+    let activeTab = 'discovered';
     let searchQuery = '';
     let selectedCategory = 'all';
     let selectedRarity = 'all';
@@ -1462,96 +1642,36 @@
       applyFiltersAndSort();
     };
 
-    function updateTotalStats() {
-      const total = discoveredRecipes.length + creativeDishes.length + medicineRecipes.length + inventionRecipes.length;
-      document.getElementById('stat-count').innerText = total;
+    function getAllRecipes() {
+      return [...discoveredRecipes, ...creativeDishes, ...medicineRecipes, ...inventionRecipes];
     }
 
-    function setLanguage(lang) {
-      if (currentLang === lang) return;
-      currentLang = lang;
-      
-      const btnCs = document.getElementById('lang-btn-cs');
-      const btnEn = document.getElementById('lang-btn-en');
-      if (lang === 'cs') {
-        btnCs.className = "px-2.5 py-1 rounded text-cyan-400 bg-cyan-500/20 font-bold transition";
-        btnEn.className = "px-2.5 py-1 rounded text-slate-400 hover:text-white font-bold transition";
-      } else {
-        btnEn.className = "px-2.5 py-1 rounded text-cyan-400 bg-cyan-500/20 font-bold transition";
-        btnCs.className = "px-2.5 py-1 rounded text-slate-400 hover:text-white font-bold transition";
+    function findRecipeById(id) {
+      return getAllRecipes().find(r => r.id === id);
+    }
+
+    function determineRecipeTab(recipeId) {
+      if (discoveredRecipes.some(r => r.id === recipeId)) return 'discovered';
+      if (creativeDishes.some(r => r.id === recipeId)) return 'creative';
+      if (medicineRecipes.some(r => r.id === recipeId)) return 'medicine';
+      if (inventionRecipes.some(r => r.id === recipeId)) return 'inventions';
+      return 'discovered';
+    }
+
+    function navigateToRecipe(targetRecipeId) {
+      const targetRecipe = findRecipeById(targetRecipeId);
+      if (!targetRecipe) return;
+
+      const targetTab = determineRecipeTab(targetRecipeId);
+      if (activeTab !== targetTab) {
+        switchTab(targetTab);
       }
 
-      applyLanguageUI();
-      renderFilterControls();
-      applyFiltersAndSort();
-      calculateSynergy();
-    }
-
-    function applyLanguageUI() {
-      const t = i18n[currentLang];
-      document.getElementById('ui-subtitle').innerText = t.subtitle;
-      document.getElementById('ui-total-label').innerText = t.totalLabel;
-      document.getElementById('ui-tab-1').innerText = t.tab1;
-      document.getElementById('ui-tab-2').innerText = t.tab2;
-      document.getElementById('ui-tab-3').innerText = t.tab3;
-      document.getElementById('ui-tab-4').innerText = t.tab4;
-      document.getElementById('ui-calc-title').innerText = t.calcTitle;
-      document.getElementById('ui-calc-desc').innerText = t.calcDesc;
-      document.getElementById('ui-calc-reset').innerText = t.calcReset;
-      document.getElementById('ui-slot-1-label').innerText = t.slot1Label;
-      document.getElementById('ui-slot-2-label').innerText = t.slot2Label;
-      document.getElementById('ui-slot-3-label').innerText = t.slot3Label;
-      document.getElementById('ui-slot-4-label').innerText = t.slot4Label;
-      document.getElementById('ui-search-label').children[0].innerHTML = `<i class="fa-solid fa-magnifying-glass text-cyan-400 mr-1.5"></i>${t.searchLabel}`;
-      document.getElementById('ui-search-hint').innerText = t.searchHint;
-      document.getElementById('search-input').placeholder = t.searchPlaceholder;
-      document.getElementById('ui-sort-label').innerHTML = `<i class="fa-solid fa-arrow-down-a-z text-cyan-400 mr-1.5"></i>${t.sortLabel}`;
-      
-      const sortSel = document.getElementById('sort-criteria');
-      sortSel.options[0].text = t.sortOptions.nameAsc;
-      sortSel.options[1].text = t.sortOptions.nameDesc;
-      sortSel.options[2].text = t.sortOptions.ingrAsc;
-      sortSel.options[3].text = t.sortOptions.rarityDesc;
-      sortSel.options[4].text = t.sortOptions.rarityAsc;
-
-      document.getElementById('ui-reset-btn').innerText = t.resetBtn;
-      document.getElementById('ui-filter-label').innerHTML = `<i class="fa-solid fa-sliders text-cyan-400"></i> ${t.filterLabel}`;
-      document.getElementById('ui-shown-label').innerText = t.shownLabel;
-      document.getElementById('ui-empty-title').innerText = t.emptyTitle;
-      document.getElementById('ui-empty-desc').innerText = t.emptyDesc;
-      document.getElementById('ui-empty-btn').innerText = t.emptyBtn;
-      document.getElementById('ui-footer-info').innerText = t.footerInfo;
-    }
-
-    function switchTab(tab) {
-      if (activeTab === tab) return;
-      activeTab = tab;
-      
-      const tabs = ['discovered', 'creative', 'medicine', 'inventions'];
-      tabs.forEach(t => {
-        const btn = document.getElementById(`tab-btn-${t}`);
-        if (t === tab) {
-          btn.className = "flex items-center justify-center gap-2 py-3 px-3 font-orbitron font-bold text-xs uppercase tracking-wider border-b-2 border-cyan-400 text-cyan-400 bg-cyan-500/10 rounded-t-lg transition";
-        } else {
-          btn.className = "flex items-center justify-center gap-2 py-3 px-3 font-orbitron font-bold text-xs uppercase tracking-wider border-b-2 border-transparent text-slate-400 hover:text-slate-200 hover:bg-slate-800/40 rounded-t-lg transition";
-        }
-      });
-
-      const synergyBanner = document.getElementById('creative-synergy-banner');
-      if (tab === 'creative') {
-        synergyBanner.classList.remove('hidden');
-      } else {
-        synergyBanner.classList.add('hidden');
-      }
-
-      selectedCategory = 'all';
-      selectedRarity = 'all';
-      renderFilterControls();
-      applyFiltersAndSort();
+      openModal(targetRecipeId, true);
     }
 
     function getActiveDataset() {
-      switch(activeTab) {
+      switch (activeTab) {
         case 'discovered': return discoveredRecipes;
         case 'creative': return creativeDishes;
         case 'medicine': return medicineRecipes;
@@ -1560,66 +1680,103 @@
       }
     }
 
-    function renderFilterControls() {
-      const catContainer = document.getElementById('category-filters');
-      const rarContainer = document.getElementById('rarity-filters');
-      catContainer.innerHTML = '';
-      rarContainer.innerHTML = '';
-      const t = i18n[currentLang];
+    function setLanguage(lang) {
+      if (currentLang === lang) return;
+      currentLang = lang;
+      
+      const csBtn = document.getElementById('lang-cs');
+      const enBtn = document.getElementById('lang-en');
+      if (lang === 'cs') {
+        csBtn.className = "px-2.5 py-1 rounded text-xs font-mono font-bold transition-all bg-hud-cyan text-black shadow";
+        enBtn.className = "px-2.5 py-1 rounded text-xs font-mono font-bold transition-all text-slate-400 hover:text-white";
+      } else {
+        enBtn.className = "px-2.5 py-1 rounded text-xs font-mono font-bold transition-all bg-hud-cyan text-black shadow";
+        csBtn.className = "px-2.5 py-1 rounded text-xs font-mono font-bold transition-all text-slate-400 hover:text-white";
+      }
 
-      const dataset = getActiveDataset();
-      const categoriesSet = new Set();
-      dataset.forEach(item => {
-        const cat = currentLang === 'cs' ? (item.categoryCs || item.categoryEn) : item.categoryEn;
-        categoriesSet.add(cat);
-      });
-      const categories = ['all', ...Array.from(categoriesSet)];
-
-      categories.forEach(cat => {
-        const btn = document.createElement('button');
-        const isActive = selectedCategory === cat;
-        btn.className = `px-3 py-1 rounded-md text-xs font-rajdhani font-semibold tracking-wider transition ${
-          isActive 
-            ? 'bg-cyan-500 text-black shadow-md shadow-cyan-500/20 font-bold' 
-            : 'bg-slate-800/90 text-slate-400 hover:text-white border border-slate-700/60'
-        }`;
-        btn.innerText = cat === 'all' ? t.allCategories : cat;
-        btn.onclick = () => {
-          selectedCategory = cat;
-          renderFilterControls();
-          applyFiltersAndSort();
-        };
-        catContainer.appendChild(btn);
-      });
-
-      const rarities = ['all', 'Legendary', 'Epic', 'Rare', 'Fine', 'Common'];
-      rarities.forEach(rar => {
-        const btn = document.createElement('button');
-        const isActive = selectedRarity === rar;
-        let activeClass = 'bg-cyan-500 text-black font-bold';
-        if (rar === 'Legendary') activeClass = 'bg-amber-400 text-black font-bold';
-        if (rar === 'Epic') activeClass = 'bg-purple-500 text-white font-bold';
-        if (rar === 'Rare') activeClass = 'bg-blue-500 text-white font-bold';
-
-        btn.className = `px-2.5 py-1 rounded-md text-xs font-mono transition ${
-          isActive 
-            ? activeClass 
-            : 'bg-slate-800/90 text-slate-400 hover:text-white border border-slate-700/60'
-        }`;
-        btn.innerText = rar === 'all' ? t.allRarities : rar;
-        btn.onclick = () => {
-          selectedRarity = rar;
-          renderFilterControls();
-          applyFiltersAndSort();
-        };
-        rarContainer.appendChild(btn);
-      });
+      applyLanguageUI();
+      renderFilterControls();
+      applyFiltersAndSort();
+      calculateSynergies();
     }
 
-    function handleSearch() {
-      const input = document.getElementById('search-input');
-      searchQuery = input.value.trim().toLowerCase();
-      const clearBtn = document.getElementById('clear-search-btn');
+    function applyLanguageUI() {
+      const t = i18n[currentLang];
+      document.getElementById('ui-subtitle').innerText = t.subtitle;
+      document.getElementById('tab-txt-discovered').innerText = t.tabDiscovered;
+      document.getElementById('tab-txt-creative').innerText = t.tabCreative;
+      document.getElementById('tab-txt-medicine').innerText = t.tabMedicine;
+      document.getElementById('tab-txt-inventions').innerText = t.tabInventions;
+      document.getElementById('calc-title').innerText = t.calcTitle;
+      document.getElementById('calc-desc').innerText = t.calcDesc;
+      document.getElementById('searchInput').placeholder = t.searchPlaceholder;
+    }
+
+    function switchTab(tabId) {
+      activeTab = tabId;
+      selectedCategory = 'all';
+      selectedRarity = 'all';
+
+      const buttons = [
+        { id: 'tab-btn-discovered', name: 'discovered' },
+        { id: 'tab-btn-creative', name: 'creative' },
+        { id: 'tab-btn-medicine', name: 'medicine' },
+        { id: 'tab-btn-inventions', name: 'inventions' }
+      ];
+
+      buttons.forEach(btn => {
+        const el = document.getElementById(btn.id);
+        if (btn.name === tabId) {
+          el.className = "tab-button px-4 py-2.5 rounded font-orbitron text-xs sm:text-sm font-semibold tracking-wide transition-all bg-hud-cyan text-black shadow-[0_0_15px_rgba(0,240,255,0.4)] flex items-center space-x-2";
+        } else {
+          el.className = "tab-button px-4 py-2.5 rounded font-orbitron text-xs sm:text-sm font-semibold tracking-wide transition-all bg-hud-surface text-slate-300 hover:text-white border border-hud-border flex items-center space-x-2";
+        }
+      });
+
+      const calcPanel = document.getElementById('creative-calculator-panel');
+      if (tabId === 'creative') {
+        calcPanel.classList.remove('hidden');
+      } else {
+        calcPanel.classList.add('hidden');
+      }
+
+      renderFilterControls();
+      applyFiltersAndSort();
+    }
+
+    function renderFilterControls() {
+      const dataset = getActiveDataset();
+      const catSelect = document.getElementById('filterCategory');
+      const currentVal = selectedCategory;
+
+      const categories = new Set();
+      dataset.forEach(item => {
+        const cat = currentLang === 'cs' ? item.categoryCs : item.categoryEn;
+        categories.add(cat);
+      });
+
+      const t = i18n[currentLang];
+      let optionsHtml = `<option value="all">${t.allCategories}</option>`;
+      Array.from(categories).sort().forEach(cat => {
+        optionsHtml += `<option value="${cat}">${cat}</option>`;
+      });
+      catSelect.innerHTML = optionsHtml;
+      catSelect.value = categories.has(currentVal) ? currentVal : 'all';
+
+      const sortSelect = document.getElementById('sortCriterion');
+      const prevSort = sortSelect.value;
+      sortSelect.innerHTML = `
+        <option value="name-asc">${t.sortNameAsc}</option>
+        <option value="name-desc">${t.sortNameDesc}</option>
+        <option value="ing-asc">${t.sortIngAsc}</option>
+        <option value="rarity-desc">${t.sortRarityDesc}</option>
+      `;
+      sortSelect.value = prevSort || 'name-asc';
+    }
+
+    function handleSearch(val) {
+      searchQuery = val.trim().toLowerCase();
+      const clearBtn = document.getElementById('clearSearchBtn');
       if (searchQuery.length > 0) {
         clearBtn.classList.remove('hidden');
       } else {
@@ -1629,92 +1786,92 @@
     }
 
     function clearSearch() {
-      document.getElementById('search-input').value = '';
+      const input = document.getElementById('searchInput');
+      input.value = '';
       searchQuery = '';
-      document.getElementById('clear-search-btn').classList.add('hidden');
+      document.getElementById('clearSearchBtn').classList.add('hidden');
       applyFiltersAndSort();
     }
 
-    function resetFilters() {
-      searchQuery = '';
-      selectedCategory = 'all';
-      selectedRarity = 'all';
-      document.getElementById('search-input').value = '';
-      document.getElementById('clear-search-btn').classList.add('hidden');
-      document.getElementById('sort-criteria').value = 'name-asc';
-      sortCriterion = 'name-asc';
-      renderFilterControls();
+    function handleCategoryFilter(val) {
+      selectedCategory = val;
+      applyFiltersAndSort();
+    }
+
+    function handleRarityFilter(val) {
+      selectedRarity = val;
+      applyFiltersAndSort();
+    }
+
+    function handleSortChange(val) {
+      sortCriterion = val;
       applyFiltersAndSort();
     }
 
     function applyFiltersAndSort() {
-      sortCriterion = document.getElementById('sort-criteria').value;
-      const dataset = [...getActiveDataset()];
+      const dataset = getActiveDataset();
+      const t = i18n[currentLang];
 
       let filtered = dataset.filter(item => {
-        const nameEn = item.nameEn.toLowerCase();
-        const nameCs = item.nameCs.toLowerCase();
-        const catEn = item.categoryEn.toLowerCase();
-        const catCs = item.categoryCs.toLowerCase();
-        const activeCat = currentLang === 'cs' ? (item.categoryCs || item.categoryEn) : item.categoryEn;
-
-        if (searchQuery) {
-          const ingrList = currentLang === 'cs' ? item.ingredientsCs : item.ingredientsEn;
-          const matchIngr = ingrList.some(i => i.name.toLowerCase().includes(searchQuery));
-          const effList = currentLang === 'cs' ? item.effectsCs : item.effectsEn;
-          const matchEff = effList.some(e => e.toLowerCase().includes(searchQuery));
-          const desc = (currentLang === 'cs' ? item.descriptionCs : item.descriptionEn).toLowerCase();
-          const source = (currentLang === 'cs' ? (item.sourceCs || '') : (item.sourceEn || '')).toLowerCase();
-
-          const matches = nameEn.includes(searchQuery) || nameCs.includes(searchQuery) ||
-                          catEn.includes(searchQuery) || catCs.includes(searchQuery) ||
-                          desc.includes(searchQuery) || source.includes(searchQuery) ||
-                          matchIngr || matchEff;
-          if (!matches) return false;
-        }
-
-        if (selectedCategory !== 'all' && activeCat !== selectedCategory) {
-          return false;
-        }
-
         if (selectedRarity !== 'all' && item.rarity !== selectedRarity) {
           return false;
+        }
+
+        const itemCat = currentLang === 'cs' ? item.categoryCs : item.categoryEn;
+        if (selectedCategory !== 'all' && itemCat !== selectedCategory) {
+          return false;
+        }
+
+        if (searchQuery) {
+          const nameMatch = (item.nameCs + " " + item.nameEn).toLowerCase().includes(searchQuery);
+          const descMatch = (item.descriptionCs + " " + item.descriptionEn).toLowerCase().includes(searchQuery);
+          const effectsList = (item.effectsCs.join(' ') + " " + item.effectsEn.join(' ')).toLowerCase();
+          const effectMatch = effectsList.includes(searchQuery);
+          const ingList = (item.ingredientsCs.map(i=>i.name).join(' ') + " " + item.ingredientsEn.map(i=>i.name).join(' ')).toLowerCase();
+          const ingMatch = ingList.includes(searchQuery);
+          const sourceMatch = ((item.sourceCs || '') + " " + (item.sourceEn || '')).toLowerCase().includes(searchQuery);
+
+          return nameMatch || descMatch || effectMatch || ingMatch || sourceMatch;
         }
 
         return true;
       });
 
-      // Sorting
       filtered.sort((a, b) => {
         const nameA = currentLang === 'cs' ? a.nameCs : a.nameEn;
         const nameB = currentLang === 'cs' ? b.nameCs : b.nameEn;
 
-        if (sortCriterion === 'name-asc') {
-          return nameA.localeCompare(nameB);
-        } else if (sortCriterion === 'name-desc') {
-          return nameB.localeCompare(nameA);
-        } else if (sortCriterion === 'ingredient-asc') {
-          const ingListA = currentLang === 'cs' ? a.ingredientsCs : a.ingredientsEn;
-          const ingListB = currentLang === 'cs' ? b.ingredientsCs : b.ingredientsEn;
-          const primaryA = ingListA.find(i => i.isPrimary) || ingListA[0];
-          const primaryB = ingListB.find(i => i.isPrimary) || ingListB[0];
-          return primaryA.name.localeCompare(primaryB.name);
-        } else if (sortCriterion === 'rarity-desc') {
-          return (rarityConfig[b.rarity]?.order ?? 0) - (rarityConfig[a.rarity]?.order ?? 0);
-        } else if (sortCriterion === 'rarity-asc') {
-          return (rarityConfig[a.rarity]?.order ?? 0) - (rarityConfig[b.rarity]?.order ?? 0);
+        const ingA = currentLang === 'cs' ? (a.ingredientsCs[0]?.name || '') : (a.ingredientsEn[0]?.name || '');
+        const ingB = currentLang === 'cs' ? (b.ingredientsCs[0]?.name || '') : (b.ingredientsEn[0]?.name || '');
+
+        const rarOrderA = rarityConfig[a.rarity]?.order || 0;
+        const rarOrderB = rarityConfig[b.rarity]?.order || 0;
+
+        switch (sortCriterion) {
+          case 'name-asc': return nameA.localeCompare(nameB);
+          case 'name-desc': return nameB.localeCompare(nameA);
+          case 'ing-asc': return ingA.localeCompare(ingB);
+          case 'rarity-desc': return rarOrderB - rarOrderA;
+          default: return 0;
         }
-        return 0;
       });
 
-      document.getElementById('filtered-count').innerText = filtered.length;
-      renderCards(filtered);
+      renderRecipeCards(filtered);
+
+      document.getElementById('results-count').innerHTML = `${t.resultsCount} <strong class="text-hud-cyan">${filtered.length}</strong>`;
     }
 
-    function renderCards(items) {
+    function updateTotalStats() {
+      const total = getAllRecipes().length;
+      const t = i18n[currentLang];
+      document.getElementById('total-db-count').innerHTML = `${t.totalCount} <strong class="text-white">${total}</strong>`;
+    }
+
+    function renderRecipeCards(items) {
       const container = document.getElementById('recipes-grid');
       const emptyState = document.getElementById('empty-state');
       const t = i18n[currentLang];
+
       container.innerHTML = '';
 
       if (items.length === 0) {
@@ -1725,101 +1882,108 @@
 
       items.forEach(item => {
         const rar = rarityConfig[item.rarity] || rarityConfig.Common;
-        const card = document.createElement('div');
-        
-        let borderClass = 'tech-border';
-        if (item.rarity === 'Legendary') borderClass += ' corner-gold';
-        if (item.rarity === 'Epic') borderClass += ' corner-purple';
-
-        card.className = `bg-hud-surface/90 border border-hud-border hover:border-cyan-500/50 rounded-xl p-5 shadow-lg hover:shadow-cyan-500/10 transition-all duration-200 flex flex-col justify-between group relative ${borderClass}`;
-
         const primaryName = currentLang === 'cs' ? item.nameCs : item.nameEn;
         const secondaryName = currentLang === 'cs' ? item.nameEn : item.nameCs;
         const categoryText = currentLang === 'cs' ? item.categoryCs : item.categoryEn;
         const effects = currentLang === 'cs' ? item.effectsCs : item.effectsEn;
         const ingredients = currentLang === 'cs' ? item.ingredientsCs : item.ingredientsEn;
-        const primaryIng = ingredients.find(i => i.isPrimary) || ingredients[0];
-        const source = currentLang === 'cs' ? (item.sourceCs || 'Naleziště ve hře') : (item.sourceEn || 'World Discovery');
+        const primaryIng = ingredients.find(i => i.isPrimary) || ingredients[0] || { name: 'N/A' };
+        const source = currentLang === 'cs' ? (item.sourceCs || 'Objevení ve světě') : (item.sourceEn || 'World Discovery');
 
-        const isFoodOrDrink = item.energy > 0 || item.hydration > 0;
+        const card = document.createElement('div');
+        card.className = `group bg-hud-surface/90 border border-hud-border hover:border-hud-cyan rounded-lg p-5 flex flex-col justify-between transition-all duration-300 hover:shadow-[0_0_20px_rgba(0,240,255,0.15)] relative hud-cut-tr`;
 
         card.innerHTML = `
           <div>
-            <!-- Header: Rarity & Category -->
-            <div class="flex items-center justify-between gap-2 mb-3">
-              <span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded text-[11px] font-mono uppercase font-bold border ${rar.bg} ${rar.text} ${rar.border}">
-                <span class="w-1.5 h-1.5 rounded-full ${rar.dot}"></span>
-                ${item.rarity}
-              </span>
-              <span class="text-xs font-mono uppercase text-slate-400 bg-slate-800/80 px-2 py-0.5 rounded border border-slate-700">
+            <!-- Header: Category & Rarity Badge -->
+            <div class="flex items-center justify-between gap-2 mb-2">
+              <span class="text-[10px] font-mono uppercase px-2 py-0.5 rounded bg-slate-800 text-slate-300 border border-slate-700">
                 ${categoryText}
               </span>
-            </div>
-
-            <!-- Title -->
-            <div class="mb-3">
-              <h3 class="text-base font-orbitron font-bold text-white group-hover:text-cyan-400 transition-colors tracking-wide">
-                ${primaryName}
-              </h3>
-              <p class="text-xs font-rajdhani font-semibold text-slate-400 tracking-wide">${secondaryName}</p>
-            </div>
-
-            <!-- Stats Bar if food/drink -->
-            ${isFoodOrDrink ? `
-              <div class="grid grid-cols-3 gap-2 mb-3 bg-hud-bg p-2 rounded-lg border border-hud-border text-center font-mono text-[11px]">
-                <div>
-                  <span class="text-slate-500 block text-[9px] uppercase">${t.energy}</span>
-                  <span class="text-amber-400 font-bold">+${item.energy}</span>
-                </div>
-                <div>
-                  <span class="text-slate-500 block text-[9px] uppercase">${t.hydration}</span>
-                  <span class="text-cyan-400 font-bold">+${item.hydration}</span>
-                </div>
-                <div>
-                  <span class="text-slate-500 block text-[9px] uppercase">${t.duration}</span>
-                  <span class="text-slate-300 font-bold">${item.buffDuration}</span>
-                </div>
-              </div>
-            ` : `
-              <div class="mb-3 bg-hud-bg/70 p-2 rounded-lg border border-hud-border text-xs text-slate-300 font-mono flex items-center justify-between">
-                <span class="text-slate-400"><i class="fa-solid fa-clock text-cyan-400 mr-1.5"></i>${t.duration}:</span>
-                <span class="text-cyan-300 font-bold">${item.buffDuration}</span>
-              </div>
-            `}
-
-            <!-- Effects -->
-            <div class="mb-3">
-              <span class="text-[10px] font-mono uppercase text-slate-500 tracking-wider block mb-1.5 flex items-center gap-1">
-                <i class="fa-solid fa-bolt text-cyan-400"></i> ${t.effectsTitle}
+              <span class="text-[10px] font-mono uppercase px-2.5 py-0.5 rounded border ${rar.bg} ${rar.text} ${rar.border} font-bold flex items-center space-x-1">
+                <span class="w-1.5 h-1.5 rounded-full ${rar.dot} inline-block"></span>
+                <span>${item.rarity}</span>
               </span>
-              <ul class="space-y-1">
-                ${effects.map(eff => `
-                  <li class="text-xs text-slate-300 flex items-start gap-1.5 bg-slate-800/40 p-1.5 rounded border-l-2 border-cyan-400/80">
-                    <i class="fa-solid fa-caret-right text-cyan-400 text-xs mt-0.5"></i>
-                    <span>${eff}</span>
-                  </li>
-                `).join('')}
-              </ul>
+            </div>
+
+            <!-- Title & Secondary Name -->
+            <h3 class="font-orbitron font-bold text-base text-white group-hover:text-hud-cyan transition leading-tight mb-0.5">
+              ${primaryName}
+            </h3>
+            <div class="text-xs font-mono text-slate-400 mb-3">${secondaryName}</div>
+
+            <!-- Stats Ribbon (Energy, Hydration, Duration) -->
+            ${(item.energy > 0 || item.hydration > 0 || item.buffDuration) ? `
+              <div class="flex items-center space-x-3 text-[11px] font-mono bg-hud-bg/80 border border-hud-border px-3 py-1.5 rounded mb-3">
+                ${item.energy > 0 ? `<span class="text-amber-400"><i class="fa-solid fa-bolt mr-1"></i>${item.energy} E</span>` : ''}
+                ${item.hydration > 0 ? `<span class="text-hud-cyan"><i class="fa-solid fa-droplet mr-1"></i>${item.hydration} H</span>` : ''}
+                ${item.buffDuration ? `<span class="text-slate-400 ml-auto"><i class="fa-regular fa-clock mr-1"></i>${item.buffDuration}</span>` : ''}
+              </div>
+            ` : ''}
+
+            <!-- Effects Checklist -->
+            <div class="space-y-1.5 mb-4">
+              ${effects.map(effect => `
+                <div class="text-xs text-slate-300 flex items-start space-x-1.5">
+                  <i class="fa-solid fa-caret-right text-hud-cyan mt-0.5 text-[10px] shrink-0"></i>
+                  <span class="leading-relaxed">${effect}</span>
+                </div>
+              `).join('')}
             </div>
 
             <!-- Ingredients -->
             <div class="mb-3">
               <span class="text-[10px] font-mono uppercase text-slate-500 tracking-wider block mb-1.5 flex items-center justify-between">
-                <span><i class="fa-solid fa-layer-group text-cyan-400 mr-1"></i>${t.materialsTitle}</span>
+                <span><i class="fa-solid fa-layer-group text-hud-cyan mr-1"></i>${t.materialsTitle}</span>
                 <span class="text-[9px] text-amber-400 font-mono">${t.keyIngr} ${primaryIng.name.split(' ')[0]}</span>
               </span>
               <div class="flex flex-wrap gap-1.5">
-                ${ingredients.map(ing => `
-                  <span class="text-[11px] font-mono px-2 py-0.5 rounded bg-hud-bg border ${ing.isPrimary ? 'border-amber-500/50 text-amber-300 font-semibold' : 'border-hud-border text-slate-300'}">
-                    ${ing.name} <span class="text-cyan-400 font-bold ml-1">${ing.amount}</span>
-                  </span>
-                `).join('')}
+                ${ingredients.map(ing => {
+                  const meta = getIngredientMeta(ing.name);
+                  const isCrafted = meta && meta.recipeId;
+                  const locText = meta ? (currentLang === 'cs' ? meta.locationCs : meta.locationEn) : (currentLang === 'cs' ? 'Naleziště v otevřeném světě.' : 'Open world gathering.');
+                  
+                  return `
+                    <div class="ing-tag-container">
+                      <span 
+                        ${isCrafted ? `onclick="event.stopPropagation(); navigateToRecipe('${meta.recipeId}');"` : ''}
+                        class="text-[11px] font-mono px-2 py-0.5 rounded bg-hud-bg border transition-all inline-flex items-center gap-1 ${
+                          isCrafted 
+                            ? 'border-hud-cyan/70 text-hud-cyan hover:bg-hud-cyan/20 cursor-pointer shadow-[0_0_8px_rgba(0,240,255,0.2)]' 
+                            : ing.isPrimary 
+                              ? 'border-amber-500/50 text-amber-300 font-semibold cursor-help' 
+                              : 'border-hud-border text-slate-300 cursor-help'
+                        }">
+                        ${isCrafted ? '<i class="fa-solid fa-wrench text-[9px] text-hud-cyan"></i>' : ''}${ing.name} <span class="text-hud-cyan font-bold ml-1">${ing.amount}</span>
+                      </span>
+
+                      <!-- Hover Tooltip -->
+                      <div class="ing-tooltip bg-hud-surface border border-hud-cyan/70 rounded-lg p-2.5 shadow-2xl text-[11px] font-sans text-slate-200">
+                        <div class="font-bold text-white mb-1 flex items-center gap-1">
+                          <i class="fa-solid fa-circle-info text-hud-cyan text-xs"></i>
+                          <span>${ing.name}</span>
+                        </div>
+                        <p class="text-slate-300 text-[10px] leading-tight mb-2">${locText}</p>
+                        ${isCrafted ? `
+                          <button 
+                            type="button" 
+                            onclick="event.stopPropagation(); navigateToRecipe('${meta.recipeId}');" 
+                            class="w-full text-left bg-cyan-950/80 hover:bg-cyan-900 border border-hud-cyan/50 rounded p-1.5 text-[10px] font-mono text-hud-cyan hover:text-white flex items-center justify-between transition cursor-pointer"
+                          >
+                            <span>${t.craftedBadge}</span>
+                            <i class="fa-solid fa-arrow-right text-[9px]"></i>
+                          </button>
+                        ` : ''}
+                      </div>
+                    </div>
+                  `;
+                }).join('')}
               </div>
             </div>
 
             <!-- Source location badge if present -->
             <div class="mb-2 bg-slate-900/60 p-2 rounded border border-slate-800 text-[11px] font-mono text-slate-400">
-              <span class="text-slate-500 block text-[9px] uppercase"><i class="fa-solid fa-location-crosshairs text-cyan-400 mr-1"></i>${t.sourceTitle}:</span>
+              <span class="text-slate-500 block text-[9px] uppercase"><i class="fa-solid fa-location-crosshairs text-hud-cyan mr-1"></i>${t.sourceTitle}:</span>
               <span class="text-slate-300">${source}</span>
             </div>
           </div>
@@ -1827,9 +1991,9 @@
           <!-- Card Footer Action -->
           <div class="pt-3 border-t border-hud-border flex items-center justify-between text-xs font-mono text-slate-400">
             <span class="truncate max-w-[200px]" title="${item.workbench}">
-              <i class="fa-solid fa-toolbox text-cyan-400 mr-1"></i>${item.workbench}
+              <i class="fa-solid fa-toolbox text-hud-cyan mr-1"></i>${item.workbench}
             </span>
-            <button onclick="openModal('${item.id}')" class="text-cyan-400 hover:text-cyan-300 hover:underline flex items-center gap-1 font-sans text-xs">
+            <button onclick="openModal('${item.id}', false)" class="text-hud-cyan hover:text-cyan-300 hover:underline flex items-center gap-1 font-sans text-xs">
               ${t.detailBtn} <i class="fa-solid fa-up-right-from-square text-[10px]"></i>
             </button>
           </div>
@@ -1840,90 +2004,20 @@
     }
 
     /* ==========================================================================
-       CREATIVE COOKING SYNERGY CALCULATOR ENGINE
+       DETAIL MODAL, RECIPE CROSS-LINKING & BREADCRUMBS
        ========================================================================== */
-    function calculateSynergy() {
-      const meat = document.getElementById('calc-meat').value;
-      const crop = document.getElementById('calc-crop').value;
-      const third = document.getElementById('calc-third').value;
-      const mod = document.getElementById('calc-mod').value;
-      
-      const resultBox = document.getElementById('calc-result-text');
-      const tradeoffBox = document.getElementById('calc-tradeoffs');
-      
-      const buffs = [];
-      const tradeoffs = [];
-
-      // Meat logic
-      if (meat === 'bear') buffs.push(currentLang === 'cs' ? "+3% Shrapnel DMG (Bear)" : "+3% Shrapnel DMG (Bear)");
-      else if (meat === 'beef') buffs.push(currentLang === 'cs' ? "+3% Frost Vortex DMG (Beef)" : "+3% Frost Vortex DMG (Beef)");
-      else if (meat === 'rabbit') buffs.push(currentLang === 'cs' ? "+3% ATK v režimu Fast Gunner (Rabbit)" : "+3% ATK while in Fast Gunner (Rabbit)");
-      else if (meat === 'pork') buffs.push(currentLang === 'cs' ? "+3% Unstable Bomber DMG (Pork)" : "+3% Unstable Bomber DMG (Pork)");
-      else if (meat === 'goat') buffs.push(currentLang === 'cs' ? "+3% Burn DMG (Goat)" : "+3% Burn DMG (Goat)");
-      else if (meat === 'turtle') buffs.push(currentLang === 'cs' ? "+3% Fortress Warfare DMG (Turtle)" : "+3% Fortress Warfare DMG (Turtle)");
-      else if (meat === 'poultry') buffs.push(currentLang === 'cs' ? "+3% Bounce DMG (Poultry)" : "+3% Bounce DMG (Poultry)");
-      else if (meat === 'deer') buffs.push(currentLang === 'cs' ? "+3% Bullseye Vulnerability (Deer)" : "+3% Bullseye Vulnerability (Deer)");
-
-      // Crop logic
-      if (crop === 'dev_cucumber') buffs.push(currentLang === 'cs' ? "+30% Max Load nosnost" : "+30% Max Load Limit");
-      else if (crop === 'dev_tomato') buffs.push(currentLang === 'cs' ? "+10% šance na chycení Deviace" : "+10% Deviation Catch Chance");
-      else if (crop === 'dev_wheat') buffs.push(currentLang === 'cs' ? "+20% výnos sběru plodin" : "+20% Crop Gathering Yield");
-      else if (crop === 'dev_cabbage') buffs.push(currentLang === 'cs' ? "+50% výnos těžby/dřeva při finálním úderu" : "+50% Final Strike Yield");
-      else if (crop === 'dev_mushroom') buffs.push(currentLang === 'cs' ? "Regenerace 1% Sanity / 5s" : "Regenerate 1% Sanity / 5s");
-      else if (crop === 'dev_onion') buffs.push(currentLang === 'cs' ? "+20 min stav plné hydratace" : "+20 min Full Hydration State");
-
-      // Third slot logic
-      if (third === 'dev_saffron') buffs.push(currentLang === 'cs' ? "+4% Max Výdrž (Stamina)" : "+4% Max Stamina");
-      else if (third === 'stardust_milk') buffs.push(currentLang === 'cs' ? "Rychlá obnova Sanity" : "Rapid Sanity Regeneration");
-      else if (third === 'caviar') buffs.push(currentLang === 'cs' ? "+50% k bonusům z ryb" : "+50% Fish Buff Multiplier");
-      else if (third === 'croc_egg') buffs.push(currentLang === 'cs' ? "+5% Shock DMG" : "+5% Shock DMG");
-
-      // Modifiers & Tradeoffs
-      if (mod === 'cheese') {
-        buffs.push(currentLang === 'cs' ? "+30% síla všech buffů (Cheese)" : "+30% Dish Magnitude (Cheese)");
-        tradeoffs.push(currentLang === 'cs' ? "-30% doba trvání pokrmu" : "-30% Dish duration");
-      } else if (mod === 'butter') {
-        buffs.push(currentLang === 'cs' ? "+30% síla pokrmu (Butter)" : "+30% Dish Magnitude (Butter)");
-        tradeoffs.push(currentLang === 'cs' ? "Nemasité efekty -50%" : "Non-meat effects -50%");
-      } else if (mod === 'stardust_cheese') {
-        buffs.push(currentLang === 'cs' ? "+50% síla všech buffů (Stardust Cheese)" : "+50% Dish Magnitude (Stardust Cheese)");
-        tradeoffs.push(currentLang === 'cs' ? "Ztráta 0.1% Sanity každých 5s" : "Sanity loss 0.1% every 5s");
-      } else if (mod === 'peppercorn') {
-        buffs.push(currentLang === 'cs' ? "+20% úspěšnost vaření (Peppercorn)" : "+20% Cooking Success Rate");
-        tradeoffs.push(currentLang === 'cs' ? "-50% doba trvání" : "-50% Dish duration");
-      } else if (mod === 'stardust_salt') {
-        buffs.push(currentLang === 'cs' ? "Jídlo se nikdy nezkazí (Forever Fresh)" : "Forever Fresh (No Decay)");
-        tradeoffs.push(currentLang === 'cs' ? "-0.1% Sanity každých 5s" : "-0.1% Sanity every 5s");
-      }
-
-      if (buffs.length === 0) {
-        resultBox.innerText = currentLang === 'cs' 
-          ? "Zvolte alespoň jednu ingredienci pro kalkulaci buffů." 
-          : "Select at least one ingredient to preview synergy buffs.";
-        tradeoffBox.innerText = "";
-      } else {
-        resultBox.innerHTML = buffs.join(" • ");
-        tradeoffBox.innerHTML = tradeoffs.length > 0 
-          ? `<i class="fa-solid fa-triangle-exclamation mr-1"></i> Trade-off: ${tradeoffs.join(", ")}` 
-          : "";
-      }
-    }
-
-    function resetCalculator() {
-      document.getElementById('calc-meat').value = 'none';
-      document.getElementById('calc-crop').value = 'none';
-      document.getElementById('calc-third').value = 'none';
-      document.getElementById('calc-mod').value = 'none';
-      calculateSynergy();
-    }
-
-    /* ==========================================================================
-       DETAIL MODAL & CLIPBOARD
-       ========================================================================== */
-    function openModal(id) {
-      const all = [...discoveredRecipes, ...creativeDishes, ...medicineRecipes, ...inventionRecipes];
+    function openModal(id, pushHistory = false) {
+      const all = getAllRecipes();
       const item = all.find(i => i.id === id);
       if (!item) return;
+
+      if (!pushHistory) {
+        modalHistory = [id];
+      } else {
+        if (modalHistory[modalHistory.length - 1] !== id) {
+          modalHistory.push(id);
+        }
+      }
 
       const modal = document.getElementById('detail-modal');
       const content = document.getElementById('modal-content');
@@ -1938,7 +2032,22 @@
       const desc = currentLang === 'cs' ? item.descriptionCs : item.descriptionEn;
       const source = currentLang === 'cs' ? (item.sourceCs || 'Naleziště ve hře') : (item.sourceEn || 'World Discovery');
 
+      const hasHistory = modalHistory.length > 1;
+      const previousRecipeId = hasHistory ? modalHistory[modalHistory.length - 2] : null;
+      const previousRecipe = previousRecipeId ? findRecipeById(previousRecipeId) : null;
+      const previousName = previousRecipe ? (currentLang === 'cs' ? previousRecipe.nameCs : previousRecipe.nameEn) : '';
+
       content.innerHTML = `
+        <!-- History / Back Breadcrumb -->
+        ${hasHistory ? `
+          <div class="mb-3">
+            <button onclick="goBackInModal()" class="text-xs font-mono text-hud-cyan hover:text-cyan-200 bg-cyan-950/60 border border-hud-cyan/40 rounded px-2.5 py-1 flex items-center gap-1.5 transition">
+              <i class="fa-solid fa-arrow-left"></i>
+              <span>${t.backToRecipe}: <strong class="text-white">${previousName}</strong></span>
+            </button>
+          </div>
+        ` : ''}
+
         <div class="flex items-center gap-2 mb-2">
           <span class="px-2.5 py-0.5 rounded text-[11px] font-mono font-bold border ${rar.bg} ${rar.text} ${rar.border}">
             ${item.rarity}
@@ -1948,7 +2057,7 @@
           </span>
         </div>
         <h2 class="text-xl font-orbitron font-bold text-white">${primaryName}</h2>
-        <h4 class="text-sm font-rajdhani font-semibold text-cyan-400 mb-3">${secondaryName}</h4>
+        <h4 class="text-sm font-rajdhani font-semibold text-hud-cyan mb-3">${secondaryName}</h4>
 
         <div class="bg-hud-bg/90 border border-hud-border p-3 rounded-lg mb-4 text-xs text-slate-300 italic">
           "${desc}"
@@ -1956,34 +2065,69 @@
 
         <div class="mb-3">
           <h5 class="text-xs font-mono uppercase text-slate-400 mb-2 flex items-center gap-1.5">
-            <i class="fa-solid fa-bolt text-cyan-400"></i> ${t.effectsTitle}
+            <i class="fa-solid fa-bolt text-hud-cyan"></i> ${t.effectsTitle}
           </h5>
           <div class="space-y-1.5">
             ${effects.map(e => `
               <div class="p-2 rounded bg-slate-800/60 border border-slate-700/60 text-xs text-slate-200 flex items-start gap-2">
-                <i class="fa-solid fa-chevron-right text-cyan-400 mt-0.5 text-[10px]"></i>
+                <i class="fa-solid fa-chevron-right text-hud-cyan mt-0.5 text-[10px]"></i>
                 <span>${e}</span>
               </div>
             `).join('')}
           </div>
         </div>
 
-        <div class="mb-3">
+        <!-- Detailed Ingredients breakdown with direct cross-links -->
+        <div class="mb-4">
           <h5 class="text-xs font-mono uppercase text-slate-400 mb-2 flex items-center gap-1.5">
             <i class="fa-solid fa-cubes-stacked text-amber-400"></i> ${t.materialsTitle}
           </h5>
-          <div class="grid grid-cols-2 gap-2">
-            ${ingredients.map(ing => `
-              <div class="p-2 bg-hud-bg border border-hud-border rounded-lg flex items-center justify-between text-xs">
-                <span class="${ing.isPrimary ? 'text-amber-300 font-semibold' : 'text-slate-300'}">${ing.name}</span>
-                <span class="font-mono font-bold text-cyan-400">${ing.amount}</span>
-              </div>
-            `).join('')}
+          <div class="space-y-2.5">
+            ${ingredients.map(ing => {
+              const meta = getIngredientMeta(ing.name);
+              const isCrafted = meta && meta.recipeId;
+              const subRecipe = isCrafted ? findRecipeById(meta.recipeId) : null;
+              const subRecipeName = subRecipe ? (currentLang === 'cs' ? subRecipe.nameCs : subRecipe.nameEn) : '';
+              const locText = meta ? (currentLang === 'cs' ? meta.locationCs : meta.locationEn) : (currentLang === 'cs' ? 'Naleziště v otevřeném světě (volný sběr nebo lov).' : 'Open world exploration, harvesting or hunting.');
+
+              return `
+                <div class="p-3 bg-hud-bg border ${isCrafted ? 'border-hud-cyan/50' : 'border-hud-border'} rounded-lg">
+                  <div class="flex items-center justify-between text-xs mb-1">
+                    <span class="${ing.isPrimary ? 'text-amber-300 font-semibold' : 'text-slate-200 font-medium'} flex items-center gap-1.5">
+                      ${isCrafted ? '<i class="fa-solid fa-wrench text-hud-cyan text-xs"></i>' : '<i class="fa-solid fa-circle text-[6px] text-slate-500"></i>'}
+                      ${ing.name}
+                    </span>
+                    <span class="font-mono font-bold text-hud-cyan">${ing.amount}</span>
+                  </div>
+                  
+                  <div class="text-[11px] text-slate-400 mt-1 pl-3 border-l-2 border-slate-700">
+                    <span class="text-slate-500 text-[10px] block uppercase font-mono">${t.locationWhereToFind}</span>
+                    <span class="text-slate-300">${locText}</span>
+                  </div>
+
+                  ${isCrafted && subRecipe ? `
+                    <div class="mt-2 pt-2 border-t border-slate-800/80 flex items-center justify-between">
+                      <span class="text-[11px] text-cyan-300 font-mono">
+                        <i class="fa-solid fa-link text-hud-cyan mr-1"></i> ${t.craftedVia} <strong class="text-white">${subRecipeName}</strong>
+                      </span>
+                      <button 
+                        type="button" 
+                        onclick="navigateToRecipe('${meta.recipeId}')" 
+                        class="px-2.5 py-1 bg-cyan-500/20 hover:bg-cyan-500/30 border border-hud-cyan/60 rounded text-[11px] font-mono text-hud-cyan hover:text-white flex items-center gap-1 transition cursor-pointer"
+                      >
+                        <span>${t.openRecipeBtn}</span>
+                        <i class="fa-solid fa-arrow-right text-[9px]"></i>
+                      </button>
+                    </div>
+                  ` : ''}
+                </div>
+              `;
+            }).join('')}
           </div>
         </div>
 
         <div class="mb-4 bg-slate-900/80 p-2.5 rounded-lg border border-hud-border text-xs font-mono">
-          <span class="text-slate-400 block text-[10px] uppercase font-bold text-cyan-400">${t.sourceTitle}:</span>
+          <span class="text-slate-400 block text-[10px] uppercase font-bold text-hud-cyan">${t.sourceTitle}:</span>
           <span class="text-slate-200">${source}</span>
         </div>
 
@@ -1998,8 +2142,17 @@
       modal.classList.remove('hidden');
     }
 
+    function goBackInModal() {
+      if (modalHistory.length > 1) {
+        modalHistory.pop();
+        const prevId = modalHistory[modalHistory.length - 1];
+        openModal(prevId, false);
+      }
+    }
+
     function closeModal() {
       document.getElementById('detail-modal').classList.add('hidden');
+      modalHistory = [];
     }
 
     window.addEventListener('click', function(e) {
@@ -2017,10 +2170,103 @@
       
       const t = i18n[currentLang];
       const copyNotice = document.createElement('div');
-      copyNotice.className = "fixed bottom-5 right-5 bg-cyan-500 text-black font-mono font-bold px-4 py-2 rounded-lg shadow-lg z-50 text-xs animate-bounce";
+      copyNotice.className = "fixed bottom-5 right-5 bg-hud-cyan text-black font-mono font-bold px-4 py-2 rounded-lg shadow-lg z-50 text-xs animate-bounce";
       copyNotice.innerText = `${t.copiedNotice}: "${text}"`;
       document.body.appendChild(copyNotice);
       setTimeout(() => copyNotice.remove(), 2500);
+    }
+
+    /* ==========================================================================
+       CHEF MATRIX SYNERGY CALCULATOR LOGIC
+       ========================================================================== */
+    function calculateSynergies() {
+      const meat = document.getElementById('calc-slot-meat').value;
+      const veg = document.getElementById('calc-slot-veg').value;
+      const spice = document.getElementById('calc-slot-spice').value;
+      const enh = document.getElementById('calc-slot-enhancer').value;
+
+      let energy = 0;
+      let hydro = 0;
+      let titleCs = "Směs surovin";
+      let titleEn = "Mixed Ingredients";
+      let effectsCs = [];
+      let effectsEn = [];
+
+      if (meat === 'none' && veg === 'none' && spice === 'none') {
+        document.getElementById('calc-result-title').innerText = currentLang === 'cs' ? "Základní polévka / Restovaná směs" : "Basic Soup / Roast";
+        document.getElementById('calc-result-effects').innerText = currentLang === 'cs' ? "Vyberte alespoň jednu surovinu výše pro výpočet synergie." : "Select at least one ingredient above to simulate synergy.";
+        document.getElementById('calc-res-energy').innerText = "0";
+        document.getElementById('calc-res-hydro').innerText = "0";
+        return;
+      }
+
+      if (meat === 'beast') {
+        energy += 40;
+        effectsCs.push("Max HP +150");
+        effectsEn.push("Max HP +150");
+      } else if (meat === 'deviated_meat') {
+        energy += 50;
+        effectsCs.push("Elemental Damage +10%");
+        effectsEn.push("Elemental Damage +10%");
+      } else if (meat === 'fish') {
+        energy += 35;
+        hydro += 10;
+        effectsCs.push("Crit Rate +5%");
+        effectsEn.push("Crit Rate +5%");
+      }
+
+      if (veg === 'corn') {
+        energy += 25;
+        hydro += 15;
+        effectsCs.push("Stamina regen +10%");
+        effectsEn.push("Stamina regen +10%");
+      } else if (veg === 'deviated_veg') {
+        energy += 30;
+        effectsCs.push("PSI Intensity +8%");
+        effectsEn.push("PSI Intensity +8%");
+      } else if (veg === 'mushrooms') {
+        energy += 20;
+        hydro += 10;
+        effectsCs.push("Pollution RES +15%");
+        effectsEn.push("Pollution RES +15%");
+      }
+
+      if (spice === 'pepper') {
+        effectsCs.push("Attack Power +8% (pálivý buff)");
+        effectsEn.push("Attack Power +8% (spicy buff)");
+      } else if (spice === 'sugar') {
+        hydro += 10;
+        effectsCs.push("Sanity +200 při konzumaci");
+        effectsEn.push("Sanity +200 on consume");
+      } else if (spice === 'salt') {
+        effectsCs.push("Trvání jídla prodlouženo o 10 min");
+        effectsEn.push("Food duration +10 min");
+      }
+
+      if (enh === 'stardust') {
+        effectsCs.push("⚡ STARDUST AMPLIFIER: Všechny účinky zvýšeny o +50%!");
+        effectsEn.push("⚡ STARDUST AMPLIFIER: All effects boosted by +50%!");
+        titleCs = "Hvězdný synergický pokrm";
+        titleEn = "Stardust Synergistic Dish";
+      } else if (enh === 'oil') {
+        effectsCs.push("Zlatavá kůrka: Trvání buffů prodlouženo na 35 minut");
+        effectsEn.push("Golden Crust: Buff duration extended to 35 min");
+        titleCs = "Křupavá pečená specialita";
+        titleEn = "Crispy Roasted Delicacy";
+      }
+
+      document.getElementById('calc-result-title').innerText = currentLang === 'cs' ? titleCs : titleEn;
+      document.getElementById('calc-result-effects').innerText = (currentLang === 'cs' ? effectsCs : effectsEn).join(" • ");
+      document.getElementById('calc-res-energy').innerText = energy;
+      document.getElementById('calc-res-hydro').innerText = hydro;
+    }
+
+    function resetSynergyCalc() {
+      document.getElementById('calc-slot-meat').value = 'none';
+      document.getElementById('calc-slot-veg').value = 'none';
+      document.getElementById('calc-slot-spice').value = 'none';
+      document.getElementById('calc-slot-enhancer').value = 'none';
+      calculateSynergies();
     }
   </script>
 </body>
