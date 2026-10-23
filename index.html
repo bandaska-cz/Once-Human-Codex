@@ -59,55 +59,25 @@
       clip-path: polygon(0 0, calc(100% - 14px) 0, 100% 14px, 100% 100%, 0 100%);
     }
 
-    /* Reliable Ingredient Tooltip with Viewport Clamping & Invisible Hover Bridge */
-    .ing-tag-container {
-      position: relative;
-      display: inline-block;
-    }
-
-    .ing-tooltip {
-      visibility: hidden;
-      opacity: 0;
-      position: absolute;
-      bottom: calc(100% + 6px);
-      left: 50%;
-      transform: translateX(-50%) translateY(4px);
-      width: 280px;
+    /* Global Body-Level Floating Tooltip (Completely immune to card clipping) */
+    #global-portal-tooltip {
+      position: fixed;
+      width: 290px;
       max-width: calc(100vw - 32px);
-      word-wrap: break-word;
-      white-space: normal;
-      z-index: 9999;
-      pointer-events: none;
-      transition: opacity 0.15s ease-out, transform 0.15s ease-out, visibility 0.15s;
+      z-index: 99999;
+      pointer-events: auto;
+      transition: opacity 0.15s ease-out, transform 0.15s ease-out;
     }
 
-    .ing-tooltip::after {
+    #global-portal-tooltip::before {
       content: '';
       position: absolute;
-      top: 100%;
-      left: 0;
-      right: 0;
-      height: 14px;
+      top: -8px;
+      bottom: -8px;
+      left: -8px;
+      right: -8px;
       background: transparent;
-      pointer-events: auto;
-    }
-
-    .ing-tooltip.tooltip-flip-bottom {
-      bottom: auto;
-      top: calc(100% + 6px);
-    }
-
-    .ing-tooltip.tooltip-flip-bottom::after {
-      top: auto;
-      bottom: 100%;
-    }
-
-    .ing-tag-container:hover .ing-tooltip,
-    .ing-tooltip:hover {
-      visibility: visible;
-      opacity: 1;
-      transform: translateX(var(--tooltip-offset-x, -50%)) translateY(0);
-      pointer-events: auto;
+      z-index: -1;
     }
 
     ::-webkit-scrollbar { width: 6px; height: 6px; }
@@ -117,6 +87,25 @@
   </style>
 </head>
 <body class="text-slate-200 min-h-screen flex flex-col font-sans antialiased selection:bg-hud-cyan selection:text-black">
+
+  <!-- Shared Global Portal Tooltip attached directly to body -->
+  <div id="global-portal-tooltip" class="hidden opacity-0 bg-hud-surface/95 backdrop-blur-md border border-hud-cyan/80 rounded-lg p-3 shadow-[0_10px_30px_rgba(0,0,0,0.8),0_0_15px_rgba(0,240,255,0.25)] text-[11px] font-sans text-slate-200">
+    <div id="portal-tooltip-header" class="font-bold text-white mb-1 flex items-center gap-1.5">
+      <i class="fa-solid fa-circle-info text-hud-cyan text-xs"></i>
+      <span id="portal-tooltip-name"></span>
+    </div>
+    <p id="portal-tooltip-loc" class="text-slate-300 text-[11px] leading-relaxed mb-2"></p>
+    <div id="portal-tooltip-action" class="hidden">
+      <button 
+        type="button" 
+        id="portal-tooltip-btn"
+        class="w-full text-left bg-cyan-950/90 hover:bg-cyan-900 border border-hud-cyan/60 rounded p-1.5 text-[10px] font-mono text-hud-cyan hover:text-white flex items-center justify-between transition cursor-pointer"
+      >
+        <span id="portal-tooltip-btn-text"></span>
+        <i class="fa-solid fa-arrow-right text-[9px]"></i>
+      </button>
+    </div>
+  </div>
 
   <!-- ==================== HEADER HUD BAR ==================== -->
   <header class="sticky top-0 z-40 bg-hud-surface/90 backdrop-blur-md border-b border-hud-border shadow-lg">
@@ -3305,11 +3294,13 @@
                 ${ingredients.map(ing => {
                   const meta = getIngredientMeta(ing.name);
                   const isCrafted = meta && meta.recipeId;
-                  const locText = meta ? (currentLang === 'cs' ? meta.locationCs : meta.locationEn) : (currentLang === 'cs' ? 'Naleziště v otevřeném světě (sběr/lov/demontáž).' : 'Open world exploration or dismantling.');
+                  const escapedName = ing.name.replace(/'/g, "\\'");
                   
                   return `
-                    <div class="ing-tag-container" onmouseenter="adjustTooltipPosition(this)">
+                    <div class="inline-block">
                       <span 
+                        onmouseenter="showPortalTooltip(this, '${escapedName}')"
+                        onmouseleave="scheduleHidePortalTooltip()"
                         ${isCrafted ? `onclick="event.stopPropagation(); navigateToRecipe('${meta.recipeId}');"` : ''}
                         class="text-[11px] font-mono px-2 py-0.5 rounded bg-hud-bg border transition-all inline-flex items-center gap-1 ${
                           isCrafted 
@@ -3320,24 +3311,6 @@
                         }">
                         ${isCrafted ? '<i class="fa-solid fa-wrench text-[9px] text-hud-cyan"></i>' : ''}${ing.name} <span class="text-hud-cyan font-bold ml-1">${ing.amount}</span>
                       </span>
-
-                      <div class="ing-tooltip bg-hud-surface border border-hud-cyan/70 rounded-lg p-2.5 shadow-2xl text-[11px] font-sans text-slate-200">
-                        <div class="font-bold text-white mb-1 flex items-center gap-1">
-                          <i class="fa-solid fa-circle-info text-hud-cyan text-xs"></i>
-                          <span>${ing.name}</span>
-                        </div>
-                        <p class="text-slate-300 text-[10px] leading-tight mb-2">${locText}</p>
-                        ${isCrafted ? `
-                          <button 
-                            type="button" 
-                            onclick="event.stopPropagation(); navigateToRecipe('${meta.recipeId}');" 
-                            class="w-full text-left bg-cyan-950/80 hover:bg-cyan-900 border border-hud-cyan/50 rounded p-1.5 text-[10px] font-mono text-hud-cyan hover:text-white flex items-center justify-between transition cursor-pointer"
-                          >
-                            <span>${t.craftedBadge}</span>
-                            <i class="fa-solid fa-arrow-right text-[9px]"></i>
-                          </button>
-                        ` : ''}
-                      </div>
                     </div>
                   `;
                 }).join('')}
@@ -3542,28 +3515,97 @@
       setTimeout(() => copyNotice.remove(), 2500);
     }
 
-    /* Dynamic Tooltip Viewport Boundary Clamping */
-    function adjustTooltipPosition(container) {
-      const tooltip = container.querySelector('.ing-tooltip');
-      if (!tooltip) return;
+    /* ==========================================================================
+       GLOBAL BODY-LEVEL PORTAL TOOLTIP SYSTEM (ZERO CLIPPING GUARANTEE)
+       ========================================================================== */
+    let tooltipHideTimer = null;
+    const portalTooltip = document.getElementById('global-portal-tooltip');
 
-      tooltip.classList.remove('tooltip-flip-bottom');
-      tooltip.style.setProperty('--tooltip-offset-x', '-50%');
+    portalTooltip.addEventListener('mouseenter', () => {
+      if (tooltipHideTimer) {
+        clearTimeout(tooltipHideTimer);
+        tooltipHideTimer = null;
+      }
+    });
 
-      const rect = tooltip.getBoundingClientRect();
-      const padding = 14;
+    portalTooltip.addEventListener('mouseleave', () => {
+      scheduleHidePortalTooltip();
+    });
 
-      if (rect.left < padding) {
-        const overflow = padding - rect.left;
-        tooltip.style.setProperty('--tooltip-offset-x', `calc(-50% + ${overflow}px)`);
-      } else if (rect.right > window.innerWidth - padding) {
-        const overflow = rect.right - (window.innerWidth - padding);
-        tooltip.style.setProperty('--tooltip-offset-x', `calc(-50% - ${overflow}px)`);
+    function showPortalTooltip(triggerEl, ingName) {
+      if (tooltipHideTimer) {
+        clearTimeout(tooltipHideTimer);
+        tooltipHideTimer = null;
       }
 
-      if (rect.top < 65) {
-        tooltip.classList.add('tooltip-flip-bottom');
+      const meta = getIngredientMeta(ingName);
+      const isCrafted = meta && meta.recipeId;
+      const t = i18n[currentLang];
+      const locText = meta ? (currentLang === 'cs' ? meta.locationCs : meta.locationEn) : (currentLang === 'cs' ? 'Naleziště v otevřeném světě (sběr/lov/demontáž).' : 'Open world exploration or dismantling.');
+
+      document.getElementById('portal-tooltip-name').innerText = ingName;
+      document.getElementById('portal-tooltip-loc').innerText = locText;
+
+      const actionBox = document.getElementById('portal-tooltip-action');
+      const actionBtn = document.getElementById('portal-tooltip-btn');
+      const actionBtnText = document.getElementById('portal-tooltip-btn-text');
+
+      if (isCrafted) {
+        actionBox.classList.remove('hidden');
+        actionBtnText.innerText = t.craftedBadge;
+        actionBtn.onclick = (e) => {
+          e.stopPropagation();
+          hidePortalTooltipNow();
+          navigateToRecipe(meta.recipeId);
+        };
+      } else {
+        actionBox.classList.add('hidden');
+        actionBtn.onclick = null;
       }
+
+      // Measure tooltip dimensions
+      portalTooltip.classList.remove('hidden');
+      portalTooltip.style.visibility = 'hidden';
+      portalTooltip.style.opacity = '0';
+
+      const triggerRect = triggerEl.getBoundingClientRect();
+      const tooltipRect = portalTooltip.getBoundingClientRect();
+
+      const tooltipWidth = tooltipRect.width || 290;
+      const tooltipHeight = tooltipRect.height || 110;
+      const margin = 12;
+
+      // Calculate horizontal position (centered on trigger badge, clamped to viewport)
+      let left = triggerRect.left + (triggerRect.width / 2) - (tooltipWidth / 2);
+      if (left < margin) {
+        left = margin;
+      } else if (left + tooltipWidth > window.innerWidth - margin) {
+        left = window.innerWidth - tooltipWidth - margin;
+      }
+
+      // Calculate vertical position (prefer above, flip below if close to top header)
+      let top = triggerRect.top - tooltipHeight - 8;
+      if (top < 75) {
+        // Flip below badge
+        top = triggerRect.bottom + 8;
+      }
+
+      portalTooltip.style.left = `${left}px`;
+      portalTooltip.style.top = `${top}px`;
+      portalTooltip.style.visibility = 'visible';
+      portalTooltip.style.opacity = '1';
+    }
+
+    function scheduleHidePortalTooltip() {
+      if (tooltipHideTimer) clearTimeout(tooltipHideTimer);
+      tooltipHideTimer = setTimeout(() => {
+        hidePortalTooltipNow();
+      }, 180);
+    }
+
+    function hidePortalTooltipNow() {
+      portalTooltip.style.opacity = '0';
+      portalTooltip.classList.add('hidden');
     }
 
     /* ==========================================================================
