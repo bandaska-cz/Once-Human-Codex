@@ -1,5 +1,10 @@
 # Once Human - Master Codex & Recipe Matrix 🌐
 
+[![GitHub Pages](https://img.shields.io/badge/GitHub%20Pages-Live%20Demo-00f0ff?style=for-the-badge&logo=github)](https://bandaska-cz.github.io/Once-Human-Codex/)
+[![PWA](https://img.shields.io/badge/PWA-Installable%20%26%20Offline-ffb703?style=for-the-badge)](https://bandaska-cz.github.io/Once-Human-Codex/)
+
+👉 **Živá aplikace: [https://bandaska-cz.github.io/Once-Human-Codex/](https://bandaska-cz.github.io/Once-Human-Codex/)**
+
 Moderní, bleskově rychlá webová aplikace a kompletní komunitní databáze pro hru **Once Human**. Poskytuje přehled všech herních receptů, interaktivní kalkulátor archetypů masa (Chef Matrix), technologie, chemovídu a taktické vynálezy napříč všemi herními scénáři.
 
 ![Once Human Codex Preview](./icons/icon.svg)
