@@ -5,6 +5,7 @@ const i18n = {
         tabCreative: "Creative Cooking & Synergie",
         tabMedicine: "Medicína & Fermentace",
         tabInventions: "Vynálezy & Taktika",
+        tabGear: "Zbraně & Zbroje",
         calcTitle: "CHEF MATRIX: VOLNÉ VAŘENÍ A ARCHETYPY",
         calcDesc: "Naklikejte kombinaci masa a surovin pro simulaci archetypů a buffů",
         searchPlaceholder: "Hledat recept, surovinu, účinek nebo scénář...",
@@ -79,7 +80,9 @@ const i18n = {
         tabDiscovered: "Discovered Cooking",
         tabCreative: "Creative Cooking & Synergies",
         tabMedicine: "Medicine & Fermentation",
-        tabInventions: "Tech Inventions & Weapons",
+        tabInventions: "Tech Inventions",
+        tabGear: "Weapons & Armor",
+        tabGear: "Zbraně & Zbroje",
         calcTitle: "CHEF MATRIX: FREE COOKING & ARCHETYPES",
         calcDesc: "Select ingredient combinations to simulate meat archetypes and buffs",
         searchPlaceholder: "Search recipe, ingredient, buff effect, or scenario...",
@@ -11983,3 +11986,1165 @@ const i18n = {
       Fine: { label: 'Fine / Uncommon', bg: 'bg-emerald-500/15', text: 'text-emerald-400', border: 'border-emerald-500/40', dot: 'bg-emerald-400', order: 1 },
       Common: { label: 'Common', bg: 'bg-slate-500/15', text: 'text-slate-400', border: 'border-slate-500/40', dot: 'bg-slate-400', order: 0 }
     };
+
+const gearRecipes = [
+  {
+    "id": "wpn-01",
+    "nameEn": "SOCR - The Last Valour",
+    "nameCs": "SOCR - The Last Valour (Poslední odvaha)",
+    "categoryEn": "Weapons",
+    "categoryCs": "Zbraně",
+    "weaponType": "Assault Rifle",
+    "weaponTypeCs": "Útočná puška",
+    "caliber": "Standard Rifle Ammo (Medium)",
+    "archetype": "Shrapnel",
+    "archetypeCs": "Střepiny (Shrapnel)",
+    "scenario": "core",
+    "rarity": "Legendary",
+    "workbench": "Advanced Gear Workbench",
+    "energy": 0,
+    "hydration": 0,
+    "buffDuration": "High Shrapnel DPS Build",
+    "sourceEn": "Wish Machine 'The Last Valour' banner or 8,000 Staroid in Wish Shop",
+    "sourceCs": "Wish Machine banner 'The Last Valour' nebo nákup za 8 000 Staroidů ve Wish Shopu",
+    "uniquePerkEn": "Hits have a 60% chance to trigger Shrapnel. Triggering Shrapnel boosts Crit Rate by +1% (up to +20%). Critical hits with Shrapnel refund 1 round directly into the magazine.",
+    "uniquePerkCs": "Zásahy mají 60% šanci vyvolat Střepiny (Shrapnel). Vyvolání Shrapnelu zvyšuje šanci na kritický zásah o +1% (až +20%). Kritické zásahy Shrapnelem vrací 1 náboj zpět do zásobníku.",
+    "recommendedGearEn": "Lonewolf 4-Piece Set, Gas Tight Helmet / Beret, Shrapnel Souvenir Mod",
+    "recommendedGearCs": "Set Osamělý vlk (Lonewolf 4 kusy), Plynotěsná helma / Baret, Modifikace Shrapnel Souvenir",
+    "effectsEn": [
+      "Archetype: Shrapnel (Splits bullet impacts into multiple damage fragments)",
+      "High fire rate with consistent magazine auto-refill on critical hits",
+      "Premier high-tier endgame boss melter"
+    ],
+    "effectsCs": [
+      "Archetyp: Shrapnel (Rozbíjí dopad střely na dodatečné střepiny zasahující okolní části těla)",
+      "Vysoká kadence s automatickým doplňováním munice při kritických zásazích",
+      "Nejpopulárnější endgame zbraň pro likvidaci bossů v Monolithech a Silos"
+    ],
+    "ingredientsEn": [
+      {
+        "name": "Tungsten Ingot",
+        "amount": "30x",
+        "isPrimary": true
+      },
+      {
+        "name": "Refined Parts",
+        "amount": "20x"
+      },
+      {
+        "name": "Electronic Parts",
+        "amount": "15x"
+      },
+      {
+        "name": "Carbon Fiber",
+        "amount": "10x"
+      }
+    ],
+    "ingredientsCs": [
+      {
+        "name": "Wolframový ingot",
+        "amount": "30x",
+        "isPrimary": true
+      },
+      {
+        "name": "Zušlechtěné součástky",
+        "amount": "20x"
+      },
+      {
+        "name": "Elektronické součástky",
+        "amount": "15x"
+      },
+      {
+        "name": "Uhlíková vlákna",
+        "amount": "10x"
+      }
+    ],
+    "descriptionEn": "Legendary assault rifle engineered to shatter armor plates with explosive shrapnel fragmentation.",
+    "descriptionCs": "Legendární útočná puška, jejíž projektily se při dopadu tříští a způsobují devastující plošné poškození."
+  },
+  {
+    "id": "wpn-02",
+    "nameEn": "DE.50 - Jaws",
+    "nameCs": "DE.50 - Jaws (Čelisti)",
+    "categoryEn": "Weapons",
+    "categoryCs": "Zbraně",
+    "weaponType": "Pistol",
+    "weaponTypeCs": "Těžká pistole",
+    "caliber": "Pistol Ammo",
+    "archetype": "Unstable Bomber",
+    "archetypeCs": "Nestabilní bombardér (Unstable Bomber)",
+    "scenario": "core",
+    "rarity": "Legendary",
+    "workbench": "Advanced Gear Workbench",
+    "energy": 0,
+    "hydration": 0,
+    "buffDuration": "AoE Explosive Bombing",
+    "sourceEn": "Wish Machine 'Boom! Boom! Jaws' banner or 8,000 Staroid",
+    "sourceCs": "Wish Machine banner 'Boom! Boom! Jaws' nebo za 8 000 Staroidů ve Wish Shopu",
+    "uniquePerkEn": "Weakspot hits or scoring 2 consecutive hits attaches an Unstable Bomber delay charge. Detonates after 1.5s dealing massive explosive damage scaling with weapon attack.",
+    "uniquePerkCs": "Zásahy do slabých míst nebo 2 po sobě jdoucí zásahy připevní na cíl bombu Nestabilního bombardéra. Po 1,5s exploduje s masivním plošným poškozením závislým na útoku zbraně.",
+    "recommendedGearEn": "Sheltered 4-Piece Set, Heavy Duty Gloves, Bomber's Delight Mod",
+    "recommendedGearCs": "Set Ochránce (Sheltered 4 kusy), Rukavice Heavy Duty, Modifikace Bomber's Delight",
+    "effectsEn": [
+      "Archetype: Unstable Bomber (Attaches delayed explosive payloads on targets)",
+      "Devastating burst damage against clumped hordes and dungeon elites",
+      "High single-shot stopping power with rapid tactical reload"
+    ],
+    "effectsCs": [
+      "Archetyp: Unstable Bomber (Připevňuje na nepřátele časované explozivní nálože)",
+      "Devastující plošné poškození skupin nepřátel a elitních monster",
+      "Obrovská zastavovací síla těžkého kalibru Desert Eagle s bleskovým přebíjením"
+    ],
+    "ingredientsEn": [
+      {
+        "name": "Tungsten Ingot",
+        "amount": "25x",
+        "isPrimary": true
+      },
+      {
+        "name": "Refined Parts",
+        "amount": "15x"
+      },
+      {
+        "name": "Electronic Parts",
+        "amount": "12x"
+      },
+      {
+        "name": "Gunpowder",
+        "amount": "20x"
+      }
+    ],
+    "ingredientsCs": [
+      {
+        "name": "Wolframový ingot",
+        "amount": "25x",
+        "isPrimary": true
+      },
+      {
+        "name": "Zušlechtěné součástky",
+        "amount": "15x"
+      },
+      {
+        "name": "Elektronické součástky",
+        "amount": "12x"
+      },
+      {
+        "name": "Střelný prach",
+        "amount": "20x"
+      }
+    ],
+    "descriptionEn": "High-caliber hand cannon implanting micro-explosives that detonate with catastrophic concussive force.",
+    "descriptionCs": "Těžká pistole ráže .50 vstřelující do těl nepřátel mikro-nálože, které po vteřině vybuchují."
+  },
+  {
+    "id": "wpn-03",
+    "nameEn": "KVD - Boom! Boom!",
+    "nameCs": "KVD - Boom! Boom! (Plamenometný kulomet)",
+    "categoryEn": "Weapons",
+    "categoryCs": "Zbraně",
+    "weaponType": "Light Machine Gun",
+    "weaponTypeCs": "Lehký kulomet (LMG)",
+    "caliber": "Standard Rifle Ammo (Medium)",
+    "archetype": "Burn",
+    "archetypeCs": "Zápal (Burn)",
+    "scenario": "core",
+    "rarity": "Legendary",
+    "workbench": "Advanced Gear Workbench",
+    "energy": 0,
+    "hydration": 0,
+    "buffDuration": "Sustained Incendiary Firestorm",
+    "sourceEn": "Wish Machine 'Burn, Baby, Burn' banner or Wish Shop",
+    "sourceCs": "Wish Machine banner 'Burn, Baby, Burn' nebo nákup ve Wish Shopu",
+    "uniquePerkEn": "Hitting targets applies Burn. At 5 stacks, unleashes a Fiery Vortex igniting all surrounding enemies and granting +30% Fire DMG for 10 seconds.",
+    "uniquePerkCs": "Zásahy udělují cílům efekt Zápal (Burn). Při 5 stackách vyvolá Ohnivý vír zapalující všechny okolní nepřátele a navyšující ohnivé poškození o +30 % na 10 sekund.",
+    "recommendedGearEn": "Sheltered 4-Piece Set, BBQ Gloves, Blaze Resonance Mod",
+    "recommendedGearCs": "Set Ochránce (Sheltered 4 kusy), Grilovací rukavice BBQ, Modifikace Blaze Resonance",
+    "effectsEn": [
+      "Archetype: Burn (Incinerates targets with stacking elemental fire damage over time)",
+      "Massive 100-round magazine for uninterrupted suppressive fire",
+      "Ignites whole rooms during Prime Wars and wave defense events"
+    ],
+    "effectsCs": [
+      "Archetyp: Zápal / Burn (Spaluje nepřátele stohujícím se elementálním ohnivým poškozením)",
+      "Masivní 100ranný zásobník pro nepřetržitou krycí a plošnou palbu",
+      "Zapaluje celé místnosti a zástupy nepřátel během Prime War a obran základen"
+    ],
+    "ingredientsEn": [
+      {
+        "name": "Tungsten Ingot",
+        "amount": "35x",
+        "isPrimary": true
+      },
+      {
+        "name": "Refined Parts",
+        "amount": "25x"
+      },
+      {
+        "name": "Electronic Parts",
+        "amount": "15x"
+      },
+      {
+        "name": "Cooking Oil",
+        "amount": "10x"
+      }
+    ],
+    "ingredientsCs": [
+      {
+        "name": "Wolframový ingot",
+        "amount": "35x",
+        "isPrimary": true
+      },
+      {
+        "name": "Zušlechtěné součástky",
+        "amount": "25x"
+      },
+      {
+        "name": "Elektronické součástky",
+        "amount": "15x"
+      },
+      {
+        "name": "Rostlinný olej na vaření",
+        "amount": "10x"
+      }
+    ],
+    "descriptionEn": "Incendiary squad automatic weapon bathing battlefields in relentless, self-propagating hellfire.",
+    "descriptionCs": "Těžký automatický kulomet chrlící zápalnou munici, která promění bojiště v ohnivé peklo."
+  },
+  {
+    "id": "wpn-04",
+    "nameEn": "AWS.338 - Bingo",
+    "nameCs": "AWS.338 - Bingo (Odstřelovací puška)",
+    "categoryEn": "Weapons",
+    "categoryCs": "Zbraně",
+    "weaponType": "Sniper Rifle",
+    "weaponTypeCs": "Odstřelovací puška",
+    "caliber": "Heavy Rifle Ammo (Large)",
+    "archetype": "Bull's Eye",
+    "archetypeCs": "Muška / Značka (Bull's Eye)",
+    "scenario": "core",
+    "rarity": "Legendary",
+    "workbench": "Advanced Gear Workbench",
+    "energy": 0,
+    "hydration": 0,
+    "buffDuration": "Extreme Range Weakspot Elimination",
+    "sourceEn": "Wish Machine 'Precision Strike' banner or Blackfell Fallen Zone Mystic Crate",
+    "sourceCs": "Wish Machine banner 'Precision Strike' nebo Mystická bedna v Blackfell Fallen Zone",
+    "uniquePerkEn": "Hitting an enemy applies Bull's Eye for 12 seconds, making target take 15% increased damage from all sources. Weakspot kills grant +25% movement speed and instant tactical reload.",
+    "uniquePerkCs": "Zásah nepřítele označí terčem Bull's Eye na 12 sekund, což zvyšuje veškeré utržené poškození o 15 %. Zabití zásahem do slabého místa dává +25 % rychlost pohybu a okamžité přebití.",
+    "recommendedGearEn": "Renegade 4-Piece Set, Old World Marksman Helmet, Deadshot Mod",
+    "recommendedGearCs": "Set Odpadlík (Renegade 4 kusy), Zbrojířská odstřelovačská helma, Modifikace Deadshot",
+    "effectsEn": [
+      "Archetype: Bull's Eye (Marks enemies to take amplified vulnerability damage)",
+      "Colossal single-bullet alpha damage capable of one-shotting elite snipers",
+      "Enhances total team damage output against tagged bosses"
+    ],
+    "effectsCs": [
+      "Archetyp: Bull's Eye (Označuje nepřátele pro masivní zvýšení zranitelnosti celým týmem)",
+      "Kolosální jednoranné poškození schopné eliminovat nepřátele na jediný přesný výstřel",
+      "Zvyšuje celkové poškození celé party proti označeným bossům"
+    ],
+    "ingredientsEn": [
+      {
+        "name": "Tungsten Ingot",
+        "amount": "30x",
+        "isPrimary": true
+      },
+      {
+        "name": "Refined Parts",
+        "amount": "20x"
+      },
+      {
+        "name": "Glass",
+        "amount": "10x"
+      },
+      {
+        "name": "Carbon Fiber",
+        "amount": "12x"
+      }
+    ],
+    "ingredientsCs": [
+      {
+        "name": "Wolframový ingot",
+        "amount": "30x",
+        "isPrimary": true
+      },
+      {
+        "name": "Zušlechtěné součástky",
+        "amount": "20x"
+      },
+      {
+        "name": "Sklo",
+        "amount": "10x"
+      },
+      {
+        "name": "Uhlíková vlákna",
+        "amount": "12x"
+      }
+    ],
+    "descriptionEn": "Precision long-range anti-materiel bolt rifle piercing reinforced skull plates from kilometers away.",
+    "descriptionCs": "Těžká antimateriálová odstřelovací puška schopná probít nejtvrdší pancíř z bezpečné vzdálenosti."
+  },
+  {
+    "id": "wpn-05",
+    "nameEn": "MPS7 - Outer Space",
+    "nameCs": "MPS7 - Outer Space (Šokový samopal)",
+    "categoryEn": "Weapons",
+    "categoryCs": "Zbraně",
+    "weaponType": "Submachine Gun",
+    "weaponTypeCs": "Samopal (SMG)",
+    "caliber": "Pistol Ammo",
+    "archetype": "Power Surge",
+    "archetypeCs": "Šok / Blesk (Power Surge)",
+    "scenario": "core",
+    "rarity": "Legendary",
+    "workbench": "Advanced Gear Workbench",
+    "energy": 0,
+    "hydration": 0,
+    "buffDuration": "High-Voltage Close Quarters DPS",
+    "sourceEn": "Wish Machine 'Electric Shock' banner or Blueprint Shop",
+    "sourceCs": "Wish Machine banner 'Electric Shock' nebo Wish Blueprint Shop",
+    "uniquePerkEn": "Every 5th bullet hit triggers Power Surge, electrocuting the target and chaining high-voltage lightning arcs to 2 nearby foes. Shocked targets take +15% electrical damage.",
+    "uniquePerkCs": "Každá 5. střela vyvolá Elektrický šok (Power Surge), který zasáhne cíl a řetězí blesky na 2 další nepřátele. Zasažené cíle utrpí o +15 % vyšší elektrické poškození.",
+    "recommendedGearEn": "Sheltered 3-Piece + Lonewolf 2-Piece, Shock Boots, Static Shock Mod",
+    "recommendedGearCs": "Set Ochránce (3 kusy) + Osamělý vlk (2 kusy), Šokové boty, Modifikace Static Shock",
+    "effectsEn": [
+      "Archetype: Power Surge (Chains electrocuting arcs between enemy ranks)",
+      "Extremely rapid fire rate shredding shields and biological enemies alike",
+      "Stuns and interrupts enemy casts in tight indoor quarters"
+    ],
+    "effectsCs": [
+      "Archetyp: Power Surge (Vysokonapěťové bleskové výboje přeskakující mezi nepřáteli)",
+      "Extrémně vysoká kadence ničící štíty i těla monster v boji zblízka",
+      "Elektrické omračování přerušující útoky nepřátel v interiérech a chodbách"
+    ],
+    "ingredientsEn": [
+      {
+        "name": "Tungsten Ingot",
+        "amount": "25x",
+        "isPrimary": true
+      },
+      {
+        "name": "Refined Parts",
+        "amount": "18x"
+      },
+      {
+        "name": "Electronic Parts",
+        "amount": "18x"
+      },
+      {
+        "name": "Copper Ingot",
+        "amount": "15x"
+      }
+    ],
+    "ingredientsCs": [
+      {
+        "name": "Wolframový ingot",
+        "amount": "25x",
+        "isPrimary": true
+      },
+      {
+        "name": "Zušlechtěné součástky",
+        "amount": "18x"
+      },
+      {
+        "name": "Elektronické součástky",
+        "amount": "18x"
+      },
+      {
+        "name": "Měděný ingot",
+        "amount": "15x"
+      }
+    ],
+    "descriptionEn": "High-cadence SMG channeling volatile Tesla capacitors into hyper-velocity electrified lead.",
+    "descriptionCs": "Bleskurychlý samopal vybavený Teslovými kondenzátory, chrlící elektrizované projektily."
+  },
+  {
+    "id": "wpn-06",
+    "nameEn": "KV-SBR - Icy Rain",
+    "nameCs": "KV-SBR - Icy Rain (Mrazivý déšť)",
+    "categoryEn": "Weapons",
+    "categoryCs": "Zbraně",
+    "weaponType": "Submachine Gun",
+    "weaponTypeCs": "Útočná karabina / SMG",
+    "caliber": "Pistol Ammo",
+    "archetype": "Frost Vortex",
+    "archetypeCs": "Mrazivý vír (Frost Vortex)",
+    "scenario": "core",
+    "rarity": "Epic",
+    "workbench": "Gear Workbench II or III",
+    "energy": 0,
+    "hydration": 0,
+    "buffDuration": "Freezing Crowd Control & Infinite Ammo Loop",
+    "sourceEn": "Sunshine Cove Mystical Crate or Wish Machine pool",
+    "sourceCs": "Mystické bedny v Sunshine Cove nebo běžný pool Wish Machine",
+    "uniquePerkEn": "Critical hits have a 50% chance to create a Frost Vortex pulling nearby enemies in and freezing them. Bullets hitting enemies trapped in the vortex automatically reload into the magazine.",
+    "uniquePerkCs": "Kritické zásahy mají 50% šanci vytvořit Mrazivý vír (Frost Vortex), který vtahuje a zmrazuje okolní nepřátele. Zásahy do nepřátel ve víru automaticky vracejí munici do zásobníku.",
+    "recommendedGearEn": "Sheltered 4-Piece Set, Frost Gloves, Cryo Burst Mod",
+    "recommendedGearCs": "Set Ochránce (Sheltered 4 kusy), Mrazivé rukavice, Modifikace Cryo Burst",
+    "effectsEn": [
+      "Archetype: Frost Vortex (Crowd control vortex clustering and chilling foes)",
+      "Virtual bottomless magazine during sustained critical hits on vortexed targets",
+      "Exceptional dungeon mobbing and lane-holding capability"
+    ],
+    "effectsCs": [
+      "Archetyp: Frost Vortex (Vytváří mrazivou zónu, která shromažďuje a zpomaluje zástupy nepřátel)",
+      "Téměř nekonečný zásobník při přesné palbě do shromážděných cílů ve víru",
+      "Skvělá zbraň pro čištění dungeonů a držení obranných linií"
+    ],
+    "ingredientsEn": [
+      {
+        "name": "Steel Ingot",
+        "amount": "20x",
+        "isPrimary": true
+      },
+      {
+        "name": "Standard Parts",
+        "amount": "15x"
+      },
+      {
+        "name": "Electronic Parts",
+        "amount": "10x"
+      },
+      {
+        "name": "Glass",
+        "amount": "8x"
+      }
+    ],
+    "ingredientsCs": [
+      {
+        "name": "Ocelový ingot",
+        "amount": "20x",
+        "isPrimary": true
+      },
+      {
+        "name": "Standardní součástky",
+        "amount": "15x"
+      },
+      {
+        "name": "Elektronické součástky",
+        "amount": "10x"
+      },
+      {
+        "name": "Sklo",
+        "amount": "8x"
+      }
+    ],
+    "descriptionEn": "Sub-compact tactical rifle generating localized cryogenic singularities that freeze and cluster enemies.",
+    "descriptionCs": "Kompaktní taktická zbraň vytvářející kryogenické anomálie, které zmrazí nepřátele na místě."
+  },
+  {
+    "id": "wpn-07",
+    "nameEn": "HAMR - Brahminy",
+    "nameCs": "HAMR - Brahminy (Odrazová poloautomatická puška)",
+    "categoryEn": "Weapons",
+    "categoryCs": "Zbraně",
+    "weaponType": "Sniper Rifle",
+    "weaponTypeCs": "Poloautomatická odstřelovačka",
+    "caliber": "Heavy Rifle Ammo (Large)",
+    "archetype": "Bounce",
+    "archetypeCs": "Odraz (Bounce)",
+    "scenario": "core",
+    "rarity": "Legendary",
+    "workbench": "Advanced Gear Workbench",
+    "energy": 0,
+    "hydration": 0,
+    "buffDuration": "Ricochet Weakspot Cascades",
+    "sourceEn": "Wish Machine Blueprint Shop (8,000 Staroid)",
+    "sourceCs": "Wish Machine Blueprint Shop za 8 000 Staroidů",
+    "uniquePerkEn": "Rounds bounce to up to 2 adjacent enemies dealing 100% weapon damage. If the initial hit was a weakspot strike, all ricochets are guaranteed critical weakspot hits.",
+    "uniquePerkCs": "Střely se odrážejí až na 2 další nepřátele se 100% poškozením. Pokud byl první zásah do slabého místa (Weakspot), všechny odrazy jsou garantované kritické zásahy do slabin.",
+    "recommendedGearEn": "Lonewolf 4-Piece Set, Bounce Tactical Gloves, Ricochet Mod",
+    "recommendedGearCs": "Set Osamělý vlk (Lonewolf 4 kusy), Taktické rukavice pro odraz, Modifikace Ricochet",
+    "effectsEn": [
+      "Archetype: Bounce (Bullets ricochet between enemies multiplying hit efficiency)",
+      "Cascading chain-headshots clearing entire patrols in a couple of trigger pulls",
+      "Devastating multi-target DPS in open combat arenas"
+    ],
+    "effectsCs": [
+      "Archetyp: Odraz / Bounce (Střely se odrážejí mezi cíli a násobí efektivitu zásahu)",
+      "Řetězové headshoty schopné vyčistit celou hlídku monster na pár stisknutí spouště",
+      "Masivní poškození v otevřených bojových arénách a na dálku"
+    ],
+    "ingredientsEn": [
+      {
+        "name": "Tungsten Ingot",
+        "amount": "30x",
+        "isPrimary": true
+      },
+      {
+        "name": "Refined Parts",
+        "amount": "20x"
+      },
+      {
+        "name": "Electronic Parts",
+        "amount": "12x"
+      },
+      {
+        "name": "Rubber",
+        "amount": "10x"
+      }
+    ],
+    "ingredientsCs": [
+      {
+        "name": "Wolframový ingot",
+        "amount": "30x",
+        "isPrimary": true
+      },
+      {
+        "name": "Zušlechtěné součástky",
+        "amount": "20x"
+      },
+      {
+        "name": "Elektronické součástky",
+        "amount": "12x"
+      },
+      {
+        "name": "Guma (Rubber)",
+        "amount": "10x"
+      }
+    ],
+    "descriptionEn": "Precision marksman rifle whose micro-gyroscopic rounds ricochet violently between enemy weak points.",
+    "descriptionCs": "Těžká puška, jejíž gyroskopicky vyvážené projektily po nárazu bleskově odskakují do hlav dalších cílů."
+  },
+  {
+    "id": "wpn-08",
+    "nameEn": "MG4 - Predator",
+    "nameCs": "MG4 - Predator (Rychlostřelný těžký kulomet)",
+    "categoryEn": "Weapons",
+    "categoryCs": "Zbraně",
+    "weaponType": "Light Machine Gun",
+    "weaponTypeCs": "Těžký kulomet (LMG)",
+    "caliber": "Standard Rifle Ammo (Medium)",
+    "archetype": "Fast Gunner",
+    "archetypeCs": "Rychlý střelec (Fast Gunner)",
+    "scenario": "core",
+    "rarity": "Legendary",
+    "workbench": "Advanced Gear Workbench",
+    "energy": 0,
+    "hydration": 0,
+    "buffDuration": "Infinite Fire Rate Acceleration",
+    "sourceEn": "Wish Machine 'Heavy Metal' banner",
+    "sourceCs": "Wish Machine banner 'Heavy Metal' nebo nákup plánku za Staroidy",
+    "uniquePerkEn": "Continuous fire stacks Fast Gunner (+1% Attack and +1% Fire Rate per stack, up to 30 stacks). At max stacks, reloading takes only 0.8 seconds.",
+    "uniquePerkCs": "Nepřetržitá palba stohuje efekt Fast Gunner (+1 % útok a +1 % kadence za stack, až 30 stacků). Při plném nabití trvá přebití masivního pásu pouhých 0,8 sekundy.",
+    "recommendedGearEn": "Falcon 4-Piece Set, Fast Gunner Mask, Bullet Storm Mod",
+    "recommendedGearCs": "Set Sokol (Falcon 4 kusy), Maska rychlého střelce, Modifikace Bullet Storm",
+    "effectsEn": [
+      "Archetype: Fast Gunner (Ramps up devastating cyclic rate of fire over time)",
+      "Top-tier sustained bullet-hose pressure against massive Prime War bosses",
+      "Near-instantaneous tactical reload at peak tempo"
+    ],
+    "effectsCs": [
+      "Archetyp: Fast Gunner (Prudce stupňuje kadenci a útočnou sílu během střelby)",
+      "Špičková zbraň pro nepřetržité zasypávání velkých bossů v Prime Wars",
+      "Bleskurychlé taktické přebití při dosažení maximálního tempa palby"
+    ],
+    "ingredientsEn": [
+      {
+        "name": "Tungsten Ingot",
+        "amount": "35x",
+        "isPrimary": true
+      },
+      {
+        "name": "Refined Parts",
+        "amount": "22x"
+      },
+      {
+        "name": "Electronic Parts",
+        "amount": "15x"
+      },
+      {
+        "name": "Standard Parts",
+        "amount": "15x"
+      }
+    ],
+    "ingredientsCs": [
+      {
+        "name": "Wolframový ingot",
+        "amount": "35x",
+        "isPrimary": true
+      },
+      {
+        "name": "Zušlechtěné součástky",
+        "amount": "22x"
+      },
+      {
+        "name": "Elektronické součástky",
+        "amount": "15x"
+      },
+      {
+        "name": "Standardní součástky",
+        "amount": "15x"
+      }
+    ],
+    "descriptionEn": "Belt-fed heavy machine gun engineered to ramp up to dizzying firing speeds, pulverizing monolithic targets.",
+    "descriptionCs": "Pásem krmený kulomet, jehož kadence v průběhu střelby roste do závratných otáček."
+  },
+  {
+    "id": "wpn-09",
+    "nameEn": "DP-12 - Corrosive Shotgun",
+    "nameCs": "DP-12 - Corrosive (Elektrická dvouhlavňová brokovnice)",
+    "categoryEn": "Weapons",
+    "categoryCs": "Zbraně",
+    "weaponType": "Shotgun",
+    "weaponTypeCs": "Bojová brokovnice",
+    "caliber": "Shotgun Shells",
+    "archetype": "Power Surge",
+    "archetypeCs": "Šok / Blesk (Power Surge)",
+    "scenario": "core",
+    "rarity": "Legendary",
+    "workbench": "Advanced Gear Workbench",
+    "energy": 0,
+    "hydration": 0,
+    "buffDuration": "Double-Barrel High-Voltage Blast",
+    "sourceEn": "Wish Machine or Silo EX1 Master Dungeon boss drop",
+    "sourceCs": "Wish Machine nebo drop z finálního bosse v Silo EX1 (Master obtížnost)",
+    "uniquePerkEn": "Double-barrel pump shotgun where every pellet independently rolls to trigger Power Surge. Firing both barrels in rapid succession discharges a lethal thunderburst.",
+    "uniquePerkCs": "Dvouhlavňová pumpovací brokovnice, kde každá vystřelená broková kulička samostatně testuje spuštění Elektrického šoku. Rychlý dvojvýstřel vyvolá smrtící bleskovou explozi.",
+    "recommendedGearEn": "Sheltered 4-Piece Set, Close Combat Vest, Thunder Clap Mod",
+    "recommendedGearCs": "Set Ochránce (Sheltered 4 kusy), Bojová vesta pro boj zblízka, Modifikace Thunder Clap",
+    "effectsEn": [
+      "Archetype: Power Surge (Massive point-blank electric discharges)",
+      "Fires two rounds in rapid tandem before cycling the pump",
+      "Devastating point-blank burst damage obliterating armored elites"
+    ],
+    "effectsCs": [
+      "Archetyp: Power Surge (Masivní bodové elektrické výboje na kontaktní vzdálenost)",
+      "Vypálí dvě rány v bleskovém sledu před přebitím pumpy",
+      "Extrémní poškození na blízko schopné vymazat elitní obry a vojáky během sekundy"
+    ],
+    "ingredientsEn": [
+      {
+        "name": "Tungsten Ingot",
+        "amount": "28x",
+        "isPrimary": true
+      },
+      {
+        "name": "Refined Parts",
+        "amount": "18x"
+      },
+      {
+        "name": "Electronic Parts",
+        "amount": "15x"
+      },
+      {
+        "name": "Rubber",
+        "amount": "10x"
+      }
+    ],
+    "ingredientsCs": [
+      {
+        "name": "Wolframový ingot",
+        "amount": "28x",
+        "isPrimary": true
+      },
+      {
+        "name": "Zušlechtěné součástky",
+        "amount": "18x"
+      },
+      {
+        "name": "Elektronické součástky",
+        "amount": "15x"
+      },
+      {
+        "name": "Guma (Rubber)",
+        "amount": "10x"
+      }
+    ],
+    "descriptionEn": "Dual-barrel bullpup shotgun unleashing twin blasts of ionized buckshot that shock and tear flesh.",
+    "descriptionCs": "Dvouhlavňová brokovnice bullpup chrlící ionizované broky, které cíl seškvaří elektřinou."
+  },
+  {
+    "id": "wpn-10",
+    "nameEn": "Kukri - Frozen Northern Edge",
+    "nameCs": "Kukri - Frozen Northern Edge (Mrazivá mačeta)",
+    "categoryEn": "Weapons",
+    "categoryCs": "Zbraně",
+    "weaponType": "Melee",
+    "weaponTypeCs": "Chladná zbraň (Melee)",
+    "caliber": "Melee",
+    "archetype": "Frost Vortex",
+    "archetypeCs": "Mrazivý vír (Frost Vortex)",
+    "scenario": "core",
+    "rarity": "Epic",
+    "workbench": "Gear Workbench II or III",
+    "energy": 0,
+    "hydration": 0,
+    "buffDuration": "Sub-Zero Heavy Cleave",
+    "sourceEn": "Chalk Peak secret weapon cache or Melee Wish Pool",
+    "sourceCs": "Tajná zbraňová bedna v Chalk Peak nebo Wish Machine pool pro chladné zbraně",
+    "uniquePerkEn": "Heavy charged melee cleaves unleash a creeping Frost Wave, freezing regular enemies solid and creating an icy vortex that slows all nearby hostiles.",
+    "uniquePerkCs": "Těžký nabitý švih mačetou vyšle mrazivou vlnu, která zmrazí běžné nepřátele na ledové sochy a vytvoří mrazivý vír zpomalující veškeré okolní hrozby.",
+    "recommendedGearEn": "Melee Combat Armor set, Frostbite Mod, Cryo Blade",
+    "recommendedGearCs": "Bojový oblek pro boj zblízka, Modifikace Frostbite, Krystalická čepel",
+    "effectsEn": [
+      "Archetype: Frost Vortex (Melee crowd control wave)",
+      "Zero ammo cost for clearing minor aberrations and crawling mutants",
+      "Locks dangerous melee chargers in ice before they can swing"
+    ],
+    "effectsCs": [
+      "Archetyp: Frost Vortex (Mrazivá vlna se zmrazením zblízka)",
+      "Nulové náklady na munici při čištění běžných zmutovaných potvor",
+      "Zmrazí útočící nepřátele v běhu dříve, než stačí zasadit úder"
+    ],
+    "ingredientsEn": [
+      {
+        "name": "Steel Ingot",
+        "amount": "18x",
+        "isPrimary": true
+      },
+      {
+        "name": "Glass",
+        "amount": "10x"
+      },
+      {
+        "name": "Leather",
+        "amount": "8x"
+      }
+    ],
+    "ingredientsCs": [
+      {
+        "name": "Ocelový ingot",
+        "amount": "18x",
+        "isPrimary": true
+      },
+      {
+        "name": "Sklo",
+        "amount": "10x"
+      },
+      {
+        "name": "Kůže (Leather)",
+        "amount": "8x"
+      }
+    ],
+    "descriptionEn": "Curved Gurkha combat blade forged with cryogenic alloy that chills the air with every vicious sweep.",
+    "descriptionCs": "Zahnutá bojová čepel z kryogenické oceli, která při každém seknutí zmrazuje vzduch i krev nepřítele."
+  },
+  {
+    "id": "arm-01",
+    "nameEn": "Lonewolf Set",
+    "nameCs": "Set Osamělý vlk (Lonewolf Set)",
+    "categoryEn": "Armor Sets",
+    "categoryCs": "Sety zbrojí",
+    "archetype": "Shrapnel",
+    "archetypeCs": "Kritický zásah & Střepiny",
+    "scenario": "core",
+    "rarity": "Legendary",
+    "workbench": "Advanced Gear Workbench",
+    "energy": 0,
+    "hydration": 0,
+    "buffDuration": "Up to +40% Stacking Crit DMG",
+    "sourceEn": "Wish Machine 'Lonewolf' Banner & Blueprint Store (3,000 Staroid per piece)",
+    "sourceCs": "Wish Machine banner 'Lonewolf' a nákup v Blueprint Store (3 000 Staroidů za kus)",
+    "effectsEn": [
+      "1-Piece Bonus: Maximum Stamina +15",
+      "2-Piece Bonus: Magazine Capacity +10%",
+      "3-Piece Bonus: Critical Hit Rate +5%",
+      "4-Piece Bonus: 'Lone Wolf' - Scoring a critical hit grants +2% Crit DMG for 2 seconds (stacks up to 20 times for massive +40% Crit DMG)"
+    ],
+    "effectsCs": [
+      "1-Kusový bonus: Maximální výdrž (Stamina) +15",
+      "2-Kusový bonus: Kapacita zásobníku zbraní +10%",
+      "3-Kusový bonus: Šance na kritický zásah (Crit Rate) +5%",
+      "4-Kusový bonus: 'Osamělý vlk' - Zásah kritikem přidává +2% Crit DMG na 2s (stohuje se až 20× na celkových +40% Crit DMG)"
+    ],
+    "recommendedWeaponsEn": "SOCR - The Last Valour, HAMR - Brahminy, MPS7 - Outer Space",
+    "recommendedWeaponsCs": "SOCR - The Last Valour, HAMR - Brahminy, MPS7 - Outer Space",
+    "ingredientsEn": [
+      {
+        "name": "Tungsten Ingot",
+        "amount": "40x",
+        "isPrimary": true
+      },
+      {
+        "name": "Carbon Fiber",
+        "amount": "30x"
+      },
+      {
+        "name": "Fabric",
+        "amount": "35x"
+      },
+      {
+        "name": "Refined Parts",
+        "amount": "25x"
+      }
+    ],
+    "ingredientsCs": [
+      {
+        "name": "Wolframový ingot",
+        "amount": "40x",
+        "isPrimary": true
+      },
+      {
+        "name": "Uhlíková vlákna",
+        "amount": "30x"
+      },
+      {
+        "name": "Látka / Textil",
+        "amount": "35x"
+      },
+      {
+        "name": "Zušlechtěné součástky",
+        "amount": "25x"
+      }
+    ],
+    "descriptionEn": "The undisputed gold standard for critical damage and Shrapnel builds in Once Human.",
+    "descriptionCs": "Nejpopulárnější endgame zbroj pro maximalizaci kritických zásahů a poškození střepinami."
+  },
+  {
+    "id": "arm-02",
+    "nameEn": "Sheltered Set",
+    "nameCs": "Set Ochránce (Sheltered Set)",
+    "categoryEn": "Armor Sets",
+    "categoryCs": "Sety zbrojí",
+    "archetype": "Burn",
+    "archetypeCs": "Elementální poškození (Burn / Shock / Frost)",
+    "scenario": "core",
+    "rarity": "Legendary",
+    "workbench": "Advanced Gear Workbench",
+    "energy": 0,
+    "hydration": 0,
+    "buffDuration": "+20% Weapon & Status DMG on Elemental Trigger",
+    "sourceEn": "Wish Machine 'Elemental Sanctuary' Banner & Blueprint Store",
+    "sourceCs": "Wish Machine banner 'Elemental Sanctuary' a nákup ve Wish Blueprint Store",
+    "effectsEn": [
+      "1-Piece Bonus: Maximum HP +150",
+      "2-Piece Bonus: Status Effect Duration +15%",
+      "3-Piece Bonus: Elemental Damage +10%",
+      "4-Piece Bonus: Triggering any elemental status (Burn, Shock, Frost, Bomber) grants +20% Weapon & Status DMG for 12 seconds"
+    ],
+    "effectsCs": [
+      "1-Kusový bonus: Maximální HP +150",
+      "2-Kusový bonus: Doba trvání statusových efektů +15%",
+      "3-Kusový bonus: Elementální poškození +10%",
+      "4-Kusový bonus: Vyvolání jakéhokoli elementu (Zápal, Šok, Mráz, Bomba) uděluje +20% k poškození zbraněmi a statusy na 12 sekund"
+    ],
+    "recommendedWeaponsEn": "DE.50 - Jaws, KVD - Boom! Boom!, MPS7 - Outer Space, KV-SBR - Icy Rain",
+    "recommendedWeaponsCs": "DE.50 - Jaws, KVD - Boom! Boom!, MPS7 - Outer Space, KV-SBR - Icy Rain",
+    "ingredientsEn": [
+      {
+        "name": "Tungsten Ingot",
+        "amount": "40x",
+        "isPrimary": true
+      },
+      {
+        "name": "Leather",
+        "amount": "30x"
+      },
+      {
+        "name": "Electronic Parts",
+        "amount": "25x"
+      },
+      {
+        "name": "Refined Parts",
+        "amount": "20x"
+      }
+    ],
+    "ingredientsCs": [
+      {
+        "name": "Wolframový ingot",
+        "amount": "40x",
+        "isPrimary": true
+      },
+      {
+        "name": "Kůže (Leather)",
+        "amount": "30x"
+      },
+      {
+        "name": "Elektronické součástky",
+        "amount": "25x"
+      },
+      {
+        "name": "Zušlechtěné součástky",
+        "amount": "20x"
+      }
+    ],
+    "descriptionEn": "Premier protective suit maximizing elemental reactions, status ailments, and explosive synergy.",
+    "descriptionCs": "Špičkový bojový set maximalizující sílu všech elementálních a výbušných statusových buildů."
+  },
+  {
+    "id": "arm-03",
+    "nameEn": "Renegade Set",
+    "nameCs": "Set Odpadlík (Renegade Set)",
+    "categoryEn": "Armor Sets",
+    "categoryCs": "Sety zbrojí",
+    "archetype": "Bull's Eye",
+    "archetypeCs": "Zásahy do slabin (Weakspot) & Odstřelování",
+    "scenario": "core",
+    "rarity": "Legendary",
+    "workbench": "Advanced Gear Workbench",
+    "energy": 0,
+    "hydration": 0,
+    "buffDuration": "+20% Amplified Damage & Ammo Return",
+    "sourceEn": "Wish Machine 'Precision Marksman' Banner",
+    "sourceCs": "Wish Machine banner 'Precision Marksman' a Blueprint Shop",
+    "effectsEn": [
+      "1-Piece Bonus: Reload Speed +10%",
+      "2-Piece Bonus: Weakspot Damage +12%",
+      "3-Piece Bonus: Accuracy & Stability +15%",
+      "4-Piece Bonus: 'Hunter's Mark' - Consecutive weakspot hits amplify damage by +20% and instantly reload 1 bullet upon killing a weakspot-marked foe"
+    ],
+    "effectsCs": [
+      "1-Kusový bonus: Rychlost přebíjení +10%",
+      "2-Kusový bonus: Poškození do slabých míst (Weakspot DMG) +12%",
+      "3-Kusový bonus: Přesnost a stabilita střelby +15%",
+      "4-Kusový bonus: 'Lovcova značka' - Zásahy do slabin zvyšují poškození o +20% a zabití označeného cíle vrátí 1 náboj do komory"
+    ],
+    "recommendedWeaponsEn": "AWS.338 - Bingo, HAMR - Brahminy, Heavy Pistols",
+    "recommendedWeaponsCs": "AWS.338 - Bingo, HAMR - Brahminy, těžké pistole",
+    "ingredientsEn": [
+      {
+        "name": "Tungsten Ingot",
+        "amount": "35x",
+        "isPrimary": true
+      },
+      {
+        "name": "Carbon Fiber",
+        "amount": "25x"
+      },
+      {
+        "name": "Fabric",
+        "amount": "30x"
+      },
+      {
+        "name": "Glass",
+        "amount": "10x"
+      }
+    ],
+    "ingredientsCs": [
+      {
+        "name": "Wolframový ingot",
+        "amount": "35x",
+        "isPrimary": true
+      },
+      {
+        "name": "Uhlíková vlákna",
+        "amount": "25x"
+      },
+      {
+        "name": "Látka / Textil",
+        "amount": "30x"
+      },
+      {
+        "name": "Sklo",
+        "amount": "10x"
+      }
+    ],
+    "descriptionEn": "Tailored marksman ghillie suit delivering surgical headshot trauma from extreme range.",
+    "descriptionCs": "Odstřelovačský oblek pro nekompromisní likvidaci cílů přesnými zásahy do slabých míst hlavy."
+  },
+  {
+    "id": "arm-04",
+    "nameEn": "Bastille Set",
+    "nameCs": "Set Bastila (Bastille Set)",
+    "categoryEn": "Armor Sets",
+    "categoryCs": "Sety zbrojí",
+    "archetype": "Fortress Warfare",
+    "archetypeCs": "Pevnostní válka & Super pancíř",
+    "scenario": "core",
+    "rarity": "Legendary",
+    "workbench": "Advanced Gear Workbench",
+    "energy": 0,
+    "hydration": 0,
+    "buffDuration": "Fortress Super-Armor & +20% Weapon DMG",
+    "sourceEn": "Wish Machine 'Fortress Bastille' Banner",
+    "sourceCs": "Wish Machine banner 'Fortress Bastille' a Wish Shop",
+    "effectsEn": [
+      "1-Piece Bonus: Maximum HP +200",
+      "2-Piece Bonus: Damage Reduction while crouched or stationary +10%",
+      "3-Piece Bonus: Weapon Damage +10% when above 70% current HP",
+      "4-Piece Bonus: 'Fortress Warfare' - Standing stationary for 1.5s grants Super Armor (immune to stagger/knockback) and boosts Weapon DMG by +20% for 10 seconds"
+    ],
+    "effectsCs": [
+      "1-Kusový bonus: Maximální HP +200",
+      "2-Kusový bonus: Redukce utrženého poškození v podřepu nebo v klidu +10%",
+      "3-Kusový bonus: Poškození zbraněmi +10% pokud máte nad 70% zdraví",
+      "4-Kusový bonus: 'Pevnostní válka' - Setrvání v klidu po 1,5s aktivuje Super Armor (imunita vůči omráčení/odhození) a přidává +20% poškození zbraněmi na 10 sekund"
+    ],
+    "recommendedWeaponsEn": "MG4 - Predator, KVD - Boom! Boom!, DP-12 - Corrosive",
+    "recommendedWeaponsCs": "MG4 - Predator, KVD - Boom! Boom!, DP-12 - Corrosive",
+    "ingredientsEn": [
+      {
+        "name": "Tungsten Ingot",
+        "amount": "45x",
+        "isPrimary": true
+      },
+      {
+        "name": "Steel Ingot",
+        "amount": "30x"
+      },
+      {
+        "name": "Rubber",
+        "amount": "20x"
+      },
+      {
+        "name": "Refined Parts",
+        "amount": "25x"
+      }
+    ],
+    "ingredientsCs": [
+      {
+        "name": "Wolframový ingot",
+        "amount": "45x",
+        "isPrimary": true
+      },
+      {
+        "name": "Ocelový ingot",
+        "amount": "30x"
+      },
+      {
+        "name": "Guma (Rubber)",
+        "amount": "20x"
+      },
+      {
+        "name": "Zušlechtěné součástky",
+        "amount": "25x"
+      }
+    ],
+    "descriptionEn": "Juggernaut plate armor turning the operator into an unyielding frontline turret.",
+    "descriptionCs": "Těžký pancéřový oblek měnící střelce v neotřesitelnou pevnou věž odolnou proti odhození."
+  },
+  {
+    "id": "arm-05",
+    "nameEn": "Falcon Set",
+    "nameCs": "Set Sokol (Falcon Set)",
+    "categoryEn": "Armor Sets",
+    "categoryCs": "Sety zbrojí",
+    "archetype": "Fast Gunner",
+    "archetypeCs": "Rychlý střelec & Mobilita",
+    "scenario": "core",
+    "rarity": "Epic",
+    "workbench": "Gear Workbench II or III",
+    "energy": 0,
+    "hydration": 0,
+    "buffDuration": "+15% Attack Surge on Sprint / Roll",
+    "sourceEn": "Iron River and Chalk Peak Mystical Crates & Wish Pool",
+    "sourceCs": "Mystické bedny v Iron River a Chalk Peak nebo běžný Wish Machine pool",
+    "effectsEn": [
+      "1-Piece Bonus: Stamina Regeneration Speed +10%",
+      "2-Piece Bonus: Movement Speed +5%",
+      "3-Piece Bonus: Critical Hit Rate +4%",
+      "4-Piece Bonus: Sprinting or performing a combat dodge increases Attack by +15% for 6 seconds"
+    ],
+    "effectsCs": [
+      "1-Kusový bonus: Rychlost regenerace staminy +10%",
+      "2-Kusový bonus: Rychlost pohybu +5%",
+      "3-Kusový bonus: Šance na kritický zásah +4%",
+      "4-Kusový bonus: Sprint nebo bojový úskok zvyšuje útočnou sílu zbraní o +15% na 6 sekund"
+    ],
+    "recommendedWeaponsEn": "MG4 - Predator, KV-SBR - Icy Rain, MPS7 - Outer Space",
+    "recommendedWeaponsCs": "MG4 - Predator, KV-SBR - Icy Rain, MPS7 - Outer Space",
+    "ingredientsEn": [
+      {
+        "name": "Steel Ingot",
+        "amount": "30x",
+        "isPrimary": true
+      },
+      {
+        "name": "Fabric",
+        "amount": "25x"
+      },
+      {
+        "name": "Leather",
+        "amount": "20x"
+      },
+      {
+        "name": "Standard Parts",
+        "amount": "15x"
+      }
+    ],
+    "ingredientsCs": [
+      {
+        "name": "Ocelový ingot",
+        "amount": "30x",
+        "isPrimary": true
+      },
+      {
+        "name": "Látka / Textil",
+        "amount": "25x"
+      },
+      {
+        "name": "Kůže (Leather)",
+        "amount": "20x"
+      },
+      {
+        "name": "Standardní součástky",
+        "amount": "15x"
+      }
+    ],
+    "descriptionEn": "Lightweight agile scout armor rewarding high-tempo mobile run-and-gun skirmishers.",
+    "descriptionCs": "Lehký taktický oblek podporující rychlý pohyb, úskoky a střelbu za běhu."
+  },
+  {
+    "id": "arm-06",
+    "nameEn": "Heavy Duty Set",
+    "nameCs": "Set Těžká služba (Heavy Duty Set)",
+    "categoryEn": "Armor Sets",
+    "categoryCs": "Sety zbrojí",
+    "archetype": "Fortress Warfare",
+    "archetypeCs": "Přežití, Odolnost & Vysoké HP",
+    "scenario": "core",
+    "rarity": "Epic",
+    "workbench": "Gear Workbench II or III",
+    "energy": 0,
+    "hydration": 0,
+    "buffDuration": "+15% Elite Monster Damage Mitigation",
+    "sourceEn": "Broken Delta and Iron River Mystical Crates",
+    "sourceCs": "Mystické bedny v Broken Delta a Iron River",
+    "effectsEn": [
+      "1-Piece Bonus: Maximum HP +100",
+      "2-Piece Bonus: Pollution & Elemental Resistance +20",
+      "3-Piece Bonus: Bleed & Burn Resistance +30%",
+      "4-Piece Bonus: Reduces incoming damage from Elite Aberrations and Bosses by 15%"
+    ],
+    "effectsCs": [
+      "1-Kusový bonus: Maximální HP +100",
+      "2-Kusový bonus: Odolnost proti znečištění a elementům +20",
+      "3-Kusový bonus: Odolnost vůči krvácení a zápalu +30%",
+      "4-Kusový bonus: Snižuje utržené poškození od elitních monster a bossů o 15%"
+    ],
+    "recommendedWeaponsEn": "All heavy weapons and defensive solo survival builds",
+    "recommendedWeaponsCs": "Všechny těžké zbraně a obranné buildy pro sólové přežití",
+    "ingredientsEn": [
+      {
+        "name": "Steel Ingot",
+        "amount": "35x",
+        "isPrimary": true
+      },
+      {
+        "name": "Rubber",
+        "amount": "20x"
+      },
+      {
+        "name": "Standard Parts",
+        "amount": "20x"
+      },
+      {
+        "name": "Fabric",
+        "amount": "20x"
+      }
+    ],
+    "ingredientsCs": [
+      {
+        "name": "Ocelový ingot",
+        "amount": "35x",
+        "isPrimary": true
+      },
+      {
+        "name": "Guma (Rubber)",
+        "amount": "20x"
+      },
+      {
+        "name": "Standardní součástky",
+        "amount": "20x"
+      },
+      {
+        "name": "Látka / Textil",
+        "amount": "20x"
+      }
+    ],
+    "descriptionEn": "Reinforced Hazmat riot suit engineered to survive radioactive contamination and brutal monster strikes.",
+    "descriptionCs": "Zesílený zásahový oblek chránící před radioaktivní kontaminací a drtivými útoky monster."
+  }
+];
+

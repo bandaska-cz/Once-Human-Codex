@@ -713,7 +713,13 @@ function initSearchIndex() {
         (item.researchInvention.materialsEn || []).map(m => m.name).join(' ') + ' ' +
         (item.researchInvention.reverseEngineeringCs || '');
     }
-    item._searchIndex = (csTokens + ' ' + enTokens + ' ' + (item.scenario || '') + ' ' + invTokens).toLowerCase();
+
+    let gearTokens = '';
+    if (item.archetype || item.uniquePerkCs || item.caliber || item.weaponType) {
+      gearTokens = ` ${item.archetype || ''} ${item.archetypeCs || ''} ${item.caliber || ''} ${item.weaponType || ''} ${item.weaponTypeCs || ''} ${item.uniquePerkCs || ''} ${item.uniquePerkEn || ''} ${item.recommendedGearCs || ''} ${item.recommendedWeaponsCs || ''} weapon zbraň zbroj armor blueprint`;
+    }
+
+    item._searchIndex = (csTokens + ' ' + enTokens + ' ' + (item.scenario || '') + ' ' + invTokens + ' ' + gearTokens).toLowerCase();
   });
 }
 
@@ -808,7 +814,7 @@ window.addEventListener('keydown', function(e) {
 });
 
 function getAllRecipes() {
-  return [...discoveredRecipes, ...creativeDishes, ...medicineRecipes, ...inventionRecipes];
+  return [...discoveredRecipes, ...creativeDishes, ...medicineRecipes, ...inventionRecipes, ...gearRecipes];
 }
 
 function findRecipeById(id) {
@@ -820,6 +826,7 @@ function determineRecipeTab(recipeId) {
   if (creativeDishes.some(r => r.id === recipeId)) return 'creative';
   if (medicineRecipes.some(r => r.id === recipeId)) return 'medicine';
   if (inventionRecipes.some(r => r.id === recipeId)) return 'inventions';
+  if (gearRecipes.some(r => r.id === recipeId)) return 'gear';
   return 'discovered';
 }
 
@@ -841,6 +848,7 @@ function getActiveDataset() {
     case 'creative': return creativeDishes;
     case 'medicine': return medicineRecipes;
     case 'inventions': return inventionRecipes;
+    case 'gear': return gearRecipes;
     default: return discoveredRecipes;
   }
 }
@@ -865,6 +873,8 @@ function applyLanguageUI() {
   document.getElementById('tab-txt-creative').innerText = `${t.tabCreative} (${creativeDishes.length})`;
   document.getElementById('tab-txt-medicine').innerText = `${t.tabMedicine} (${medicineRecipes.length})`;
   document.getElementById('tab-txt-inventions').innerText = `${t.tabInventions} (${inventionRecipes.length})`;
+  const gearTabEl = document.getElementById('tab-txt-gear');
+  if (gearTabEl) gearTabEl.innerText = `${t.tabGear || 'Weapons & Armor'} (${gearRecipes.length})`;
   document.getElementById('calc-title').innerText = t.calcTitle;
   document.getElementById('calc-desc').innerText = t.calcDesc;
   document.getElementById('searchInput').placeholder = t.searchPlaceholder;
@@ -894,7 +904,8 @@ function switchTab(tabId, updateHash = true) {
     { id: 'tab-btn-discovered', name: 'discovered' },
     { id: 'tab-btn-creative', name: 'creative' },
     { id: 'tab-btn-medicine', name: 'medicine' },
-    { id: 'tab-btn-inventions', name: 'inventions' }
+    { id: 'tab-btn-inventions', name: 'inventions' },
+    { id: 'tab-btn-gear', name: 'gear' }
   ];
 
   buttons.forEach(btn => {
@@ -1135,6 +1146,16 @@ function renderRecipeCards(items) {
                 <i class="fa-solid fa-flask-vial text-[8px] text-hud-purple"></i>Tech Invention
               </span>
             ` : ''}
+            ${item.archetype ? `
+              <span class="text-[9px] font-mono uppercase px-1.5 py-0.5 rounded border border-amber-500/60 bg-amber-950/80 text-amber-300 font-bold flex items-center gap-1 shadow-[0_0_8px_rgba(245,158,11,0.3)]">
+                <i class="fa-solid fa-crosshairs text-[8px] text-amber-400"></i>${currentLang === 'cs' ? (item.archetypeCs || item.archetype) : item.archetype}
+              </span>
+            ` : ''}
+            ${item.caliber ? `
+              <span class="text-[9px] font-mono uppercase px-1.5 py-0.5 rounded border border-slate-700 bg-slate-800 text-slate-300">
+                ${item.caliber}
+              </span>
+            ` : ''}
           </div>
           <div class="flex items-center gap-2">
             <span class="text-[10px] font-mono uppercase px-2 py-0.5 rounded border ${rar.bg} ${rar.text} ${rar.border} font-bold flex items-center space-x-1">
@@ -1176,6 +1197,23 @@ function renderRecipeCards(items) {
             </div>
           `).join('')}
         </div>
+
+        <!-- Unique Weapon Perk or Set Synergy Preview -->
+        ${item.uniquePerkCs ? `
+          <div class="mb-3 p-2.5 bg-amber-950/30 border border-amber-500/40 rounded text-xs text-amber-200 leading-snug">
+            <span class="text-[10px] uppercase font-bold text-amber-400 block mb-1 flex items-center gap-1">
+              <i class="fa-solid fa-star text-[9px]"></i>${currentLang === 'cs' ? 'Unikátní perk zbraně' : 'Unique Weapon Perk'}
+            </span>
+            ${currentLang === 'cs' ? item.uniquePerkCs : item.uniquePerkEn}
+          </div>
+        ` : ''}
+        ${item.recommendedGearCs || item.recommendedWeaponsCs ? `
+          <div class="mb-3 text-[11px] font-mono text-cyan-300 p-1.5 bg-hud-bg/80 border border-hud-border rounded flex items-center gap-1.5">
+            <i class="fa-solid fa-link text-hud-cyan text-[10px]"></i>
+            <span class="text-slate-400">${currentLang === 'cs' ? 'Synergie' : 'Synergy'}:</span>
+            <strong class="text-white truncate">${currentLang === 'cs' ? (item.recommendedGearCs || item.recommendedWeaponsCs) : (item.recommendedGearEn || item.recommendedWeaponsEn)}</strong>
+          </div>
+        ` : ''}
 
         <!-- Ingredients with boundary-safe tooltips -->
         <div class="mb-3">
@@ -1336,6 +1374,39 @@ function openModal(id, pushHistory = false) {
         `).join('')}
       </div>
     </div>
+
+    <!-- Weapon Archetype, Unique Perk & Synergy Section -->
+    ${item.archetype ? `
+      <div class="mb-4 p-3.5 bg-slate-900/90 border border-amber-500/60 rounded-lg shadow-[0_0_15px_rgba(245,158,11,0.15)]">
+        <div class="flex items-center justify-between mb-2 flex-wrap gap-1.5">
+          <span class="text-xs font-orbitron font-bold text-amber-400 flex items-center gap-1.5">
+            <i class="fa-solid fa-crosshairs text-amber-400"></i>
+            ${currentLang === 'cs' ? 'Bojový archetyp' : 'Combat Archetype'}: ${currentLang === 'cs' ? (item.archetypeCs || item.archetype) : item.archetype}
+          </span>
+          <div class="flex items-center gap-1.5">
+            ${item.weaponType ? `<span class="text-[10px] font-mono px-2 py-0.5 rounded bg-slate-800 text-slate-200 border border-slate-700">${currentLang === 'cs' ? (item.weaponTypeCs || item.weaponType) : item.weaponType}</span>` : ''}
+            ${item.caliber ? `<span class="text-[10px] font-mono px-2 py-0.5 rounded bg-amber-950/80 text-amber-300 border border-amber-500/60 font-bold">${item.caliber}</span>` : ''}
+          </div>
+        </div>
+        ${item.uniquePerkCs ? `
+          <div class="text-xs text-amber-200 bg-amber-950/40 p-3 rounded border border-amber-500/40 mb-2 leading-relaxed">
+            <strong class="block text-amber-400 mb-1 text-xs uppercase flex items-center gap-1">
+              <i class="fa-solid fa-award"></i>${currentLang === 'cs' ? 'Legendární unikátní perk zbraně' : 'Legendary Unique Weapon Perk'}
+            </strong>
+            ${currentLang === 'cs' ? item.uniquePerkCs : item.uniquePerkEn}
+          </div>
+        ` : ''}
+        ${item.recommendedGearCs || item.recommendedWeaponsCs ? `
+          <div class="text-xs text-slate-300 font-mono bg-hud-bg/90 p-2.5 rounded border border-hud-border flex items-center justify-between flex-wrap gap-1.5">
+            <span class="text-slate-400 flex items-center gap-1">
+              <i class="fa-solid fa-link text-hud-cyan"></i>
+              ${currentLang === 'cs' ? 'Doporučené synergie & sety zbrojí' : 'Recommended Synergies & Sets'}:
+            </span>
+            <strong class="text-hud-cyan">${currentLang === 'cs' ? (item.recommendedGearCs || item.recommendedWeaponsCs) : (item.recommendedGearEn || item.recommendedWeaponsEn)}</strong>
+          </div>
+        ` : ''}
+      </div>
+    ` : ''}
 
     
     <!-- Technological Invention & Reverse Engineering Section -->
