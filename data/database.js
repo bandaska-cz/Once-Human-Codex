@@ -10,11 +10,19 @@ const i18n = {
         tabZones: "Zóny & Průzkum",
         tabFishing: "Rybolov & Návnady",
         tabBosses: "Taktika na bossy",
+        tabMemetics: "Memetic Specializace",
+        tabMods: "Mody zbraní & zbrojí",
         baitLabel: "Doporučená návnada:",
         habitatLabel: "Prostředí / Výskyt:",
         bossPhasesTitle: "Fázování a klíčové mechaniky:",
         bossWeakspotsTitle: "Slabá místa (Weakspots):",
         recommendedBuildsTitle: "Doporučený archetyp & Deviant:",
+        memeticBracketLabel: "Úroveň slotu (Bracket):",
+        memeticResetCostLabel: "Resetovací předmět:",
+        modSlotLabel: "Slot výbavy:",
+        modArchetypeLabel: "Bojový archetyp:",
+        modSubStatsLabel: "Doporučené Sub-staty (Priority):",
+        modDropSourceLabel: "Farma / Drop lokace:",
         deviantContainmentTitle: "Podmínky Securement Unit (Optimalizace)",
         cradleSynergyTitle: "Doporučená Cradle synergie:",
         deviantSkillTitle: "Aktivní / Teritoriální schopnost:",
@@ -106,11 +114,19 @@ const i18n = {
         tabZones: "Zones & Exploration",
         tabFishing: "Fishing & Baits",
         tabBosses: "Boss Tactics & Raids",
+        tabMemetics: "Memetic Specializations",
+        tabMods: "Weapon & Armor Mods",
         baitLabel: "Recommended Bait:",
         habitatLabel: "Habitat / Location:",
         bossPhasesTitle: "Phases & Core Mechanics:",
         bossWeakspotsTitle: "Weakspots:",
         recommendedBuildsTitle: "Recommended Archetype & Deviant:",
+        memeticBracketLabel: "Level Bracket:",
+        memeticResetCostLabel: "Reset Item:",
+        modSlotLabel: "Gear Slot:",
+        modArchetypeLabel: "Combat Archetype:",
+        modSubStatsLabel: "Recommended Sub-stats (Priority):",
+        modDropSourceLabel: "Farming / Drop Source:",
         deviantContainmentTitle: "Securement Unit Conditions (Optimal Environment)",
         cradleSynergyTitle: "Recommended Cradle Synergy:",
         deviantSkillTitle: "Active / Territory Skill:",
@@ -246,7 +262,15 @@ const i18n = {
       "EMP Grenade": { locationCs: "Taktický granát vyrobený na ponku z elektronických součástek a síry pro znehybnění robotů.", locationEn: "Tactical grenade crafted from electronic parts and sulfur to disable shielding and cybernetics.", recipeId: null },
       "EMP granát": { locationCs: "Taktický granát vyrobený na ponku z elektronických součástek a síry pro znehybnění robotů.", locationEn: "Tactical grenade crafted from electronic parts and sulfur to disable shielding and cybernetics.", recipeId: null },
       "Adrenaline Shot": { locationCs: "Lékařská záchranná injekce pro okamžité oživení padlého hráče v raidu.", locationEn: "Emergency medical syringe used for reviving downed squad members in raids.", recipeId: null },
-      "Adrenalinová injekce": { locationCs: "Lékařská záchranná injekce pro okamžité oživení padlého hráče v raidu.", locationEn: "Emergency medical syringe used for reviving downed squad members in raids.", recipeId: null }
+      "Adrenalinová injekce": { locationCs: "Lékařská záchranná injekce pro okamžité oživení padlého hráče v raidu.", locationEn: "Emergency medical syringe used for reviving downed squad members in raids.", recipeId: null },
+      "Specialization Cleaner": { locationCs: "Předmět pro reset memetické specializace získávaný ze sezónních cílů a battle passu.", locationEn: "Item used to reset a chosen Memetic Specialization; rewarded from seasonal goals and Journey.", recipeId: null },
+      "Resetovací čistič (Memory Cleaner)": { locationCs: "Předmět pro reset memetické specializace získávaný ze sezónních cílů a battle passu.", locationEn: "Item used to reset a chosen Memetic Specialization; rewarded from seasonal goals and Journey.", recipeId: null },
+      "Memetic Cipher": { locationCs: "Základní měna získávaná za každý postup o úroveň (Level Up) a plnění úkolů.", locationEn: "Core talent currency earned upon leveling up and completing journey milestones.", recipeId: null },
+      "Memetic body (Ciphers)": { locationCs: "Základní měna získávaná za každý postup o úroveň (Level Up) a plnění úkolů.", locationEn: "Core talent currency earned upon leveling up and completing journey milestones.", recipeId: null },
+      "Mod Chassis (Gold)": { locationCs: "Vzácné zlaté šasi modu získávané demontáží legendárních modů v Gear Workbench.", locationEn: "Rare gold mod casing salvaged from dismantling legendary equipment mods.", recipeId: null },
+      "Zlaté tělo modu (Gold Chassis)": { locationCs: "Vzácné zlaté šasi modu získávané demontáží legendárních modů v Gear Workbench.", locationEn: "Rare gold mod casing salvaged from dismantling legendary equipment mods.", recipeId: null },
+      "Mod Calibration Parts": { locationCs: "Kalibrační součástky získávané z beden v dungeonech Silo a Monolitech.", locationEn: "Calibration materials obtained from Silo dungeon runs and Monolith loot caches.", recipeId: null },
+      "Modifikační součástky": { locationCs: "Kalibrační součástky získávané z beden v dungeonech Silo a Monolitech.", locationEn: "Calibration materials obtained from Silo dungeon runs and Monolith loot caches.", recipeId: null }
     };
 
     function getIngredientMeta(ingName) {
@@ -16342,6 +16366,1014 @@ const bossTactics = [
     ],
     "descriptionEn": "Rosetta's elite biomechanical guard division tasked with defending subterranean securement vaults at any cost.",
     "descriptionCs": "Elitní biomechanická strážní divize Rosetty pověřená obranou podzemních zabezpečovacích sil za každou cenu."
+  }
+];
+
+const memeticSpecializations = [
+  {
+    "id": "mem-spec-01",
+    "nameEn": "Sulfur Chemist (Acid Synthesis)",
+    "nameCs": "Chemik na síru (Syntéza kyseliny)",
+    "categoryEn": "Economy & Production",
+    "categoryCs": "Ekonomika a výroba",
+    "levelBracket": "Level 20 - 35",
+    "tierRanking": "S-Tier (Top Meta)",
+    "resetItem": "Specialization Memory Cleaner",
+    "rarity": "Legendary",
+    "scenario": "core",
+    "workbench": "Supplies Workbench",
+    "energy": 0,
+    "hydration": 0,
+    "buffDuration": "Permanentní perk (do resetu)",
+    "sourceEn": "Rolled in Memetic Specialization slot at Level 20, 25, 30 or 35",
+    "sourceCs": "Výběr v memetickém slotu na úrovni 20, 25, 30 nebo 35",
+    "effectsEn": [
+      "Craft 1x Acid directly from 5x Sulfur + 50x Energy Links at Supplies Workbench",
+      "Bypasses fermentation barrel waiting times and water filtration requirements",
+      "Enables completely autonomous acid generation anywhere in the game world",
+      "High trade commodity value when producing acid bulk batches for other players"
+    ],
+    "effectsCs": [
+      "Umožňuje výrobu 1x Kyseliny (Acid) přímo z 5x Síry + 50x Energy Links na Supplies Workbench",
+      "Zcela obchází čekací doby ve fermentačních sudech a nutnost znečištěné vody",
+      "Zajišťuje naprostou soběstačnost výroby kyseliny kdekoliv na mapě",
+      "Extrémní obchodní potenciál pro prodej kyseliny ostatním hráčům na serveru"
+    ],
+    "ingredientsEn": [
+      { "name": "Sulfur", "amount": "5x", "isPrimary": true },
+      { "name": "Energy Link", "amount": "50x" }
+    ],
+    "ingredientsCs": [
+      { "name": "Síra (Sulfur)", "amount": "5x", "isPrimary": true },
+      { "name": "Energy Link", "amount": "50x" }
+    ],
+    "descriptionEn": "Synthesizes raw sulfur into industrial-grade acid via high-frequency catalytic reaction, solving the mid-to-endgame acid shortage.",
+    "descriptionCs": "Katalytická reakce měnící surovou síru přímo na průmyslovou kyselinu. Definitivní řešení nedostatku kyseliny v endgame."
+  },
+  {
+    "id": "mem-spec-02",
+    "nameEn": "Precious Metal Refining (Silver & Gold)",
+    "nameCs": "Zušlechťování drahých kovů (Zlato a Stříbro)",
+    "categoryEn": "Economy & Trade",
+    "categoryCs": "Ekonomika a obchod",
+    "levelBracket": "Level 40 - 50",
+    "tierRanking": "S-Tier (Top Meta)",
+    "resetItem": "Specialization Memory Cleaner",
+    "rarity": "Legendary",
+    "scenario": "core",
+    "workbench": "Electric Furnace",
+    "energy": 0,
+    "hydration": 0,
+    "buffDuration": "Permanentní perk (do resetu)",
+    "sourceEn": "Rolled in Memetic Specialization slot at Level 40, 45 or 50",
+    "sourceCs": "Výběr v memetickém slotu na úrovni 40, 45 nebo 50",
+    "effectsEn": [
+      "Smelt Silver Ore into Silver Ingots (vendored to NPC merchants for 4,000 EL each)",
+      "Smelt Gold Ore into Gold Ingots (vendored to NPC merchants for 12,000 EL each)",
+      "Unlocks the fastest method to max out weekly vendor Energy Link caps (120,000+ EL/week)",
+      "Pairs exceptionally well with Solar Drill with Treasure Hunter perk"
+    ],
+    "effectsCs": [
+      "Tavení stříbrné rudy na stříbrné ingoty (prodej NPC obchodníkům za 4 000 EL / kus)",
+      "Tavení zlaté rudy na zlaté ingoty (prodej NPC obchodníkům za 12 000 EL / kus)",
+      "Nejrychlejší způsob, jak vybrat týdenní limit 120 000+ Energy Links u NPC traderů",
+      "Vynikající synergie se solárním vrtákem s perkem Treasure Hunter"
+    ],
+    "ingredientsEn": [
+      { "name": "Gold Ore", "amount": "5x", "isPrimary": true },
+      { "name": "Silver Ore", "amount": "5x" },
+      { "name": "Charcoal", "amount": "5x" }
+    ],
+    "ingredientsCs": [
+      { "name": "Zlatá ruda (Gold Ore)", "amount": "5x", "isPrimary": true },
+      { "name": "Stříbrná ruda (Silver Ore)", "amount": "5x" },
+      { "name": "Dřevěné uhlí (Charcoal)", "amount": "5x" }
+    ],
+    "descriptionEn": "High-heat metallurgic formulation capable of refining pure precious metals for extreme financial liquidity.",
+    "descriptionCs": "Vysokoteplotní metalurgie pro rafinaci ryzího zlata a stříbra zajišťující obrovský týdenní přísun herní měny."
+  },
+  {
+    "id": "mem-spec-03",
+    "nameEn": "Combo Chipset (Vendor Liquidity)",
+    "nameCs": "Kombinovaný čipset (Týdenní prodej)",
+    "categoryEn": "Economy & Trade",
+    "categoryCs": "Ekonomika a obchod",
+    "levelBracket": "Level 20 - 35",
+    "tierRanking": "S-Tier (Top Meta)",
+    "resetItem": "Specialization Memory Cleaner",
+    "rarity": "Legendary",
+    "scenario": "core",
+    "workbench": "Supplies Workbench",
+    "energy": 0,
+    "hydration": 0,
+    "buffDuration": "Permanentní perk (do resetu)",
+    "sourceEn": "Rolled in Memetic Specialization slot at Level 20, 25, 30 or 35",
+    "sourceCs": "Výběr v memetickém slotu na úrovni 20, 25, 30 nebo 35",
+    "effectsEn": [
+      "Craft high-density Combo Chipsets using electronic parts, metal ingots and components",
+      "Each Combo Chipset sells to town merchants for 12,000 Energy Links",
+      "Allows players without Silver/Gold mining spots to easily reach weekly 120,000 EL cap",
+      "High salvage efficiency converts obsolete salvage junk into massive financial capital"
+    ],
+    "effectsCs": [
+      "Výroba mikroprocesorových Combo Chipsetů z elektronických dílů, oceli a součástek",
+      "Každý vyrobený čipset se prodává NPC prodejcům ve městech za rovných 12 000 Energy Links",
+      "Umožňuje hráčům bez těžby zlata okamžitě vybrat týdenní měnový limit u obchodníků",
+      "Přeměňuje přebytečný elektrošrot na obrovské množství univerzální herní měny"
+    ],
+    "ingredientsEn": [
+      { "name": "Electronic Parts", "amount": "15x", "isPrimary": true },
+      { "name": "Steel Ingot", "amount": "10x" },
+      { "name": "Standard Parts", "amount": "12x" }
+    ],
+    "ingredientsCs": [
+      { "name": "Elektronické součástky", "amount": "15x", "isPrimary": true },
+      { "name": "Ocelový ingot", "amount": "10x" },
+      { "name": "Standardní součástky", "amount": "12x" }
+    ],
+    "descriptionEn": "High-tech integration creating modular microchip assemblies highly sought after by regional trade federation merchants.",
+    "descriptionCs": "Integrovaný mikročipový modul vysoce ceněný obchodníky obchodní federace ve všech osadách."
+  },
+  {
+    "id": "mem-spec-04",
+    "nameEn": "Solar Drill (Self-Recharging Mining)",
+    "nameCs": "Solární vrták (Samočinné dobíjení)",
+    "categoryEn": "Resource Gathering",
+    "categoryCs": "Těžba a suroviny",
+    "levelBracket": "Level 20 - 35",
+    "tierRanking": "S-Tier (Top Meta)",
+    "resetItem": "Specialization Memory Cleaner",
+    "rarity": "Legendary",
+    "scenario": "core",
+    "workbench": "Supplies Workbench",
+    "energy": 0,
+    "hydration": 0,
+    "buffDuration": "Permanentní perk (do resetu)",
+    "sourceEn": "Rolled in Memetic Specialization slot at Level 20, 25, 30 or 35",
+    "sourceCs": "Výběr v memetickém slotu na úrovni 20, 25, 30 nebo 35",
+    "effectsEn": [
+      "Crafts advanced Solar Drills that recharge durability automatically under sunlight",
+      "Never breaks or disappears if used during daytime hours",
+      "Base +25% mining speed and yield bonus on Copper, Tin, Iron, Aluminum and Tungsten",
+      "Crafting with Gold/Treasure Hunter boosts yields up to +100% per vein"
+    ],
+    "effectsCs": [
+      "Umožňuje vyrobit Solární vrták, který se na denním slunci automaticky sám opravuje",
+      "Nástroj se při těžbě ve dne nikdy nezničí a vydrží po celou herní sezónu",
+      "Základní bonus +25 % k rychlosti těžby a výnosu mědi, cínu, železa, hliníku i wolframu",
+      "Při výrobě se zlatem/perkem Treasure Hunter zvyšuje výnosy z rud až na +100 %"
+    ],
+    "ingredientsEn": [
+      { "name": "Solar Battery", "amount": "1x", "isPrimary": true },
+      { "name": "Tungsten Ingot", "amount": "15x" },
+      { "name": "Electronic Parts", "amount": "10x" }
+    ],
+    "ingredientsCs": [
+      { "name": "Solární článek", "amount": "1x", "isPrimary": true },
+      { "name": "Wolframový ingot", "amount": "15x" },
+      { "name": "Elektronické součástky", "amount": "10x" }
+    ],
+    "descriptionEn": "A photovoltaic industrial drill that taps ambient solar energy to maintain perpetual operational integrity.",
+    "descriptionCs": "Fotovoltaický průmyslový vrták napájený slunečním zářením, eliminující opotřebení a nutnost oprav."
+  },
+  {
+    "id": "mem-spec-05",
+    "nameEn": "Stardust Hydro-Mining Drill (Stardust Ore Extraction)",
+    "nameCs": "Stardust těžební vrták (Těžba Stardust Ore)",
+    "categoryEn": "Resource Gathering",
+    "categoryCs": "Těžba a suroviny",
+    "levelBracket": "Level 40 - 50",
+    "tierRanking": "A-Tier (High Utility)",
+    "resetItem": "Specialization Memory Cleaner",
+    "rarity": "Legendary",
+    "scenario": "core",
+    "workbench": "Supplies Workbench",
+    "energy": 0,
+    "hydration": 0,
+    "buffDuration": "Permanentní perk (do resetu)",
+    "sourceEn": "Rolled in Memetic Specialization slot at Level 40, 45 or 50",
+    "sourceCs": "Výběr v memetickém slotu na úrovni 40, 45 nebo 50",
+    "effectsEn": [
+      "Allows crafting heavy hydraulic drills capable of mining wild Stardust Ore deposits",
+      "+100% additional yield when mining Stardust nodes in Red Sands and Blackfell",
+      "Essential for players crafting endgame Tier-5 gold calibrations and rocket munitions",
+      "Integrated coolant prevents thermal jamming against hyper-dense stardust crystals"
+    ],
+    "effectsCs": [
+      "Umožňuje vyrobit těžký hydraulický vrták schopný těžit ložiska Stardust Ore v divočině",
+      "+100 % dodatečný výnos při těžbě stardustových žil v Red Sands a Blackfell",
+      "Nenahraditelný pro hráče vyrábějící endgame Tier-5 zlaté kalibrace a raketovou munici",
+      "Integrované chlazení brání přehřívání při vrtání do hustých stardustových krystalů"
+    ],
+    "ingredientsEn": [
+      { "name": "Stardust Source", "amount": "20x", "isPrimary": true },
+      { "name": "Tungsten Ingot", "amount": "20x" },
+      { "name": "Acid", "amount": "15x" }
+    ],
+    "ingredientsCs": [
+      { "name": "Stardust Source", "amount": "20x", "isPrimary": true },
+      { "name": "Wolframový ingot", "amount": "20x" },
+      { "name": "Kyselina (Acid)", "amount": "15x" }
+    ],
+    "descriptionEn": "Diamond-core reinforced drill equipped with stardust resonance dampeners, unlocking direct excavation of raw stardust ore.",
+    "descriptionCs": "Diamantový vrták s tlumiči stardustové rezonance umožňující přímou těžbu surové stardustové rudy."
+  },
+  {
+    "id": "mem-spec-06",
+    "nameEn": "Biomass Missiles (Prime War Demolition)",
+    "nameCs": "Biomasové rakety (Demolice v Prime Wars)",
+    "categoryEn": "Combat & Defense",
+    "categoryCs": "Boj a obrana",
+    "levelBracket": "Level 40 - 50",
+    "tierRanking": "S-Tier (Top Meta)",
+    "resetItem": "Specialization Memory Cleaner",
+    "rarity": "Legendary",
+    "scenario": "core",
+    "workbench": "Advanced Supplies Workbench",
+    "energy": 0,
+    "hydration": 0,
+    "buffDuration": "Permanentní perk (do resetu)",
+    "sourceEn": "Rolled in Memetic Specialization slot at Level 40, 45 or 50",
+    "sourceCs": "Výběr v memetickém slotu na úrovni 40, 45 nebo 50",
+    "effectsEn": [
+      "Craft Biomass Missiles for Red Plasma Turrets and rocket launchers without expensive electronics",
+      "Deals massive structural shield-breaking damage against Silver Gate Prime War Silver Behemoths",
+      "Reduces missile crafting cost by over 60% compared to standard military missiles",
+      "Mandatory core specialization for Prime War raid leaders and guild warfare"
+    ],
+    "effectsCs": [
+      "Výroba biomasových raket pro plazmové věže a raketomety bez nákladných elektronických dílů",
+      "Způsobuje masivní poškození stříbrným štítům bossů v Prime Wars (Silver Gate & Nightmare)",
+      "Snižuje výrobní náklady na munici do těžkých zbraní o více než 60 %",
+      "Základní specializace pro raid leadery a gildy bojující v endgame Prime Wars"
+    ],
+    "ingredientsEn": [
+      { "name": "Biological Sludge", "amount": "10x", "isPrimary": true },
+      { "name": "Gunpowder", "amount": "15x" },
+      { "name": "Steel Ingot", "amount": "5x" }
+    ],
+    "ingredientsCs": [
+      { "name": "Biologický kal", "amount": "10x", "isPrimary": true },
+      { "name": "Střelný prach", "amount": "15x" },
+      { "name": "Ocelový ingot", "amount": "5x" }
+    ],
+    "descriptionEn": "Repurposes organic bio-waste into highly destructive reactive warheads capable of shattering impenetrable stardust barrier shields.",
+    "descriptionCs": "Využívá biologický odpad k vytvoření reaktivních hlavic schopných prolomit stardustové bariéry bossů."
+  },
+  {
+    "id": "mem-spec-07",
+    "nameEn": "Backpack Expansion (Payload Mastery)",
+    "nameCs": "Rozšíření kapacity batohu (Mistr nosnosti)",
+    "categoryEn": "Survival & Utility",
+    "categoryCs": "Přežití a výbava",
+    "levelBracket": "Level 5 - 15",
+    "tierRanking": "A-Tier (High Utility)",
+    "resetItem": "Specialization Memory Cleaner",
+    "rarity": "Epic",
+    "scenario": "core",
+    "workbench": "Gear Workbench",
+    "energy": 0,
+    "hydration": 0,
+    "buffDuration": "Permanentní perk (do resetu)",
+    "sourceEn": "Rolled in Memetic Specialization slot at Level 5, 10 or 15",
+    "sourceCs": "Výběr v memetickém slotu na úrovni 5, 10 nebo 15",
+    "effectsEn": [
+      "Permanently increases character maximum carry weight by +40 kg (up to +80 kg combined)",
+      "Prevents movement speed penalties and sprint lockout during long farming expeditions",
+      "Synergizes with Featherweight backpack mods and culinary carry buffs",
+      "Great early and mid-game convenience perk for solo scavengers"
+    ],
+    "effectsCs": [
+      "Trvale navyšuje maximální nosnost postavy o +40 kg (v kombinaci až o +80 kg)",
+      "Zabraňuje zpomalení chůze a nemožnosti sprintu při dlouhých těžebních expedicích",
+      "Skvělá synergie s odlehčenými mody batohu a kulinářskými buffy na nosnost",
+      "Výrazně usnadňuje ranou i střední fázi hry pro sólo průzkumníky"
+    ],
+    "ingredientsEn": [
+      { "name": "Specialization Cleaner", "amount": "1x", "isPrimary": true },
+      { "name": "Tough Leather", "amount": "10x" }
+    ],
+    "ingredientsCs": [
+      { "name": "Resetovací čistič (Memory Cleaner)", "amount": "1x", "isPrimary": true },
+      { "name": "Tuhá kůže (Tough Leather)", "amount": "10x" }
+    ],
+    "descriptionEn": "Ergonomic skeletal frame reinforcement redistributing load weight directly across spinal exosuit harness.",
+    "descriptionCs": "Ergonomické vyztužení nosného rámu přenášející váhu nákladu přímo do opěrného exoskeletu."
+  },
+  {
+    "id": "mem-spec-08",
+    "nameEn": "Automated Heavy Defenses (Gatling & Turrets)",
+    "nameCs": "Těžké obranné věže (Gatlingy a rakety)",
+    "categoryEn": "Combat & Defense",
+    "categoryCs": "Boj a obrana",
+    "levelBracket": "Level 30 - 45",
+    "tierRanking": "A-Tier (High Utility)",
+    "resetItem": "Specialization Memory Cleaner",
+    "rarity": "Epic",
+    "scenario": "core",
+    "workbench": "Building Mode (Territory Defense)",
+    "energy": 0,
+    "hydration": 0,
+    "buffDuration": "Permanentní perk (do resetu)",
+    "sourceEn": "Rolled in Memetic Specialization slot at Level 30, 35, 40 or 45",
+    "sourceCs": "Výběr v memetickém slotu na úrovni 30, 35, 40 nebo 45",
+    "effectsEn": [
+      "Unlocks Heavy Gatling Cannons and Automated Guided Missile Launchers for bases",
+      "+50% turret fire rate and +35% structural durability against deviant swarms",
+      "Essential for safely completing Level 50 Cortex Territory Purifications without player death",
+      "Reduces ammo consumption of defense turrets by 25%"
+    ],
+    "effectsCs": [
+      "Odemkne těžké Gatling kanóny a naváděné raketové věže pro obranu teritoria",
+      "+50 % rychlost palby věží a +35 % strukturální odolnost proti deviantním vlnám",
+      "Klíčový perk pro bezpečné dokončení Level 50 purifikace teritoria bez ztrát na životech",
+      "Snižuje spotřebu munice v obranných věžích o 25 %"
+    ],
+    "ingredientsEn": [
+      { "name": "Steel Ingot", "amount": "20x", "isPrimary": true },
+      { "name": "Electronic Parts", "amount": "15x" },
+      { "name": "Refined Parts", "amount": "10x" }
+    ],
+    "ingredientsCs": [
+      { "name": "Ocelový ingot", "amount": "20x", "isPrimary": true },
+      { "name": "Elektronické součástky", "amount": "15x" },
+      { "name": "Zušlechtěné součástky", "amount": "10x" }
+    ],
+    "descriptionEn": "Military-grade ballistic targeting algorithms upgrading autonomous base defense systems into impenetrable killzones.",
+    "descriptionCs": "Vojenské balistické algoritmy proměňující obranu základny v neprostupnou obrannou zónu."
+  },
+  {
+    "id": "mem-spec-09",
+    "nameEn": "Gourmet Chef & Artisan Kitchen (Buff Potency)",
+    "nameCs": "Kulinářský mistr & Gurmán (Síla buffů)",
+    "categoryEn": "Culinary & Alchemy",
+    "categoryCs": "Vaření a alchymie",
+    "levelBracket": "Level 20 - 35",
+    "tierRanking": "A-Tier (High Utility)",
+    "resetItem": "Specialization Memory Cleaner",
+    "rarity": "Epic",
+    "scenario": "core",
+    "workbench": "Kitchen Stove / Cooking Station",
+    "energy": 0,
+    "hydration": 0,
+    "buffDuration": "Permanentní perk (do resetu)",
+    "sourceEn": "Rolled in Memetic Specialization slot at Level 20, 25, 30 or 35",
+    "sourceCs": "Výběr v memetickém slotu na úrovni 20, 25, 30 nebo 35",
+    "effectsEn": [
+      "All cooked food and drinks gain +50% longer buff duration (e.g. 30min -> 45min)",
+      "+20% buff stat potency on crafted gourmet dishes and canned combat rations",
+      "20% chance to yield double portions on every cooking cycle",
+      "Dishes maintain temperature and do not spoil while stored in special insulated pantries"
+    ],
+    "effectsCs": [
+      "Všechna uvařená jídla a nápoje získávají o +50 % delší trvání buffu (např. 30 min -> 45 min)",
+      "+20 % navýšení účinku kulinářských bonusů na poškození zbraní a elementů",
+      "20% šance na uvaření dvojité porce bez dalších surovin",
+      "Uvařené pokrmy si udržují čerstvost a nepodléhají rychlé zkáze"
+    ],
+    "ingredientsEn": [
+      { "name": "Specialization Cleaner", "amount": "1x", "isPrimary": true },
+      { "name": "Flour", "amount": "10x" },
+      { "name": "Cooking Oil", "amount": "5x" }
+    ],
+    "ingredientsCs": [
+      { "name": "Resetovací čistič (Memory Cleaner)", "amount": "1x", "isPrimary": true },
+      { "name": "Pšeničná mouka", "amount": "10x" },
+      { "name": "Olej na vaření", "amount": "5x" }
+    ],
+    "descriptionEn": "Master culinary refinement methods that optimize nutrient absorption and elevate tactical combat buff efficiency.",
+    "descriptionCs": "Kulinářské postupy optimalizující vstřebávání živin a maximalizující účinnost bojových pokrmů."
+  },
+  {
+    "id": "mem-spec-10",
+    "nameEn": "Oil Refinery Specialist (Premium Fuel)",
+    "nameCs": "Ropný rafinér (Prémiové palivo)",
+    "categoryEn": "Economy & Production",
+    "categoryCs": "Ekonomika a výroba",
+    "levelBracket": "Level 30 - 45",
+    "tierRanking": "A-Tier (High Utility)",
+    "resetItem": "Specialization Memory Cleaner",
+    "rarity": "Epic",
+    "scenario": "core",
+    "workbench": "Fuel Refining Facility",
+    "energy": 0,
+    "hydration": 0,
+    "buffDuration": "Permanentní perk (do resetu)",
+    "sourceEn": "Rolled in Memetic Specialization slot at Level 30, 35, 40 or 45",
+    "sourceCs": "Výběr v memetickém slotu na úrovni 30, 35, 40 nebo 45",
+    "effectsEn": [
+      "Refines Crude Oil into Portable Mixed Fuel at +100% conversion efficiency",
+      "Crafts Barreled Premium Fuel for high-speed vehicles and heavy industrial generators",
+      "Accelerates refinery processing speed by 50%",
+      "Essential specialization for running large fleets of vehicles and diesel generators"
+    ],
+    "effectsCs": [
+      "Rafinace surové ropy na Portable Mixed Fuel se 100% zvýšenou efektivitou výnosu",
+      "Umožňuje výrobu prémiového barelového paliva pro rychlá vozidla a generátory",
+      "Zrychluje dobu zpracování v rafinerii o 50 %",
+      "Klíčový perk pro provoz rozsáhlých automobilových flotil a dieselových elektráren"
+    ],
+    "ingredientsEn": [
+      { "name": "Crude Oil", "amount": "50x", "isPrimary": true },
+      { "name": "Steel Ingot", "amount": "10x" }
+    ],
+    "ingredientsCs": [
+      { "name": "Surová ropa (Crude Oil)", "amount": "50x", "isPrimary": true },
+      { "name": "Ocelový ingot", "amount": "10x" }
+    ],
+    "descriptionEn": "Advanced fractional distillation techniques maximizing combustible energy output from subterranean petroleum deposits.",
+    "descriptionCs": "Pokročilá frakční destilace maximalizující energetický výnos ze surové ropy těžené z ropných polí."
+  },
+  {
+    "id": "mem-spec-11",
+    "nameEn": "Portable Rainwater Collector (Zero-Power Water)",
+    "nameCs": "Přenosný lapač dešťové vody (Bezenergetická voda)",
+    "categoryEn": "Survival & Utility",
+    "categoryCs": "Přežití a výbava",
+    "levelBracket": "Level 5 - 20",
+    "tierRanking": "A-Tier (High Utility)",
+    "resetItem": "Specialization Memory Cleaner",
+    "rarity": "Epic",
+    "scenario": "core",
+    "workbench": "Building Mode (Water Facilities)",
+    "energy": 0,
+    "hydration": 0,
+    "buffDuration": "Permanentní perk (do resetu)",
+    "sourceEn": "Rolled in Memetic Specialization slot at Level 5, 10, 15 or 20",
+    "sourceCs": "Výběr v memetickém slotu na úrovni 5, 10, 15 nebo 20",
+    "effectsEn": [
+      "Build zero-power atmospheric condensation collectors that gather water in any biome",
+      "Generates both Purified Water and Dirty Water continuously without connecting to power grid",
+      "Internal storage capacity holds up to 100 units of fresh water",
+      "Ideal for off-grid outposts and desert homesteads in Red Sands"
+    ],
+    "effectsCs": [
+      "Stavba atmosférických sběračů vody s nulovou spotřebou elektřiny v jakémkoliv biomu",
+      "Průběžně generuje čistou i užitkovou vodu bez nutnosti připojení k elektrické síti",
+      "Vnitřní nádrž pojme až 100 jednotek čerstvé vody",
+      "Ideální pro pouštní základny v Red Sands a odlehlé předsunuté hlídky"
+    ],
+    "ingredientsEn": [
+      { "name": "Glass", "amount": "10x", "isPrimary": true },
+      { "name": "Copper Ingot", "amount": "8x" },
+      { "name": "Rubber", "amount": "6x" }
+    ],
+    "ingredientsCs": [
+      { "name": "Sklo (Glass)", "amount": "10x", "isPrimary": true },
+      { "name": "Měděný ingot", "amount": "8x" },
+      { "name": "Guma (Rubber)", "amount": "6x" }
+    ],
+    "descriptionEn": "Passive meteorological condenser utilizing hygroscopic condensation surfaces to harvest atmospheric humidity without electricity.",
+    "descriptionCs": "Pasivní atmosférický kondenzátor získávající pitnou vodu přímo ze vzdušné vlhkosti bez spotřeby energie."
+  },
+  {
+    "id": "mem-spec-12",
+    "nameEn": "Munitions Factory (AP High-Velocity Ammunition)",
+    "nameCs": "Mistr munice (Vysokorychlostní průrazné střelivo)",
+    "categoryEn": "Combat & Defense",
+    "categoryCs": "Boj a obrana",
+    "levelBracket": "Level 25 - 40",
+    "tierRanking": "A-Tier (High Utility)",
+    "resetItem": "Specialization Memory Cleaner",
+    "rarity": "Legendary",
+    "scenario": "core",
+    "workbench": "Supplies Workbench (Ammunition)",
+    "energy": 0,
+    "hydration": 0,
+    "buffDuration": "Permanentní perk (do resetu)",
+    "sourceEn": "Rolled in Memetic Specialization slot at Level 25, 30, 35 or 40",
+    "sourceCs": "Výběr v memetickém slotu na úrovni 25, 30, 35 nebo 40",
+    "effectsEn": [
+      "Crafts High-Velocity Armor-Piercing (AP) bullets with +15% velocity and +10% weakspot multiplier",
+      "Crafts +50% more rounds per single ammunition crafting batch",
+      "Reduces copper and steel material cost per bullet by 20%",
+      "Substantially increases DPS for fast-firing rifles, LMGs and sniper weapon archetypes"
+    ],
+    "effectsCs": [
+      "Výroba vysokorychlostního průrazného střeliva s +15 % rychlostí kulky a +10 % bonusem na weakspoty",
+      "Vytváří o +50 % více nábojů v každé výrobní dávce ze stejného množství surovin",
+      "Snižuje spotřebu mědi a oceli na jeden náboj o 20 %",
+      "Výrazně zvyšuje DPS útočných pušek, lehkých kulometů i odstřelovacích pušek"
+    ],
+    "ingredientsEn": [
+      { "name": "Gunpowder", "amount": "20x", "isPrimary": true },
+      { "name": "Copper Ingot", "amount": "10x" },
+      { "name": "Steel Ingot", "amount": "5x" }
+    ],
+    "ingredientsCs": [
+      { "name": "Střelný prach", "amount": "20x", "isPrimary": true },
+      { "name": "Měděný ingot", "amount": "10x" },
+      { "name": "Ocelový ingot", "amount": "5x" }
+    ],
+    "descriptionEn": "Precision ballistic tooling optimizing ballistic propellant compaction for unmatched kinetic punch and bullet velocity.",
+    "descriptionCs": "Precizní balistické lisování optimalizující hustotu prachové slože pro maximální kinetický účinek."
+  }
+];
+
+const gearMods = [
+  {
+    "id": "mod-01",
+    "nameEn": "Shrapnel Carnage",
+    "nameCs": "Masakr střepin (Shrapnel Carnage)",
+    "categoryEn": "Weapon Mod",
+    "categoryCs": "Zbraňový mod",
+    "gearSlot": "Weapon",
+    "modArchetypeEn": "Shrapnel (SOCR The Last Valor)",
+    "modArchetypeCs": "Shrapnel (SOCR The Last Valor)",
+    "subStatsPriorityEn": "1. Crit Rate% > 2. Crit DMG% > 3. Weapon DMG% > 4. Weakspot DMG%",
+    "subStatsPriorityCs": "1. Šance na kritický zásah (Crit Rate) > 2. Kritické poškození (Crit DMG) > 3. Poškození zbraně (Weapon DMG) > 4. Poškození slabin (Weakspot DMG)",
+    "dropSourceEn": "Securement Silo SIGMA (Master/Nightmare), Treant Monolith Hard+",
+    "dropSourceCs": "Securement Silo SIGMA (Master/Nightmare), Monolit Treanta (Hard+)",
+    "rarity": "Legendary",
+    "scenario": "core",
+    "workbench": "Gear Workbench (Modding)",
+    "energy": 0,
+    "hydration": 0,
+    "buffDuration": "Stálý pasivní zbraňový mod",
+    "sourceEn": "Silo SIGMA boss cache, Controller chest drop",
+    "sourceCs": "Truhla bosse v Silu SIGMA při použití Controlleru",
+    "effectsEn": [
+      "Shrapnel trigger chance +10%. When hitting a weakspot, triggers an extra shrapnel wave against 2 nearby parts.",
+      "Critical hits with shrapnel waves refund 1 bullet directly into the magazine.",
+      "Increases total shrapnel damage scaling by +25% against marked targets."
+    ],
+    "effectsCs": [
+      "Šance na spuštění Shrapnelu +10 %. Zásah do weakspotu vyvolá dodatečnou tříštivou vlnu na 2 okolní části.",
+      "Kritické zásahy střepinami vrací 1 náboj zpět do zásobníku zbraně.",
+      "Zvyšuje celkové poškození střepin o +25 % proti označeným cílům."
+    ],
+    "ingredientsEn": [
+      { "name": "Mod Chassis (Gold)", "amount": "1x", "isPrimary": true },
+      { "name": "Mod Calibration Parts", "amount": "10x" }
+    ],
+    "ingredientsCs": [
+      { "name": "Zlaté tělo modu (Gold Chassis)", "amount": "1x", "isPrimary": true },
+      { "name": "Modifikační součástky", "amount": "10x" }
+    ],
+    "descriptionEn": "Endgame signature weapon modification for SOCR The Last Valor, multiplying fragmentation shards upon precision weakspot impacts.",
+    "descriptionCs": "Špičkový legendární zbraňový mod pro pušku SOCR The Last Valor, znásobující tvorbu střepin při přesných zásazích."
+  },
+  {
+    "id": "mod-02",
+    "nameEn": "Flame Resonance",
+    "nameCs": "Plamenná rezonance (Flame Resonance)",
+    "categoryEn": "Weapon Mod",
+    "categoryCs": "Zbraňový mod",
+    "gearSlot": "Weapon",
+    "modArchetypeEn": "Burn (KVD Boom! Boom! / KAM Abyss Glance)",
+    "modArchetypeCs": "Burn (KVD Boom! Boom! / KAM Abyss Glance)",
+    "subStatsPriorityEn": "1. Status DMG% > 2. Elemental DMG% > 3. Burn DMG% > 4. Magazine Capacity",
+    "subStatsPriorityCs": "1. Stavové poškození (Status DMG) > 2. Elementární poškození > 3. Poškození ohněm (Burn DMG) > 4. Kapacita zásobníku",
+    "dropSourceEn": "Securement Silo EX1 (Master), Ravenous Hunter Monolith",
+    "dropSourceCs": "Securement Silo EX1 (Master), Monolit Ravenous Huntera",
+    "rarity": "Legendary",
+    "scenario": "core",
+    "workbench": "Gear Workbench (Modding)",
+    "energy": 0,
+    "hydration": 0,
+    "buffDuration": "Stálý pasivní zbraňový mod",
+    "sourceEn": "Silo EX1 boss clear with Controller",
+    "sourceCs": "Průchod Silem EX1 s Controllerem",
+    "effectsEn": [
+      "Burn duration extended by +3 seconds. When reaching max Burn stacks (3x), target detonates in a 4m thermal burst.",
+      "Thermal detonation spreads 1 stack of Burn to all enemies within blast radius.",
+      "+15% fire damage multiplier against elite and aberration enemies."
+    ],
+    "effectsCs": [
+      "Trvání hoření (Burn) prodlouženo o +3 sekundy. Při dosažení maxima (3 stacky) cíl vybuchne v termální explozi (4 m).",
+      "Exploze okamžitě přenese 1 stack hoření na všechny okolní nepřátele v dosahu.",
+      "+15 % k násobiči ohnivého poškození proti elitám a anomáliím."
+    ],
+    "ingredientsEn": [
+      { "name": "Mod Chassis (Gold)", "amount": "1x", "isPrimary": true },
+      { "name": "Mod Calibration Parts", "amount": "10x" }
+    ],
+    "ingredientsCs": [
+      { "name": "Zlaté tělo modu (Gold Chassis)", "amount": "1x", "isPrimary": true },
+      { "name": "Modifikační součástky", "amount": "10x" }
+    ],
+    "descriptionEn": "Thermochemical acceleration coil that destabilizes burn stacks into cascading explosive detonations.",
+    "descriptionCs": "Termochemická modifikace destabilizující hořící cíle do řetězových plošných výbuchů."
+  },
+  {
+    "id": "mod-03",
+    "nameEn": "Vortex Expansion",
+    "nameCs": "Expanze mrazivého víru (Vortex Expansion)",
+    "categoryEn": "Weapon Mod",
+    "categoryCs": "Zbraňový mod",
+    "gearSlot": "Weapon",
+    "modArchetypeEn": "Frost Vortex (AKM The Blue Tiger / Icy Rain)",
+    "modArchetypeCs": "Frost Vortex (AKM The Blue Tiger / Icy Rain)",
+    "subStatsPriorityEn": "1. Elemental DMG% > 2. Frost Vortex DMG% > 3. Status DMG% > 4. Reload Speed",
+    "subStatsPriorityCs": "1. Elementární poškození > 2. Poškození Frost Vortexu > 3. Stavové poškození (Status DMG) > 4. Rychlost přebíjení",
+    "dropSourceEn": "Securement Silo PSI (Master), Shadow Hound Monolith",
+    "dropSourceCs": "Securement Silo PSI (Master), Monolit Shadow Hounda",
+    "rarity": "Legendary",
+    "scenario": "core",
+    "workbench": "Gear Workbench (Modding)",
+    "energy": 0,
+    "hydration": 0,
+    "buffDuration": "Stálý pasivní zbraňový mod",
+    "sourceEn": "Silo PSI chest reward with Controller",
+    "sourceCs": "Odměna ze Sila PSI při otevření Controllerem",
+    "effectsEn": [
+      "Increases Frost Vortex attraction radius by +35% and vacuum pull force against light enemies.",
+      "Enemies trapped within vortex take continuous frost damage and suffer -40% movement speed reduction.",
+      "When vortex expires, freezes frozen targets solid for 2.5 seconds."
+    ],
+    "effectsCs": [
+      "Zvětšuje poloměr přitahování Frost Vortexu o +35 % a zesiluje sací sílu na menší nepřátele.",
+      "Nepřátelé ve víru dostávají soustavné mrazivé poškození a mají -40 % sníženou rychlost pohybu.",
+      "Při vypršení víru zmrazí všechny zasažené cíle na 2,5 sekundy v pevném ledu."
+    ],
+    "ingredientsEn": [
+      { "name": "Mod Chassis (Gold)", "amount": "1x", "isPrimary": true },
+      { "name": "Mod Calibration Parts", "amount": "10x" }
+    ],
+    "ingredientsCs": [
+      { "name": "Zlaté tělo modu (Gold Chassis)", "amount": "1x", "isPrimary": true },
+      { "name": "Modifikační součástky", "amount": "10x" }
+    ],
+    "descriptionEn": "Cryogenic muzzle amplifier expanding vortex boundary lines to control swarms of aberrations.",
+    "descriptionCs": "Kryogenická úsťová modifikace rozšiřující dosah mrazivého víru pro efektivní kontrolu davu."
+  },
+  {
+    "id": "mod-04",
+    "nameEn": "Superconductor (Static Shock)",
+    "nameCs": "Supravodič (Superconductor - Power Surge)",
+    "categoryEn": "Weapon Mod",
+    "categoryCs": "Zbraňový mod",
+    "gearSlot": "Weapon",
+    "modArchetypeEn": "Power Surge (MPS7 Outer Space / SOCR Outsider)",
+    "modArchetypeCs": "Power Surge (MPS7 Outer Space / SOCR Outsider)",
+    "subStatsPriorityEn": "1. Status DMG% > 2. Power Surge DMG% > 3. Elemental DMG% > 4. Crit Rate%",
+    "subStatsPriorityCs": "1. Stavové poškození (Status DMG) > 2. Power Surge poškození > 3. Elementární poškození > 4. Šance na kritický zásah",
+    "dropSourceEn": "Securement Silo THETA (Master), Arachsiam Monolith",
+    "dropSourceCs": "Securement Silo THETA (Master), Monolit Arachsiam",
+    "rarity": "Legendary",
+    "scenario": "core",
+    "workbench": "Gear Workbench (Modding)",
+    "energy": 0,
+    "hydration": 0,
+    "buffDuration": "Stálý pasivní zbraňový mod",
+    "sourceEn": "Silo THETA loot chest with Controller",
+    "sourceCs": "Truhla v Silu THETA s Controllerem",
+    "effectsEn": [
+      "Power Surge shock discharges strike twice per trigger and arc to 2 additional nearby targets.",
+      "Increases electric shock damage by +20% against targets affected by Conductive debuff.",
+      "Power Surge critical hits reduce weapon reload time by 15% for 4 seconds."
+    ],
+    "effectsCs": [
+      "Elektrický výboj Power Surge udeří 2x za sebou a přeskočí na 2 další nepřátele v okolí.",
+      "Zvyšuje poškození elektrickým šokem o +20 % proti cílům s vodivým debuffem.",
+      "Kritický zásah Power Surge zkracuje dobu přebíjení zbraně o 15 % na 4 sekundy."
+    ],
+    "ingredientsEn": [
+      { "name": "Mod Chassis (Gold)", "amount": "1x", "isPrimary": true },
+      { "name": "Mod Calibration Parts", "amount": "10x" }
+    ],
+    "ingredientsCs": [
+      { "name": "Zlaté tělo modu (Gold Chassis)", "amount": "1x", "isPrimary": true },
+      { "name": "Modifikační součástky", "amount": "10x" }
+    ],
+    "descriptionEn": "High-efficiency inductive relay multiplying electrical discharge arcs across tightly grouped hostile squads.",
+    "descriptionCs": "Vysokoindukční relé násobící oblouky elektrických výbojů mezi shluky nepřátel."
+  },
+  {
+    "id": "mod-05",
+    "nameEn": "Heavy Bombardment (Detonation)",
+    "nameCs": "Těžké bombardování (Heavy Bombardment)",
+    "categoryEn": "Weapon Mod",
+    "categoryCs": "Zbraňový mod",
+    "gearSlot": "Weapon",
+    "modArchetypeEn": "Unstable Bomber (DE.50 Jaws / AWS Bingo)",
+    "modArchetypeCs": "Unstable Bomber (DE.50 Jaws / AWS Bingo)",
+    "subStatsPriorityEn": "1. Crit DMG% > 2. Blast DMG% > 3. Weapon DMG% > 4. Crit Rate%",
+    "subStatsPriorityCs": "1. Kritické poškození (Crit DMG) > 2. Výbušné poškození (Blast DMG) > 3. Poškození zbraně > 4. Šance na kritický zásah",
+    "dropSourceEn": "Securement Silo PHI (Master), Forsaken Giant Monolith",
+    "dropSourceCs": "Securement Silo PHI (Master), Monolit Forsaken Gianta",
+    "rarity": "Legendary",
+    "scenario": "core",
+    "workbench": "Gear Workbench (Modding)",
+    "energy": 0,
+    "hydration": 0,
+    "buffDuration": "Stálý pasivní zbraňový mod",
+    "sourceEn": "Silo PHI boss room with Controller",
+    "sourceCs": "Místnost bosse v Silu PHI při použití Controlleru",
+    "effectsEn": [
+      "Unstable Bomber explosion triggers instantly upon impact without fuse delay.",
+      "+30% explosive blast damage multiplier and +1.5m explosion radius.",
+      "Direct hits against bosses inflict Vulnerability debuff (+8% all damage taken for 6s)."
+    ],
+    "effectsCs": [
+      "Výbuch Unstable Bomberu nastává okamžitě při dopadu bez jakékoliv časové prodlevy zápalnice.",
+      "+30 % násobič výbušného poškození a +1,5 m k poloměru exploze.",
+      "Přímé zásahy bossů udělují debuff Vulnerability (+8 % zvýšené poškození od všech hráčů na 6s)."
+    ],
+    "ingredientsEn": [
+      { "name": "Mod Chassis (Gold)", "amount": "1x", "isPrimary": true },
+      { "name": "Mod Calibration Parts", "amount": "10x" }
+    ],
+    "ingredientsCs": [
+      { "name": "Zlaté tělo modu (Gold Chassis)", "amount": "1x", "isPrimary": true },
+      { "name": "Modifikační součástky", "amount": "10x" }
+    ],
+    "descriptionEn": "Explosive charge propellant optimization that converts every unspent primer into immediate devastating kinetic detonations.",
+    "descriptionCs": "Optimalizace roznětky měnící každou nestabilní kapsli v okamžitou zničující explozi."
+  },
+  {
+    "id": "mod-06",
+    "nameEn": "Ricochet Master",
+    "nameCs": "Mistr odrazů (Ricochet Master)",
+    "categoryEn": "Weapon Mod",
+    "categoryCs": "Zbraňový mod",
+    "gearSlot": "Weapon",
+    "modArchetypeEn": "Bounce (R500 Memento)",
+    "modArchetypeCs": "Bounce (R500 Memento)",
+    "subStatsPriorityEn": "1. Weakspot DMG% > 2. Weapon DMG% > 3. Crit DMG% > 4. Effective Range",
+    "subStatsPriorityCs": "1. Poškození slabin (Weakspot DMG) > 2. Poškození zbraně > 3. Kritické poškození > 4. Efektivní dostřel",
+    "dropSourceEn": "Securement Silo SIGMA (Master), Monolith of Greed Hard",
+    "dropSourceCs": "Securement Silo SIGMA (Master), Monolit chamtivosti (Hard)",
+    "rarity": "Legendary",
+    "scenario": "core",
+    "workbench": "Gear Workbench (Modding)",
+    "energy": 0,
+    "hydration": 0,
+    "buffDuration": "Stálý pasivní zbraňový mod",
+    "sourceEn": "Silo SIGMA speedrun clear with Controller",
+    "sourceCs": "Rychlý průchod Silem SIGMA s Controllerem",
+    "effectsEn": [
+      "Bouncing bullets gain +25% increased damage with each consecutive bounce (up to 3 bounces).",
+      "Ricocheting projectiles automatically prioritize weakspots on secondary targets within 8m.",
+      "Bounce kills immediately restore 2 rounds to the magazine."
+    ],
+    "effectsCs": [
+      "Odražené střely získávají +25 % vyšší poškození s každým dalším odrazem (až 3 odrazy).",
+      "Odražené projektily automaticky vyhledávají weakspoty okolních nepřátel v okruhu 8 metrů.",
+      "Zabití odraženou střelou okamžitě vrátí 2 náboje zpět do bubínku/zásobníku."
+    ],
+    "ingredientsEn": [
+      { "name": "Mod Chassis (Gold)", "amount": "1x", "isPrimary": true },
+      { "name": "Mod Calibration Parts", "amount": "10x" }
+    ],
+    "ingredientsCs": [
+      { "name": "Zlaté tělo modu (Gold Chassis)", "amount": "1x", "isPrimary": true },
+      { "name": "Modifikační součástky", "amount": "10x" }
+    ],
+    "descriptionEn": "Ballistic smart-core calculating ricochet trajectory vectors to bend rounds around heavy enemy cover directly into weakpoints.",
+    "descriptionCs": "Chytré balistické jádro počítající úhly odrazu tak, aby projektily obcházely krytí přímo do slabin."
+  },
+  {
+    "id": "mod-07",
+    "nameEn": "Targeted Strike (Weakspot Precision)",
+    "nameCs": "Cílený úder (Targeted Strike - Helma)",
+    "categoryEn": "Helmet Mod",
+    "categoryCs": "Mod na helmu",
+    "gearSlot": "Helmet",
+    "modArchetypeEn": "Universal Precision (Sniper, Rifle, Bow)",
+    "modArchetypeCs": "Univerzální přesnost (Sniper, Rifle, Luk)",
+    "subStatsPriorityEn": "1. Weakspot DMG% > 2. Crit Rate% > 3. Crit DMG% > 4. Reload Speed",
+    "subStatsPriorityCs": "1. Poškození slabin (Weakspot DMG) > 2. Šance na kritický zásah > 3. Kritické poškození > 4. Rychlost přebíjení",
+    "dropSourceEn": "Securement Silo THETA (Master/Nightmare), Blackfell Fallen Zone",
+    "dropSourceCs": "Securement Silo THETA (Master/Nightmare), Zamořená zóna Blackfell",
+    "rarity": "Legendary",
+    "scenario": "core",
+    "workbench": "Gear Workbench (Modding)",
+    "energy": 0,
+    "hydration": 0,
+    "buffDuration": "Stálý pasivní zbrojní mod",
+    "sourceEn": "Silo THETA armor mod cache",
+    "sourceCs": "Bedna se zbrojními mody v Silu THETA",
+    "effectsEn": [
+      "Hitting a weakspot grants +15% Weapon DMG for 5 seconds, stacking up to 3 times (+45% max).",
+      "Precision kills reset the stack duration and grant +10% movement speed for 4s.",
+      "Best-in-slot offensive helmet mod across virtually all precision ballistic archetypes."
+    ],
+    "effectsCs": [
+      "Zásah do slabiny (weakspot) poskytuje +15 % k poškození zbraně na 5 sekund, sčítá se až 3x (+45 % max).",
+      "Přesné zabití resetuje trvání stacků a přidá +10 % k rychlosti pohybu na 4 sekundy.",
+      "Best-in-slot útočný mod na helmu pro drtivou většinu střeleckých archetypů."
+    ],
+    "ingredientsEn": [
+      { "name": "Mod Chassis (Gold)", "amount": "1x", "isPrimary": true },
+      { "name": "Mod Calibration Parts", "amount": "10x" }
+    ],
+    "ingredientsCs": [
+      { "name": "Zlaté tělo modu (Gold Chassis)", "amount": "1x", "isPrimary": true },
+      { "name": "Modifikační součástky", "amount": "10x" }
+    ],
+    "descriptionEn": "Tactical HUD optical overlay providing predictive telemetry to maximize kinetic transfer upon precision structural weakspots.",
+    "descriptionCs": "Optické rozhraní helmy s prediktivní telemetrií maximalizující účinek zásahů do zranitelných míst."
+  },
+  {
+    "id": "mod-08",
+    "nameEn": "Momentum (First Strike Reload)",
+    "nameCs": "Setrvačnost (Momentum - Maska)",
+    "categoryEn": "Mask Mod",
+    "categoryCs": "Mod na masku",
+    "gearSlot": "Mask",
+    "modArchetypeEn": "Burst Fire & Fast Gunner (LMG, SMG, AR)",
+    "modArchetypeCs": "Rychlopalba & Fast Gunner (LMG, SMG, AR)",
+    "subStatsPriorityEn": "1. Weapon DMG% > 2. Magazine Capacity > 3. Reload Speed > 4. Movement Speed",
+    "subStatsPriorityCs": "1. Poškození zbraně > 2. Kapacita zásobníku > 3. Rychlost přebíjení > 4. Rychlost pohybu",
+    "dropSourceEn": "Securement Silo EX1 (Master), Chalk Peak Harborside",
+    "dropSourceCs": "Securement Silo EX1 (Master), Přístav Harborside v Chalk Peak",
+    "rarity": "Legendary",
+    "scenario": "core",
+    "workbench": "Gear Workbench (Modding)",
+    "energy": 0,
+    "hydration": 0,
+    "buffDuration": "Stálý pasivní zbrojní mod",
+    "sourceEn": "Silo EX1 mask selection cache with Controller",
+    "sourceCs": "Výběrová bedna masek v Silu EX1 s Controllerem",
+    "effectsEn": [
+      "After completing a reload, first 15 rounds deal +20% bonus Weapon Damage.",
+      "If the reload was performed while magazine was completely empty, bonus increases to +30%.",
+      "Reduces tactile reload animation delay by 15%."
+    ],
+    "effectsCs": [
+      "Po dokončení přebití zbraně způsobuje prvních 15 střel o +20 % vyšší poškození zbraně.",
+      "Pokud bylo přebití provedeno při zcela prázdném zásobníku, bonus se zvyšuje na +30 %.",
+      "Zkracuje animaci přebíjení zbraně o 15 %."
+    ],
+    "ingredientsEn": [
+      { "name": "Mod Chassis (Gold)", "amount": "1x", "isPrimary": true },
+      { "name": "Mod Calibration Parts", "amount": "10x" }
+    ],
+    "ingredientsCs": [
+      { "name": "Zlaté tělo modu (Gold Chassis)", "amount": "1x", "isPrimary": true },
+      { "name": "Modifikační součástky", "amount": "10x" }
+    ],
+    "descriptionEn": "Ballistic respirator mod channeling combat adrenaline to supercharge cycling rates immediately after fresh magazine feeds.",
+    "descriptionCs": "Respirátorový mod přenášející bojový adrenalin do okamžitého zvýšení kinetického účinku po přebití."
+  },
+  {
+    "id": "mod-09",
+    "nameEn": "Lifeline (Emergency Defibrillator)",
+    "nameCs": "Záchranné lano (Lifeline - Vesta/Top)",
+    "categoryEn": "Top Mod",
+    "categoryCs": "Mod na vestu",
+    "gearSlot": "Top",
+    "modArchetypeEn": "Survival & Raid Tanking (Universal Defense)",
+    "modArchetypeCs": "Přežití a raidový tank (Univerzální obrana)",
+    "subStatsPriorityEn": "1. Max HP% > 2. Damage Reduction% > 3. Elemental Resistance > 4. Healing Received",
+    "subStatsPriorityCs": "1. Maximální zdraví (Max HP) > 2. Redukce poškození > 3. Elementární odolnost > 4. Účinek léčení",
+    "dropSourceEn": "Securement Silo PSI (Master), Monolith of Purity",
+    "dropSourceCs": "Securement Silo PSI (Master), Monolit čistoty",
+    "rarity": "Legendary",
+    "scenario": "core",
+    "workbench": "Gear Workbench (Modding)",
+    "energy": 0,
+    "hydration": 0,
+    "buffDuration": "Stálý pasivní zbrojní mod",
+    "sourceEn": "Silo PSI chest drop with Controller",
+    "sourceCs": "Drop z truhly v Silu PSI s Controllerem",
+    "effectsEn": [
+      "When character HP drops below 30%, immediately restores 25% max HP and provides 5s damage immunity barrier.",
+      "Internal emergency cooldown of 90 seconds.",
+      "Mandatory defensive life-saver against one-shot raid mechanics in Forsaken Giant and Silo Nightmare."
+    ],
+    "effectsCs": [
+      "Když zdraví klesne pod 30 %, okamžitě doplní 25 % maximálního HP a vytvoří na 5s ochrannou bariéru.",
+      "Vnitřní záchranný cooldown 90 sekund.",
+      "Nenahraditelná záchranná pojistka proti smrtícím one-shot mechanikám u Forsaken Gianta a v Nightmare silech."
+    ],
+    "ingredientsEn": [
+      { "name": "Mod Chassis (Gold)", "amount": "1x", "isPrimary": true },
+      { "name": "Mod Calibration Parts", "amount": "10x" }
+    ],
+    "ingredientsCs": [
+      { "name": "Zlaté tělo modu (Gold Chassis)", "amount": "1x", "isPrimary": true },
+      { "name": "Modifikační součástky", "amount": "10x" }
+    ],
+    "descriptionEn": "Chestplate bio-monitor that discharges a restorative defibrillator surge the microsecond vital signs indicate lethal cardiac failure.",
+    "descriptionCs": "Hrudní biometrický systém aktivující záchranný defibrilační šok při hrozbě okamžité smrti postavy."
+  },
+  {
+    "id": "mod-10",
+    "nameEn": "Deadly Pace (Sprinting Critical)",
+    "nameCs": "Smrtící tempo (Deadly Pace - Kalhoty)",
+    "categoryEn": "Bottoms Mod",
+    "categoryCs": "Mod na kalhoty",
+    "gearSlot": "Bottoms",
+    "modArchetypeEn": "Mobility & Gunner (Pistol, Shotgun, SMG)",
+    "modArchetypeCs": "Mobilita & Střelba v pohybu (Pistole, Brokovnice, SMG)",
+    "subStatsPriorityEn": "1. Movement Speed% > 2. Crit DMG% > 3. Stamina Regen > 4. Weapon DMG%",
+    "subStatsPriorityCs": "1. Rychlost pohybu (Movement Speed) > 2. Kritické poškození > 3. Regenerace staminy > 4. Poškození zbraně",
+    "dropSourceEn": "Securement Silo SIGMA (Master), Red Sands Refinery",
+    "dropSourceCs": "Securement Silo SIGMA (Master), Ropná rafinerie v Red Sands",
+    "rarity": "Legendary",
+    "scenario": "core",
+    "workbench": "Gear Workbench (Modding)",
+    "energy": 0,
+    "hydration": 0,
+    "buffDuration": "Stálý pasivní zbrojní mod",
+    "sourceEn": "Silo SIGMA legs armor drop with Controller",
+    "sourceCs": "Drop nožního brnění v Silu SIGMA s Controllerem",
+    "effectsEn": [
+      "Sprinting continuously for 2 seconds grants guaranteed 100% Critical Strike Chance on next fired shot.",
+      "+40% faster tactical reload while moving or sprint-sliding.",
+      "Increases sprint movement speed by +8% across all weapon types."
+    ],
+    "effectsCs": [
+      "Nepřetržitý sprint po dobu 2 sekund zajistí garantovanou 100% šanci na kritický zásah pro následující výstřel.",
+      "+40 % rychlejší přebíjení při pohybu nebo skluzu ve sprintu.",
+      "Zvyšuje rychlost sprintu o +8 % se všemi typy zbraní."
+    ],
+    "ingredientsEn": [
+      { "name": "Mod Chassis (Gold)", "amount": "1x", "isPrimary": true },
+      { "name": "Mod Calibration Parts", "amount": "10x" }
+    ],
+    "ingredientsCs": [
+      { "name": "Zlaté tělo modu (Gold Chassis)", "amount": "1x", "isPrimary": true },
+      { "name": "Modifikační součástky", "amount": "10x" }
+    ],
+    "descriptionEn": "Leg servo-actuator modification converting forward kinetic momentum into stabilized firing posture.",
+    "descriptionCs": "Modifikace nožních servomotorů převádějící kinetickou energii běhu do bleskové a přesné stabilizace zbraně."
+  },
+  {
+    "id": "mod-11",
+    "nameEn": "Crit Boost (Precision Aim Gloves)",
+    "nameCs": "Kritické posílení (Crit Boost - Rukavice)",
+    "categoryEn": "Gloves Mod",
+    "categoryCs": "Mod na rukavice",
+    "gearSlot": "Gloves",
+    "modArchetypeEn": "Sniper, Marksman & DMR Precision",
+    "modArchetypeCs": "Sniper, Marksman & Odstřelovací pušky",
+    "subStatsPriorityEn": "1. Crit Rate% > 2. Crit DMG% > 3. Weapon DMG% > 4. ADS Speed",
+    "subStatsPriorityCs": "1. Šance na kritický zásah (Crit Rate) > 2. Kritické poškození > 3. Poškození zbraně > 4. Rychlost míření (ADS)",
+    "dropSourceEn": "Securement Silo THETA (Master), Monolith of Foliage",
+    "dropSourceCs": "Securement Silo THETA (Master), Monolit listoví (Foliage)",
+    "rarity": "Legendary",
+    "scenario": "core",
+    "workbench": "Gear Workbench (Modding)",
+    "energy": 0,
+    "hydration": 0,
+    "buffDuration": "Stálý pasivní zbrojní mod",
+    "sourceEn": "Silo THETA gloves reward with Controller",
+    "sourceCs": "Odměna ze Sila THETA na rukavice s Controllerem",
+    "effectsEn": [
+      "Aiming Down Sights (ADS) grants flat +10% Crit Rate and +20% Crit DMG.",
+      "Hitting an enemy beyond 25m increases the critical damage bonus to +35%.",
+      "Reduces reticle sway and barrel recoil while scoped by 30%."
+    ],
+    "effectsCs": [
+      "Míření přes mířidla (ADS) poskytuje přímý bonus +10 % k šanci na kritický zásah a +20 % ke kritickému poškození.",
+      "Zásah cíle na vzdálenost přes 25 metrů zvyšuje bonus ke kritickému poškození až na +35 %.",
+      "Snižuje chvění zaměřovače a zpětný ráz při míření s puškohledem o 30 %."
+    ],
+    "ingredientsEn": [
+      { "name": "Mod Chassis (Gold)", "amount": "1x", "isPrimary": true },
+      { "name": "Mod Calibration Parts", "amount": "10x" }
+    ],
+    "ingredientsCs": [
+      { "name": "Zlaté tělo modu (Gold Chassis)", "amount": "1x", "isPrimary": true },
+      { "name": "Modifikační součástky", "amount": "10x" }
+    ],
+    "descriptionEn": "Sensory grip enhancement dampening micro-tremors and aligning firearm bore axis with retinal crosshairs.",
+    "descriptionCs": "Úchopové senzory tlumící mikrotřes rukou a dokonale vyrovnávající hlaveň zbraně s osou pohledu."
+  },
+  {
+    "id": "mod-12",
+    "nameEn": "Covered Advance (Tactical Evasion Shoes)",
+    "nameCs": "Krytý postup (Covered Advance - Boty)",
+    "categoryEn": "Shoes Mod",
+    "categoryCs": "Mod na boty",
+    "gearSlot": "Shoes",
+    "modArchetypeEn": "Defensive Evasion & Mobility (Universal)",
+    "modArchetypeCs": "Obranné úhyby a mobilita (Univerzální)",
+    "subStatsPriorityEn": "1. Damage Reduction% > 2. Stamina Recovery > 3. Movement Speed% > 4. Roll Distance",
+    "subStatsPriorityCs": "1. Redukce poškození > 2. Obnova staminy > 3. Rychlost pohybu > 4. Délka kotoulu",
+    "dropSourceEn": "Securement Silo PHI (Master), Monolith of Thirst",
+    "dropSourceCs": "Securement Silo PHI (Master), Monolit žízně (Thirst)",
+    "rarity": "Legendary",
+    "scenario": "core",
+    "workbench": "Gear Workbench (Modding)",
+    "energy": 0,
+    "hydration": 0,
+    "buffDuration": "Stálý pasivní zbrojní mod",
+    "sourceEn": "Silo PHI shoes reward with Controller",
+    "sourceCs": "Odměna ze Sila PHI na obuv s Controllerem",
+    "effectsEn": [
+      "Executing a combat roll reduces all incoming damage by 30% for 3 seconds.",
+      "Immediately restores 15 Stamina points upon successfully dodging an enemy attack.",
+      "Immune to movement-impairing slow debuffs for 2 seconds after rolling."
+    ],
+    "effectsCs": [
+      "Provedení úhybného kotoulu sníží veškeré utržené poškození o 30 % na dobu 3 sekund.",
+      "Okamžitě obnoví 15 bodů staminy při úspěšném vyhnutí nepřátelskému útoku.",
+      "Poskytuje imunitu proti zpomalujícím efektům na 2 sekundy po kotoulu."
+    ],
+    "ingredientsEn": [
+      { "name": "Mod Chassis (Gold)", "amount": "1x", "isPrimary": true },
+      { "name": "Mod Calibration Parts", "amount": "10x" }
+    ],
+    "ingredientsCs": [
+      { "name": "Zlaté tělo modu (Gold Chassis)", "amount": "1x", "isPrimary": true },
+      { "name": "Modifikační součástky", "amount": "10x" }
+    ],
+    "descriptionEn": "Kinetic absorption soles that dissipate high-velocity shockwaves and turn evasion maneuvers into tactical positioning.",
+    "descriptionCs": "Kinetické absorpční podrážky tlumící rázové vlny a proměňující obranné kotouly v taktickou výhodu."
   }
 ];
 

@@ -742,7 +742,17 @@ function initSearchIndex() {
       bossTokens = ` ${item.weakspotsCs || ''} ${item.weakspotsEn || ''} ${(item.phasesCs || []).join(' ')} ${(item.phasesEn || []).join(' ')} ${item.recommendedArchetypesCs || ''} ${item.recommendedArchetypesEn || ''} ${item.recommendedDeviantsCs || ''} ${item.recommendedDeviantsEn || ''} boss raid taktika mechanika monolith wipe weakspot fázování silo hunter treant arachsiam hound giant`;
     }
 
-    item._searchIndex = (csTokens + ' ' + enTokens + ' ' + (item.scenario || '') + ' ' + invTokens + ' ' + gearTokens + ' ' + deviantTokens + ' ' + zoneTokens + ' ' + fishTokens + ' ' + bossTokens).toLowerCase();
+    let memeticTokens = '';
+    if (item.levelBracket || item.tierRanking || item.resetItem) {
+      memeticTokens = ` ${item.levelBracket || ''} ${item.tierRanking || ''} ${item.resetItem || ''} memetic specializace specialization mastery perk cleaner reset talent link sulfur chemist solar drill biomass missile`;
+    }
+
+    let modTokens = '';
+    if (item.gearSlot || item.modArchetypeCs || item.subStatsPriorityCs) {
+      modTokens = ` ${item.gearSlot || ''} ${item.modArchetypeCs || ''} ${item.modArchetypeEn || ''} ${item.subStatsPriorityCs || ''} ${item.subStatsPriorityEn || ''} ${item.dropSourceCs || ''} ${item.dropSourceEn || ''} mod modifikace zbraň zbroj slot substat sub-stat helm mask top vesta kalhoty bottoms gloves rukavice shoes boty shrapnel burn frost surge bounce bomber`;
+    }
+
+    item._searchIndex = (csTokens + ' ' + enTokens + ' ' + (item.scenario || '') + ' ' + invTokens + ' ' + gearTokens + ' ' + deviantTokens + ' ' + zoneTokens + ' ' + fishTokens + ' ' + bossTokens + ' ' + memeticTokens + ' ' + modTokens).toLowerCase();
   });
 }
 
@@ -796,7 +806,7 @@ function handleHashChange() {
     openModal(recipeId, false);
   } else if (hash.startsWith('tab=')) {
     const tabName = hash.replace('tab=', '');
-    if (activeTab !== tabName && ['discovered', 'creative', 'medicine', 'inventions', 'gear', 'deviants', 'zones', 'fishing', 'bosses'].includes(tabName)) {
+    if (activeTab !== tabName && ['discovered', 'creative', 'medicine', 'inventions', 'gear', 'deviants', 'zones', 'fishing', 'bosses', 'memetics', 'mods'].includes(tabName)) {
       switchTab(tabName, false);
     }
   }
@@ -842,7 +852,7 @@ window.addEventListener('keydown', function(e) {
 });
 
 function getAllRecipes() {
-  return [...discoveredRecipes, ...creativeDishes, ...medicineRecipes, ...inventionRecipes, ...gearRecipes, ...deviantRecipes, ...zoneRecipes, ...fishRecipes, ...bossTactics];
+  return [...discoveredRecipes, ...creativeDishes, ...medicineRecipes, ...inventionRecipes, ...gearRecipes, ...deviantRecipes, ...zoneRecipes, ...fishRecipes, ...bossTactics, ...memeticSpecializations, ...gearMods];
 }
 
 function findRecipeById(id) {
@@ -859,6 +869,8 @@ function determineRecipeTab(recipeId) {
   if (zoneRecipes.some(r => r.id === recipeId)) return 'zones';
   if (fishRecipes.some(r => r.id === recipeId)) return 'fishing';
   if (bossTactics.some(r => r.id === recipeId)) return 'bosses';
+  if (memeticSpecializations.some(r => r.id === recipeId)) return 'memetics';
+  if (gearMods.some(r => r.id === recipeId)) return 'mods';
   return 'discovered';
 }
 
@@ -885,6 +897,8 @@ function getActiveDataset() {
     case 'zones': return zoneRecipes;
     case 'fishing': return fishRecipes;
     case 'bosses': return bossTactics;
+    case 'memetics': return memeticSpecializations;
+    case 'mods': return gearMods;
     default: return discoveredRecipes;
   }
 }
@@ -919,6 +933,10 @@ function applyLanguageUI() {
   if (fishTabEl) fishTabEl.innerText = `${t.tabFishing || 'Fishing & Baits'} (${fishRecipes.length})`;
   const bossTabEl = document.getElementById('tab-txt-bosses');
   if (bossTabEl) bossTabEl.innerText = `${t.tabBosses || 'Boss Tactics & Raids'} (${bossTactics.length})`;
+  const memTabEl = document.getElementById('tab-txt-memetics');
+  if (memTabEl) memTabEl.innerText = `${t.tabMemetics || 'Memetic Specializations'} (${memeticSpecializations.length})`;
+  const modTabEl = document.getElementById('tab-txt-mods');
+  if (modTabEl) modTabEl.innerText = `${t.tabMods || 'Weapon & Armor Mods'} (${gearMods.length})`;
   document.getElementById('calc-title').innerText = t.calcTitle;
   document.getElementById('calc-desc').innerText = t.calcDesc;
   document.getElementById('searchInput').placeholder = t.searchPlaceholder;
@@ -964,7 +982,9 @@ function switchTab(tabId, updateHash = true) {
     { id: 'tab-btn-deviants', name: 'deviants' },
     { id: 'tab-btn-zones', name: 'zones' },
     { id: 'tab-btn-fishing', name: 'fishing' },
-    { id: 'tab-btn-bosses', name: 'bosses' }
+    { id: 'tab-btn-bosses', name: 'bosses' },
+    { id: 'tab-btn-memetics', name: 'memetics' },
+    { id: 'tab-btn-mods', name: 'mods' }
   ];
 
   buttons.forEach(btn => {
@@ -1242,6 +1262,21 @@ function renderRecipeCards(items) {
                 <i class="fa-solid fa-skull-crossbones text-[8px] text-red-400"></i>${currentLang === 'cs' ? 'Boss Encounter' : 'Boss Raid'}
               </span>
             ` : ''}
+            ${item.levelBracket ? `
+              <span class="text-[9px] font-mono uppercase px-1.5 py-0.5 rounded border border-purple-500/60 bg-purple-950/80 text-purple-300 font-bold flex items-center gap-1 shadow-[0_0_8px_rgba(181,23,158,0.25)]">
+                <i class="fa-solid fa-brain text-[8px] text-purple-400"></i>${item.levelBracket}
+              </span>
+            ` : ''}
+            ${item.tierRanking ? `
+              <span class="text-[9px] font-mono uppercase px-1.5 py-0.5 rounded border border-amber-500/60 bg-amber-950/80 text-amber-300 font-bold flex items-center gap-1 shadow-[0_0_8px_rgba(245,158,11,0.25)]">
+                <i class="fa-solid fa-award text-[8px] text-amber-400"></i>${item.tierRanking.split(' ')[0]}
+              </span>
+            ` : ''}
+            ${item.gearSlot ? `
+              <span class="text-[9px] font-mono uppercase px-1.5 py-0.5 rounded border border-blue-500/60 bg-blue-950/80 text-blue-300 font-bold flex items-center gap-1 shadow-[0_0_8px_rgba(59,130,246,0.25)]">
+                <i class="fa-solid fa-puzzle-piece text-[8px] text-blue-400"></i>${item.gearSlot}
+              </span>
+            ` : ''}
           </div>
           <div class="flex items-center gap-2">
             <span class="text-[10px] font-mono uppercase px-2 py-0.5 rounded border ${rar.bg} ${rar.text} ${rar.border} font-bold flex items-center space-x-1">
@@ -1368,6 +1403,41 @@ function renderRecipeCards(items) {
                 <i class="fa-solid fa-bullseye text-amber-400 text-[9px]"></i>
                 <span class="text-slate-400">${currentLang === 'cs' ? 'Doporučený build' : 'Recommended'}:</span>
                 <strong class="text-amber-200 truncate">${currentLang === 'cs' ? item.recommendedArchetypesCs : item.recommendedArchetypesEn}</strong>
+              </div>
+            ` : ''}
+          </div>
+        ` : ''}
+
+        <!-- Memetic Specialization Preview -->
+        ${item.levelBracket ? `
+          <div class="mb-3 p-2.5 bg-purple-950/40 border border-purple-500/40 rounded text-xs text-purple-200 leading-snug">
+            <div class="flex items-center justify-between mb-1">
+              <span class="text-[10px] uppercase font-bold text-purple-400 flex items-center gap-1">
+                <i class="fa-solid fa-layer-group text-[9px]"></i>${currentLang === 'cs' ? 'Milník (Bracket)' : 'Level Bracket'}:
+              </span>
+              <span class="font-mono text-[11px] text-white font-semibold">${item.levelBracket}</span>
+            </div>
+            ${item.tierRanking ? `
+              <div class="text-[11px] text-amber-300 border-t border-purple-800/50 pt-1 mt-1 flex items-center gap-1.5">
+                <i class="fa-solid fa-trophy text-amber-400 text-[9px]"></i>
+                <strong class="text-amber-200">${item.tierRanking}</strong>
+              </div>
+            ` : ''}
+          </div>
+        ` : ''}
+
+        <!-- Gear Mod Slot & Sub-Stat Priority Preview -->
+        ${item.gearSlot ? `
+          <div class="mb-3 p-2.5 bg-blue-950/40 border border-blue-500/40 rounded text-xs text-blue-200 leading-snug">
+            <div class="flex items-center justify-between mb-1">
+              <span class="text-[10px] uppercase font-bold text-blue-400 flex items-center gap-1">
+                <i class="fa-solid fa-puzzle-piece text-[9px]"></i>${currentLang === 'cs' ? 'Slot & Archetyp' : 'Slot & Archetype'}:
+              </span>
+              <span class="font-mono text-[11px] text-white font-semibold">${item.gearSlot} • ${currentLang === 'cs' ? (item.modArchetypeCs || '') : (item.modArchetypeEn || '')}</span>
+            </div>
+            ${item.subStatsPriorityCs ? `
+              <div class="text-[10px] text-slate-300 font-mono border-t border-blue-800/50 pt-1 mt-1 truncate" title="${currentLang === 'cs' ? item.subStatsPriorityCs : item.subStatsPriorityEn}">
+                <i class="fa-solid fa-list-ol text-blue-400 text-[9px] mr-1"></i>${currentLang === 'cs' ? item.subStatsPriorityCs : item.subStatsPriorityEn}
               </div>
             ` : ''}
           </div>
@@ -1814,6 +1884,87 @@ function openModal(id, pushHistory = false) {
                 <strong class="text-white">${currentLang === 'cs' ? item.recommendedDeviantsCs : item.recommendedDeviantsEn}</strong>
               </div>
             ` : ''}
+          </div>
+        ` : ''}
+      </div>
+    ` : ''}
+
+    <!-- Memetic Specialization Details Section -->
+    ${item.levelBracket || item.tierRanking ? `
+      <div class="mb-4 p-4 bg-slate-900/90 border border-purple-500/60 rounded-lg shadow-[0_0_20px_rgba(181,23,158,0.2)]">
+        <div class="flex items-center justify-between mb-3 flex-wrap gap-2">
+          <span class="text-xs font-orbitron font-bold text-white flex items-center gap-1.5">
+            <i class="fa-solid fa-brain text-purple-400"></i>
+            ${currentLang === 'cs' ? (item.categoryCs || 'Memetická specializace') : (item.categoryEn || 'Memetic Specialization')} • <span class="text-purple-300">${primaryName}</span>
+          </span>
+          <div class="flex items-center gap-1.5">
+            ${item.levelBracket ? `
+              <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-purple-950/80 text-purple-300 border border-purple-500/60 font-bold uppercase">
+                ${item.levelBracket}
+              </span>
+            ` : ''}
+            ${item.tierRanking ? `
+              <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-amber-950/80 text-amber-300 border border-amber-500/60 font-bold uppercase">
+                <i class="fa-solid fa-award mr-1 text-amber-400"></i>${item.tierRanking}
+              </span>
+            ` : ''}
+          </div>
+        </div>
+
+        <div class="space-y-2 text-xs font-mono mb-3">
+          ${item.resetItem ? `
+            <div class="p-2.5 rounded bg-hud-bg/90 border border-hud-border flex items-start justify-between gap-2">
+              <span class="text-slate-400 flex items-center gap-1.5">
+                <i class="fa-solid fa-rotate-left text-hud-cyan text-[10px]"></i>
+                ${t.memeticResetCostLabel || 'Resetovací předmět:'}
+              </span>
+              <strong class="text-white">${item.resetItem}</strong>
+            </div>
+          ` : ''}
+        </div>
+      </div>
+    ` : ''}
+
+    <!-- Weapon & Armor Mod Details Section -->
+    ${item.gearSlot || item.subStatsPriorityCs ? `
+      <div class="mb-4 p-4 bg-slate-900/90 border border-blue-500/60 rounded-lg shadow-[0_0_20px_rgba(59,130,246,0.2)]">
+        <div class="flex items-center justify-between mb-3 flex-wrap gap-2">
+          <span class="text-xs font-orbitron font-bold text-white flex items-center gap-1.5">
+            <i class="fa-solid fa-puzzle-piece text-blue-400"></i>
+            ${currentLang === 'cs' ? (item.categoryCs || 'Modifikace') : (item.categoryEn || 'Gear Mod')} • <span class="text-blue-300">${primaryName}</span>
+          </span>
+          <div class="flex items-center gap-1.5">
+            ${item.gearSlot ? `
+              <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-blue-950/80 text-blue-300 border border-blue-500/60 font-bold uppercase">
+                <i class="fa-solid fa-shield-halved mr-1"></i>Slot: ${item.gearSlot}
+              </span>
+            ` : ''}
+            ${item.modArchetypeCs ? `
+              <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-amber-950/80 text-amber-300 border border-amber-500/60 font-bold">
+                <i class="fa-solid fa-crosshairs mr-1 text-amber-400"></i>${currentLang === 'cs' ? item.modArchetypeCs : item.modArchetypeEn}
+              </span>
+            ` : ''}
+          </div>
+        </div>
+
+        ${item.subStatsPriorityCs ? `
+          <div class="mb-3 p-3 rounded bg-blue-950/30 border border-blue-500/40 text-xs">
+            <strong class="block text-blue-400 text-[10px] uppercase font-mono flex items-center gap-1 mb-1.5">
+              <i class="fa-solid fa-arrow-down-short-wide"></i>${t.modSubStatsLabel || 'Doporučené Sub-staty (Priority):'}
+            </strong>
+            <div class="font-mono text-slate-200 text-[11px] leading-relaxed p-2 rounded bg-slate-900/80 border border-slate-700">
+              ${currentLang === 'cs' ? item.subStatsPriorityCs : item.subStatsPriorityEn}
+            </div>
+          </div>
+        ` : ''}
+
+        ${item.dropSourceCs ? `
+          <div class="p-2.5 rounded bg-hud-bg/90 border border-hud-border flex items-start justify-between gap-2 text-xs font-mono">
+            <span class="text-slate-400 flex items-center gap-1.5">
+              <i class="fa-solid fa-location-dot text-hud-cyan text-[10px]"></i>
+              ${t.modDropSourceLabel || 'Farma / Drop lokace:'}
+            </span>
+            <strong class="text-hud-cyan">${currentLang === 'cs' ? item.dropSourceCs : item.dropSourceEn}</strong>
           </div>
         ` : ''}
       </div>
