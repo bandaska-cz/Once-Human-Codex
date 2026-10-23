@@ -2310,11 +2310,39 @@ function calculateSynergies() {
     hydro += 10;
     effectsCs.push("Pollution RES +20% & Sanity +150");
     effectsEn.push("Pollution RES +20% & Sanity +150");
+  } else if (veg === 'spikemato') {
+    energy += 25;
+    effectsCs.push("🍅 Spikemato: Cold RES +25 & Max Health +200");
+    effectsEn.push("🍅 Spikemato: Cold RES +25 & Max Health +200");
+  } else if (veg === 'ice_melon') {
+    hydro += 35;
+    effectsCs.push("🍉 Ice Melon: Hypothermia Shield & Hydration +35");
+    effectsEn.push("🍉 Ice Melon: Hypothermia Shield & Hydration +35");
+  } else if (veg === 'deviated_aloe') {
+    energy += 20;
+    hydro += 20;
+    effectsCs.push("🌱 Deviated Aloe: HP Regen +2.5%/s & Sanity Shield +150");
+    effectsEn.push("🌱 Deviated Aloe: HP Regen +2.5%/s & Sanity Shield +150");
+  } else if (veg === 'calamus') {
+    energy += 20;
+    effectsCs.push("🌾 Scarlet Calamus: Sprint Speed +12% & Attack Velocity +8%");
+    effectsEn.push("🌾 Scarlet Calamus: Sprint Speed +12% & Attack Velocity +8%");
   }
 
   if (spice === 'pepper') {
     effectsCs.push("Creative Success Rate +20% & Attack +8%");
     effectsEn.push("Creative Success Rate +20% & Attack +8%");
+  } else if (spice === 'polar_pepper') {
+    effectsCs.push("🌶️ Polar Pepper: Frostwalker stav (Imunita vůči mrazu & sprint +10% na sněhu)");
+    effectsEn.push("🌶️ Polar Pepper: Frostwalker state (Cold Immunity & Sprint +10% in snow)");
+  } else if (spice === 'mint') {
+    hydro += 15;
+    effectsCs.push("🌿 Wild Mint: Chladivý dotek & Imunita vůči úžehu (Heatstroke)");
+    effectsEn.push("🌿 Wild Mint: Cooling Touch & Heatstroke Immunity");
+  } else if (spice === 'ginger') {
+    energy += 15;
+    effectsCs.push("🫚 Sunny Ginger: Termální rovnováha & Obnova staminy +20%");
+    effectsEn.push("🫚 Sunny Ginger: Thermal Balance & Stamina recovery +20%");
   } else if (spice === 'sugar') {
     hydro += 10;
     effectsCs.push("+20% Dish Energy & Sanity +200");

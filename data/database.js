@@ -1903,6 +1903,619 @@ const i18n = {
         ingredientsCs: [{ name: "Severní štika / Vzácná ryba", amount: "3x", isPrimary: true }, { name: "Olej na vaření", amount: "2x" }, { name: "Cukr", amount: "1x" }],
         descriptionEn: "Gourmet seafood banquet optimizing combat precision and weakspot hits.",
         descriptionCs: "Labužnická rybí hostina pro střelce spoléhající na kritické zásahy."
+      },
+      {
+        id: "c-06",
+        nameEn: "Dragon Breath Roast",
+        nameCs: "Dračí dech (Burn Master Roast)",
+        categoryEn: "Creative Special",
+        categoryCs: "Kreativní specialita",
+        scenario: "core",
+        rarity: "Legendary",
+        workbench: "Kitchen Stove (Free Cooking)",
+        energy: 90,
+        hydration: 15,
+        buffDuration: "2400s (40 min)",
+        sourceEn: "Creative mix: Goat Meat + Deviated Pepper + Cooking Oil + Stardust Source",
+        sourceCs: "Kreativní recept: Kozí maso + Zmutovaný pepř + Olej na vaření + Stardust Source",
+        effectsEn: [
+          "Burn Archetype synergy: Burn damage tick rate +25%",
+          "Thermal Explosion blast radius increased by +1.5m",
+          "Weapon attack power +8% against burning targets",
+          "Flame immunity barrier: 20% reduced incoming fire damage"
+        ],
+        effectsCs: [
+          "Synergie Burn archetypu: Rychlost a poškození hoření (Burn) +25 %",
+          "Rádius termální exploze zvětšen o +1,5 metru",
+          "Útočná síla zbraní +8 % proti hořícím cílům",
+          "Ohnivá bariéra: O 20 % snížené utržené poškození ohněm"
+        ],
+        ingredientsEn: [
+          { name: "Goat Meat", amount: "2x", isPrimary: true },
+          { name: "Deviated Pepper", amount: "2x" },
+          { name: "Cooking Oil", amount: "1x" },
+          { name: "Stardust Source", amount: "1x" }
+        ],
+        ingredientsCs: [
+          { name: "Kozí maso (Goat Meat)", amount: "2x", isPrimary: true },
+          { name: "Zmutovaný pepř", amount: "2x" },
+          { name: "Olej na vaření", amount: "1x" },
+          { name: "Zdroj hvězdného prachu (Stardust)", amount: "1x" }
+        ],
+        descriptionEn: "Fiery roasted skewers marinated with mutant pepper and stardust catalysts, supercharging fire and burn builds.",
+        descriptionCs: "Ohnivá pečeně naložená v zmutovaném divokém pepři a stardustovém katalyzátoru pro maximální účinek ohnivých buildů."
+      },
+      {
+        id: "c-07",
+        nameEn: "Cryo Juggernaut Stew",
+        nameCs: "Polární kryo guláš (Frost Vortex Stew)",
+        categoryEn: "Creative Special",
+        categoryCs: "Kreativní specialita",
+        scenario: "winter",
+        rarity: "Legendary",
+        workbench: "Kitchen Stove (Free Cooking)",
+        energy: 100,
+        hydration: 40,
+        buffDuration: "2400s (40 min)",
+        sourceEn: "Creative mix: Polar Bear Meat + Ice Melon + Purified Water + Stardust Source",
+        sourceCs: "Kreativní recept: Maso ledního medvěda + Ledový meloun + Čistá voda + Stardust Source",
+        effectsEn: [
+          "Frost Vortex Archetype synergy: Vortex pull radius +35%",
+          "Frost Vortex tick damage +28%",
+          "Hypothermia & Cold Resistance +35 in arctic blizzard conditions",
+          "Max HP +450 while inside frosty zones"
+        ],
+        effectsCs: [
+          "Synergie Frost Vortex archetypu: Dosah sání mrazivého víru +35 %",
+          "Poškození mrazivého víru (Frost Vortex) +28 %",
+          "Odolnost vůči podchlazení a mrazu +35 v arktických vánicích",
+          "Maximální zdraví +450 při pobytu v mrazivých oblastech"
+        ],
+        ingredientsEn: [
+          { name: "Polar Bear Meat", amount: "2x", isPrimary: true },
+          { name: "Ice Melon", amount: "2x" },
+          { name: "Purified Water", amount: "2x" },
+          { name: "Stardust Source", amount: "1x" }
+        ],
+        ingredientsCs: [
+          { name: "Maso ledního medvěda", amount: "2x", isPrimary: true },
+          { name: "Ledový meloun (Ice Melon)", amount: "2x" },
+          { name: "Čistá voda", amount: "2x" },
+          { name: "Zdroj hvězdného prachu (Stardust)", amount: "1x" }
+        ],
+        descriptionEn: "Arctic survival stew combining high-latitude polar bear fat with cryogenic melons to withstand brutal cold and empower frost vortices.",
+        descriptionCs: "Polární guláš z tuku arktického ledního medvěda a mrazivých melounů pro odolnost v mrazu a posílení ledových vírů."
+      },
+      {
+        id: "c-08",
+        nameEn: "Thunderbolt Skewer",
+        nameCs: "Hromový špíz (Power Surge Skewer)",
+        categoryEn: "Creative Special",
+        categoryCs: "Kreativní specialita",
+        scenario: "core",
+        rarity: "Epic",
+        workbench: "Kitchen Stove (Free Cooking)",
+        energy: 85,
+        hydration: 10,
+        buffDuration: "1800s (30 min)",
+        sourceEn: "Creative mix: Crocodile Meat + Deviated Wheat + Rock Salt + Butter",
+        sourceCs: "Kreativní recept: Krokodýlí maso + Zmutovaná pšenice + Kamenná sůl + Máslo",
+        effectsEn: [
+          "Power Surge Archetype synergy: Shock discharge frequency +15%",
+          "Shock Critical Hit Chance +12%",
+          "Electrical damage multiplier +18% against mechanical and robotic Rosetta troopers",
+          "Sprint stamina cost reduced by 15%"
+        ],
+        effectsCs: [
+          "Synergie Power Surge archetypu: Frekvence elektrických výbojů +15 %",
+          "Šance na kritický elektrický šok +12 %",
+          "Násobič elektrického poškození +18 % proti robotům a těžkooděncům Rosetty",
+          "Snížení spotřeby staminy při běhu o 15 %"
+        ],
+        ingredientsEn: [
+          { name: "Crocodile Meat", amount: "2x", isPrimary: true },
+          { name: "Deviated Wheat", amount: "2x" },
+          { name: "Cooking Oil", amount: "1x" },
+          { name: "Rock Salt", amount: "1x" }
+        ],
+        ingredientsCs: [
+          { name: "Krokodýlí maso", amount: "2x", isPrimary: true },
+          { name: "Zmutovaná pšenice", amount: "2x" },
+          { name: "Olej na vaření", amount: "1x" },
+          { name: "Kamenná sůl", amount: "1x" }
+        ],
+        descriptionEn: "High-voltage bio-protein skewers conducting electric currents straight into the consumer's nervous system.",
+        descriptionCs: "Vysokonapěťový proteinový špíz stimulující nervovou soustavu pro bleskové elektrické výboje."
+      },
+      {
+        id: "c-09",
+        nameEn: "Sniper's Hawk Feast",
+        nameCs: "Sokolí hostina odstřelovače (Precision Feast)",
+        categoryEn: "Creative Special",
+        categoryCs: "Kreativní specialita",
+        scenario: "core",
+        rarity: "Legendary",
+        workbench: "Kitchen Stove (Free Cooking)",
+        energy: 90,
+        hydration: 25,
+        buffDuration: "2400s (40 min)",
+        sourceEn: "Creative mix: Barramundi / Rare Fish + Deviated Saffron + Morel Mushrooms + Cooking Oil",
+        sourceCs: "Kreativní recept: Ropušnice / Vzácná ryba + Zmutovaný šafrán + Smrže + Olej",
+        effectsEn: [
+          "Weakspot Hit Damage +30% across all precision firearms",
+          "Scoped weapon reticle sway reduced by 40%",
+          "Critical Hit Rate +8% when firing from beyond 20 meters",
+          "Movement speed while aiming down sights increased by +15%"
+        ],
+        effectsCs: [
+          "Poškození slabých míst (Weakspot DMG) +30 % pro všechny palné zbraně",
+          "Chvění zaměřovače v puškohledu sníženo o 40 %",
+          "Šance na kritický zásah +8 % při střelbě na vzdálenost přes 20 metrů",
+          "Rychlost pohybu při míření přes mířidla (ADS) zvýšena o +15 %"
+        ],
+        ingredientsEn: [
+          { name: "Rare Fish Flesh", amount: "2x", isPrimary: true },
+          { name: "Deviated Saffron", amount: "2x" },
+          { name: "Morel Mushrooms", amount: "2x" },
+          { name: "Cooking Oil", amount: "1x" }
+        ],
+        ingredientsCs: [
+          { name: "Maso ze vzácných ryb", amount: "2x", isPrimary: true },
+          { name: "Zmutovaný šafrán", amount: "2x" },
+          { name: "Houby smrže", amount: "2x" },
+          { name: "Olej na vaření", amount: "1x" }
+        ],
+        descriptionEn: "Masterfully seasoned fish fillet elevated by mutated saffron to sharpen visual focus and pinpoint weakspots.",
+        descriptionCs: "Mistrně kořeněný rybí filet se zmutovaným šafránem zbystřující zrak pro nekompromisní zásahy slabin."
+      },
+      {
+        id: "c-10",
+        nameEn: "Berserker's Pork Ribs",
+        nameCs: "Žebírka šílence (Bomber Feast)",
+        categoryEn: "Creative Special",
+        categoryCs: "Kreativní specialita",
+        scenario: "core",
+        rarity: "Epic",
+        workbench: "Kitchen Stove (Free Cooking)",
+        energy: 100,
+        hydration: 10,
+        buffDuration: "1800s (30 min)",
+        sourceEn: "Creative mix: Pork Meat + Deviated Corn + Stardust Salt + Sugar",
+        sourceCs: "Kreativní recept: Vepřové maso + Zmutovaná kukuřice + Hvězdná sůl + Cukr",
+        effectsEn: [
+          "Unstable Bomber trigger probability +12%",
+          "Explosion blast radius expanded by +2.0 meters",
+          "Blast damage scaling +22% against clustered enemy packs",
+          "Food will NEVER spoil in backpack due to Stardust Salt curing"
+        ],
+        effectsCs: [
+          "Šance na spuštění Unstable Bomberu +12 %",
+          "Rádius výbuchu bomby rozšířen o +2,0 metry",
+          "Výbušné poškození +22 % proti skupinám nepřátel",
+          "Pokrm se v batohu NIKDY nezkazí díky konzervaci Hvězdnou solí"
+        ],
+        ingredientsEn: [
+          { name: "Pork Meat", amount: "2x", isPrimary: true },
+          { name: "Deviated Corn", amount: "2x" },
+          { name: "Sugar", amount: "1x" },
+          { name: "Stardust Source", amount: "1x" }
+        ],
+        ingredientsCs: [
+          { name: "Vepřové maso", amount: "2x", isPrimary: true },
+          { name: "Zmutovaná kukuřice", amount: "2x" },
+          { name: "Cukr", amount: "1x" },
+          { name: "Zdroj hvězdného prachu (Stardust)", amount: "1x" }
+        ],
+        descriptionEn: "Caramelized explosive ribs cured in stardust salt, making explosive rounds trigger broader devastation.",
+        descriptionCs: "Karamelizovaná žebírka naložená v hvězdné soli rozšiřující dosah a sílu nestabilních explozí."
+      },
+      {
+        id: "c-11",
+        nameEn: "Fleetfoot Rabbit Sauté",
+        nameCs: "Rychloběžec (Fleetfoot Rabbit Sauté)",
+        categoryEn: "Creative Special",
+        categoryCs: "Kreativní specialita",
+        scenario: "core",
+        rarity: "Epic",
+        workbench: "Kitchen Stove (Free Cooking)",
+        energy: 85,
+        hydration: 20,
+        buffDuration: "1800s (30 min)",
+        sourceEn: "Creative mix: Rabbit Meat + Scarlet Calamus + Pepper + Cooking Oil",
+        sourceCs: "Kreativní recept: Králičí maso + Červený puškvorec + Pepř + Olej na vaření",
+        effectsEn: [
+          "Fast Gunner archetype duration extended by +6 seconds",
+          "Attack speed +8% while Fast Gunner buff is active",
+          "Combat sprint and dodge roll movement speed +12%",
+          "Stamina recovery rate +25%"
+        ],
+        effectsCs: [
+          "Trvání stavu Fast Gunner prodlouženo o +6 sekund",
+          "Rychlost střelby +8 % po dobu aktivního buffu Fast Gunner",
+          "Rychlost sprintu a úhybného kotoulu zvýšena o +12 %",
+          "Rychlost regenerace staminy +25 %"
+        ],
+        ingredientsEn: [
+          { name: "Rabbit Meat", amount: "2x", isPrimary: true },
+          { name: "Scarlet Calamus", amount: "2x" },
+          { name: "Cooking Oil", amount: "1x" },
+          { name: "Rock Salt", amount: "1x" }
+        ],
+        ingredientsCs: [
+          { name: "Králičí maso", amount: "2x", isPrimary: true },
+          { name: "Červený puškvorec", amount: "2x" },
+          { name: "Olej na vaření", amount: "1x" },
+          { name: "Kamenná sůl", amount: "1x" }
+        ],
+        descriptionEn: "High-agility rabbit sauté stimulating neuromuscular reflexes for hyper-accelerated automatic firearm output.",
+        descriptionCs: "Králičí soté povzbuzující nervosvalové reflexy pro nepřetržitou kulometnou palbu v běhu."
+      },
+      {
+        id: "c-12",
+        nameEn: "Ironhide Bear Steak",
+        nameCs: "Medvědí steak železné kůže (Ironhide Fortress)",
+        categoryEn: "Creative Special",
+        categoryCs: "Kreativní specialita",
+        scenario: "core",
+        rarity: "Legendary",
+        workbench: "Kitchen Stove (Free Cooking)",
+        energy: 100,
+        hydration: 15,
+        buffDuration: "2400s (40 min)",
+        sourceEn: "Creative mix: Bear Meat + Morel Mushrooms + Rock Salt + Butter",
+        sourceCs: "Kreativní recept: Medvědí maso + Houby smrže + Kamenná sůl + Máslo",
+        effectsEn: [
+          "Maximum Health increased by +1200 HP",
+          "Physical and ballistic damage mitigation +15%",
+          "Immunity to knockbacks and stumble stuns from heavy mutant swings",
+          "Health regeneration: +1.5% max HP restored every 5 seconds"
+        ],
+        effectsCs: [
+          "Maximální zdraví postavy navýšeno o +1200 HP",
+          "Redukce utrženého fyzického a balistického poškození o +15 %",
+          "Imunita vůči odmrštění a povalení těžkými údery monster",
+          "Průběžná regenerace: +1,5 % maximálního zdraví každých 5 sekund"
+        ],
+        ingredientsEn: [
+          { name: "Bear Meat", amount: "2x", isPrimary: true },
+          { name: "Morel Mushrooms", amount: "2x" },
+          { name: "Rock Salt", amount: "1x" },
+          { name: "Cooking Oil", amount: "1x" }
+        ],
+        ingredientsCs: [
+          { name: "Medvědí maso", amount: "2x", isPrimary: true },
+          { name: "Houby smrže", amount: "2x" },
+          { name: "Kamenná sůl", amount: "1x" },
+          { name: "Olej na vaření", amount: "1x" }
+        ],
+        descriptionEn: "Thick slab of seasoned apex bear meat reinforcing bone density and muscle mass into impenetrable living armor.",
+        descriptionCs: "Masivní medvědí steak vyztužující kosti a svalovou hmotu do podoby živoucího neprostřelného pancíře."
+      },
+      {
+        id: "c-13",
+        nameEn: "Venison Shrapnel Platter",
+        nameCs: "Srnčí tříštivá směs (Venison Shrapnel Platter)",
+        categoryEn: "Creative Special",
+        categoryCs: "Kreativní specialita",
+        scenario: "core",
+        rarity: "Epic",
+        workbench: "Kitchen Stove (Free Cooking)",
+        energy: 90,
+        hydration: 20,
+        buffDuration: "1800s (30 min)",
+        sourceEn: "Creative mix: Deer Meat + Deviated Pumpkin + Sugar + Butter",
+        sourceCs: "Kreativní recept: Srnčí maso + Zmutovaná dýně + Cukr + Máslo",
+        effectsEn: [
+          "Shrapnel trigger probability +12%",
+          "Shrapnel fragmentation shards deal +18% bonus damage",
+          "Reload speed of assault rifles and carbines +20%",
+          "Melee heavy swing attack power +25%"
+        ],
+        effectsCs: [
+          "Šance na spuštění Shrapnelu +12 %",
+          "Úlomky střepin způsobují o +18 % vyšší poškození",
+          "Rychlost přebíjení útočných pušek a karabin +20 %",
+          "Síla těžkého úderu zbraněmi na blízko +25 %"
+        ],
+        ingredientsEn: [
+          { name: "Deer Meat", amount: "2x", isPrimary: true },
+          { name: "Deviated Pumpkin", amount: "2x" },
+          { name: "Sugar", amount: "1x" },
+          { name: "Cooking Oil", amount: "1x" }
+        ],
+        ingredientsCs: [
+          { name: "Srnčí maso", amount: "2x", isPrimary: true },
+          { name: "Zmutovaná dýně", amount: "2x" },
+          { name: "Cukr", amount: "1x" },
+          { name: "Olej na vaření", amount: "1x" }
+        ],
+        descriptionEn: "Lean venison cuts seared with pumpkin glaze, creating fine kinetic harmonics that trigger extra bullet fragmentation.",
+        descriptionCs: "Šťavnaté srnčí maso s dýňovou glazurou vytvářející kinetické rezonance pro tvorbu dalších střepin."
+      },
+      {
+        id: "c-14",
+        nameEn: "Turtle Shell Herbal Pot",
+        nameCs: "Bylinný kotlík z želvího masa (Turtle Shell Pot)",
+        categoryEn: "Creative Special",
+        categoryCs: "Kreativní specialita",
+        scenario: "core",
+        rarity: "Legendary",
+        workbench: "Kitchen Stove (Free Cooking)",
+        energy: 95,
+        hydration: 50,
+        buffDuration: "2400s (40 min)",
+        sourceEn: "Creative mix: Fine Turtle Meat + Sage + Purified Water + Stardust Source",
+        sourceCs: "Kreativní recept: Želví maso + Šalvěj + Čistá voda + Stardust Source",
+        effectsEn: [
+          "Fortress Warfare domain duration extended by +10 seconds",
+          "Damage reduction while stationary within Fortress zone +25%",
+          "Elemental and aberration damage resistance +20%",
+          "Converts 10% of taken damage into temporary personal shield"
+        ],
+        effectsCs: [
+          "Trvání zóny Fortress Warfare prodlouženo o +10 sekund",
+          "Redukce utrženého poškození při stání v pevnostní zóně +25 %",
+          "Odolnost vůči elementárnímu poškození a anomáliím +20 %",
+          "Převádí 10 % utrženého poškození na dočasný ochranný štít"
+        ],
+        ingredientsEn: [
+          { name: "Fine Turtle Meat", amount: "2x", isPrimary: true },
+          { name: "Sage", amount: "3x" },
+          { name: "Purified Water", amount: "2x" },
+          { name: "Stardust Source", amount: "1x" }
+        ],
+        ingredientsCs: [
+          { name: "Želví maso", amount: "2x", isPrimary: true },
+          { name: "Šalvěj (Sage)", amount: "3x" },
+          { name: "Čistá voda", amount: "2x" },
+          { name: "Zdroj hvězdného prachu (Stardust)", amount: "1x" }
+        ],
+        descriptionEn: "Slow-simmered ancient turtle broth steeped with forest herbs, locking tactical firing positions into fortified bastions.",
+        descriptionCs: "Pomalu tažený vývar z želvího masa a bylin měnící palebné postavení ve stacionární nedobytnou pevnost."
+      },
+      {
+        id: "c-15",
+        nameEn: "Anti-Sanity Cosmic Broth",
+        nameCs: "Kosmický protizáhadový vývar (Anti-Sanity Cosmic Broth)",
+        categoryEn: "Creative Special",
+        categoryCs: "Kreativní specialita",
+        scenario: "core",
+        rarity: "Legendary",
+        workbench: "Kitchen Stove (Free Cooking)",
+        energy: 90,
+        hydration: 60,
+        buffDuration: "2400s (40 min)",
+        sourceEn: "Creative mix: Deviated Beast Meat + Deviated Aloe + Purified Water + Stardust Salt",
+        sourceCs: "Kreativní recept: Zmutované maso šelem + Zmutované Aloe + Čistá voda + Hvězdná sůl",
+        effectsEn: [
+          "Sanity Freeze: Prevents sanity drain in extreme Stardust Pollution zones",
+          "PSI Intensity +25% across all combat Deviants and Cradle abilities",
+          "Max Sanity threshold cap increased by +200 points",
+          "Dish NEVER decays or expires in inventory"
+        ],
+        effectsCs: [
+          "Zmrazení Sanity: Zabraňuje poklesu příčetnosti v zónách s extrémním stardustovým zamořením",
+          "PSI Intensity +25 % pro všechny bojové Devianty a schopnosti Cradle",
+          "Zvýšení maximální kapacity příčetnosti o +200 bodů",
+          "Pokrm se v inventáři NIKDY nezkazí"
+        ],
+        ingredientsEn: [
+          { name: "Deviated Beast Meat", amount: "2x", isPrimary: true },
+          { name: "Deviated Aloe", amount: "2x" },
+          { name: "Purified Water", amount: "2x" },
+          { name: "Stardust Source", amount: "1x" }
+        ],
+        ingredientsCs: [
+          { name: "Zmutované maso šelem", amount: "2x", isPrimary: true },
+          { name: "Zmutované Aloe", amount: "2x" },
+          { name: "Čistá voda", amount: "2x" },
+          { name: "Zdroj hvězdného prachu (Stardust)", amount: "1x" }
+        ],
+        descriptionEn: "Stardust-neutralizing concoction sealing mental faculties against eldritch hallucinations in high-tier Silos and Monoliths.",
+        descriptionCs: "Vývar neutralizující stardustové záření a stabilizující mysl proti halucinacím v hlubokých podzemních silech."
+      },
+      {
+        id: "c-16",
+        nameEn: "Nomad's Dried Jerky",
+        nameCs: "Nomádské sušené maso (Nomad's Dried Jerky)",
+        categoryEn: "Creative Special",
+        categoryCs: "Kreativní specialita",
+        scenario: "core",
+        rarity: "Epic",
+        workbench: "Kitchen Stove (Free Cooking)",
+        energy: 100,
+        hydration: 0,
+        buffDuration: "2400s (40 min)",
+        sourceEn: "Creative mix: Beast Meat + Rock Salt + Pepper + Cooking Oil",
+        sourceCs: "Kreativní recept: Maso šelem + Kamenná sůl + Pepř + Olej na vaření",
+        effectsEn: [
+          "Perpetual Shelf Life: Cured jerky never rots or decays",
+          "Inventory carry weight capacity increased by +35 kg",
+          "Stamina sprint consumption reduced by 30%",
+          "Climbing and gliding stamina drain reduced by 40%"
+        ],
+        effectsCs: [
+          "Nulová zkazitelnost: Sušené maso nikdy nepodléhá hnilobě a vydrží neomezeně",
+          "Navýšení nosnosti batohu postavy o +35 kg",
+          "Snížení spotřeby staminy při běhu o 30 %",
+          "Snížení spotřeby energie při šplhání po skalách a plachtění o 40 %"
+        ],
+        ingredientsEn: [
+          { name: "Beast Meat", amount: "3x", isPrimary: true },
+          { name: "Rock Salt", amount: "2x" },
+          { name: "Cooking Oil", amount: "1x" }
+        ],
+        ingredientsCs: [
+          { name: "Maso šelem (Beast Meat)", amount: "3x", isPrimary: true },
+          { name: "Kamenná sůl", amount: "2x" },
+          { name: "Olej na vaření", amount: "1x" }
+        ],
+        descriptionEn: "Dry-cured lean beast strips salted for endless expeditions across wasteland deserts and mountain ranges.",
+        descriptionCs: "Tradičně sušené proužky masa šelem solené pro dlouhé průzkumné expedice přes pouště a hory."
+      },
+      {
+        id: "c-17",
+        nameEn: "Golden Glazed Seabass",
+        nameCs: "Zlatavý mořský okoun (Golden Glazed Seabass)",
+        categoryEn: "Creative Special",
+        categoryCs: "Kreativní specialita",
+        scenario: "core",
+        rarity: "Legendary",
+        workbench: "Kitchen Stove (Free Cooking)",
+        energy: 90,
+        hydration: 30,
+        buffDuration: "2400s (40 min)",
+        sourceEn: "Creative mix: Barramundi / Blackfin Tuna + Deviated Beetroot + Butter + Sugar",
+        sourceCs: "Kreativní recept: Ropušnice / Tuňák + Zmutovaná řepa + Máslo + Cukr",
+        effectsEn: [
+          "Critical Strike Chance +15% across all weapon categories",
+          "Underwater oxygen lung capacity increased by +100%",
+          "Swimming sprint velocity increased by +45%",
+          "Weakspot critical hit damage multiplier +20%"
+        ],
+        effectsCs: [
+          "Šance na kritický zásah +15 % pro všechny kategorie zbraní",
+          "Kapacita plic a dechu pod vodou zvýšena o +100 %",
+          "Rychlost plavání ve vodě zvýšena o +45 %",
+          "Násobič kritického poškození do slabin +20 %"
+        ],
+        ingredientsEn: [
+          { name: "Blackfin Tuna", amount: "2x", isPrimary: true },
+          { name: "Deviated Beetroot", amount: "2x" },
+          { name: "Cooking Oil", amount: "1x" },
+          { name: "Sugar", amount: "1x" }
+        ],
+        ingredientsCs: [
+          { name: "Tuňák černoploutvý", amount: "2x", isPrimary: true },
+          { name: "Zmutovaná červená řepa", amount: "2x" },
+          { name: "Olej na vaření", amount: "1x" },
+          { name: "Cukr", amount: "1x" }
+        ],
+        descriptionEn: "Sweetly caramelized sea fish steak offering supreme marine agility and lethal precision.",
+        descriptionCs: "Sladce karamelizovaný steak z mořské ryby zajišťující bleskovou mobilitu ve vodě i smrtící kritické zásahy."
+      },
+      {
+        id: "c-18",
+        nameEn: "Stardust Fruit Medley",
+        nameCs: "Hvězdná ovocná mísa (Stardust Fruit Medley)",
+        categoryEn: "Creative Special",
+        categoryCs: "Kreativní specialita",
+        scenario: "core",
+        rarity: "Epic",
+        workbench: "Kitchen Stove (Free Cooking)",
+        energy: 80,
+        hydration: 75,
+        buffDuration: "1800s (30 min)",
+        sourceEn: "Creative mix: Deviated Melon + Deviated Apple + Purified Water + Sugar",
+        sourceCs: "Kreativní recept: Zmutovaný meloun + Zmutované jablko + Čistá voda + Cukr",
+        effectsEn: [
+          "Continuous Sanity restoration: +15 Sanity restored every second",
+          "Sprint and tactical roll stamina drain reduced by 35%",
+          "Hydration decay rate reduced by 50%",
+          "Cleanses minor radiation sickness and restores morale"
+        ],
+        effectsCs: [
+          "Plynulá obnova příčetnosti: +15 Sanity obnoveno každou sekundu",
+          "Spotřeba staminy při sprintu a kotoulech snížena o 35 %",
+          "Rychlost úbytku tekutin v těle (Hydratace) zpomalena o 50 %",
+          "Léčí lehkou nemoc z ozáření a obnovuje plnou morálku"
+        ],
+        ingredientsEn: [
+          { name: "Deviated Melon", amount: "2x", isPrimary: true },
+          { name: "Deviated Apple", amount: "2x" },
+          { name: "Purified Water", amount: "2x" },
+          { name: "Sugar", amount: "1x" }
+        ],
+        ingredientsCs: [
+          { name: "Zmutovaný meloun", amount: "2x", isPrimary: true },
+          { name: "Zmutované jablko", amount: "2x" },
+          { name: "Čistá voda", amount: "2x" },
+          { name: "Cukr", amount: "1x" }
+        ],
+        descriptionEn: "Refreshing chilled fruit bowl infusing pure botanical enzymes to cleanse toxins and banish fatigue.",
+        descriptionCs: "Osvěžující mísa vychlazeného zmutovaného ovoce s rostlinnými enzymy odbourávajícími únavu a toxiny."
+      },
+      {
+        id: "c-19",
+        nameEn: "Abyssal Hunter Terrine",
+        nameCs: "Terina hlubinného lovce (Abyssal Hunter Terrine)",
+        categoryEn: "Creative Special",
+        categoryCs: "Kreativní specialita",
+        scenario: "core",
+        rarity: "Legendary",
+        workbench: "Kitchen Stove (Free Cooking)",
+        energy: 95,
+        hydration: 20,
+        buffDuration: "2400s (40 min)",
+        sourceEn: "Creative mix: Pufferfish + Crocodile Meat + Stardust Salt + Cooking Oil",
+        sourceCs: "Kreativní recept: Čtverzubec (Pufferfish) + Krokodýlí maso + Hvězdná sůl + Olej",
+        effectsEn: [
+          "Damage against Great Ones & World Bosses +20%",
+          "Complete immunity to venom, acid pools and poison spore puddles",
+          "Reflects 15% of taken melee damage back as toxic shock to attacker",
+          "Never spoils in player inventory"
+        ],
+        effectsCs: [
+          "Poškození proti bossům (Great Ones & Monolity) +20 %",
+          "Úplná imunita vůči jedu, loužím kyseliny a jedovatým sporám",
+          "Odráží 15 % utrženého poškození zblízka zpět na útočníka jako toxický šok",
+          "V inventáři hráče se NIKDY nezkazí"
+        ],
+        ingredientsEn: [
+          { name: "Pufferfish Meat", amount: "2x", isPrimary: true },
+          { name: "Crocodile Meat", amount: "2x" },
+          { name: "Cooking Oil", amount: "1x" },
+          { name: "Stardust Source", amount: "1x" }
+        ],
+        ingredientsCs: [
+          { name: "Maso z čtverzubce (Pufferfish)", amount: "2x", isPrimary: true },
+          { name: "Krokodýlí maso", amount: "2x" },
+          { name: "Olej na vaření", amount: "1x" },
+          { name: "Zdroj hvězdného prachu (Stardust)", amount: "1x" }
+        ],
+        descriptionEn: "Potent seafood terrine neutralizing lethal biogenic toxins while priming reflexes for colossal entity warfare.",
+        descriptionCs: "Delikátní terina z jedovatého čtverzubce poskytující tělu imunitu vůči jedům a sílu proti monolitickým titánům."
+      },
+      {
+        id: "c-20",
+        nameEn: "Miner's Heavy Goulash",
+        nameCs: "Těžební hornický guláš (Miner's Heavy Goulash)",
+        categoryEn: "Creative Special",
+        categoryCs: "Kreativní specialita",
+        scenario: "core",
+        rarity: "Epic",
+        workbench: "Kitchen Stove (Free Cooking)",
+        energy: 100,
+        hydration: 35,
+        buffDuration: "2400s (40 min)",
+        sourceEn: "Creative mix: Wolf / Beast Meat + Potatoes + Corn + Rock Salt",
+        sourceCs: "Kreativní recept: Vlčí / Zvířecí maso + Brambory + Kukuřice + Kamenná sůl",
+        effectsEn: [
+          "Mining & Logging swing speed increased by +40%",
+          "Raw resource excavation yield +25% on all ore veins and trees",
+          "Overburden encumbrance penalty reduced: sprint remains active even when 20% overloaded",
+          "Tool durability consumption reduced by 25%"
+        ],
+        effectsCs: [
+          "Rychlost kácení dřeva a těžby krumpáčem zvýšena o +40 %",
+          "Výnos vytěžených surovin ze všech rudných žil a stromů +25 %",
+          "Snížení postihu za přetížení: hráč může sprintovat i při 20% překročení nosnosti batohu",
+          "Opotřebení nástrojů při těžbě sníženo o 25 %"
+        ],
+        ingredientsEn: [
+          { name: "Beast Meat", amount: "2x", isPrimary: true },
+          { name: "Corn", amount: "2x" },
+          { name: "Rock Salt", amount: "1x" },
+          { name: "Purified Water", amount: "1x" }
+        ],
+        ingredientsCs: [
+          { name: "Maso šelem (Beast Meat)", amount: "2x", isPrimary: true },
+          { name: "Kukuřice (Corn)", amount: "2x" },
+          { name: "Kamenná sůl", amount: "1x" },
+          { name: "Čistá voda", amount: "1x" }
+        ],
+        descriptionEn: "Stout carbohydrate-dense lumberjack and miner stew fueling relentless excavation through bedrock.",
+        descriptionCs: "Hutný hornický guláš bohatý na sacharidy pro maximální efektivitu a výnosy při těžbě rud."
       }
     ];
 
