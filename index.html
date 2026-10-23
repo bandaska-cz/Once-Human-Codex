@@ -83,6 +83,18 @@
           </button>
         </div>
 
+                <!-- Crafting Queue / Shopping List Button -->
+        <button 
+          id="queue-toggle-btn"
+          onclick="openQueueModal()" 
+          title="Výrobní plán a nákupní seznam surovin"
+          class="relative inline-flex items-center space-x-1.5 bg-hud-card hover:bg-hud-cyan/15 border border-hud-cyan/40 hover:border-hud-cyan text-hud-cyan hover:text-white px-3 py-1.5 rounded transition-all text-xs font-mono shadow-[0_0_10px_rgba(0,240,255,0.15)] cursor-pointer"
+        >
+          <i class="fa-solid fa-clipboard-list text-hud-cyan"></i>
+          <span class="hidden md:inline" id="queue-btn-label">Výrobní plán</span>
+          <span id="queue-badge-count" class="bg-hud-cyan text-black px-1.5 py-0.2 rounded-full font-bold text-[10px] ml-1">0</span>
+        </button>
+
         <!-- GitHub Repository Button -->
         <a href="https://github.com/bandaska-cz/Once-Human-Codex" 
            target="_blank" 
@@ -304,6 +316,20 @@
       </button>
 
       <div id="modal-content">
+        <!-- Rendered dynamically -->
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== CRAFTING QUEUE & FARMING LIST MODAL ==================== -->
+  <div id="craft-queue-modal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm">
+    <div class="bg-hud-surface border border-hud-cyan/50 rounded-lg max-w-3xl w-full p-6 relative max-h-[90vh] overflow-y-auto shadow-[0_0_30px_rgba(0,240,255,0.25)]">
+      <!-- Close Button -->
+      <button onclick="closeQueueModal()" title="Zavřít (Esc)" class="absolute top-4 right-4 text-slate-400 hover:text-white transition w-8 h-8 rounded border border-hud-border flex items-center justify-center bg-hud-card cursor-pointer">
+        <i class="fa-solid fa-xmark text-sm"></i>
+      </button>
+
+      <div id="queue-modal-content">
         <!-- Rendered dynamically -->
       </div>
     </div>

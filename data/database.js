@@ -36,7 +36,17 @@ const i18n = {
         craftedVia: "Vyrábí se receptem:",
         openRecipeBtn: "Otevřít recept",
         backToRecipe: "← Zpět na předchozí recept",
-        locationWhereToFind: "Kde najít / Jak získat:"
+        locationWhereToFind: "Kde najít / Jak získat:",
+        queueBtn: "Výrobní plán",
+        addToQueue: "Přidat do plánu",
+        queueTitle: "VÝROBNÍ PLÁN A FARMING NÁKUPNÍ SEZNAM",
+        queueDesc: "Seznam receptů a celkový součet surovin potřebných k farmení.",
+        queueEmpty: "Zatím jste do plánu nepřidali žádný recept. Přidejte položky tlačítkem [+ Plán] u libovolného receptu.",
+        clearQueueBtn: "Vyčistit plán",
+        plannedItems: "Plánované recepty k výrobě:",
+        totalMaterialsTitle: "Celkem potřebné suroviny k farmení:",
+        copyDiscordBtn: "Kopírovat pro Discord",
+        discordCopied: "Seznam surovin pro Discord zkopírován do schránky"
       },
       en: {
         subtitle: "ALL GAME RECIPES • SYNERGIES • APOTHECARY • FULL TECHNOLOGIES",
@@ -75,7 +85,17 @@ const i18n = {
         craftedVia: "Crafted via recipe:",
         openRecipeBtn: "Open recipe",
         backToRecipe: "← Back to previous recipe",
-        locationWhereToFind: "Where to find / How to get:"
+        locationWhereToFind: "Where to find / How to get:",
+        queueBtn: "Crafting Plan",
+        addToQueue: "Add to Plan",
+        queueTitle: "CRAFTING PLAN & FARMING SHOPPING LIST",
+        queueDesc: "Selected recipes and aggregated raw materials breakdown for farming.",
+        queueEmpty: "Your crafting queue is currently empty. Click [+ Plan] on any recipe to add items.",
+        clearQueueBtn: "Clear Plan",
+        plannedItems: "Planned Recipes to Craft:",
+        totalMaterialsTitle: "Total Raw Materials Needed for Farming:",
+        copyDiscordBtn: "Copy for Discord",
+        discordCopied: "Materials shopping list copied to clipboard"
       }
     };
 

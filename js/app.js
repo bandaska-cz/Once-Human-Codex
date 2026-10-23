@@ -23,6 +23,269 @@ let favoritesOnly = false;
 let searchDebounceTimer = null;
 
 // Favorites Set stored in localStorage
+
+// Crafting Queue / Farming Planner State
+let craftQueue = [];
+try {
+  const savedQueue = JSON.parse(localStorage.getItem('once_human_craft_queue') || '[]');
+  if (Array.isArray(savedQueue)) craftQueue = savedQueue;
+} catch (e) {
+  craftQueue = [];
+}
+
+function saveCraftQueue() {
+  try {
+    localStorage.setItem('once_human_craft_queue', JSON.stringify(craftQueue));
+  } catch (e) {}
+  updateQueueBadge();
+}
+
+function updateQueueBadge() {
+  const badge = document.getElementById('queue-badge-count');
+  if (badge) {
+    const totalCount = craftQueue.reduce((sum, item) => sum + (item.count || 1), 0);
+    badge.innerText = totalCount;
+    if (totalCount > 0) {
+      badge.classList.remove('hidden');
+    } else {
+      badge.innerText = '0';
+    }
+  }
+}
+
+function addToQueue(recipeId, count = 1, event) {
+  if (event) event.stopPropagation();
+  const recipe = findRecipeById(recipeId);
+  if (!recipe) return;
+
+  const existing = craftQueue.find(q => q.recipeId === recipeId);
+  if (existing) {
+    existing.count = (existing.count || 1) + count;
+  } else {
+    craftQueue.push({ recipeId, count });
+  }
+
+  saveCraftQueue();
+
+  const rName = currentLang === 'cs' ? recipe.nameCs : recipe.nameEn;
+  const msg = currentLang === 'cs' ? `Položka "${rName}" přidána do plánu (${count}×)` : `Added "${rName}" to plan (${count}×)`;
+  showNotification(msg);
+
+  // If queue modal is open, re-render it
+  const qModal = document.getElementById('craft-queue-modal');
+  if (qModal && !qModal.classList.contains('hidden')) {
+    renderQueueModalContent();
+  }
+}
+
+function updateQueueCount(recipeId, delta) {
+  const item = craftQueue.find(q => q.recipeId === recipeId);
+  if (!item) return;
+
+  item.count = (item.count || 1) + delta;
+  if (item.count <= 0) {
+    removeFromQueue(recipeId);
+    return;
+  }
+  saveCraftQueue();
+  renderQueueModalContent();
+}
+
+function removeFromQueue(recipeId) {
+  craftQueue = craftQueue.filter(q => q.recipeId !== recipeId);
+  saveCraftQueue();
+  renderQueueModalContent();
+}
+
+function clearQueue() {
+  craftQueue = [];
+  saveCraftQueue();
+  renderQueueModalContent();
+}
+
+function openQueueModal() {
+  const modal = document.getElementById('craft-queue-modal');
+  if (!modal) return;
+  renderQueueModalContent();
+  modal.classList.remove('hidden');
+}
+
+function closeQueueModal() {
+  const modal = document.getElementById('craft-queue-modal');
+  if (modal) modal.classList.add('hidden');
+}
+
+function calculateQueueMaterials() {
+  const totals = {};
+
+  craftQueue.forEach(item => {
+    const recipe = findRecipeById(item.recipeId);
+    if (!recipe) return;
+
+    const ingredients = currentLang === 'cs' ? recipe.ingredientsCs : recipe.ingredientsEn;
+    const mult = item.count || 1;
+
+    ingredients.forEach(ing => {
+      const match = (ing.amount || '').match(/\d+/);
+      const amountPerCraft = match ? parseInt(match[0], 10) : 1;
+      const totalAmount = amountPerCraft * mult;
+
+      if (!totals[ing.name]) {
+        const meta = getIngredientMeta(ing.name);
+        totals[ing.name] = {
+          name: ing.name,
+          amount: 0,
+          isPrimary: ing.isPrimary || false,
+          recipeId: meta ? meta.recipeId : null,
+          location: meta ? (currentLang === 'cs' ? meta.locationCs : meta.locationEn) : null
+        };
+      }
+      totals[ing.name].amount += totalAmount;
+    });
+  });
+
+  return Object.values(totals);
+}
+
+function renderQueueModalContent() {
+  const content = document.getElementById('queue-modal-content');
+  if (!content) return;
+
+  const t = i18n[currentLang];
+  if (craftQueue.length === 0) {
+    content.innerHTML = `
+      <div class="text-center py-12">
+        <i class="fa-solid fa-clipboard-list text-4xl text-slate-600 mb-3"></i>
+        <h3 class="font-orbitron font-bold text-white text-base mb-1">${t.queueTitle}</h3>
+        <p class="text-xs font-mono text-slate-400 max-w-md mx-auto">${t.queueEmpty}</p>
+      </div>
+    `;
+    return;
+  }
+
+  const materials = calculateQueueMaterials();
+
+  content.innerHTML = `
+    <div class="flex items-center justify-between pb-3 mb-4 border-b border-hud-border">
+      <div>
+        <h3 class="font-orbitron font-bold text-white text-lg flex items-center gap-2">
+          <i class="fa-solid fa-clipboard-check text-hud-cyan"></i>
+          <span>${t.queueTitle}</span>
+        </h3>
+        <p class="text-xs font-mono text-slate-400 mt-0.5">${t.queueDesc}</p>
+      </div>
+      <button onclick="clearQueue()" class="px-2.5 py-1 bg-red-950/60 hover:bg-red-900 border border-red-700/60 rounded text-red-300 text-xs font-mono transition flex items-center gap-1.5 cursor-pointer">
+        <i class="fa-solid fa-trash-can text-[11px]"></i>
+        <span>${t.clearQueueBtn}</span>
+      </button>
+    </div>
+
+    <!-- Section 1: Planned recipes list -->
+    <div class="mb-6">
+      <h4 class="text-xs font-mono uppercase text-hud-cyan mb-2 font-bold flex items-center gap-1.5">
+        <i class="fa-solid fa-list-check"></i>
+        <span>${t.plannedItems} (${craftQueue.length})</span>
+      </h4>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5 max-h-52 overflow-y-auto pr-1">
+        ${craftQueue.map(item => {
+          const recipe = findRecipeById(item.recipeId);
+          if (!recipe) return '';
+          const name = currentLang === 'cs' ? recipe.nameCs : recipe.nameEn;
+          const rar = rarityConfig[recipe.rarity] || rarityConfig.Common;
+
+          return `
+            <div class="p-2.5 bg-hud-bg border border-hud-border rounded flex items-center justify-between gap-2">
+              <div class="truncate">
+                <div class="flex items-center gap-1.5">
+                  <span class="w-1.5 h-1.5 rounded-full ${rar.dot}"></span>
+                  <span class="text-xs font-medium text-white truncate cursor-pointer hover:text-hud-cyan" onclick="openModal('${recipe.id}', true)">${name}</span>
+                </div>
+                <div class="text-[10px] font-mono text-slate-500 truncate">${recipe.workbench}</div>
+              </div>
+              <div class="flex items-center gap-1 shrink-0">
+                <button onclick="updateQueueCount('${recipe.id}', -1)" class="w-6 h-6 rounded bg-slate-800 hover:bg-slate-700 text-slate-300 flex items-center justify-center font-bold text-xs">-</button>
+                <span class="w-7 text-center font-mono font-bold text-hud-cyan text-xs">${item.count}</span>
+                <button onclick="updateQueueCount('${recipe.id}', 1)" class="w-6 h-6 rounded bg-slate-800 hover:bg-slate-700 text-slate-300 flex items-center justify-center font-bold text-xs">+</button>
+                <button onclick="removeFromQueue('${recipe.id}')" class="ml-1 text-slate-500 hover:text-red-400 p-1">
+                  <i class="fa-solid fa-xmark text-xs"></i>
+                </button>
+              </div>
+            </div>
+          `;
+        }).join('')}
+      </div>
+    </div>
+
+    <!-- Section 2: Aggregated Raw Materials Shopping List -->
+    <div class="mb-4">
+      <div class="flex items-center justify-between mb-2">
+        <h4 class="text-xs font-mono uppercase text-amber-400 font-bold flex items-center gap-1.5">
+          <i class="fa-solid fa-boxes-stacked"></i>
+          <span>${t.totalMaterialsTitle}</span>
+        </h4>
+        <button onclick="copyQueueToDiscord()" class="px-3 py-1 bg-hud-cyan/20 hover:bg-hud-cyan/30 border border-hud-cyan/60 rounded text-hud-cyan hover:text-white text-xs font-mono flex items-center gap-1.5 transition cursor-pointer">
+          <i class="fa-solid fa-copy text-xs"></i>
+          <span>${t.copyDiscordBtn}</span>
+        </button>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2 max-h-64 overflow-y-auto pr-1">
+        ${materials.map(mat => {
+          const isCrafted = Boolean(mat.recipeId);
+          return `
+            <div class="p-2 bg-hud-bg/90 border ${isCrafted ? 'border-hud-cyan/50' : 'border-hud-border'} rounded flex items-center justify-between text-xs">
+              <div class="truncate mr-2">
+                <span class="${mat.isPrimary ? 'text-amber-300 font-semibold' : 'text-slate-200'} truncate block" title="${mat.name}">
+                  ${isCrafted ? '<i class="fa-solid fa-wrench text-[10px] text-hud-cyan mr-1"></i>' : ''}${mat.name}
+                </span>
+                ${mat.location ? `<span class="text-[9px] font-mono text-slate-500 truncate block">${mat.location}</span>` : ''}
+              </div>
+              <span class="font-mono font-bold text-hud-cyan bg-slate-900/80 px-2 py-0.5 rounded border border-slate-700 shrink-0">
+                ${mat.amount}×
+              </span>
+            </div>
+          `;
+        }).join('')}
+      </div>
+    </div>
+  `;
+}
+
+function copyQueueToDiscord() {
+  const materials = calculateQueueMaterials();
+  if (materials.length === 0) return;
+
+  const t = i18n[currentLang];
+  let text = `📦 **Once Human - ${currentLang === 'cs' ? 'Nákupní a farmící seznam' : 'Crafting & Farming List'}**\n\n`;
+  text += `**${currentLang === 'cs' ? 'Plánovaná výroba' : 'Planned Items'}:**\n`;
+  craftQueue.forEach(item => {
+    const recipe = findRecipeById(item.recipeId);
+    const rName = recipe ? (currentLang === 'cs' ? recipe.nameCs : recipe.nameEn) : item.recipeId;
+    text += `• ${rName} (${item.count}×)\n`;
+  });
+
+  text += `\n**${currentLang === 'cs' ? 'Potřebné suroviny celkem' : 'Total Materials Required'}:**\n`;
+  materials.forEach(mat => {
+    text += `• ${mat.name}: **${mat.amount}×**\n`;
+  });
+
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(text).catch(() => fallbackCopy(text));
+  } else {
+    fallbackCopy(text);
+  }
+
+  showNotification(t.discordCopied);
+}
+
+function showNotification(msg) {
+  const notice = document.createElement('div');
+  notice.className = "fixed bottom-5 right-5 bg-hud-cyan text-black font-mono font-bold px-4 py-2 rounded-lg shadow-lg z-50 text-xs";
+  notice.innerText = msg;
+  document.body.appendChild(notice);
+  setTimeout(() => notice.remove(), 2500);
+}
+
 let favorites = new Set();
 try {
   const savedFavs = JSON.parse(localStorage.getItem('once_human_favorites') || '[]');
@@ -69,6 +332,7 @@ function toggleFavorite(id, event) {
 
   if (favoritesOnly) {
     applyFiltersAndSort();
+  updateQueueBadge();
   }
 }
 
@@ -183,6 +447,11 @@ function updateUrlHash(type, id) {
 window.addEventListener('keydown', function(e) {
   if (e.key === 'Escape') {
     const modal = document.getElementById('detail-modal');
+    const queueModal = document.getElementById('craft-queue-modal');
+    if (queueModal && !queueModal.classList.contains('hidden')) {
+      closeQueueModal();
+      return;
+    }
     if (modal && !modal.classList.contains('hidden')) {
       closeModal();
       return;
@@ -601,9 +870,20 @@ function renderRecipeCards(items) {
         <span class="truncate max-w-[200px]" title="${item.workbench}">
           <i class="fa-solid fa-toolbox text-hud-cyan mr-1"></i>${item.workbench}
         </span>
-        <button onclick="openModal('${item.id}', false)" class="text-hud-cyan hover:text-cyan-300 hover:underline flex items-center gap-1 font-sans text-xs">
-          ${t.detailBtn} <i class="fa-solid fa-up-right-from-square text-[10px]"></i>
-        </button>
+        <div class="flex items-center gap-2">
+          <button 
+            type="button"
+            onclick="addToQueue('${item.id}', 1, event)" 
+            title="Přidat do plánu / Add to plan"
+            class="px-2 py-0.5 rounded bg-slate-800 hover:bg-cyan-950 border border-slate-700 hover:border-hud-cyan text-hud-cyan text-[11px] font-mono flex items-center gap-1 transition cursor-pointer"
+          >
+            <i class="fa-solid fa-plus text-[9px]"></i>
+            <span>Plán</span>
+          </button>
+          <button onclick="openModal('${item.id}', false)" class="text-hud-cyan hover:text-cyan-300 hover:underline flex items-center gap-1 font-sans text-xs">
+            ${t.detailBtn} <i class="fa-solid fa-up-right-from-square text-[10px]"></i>
+          </button>
+        </div>
       </div>
     `;
 
@@ -761,9 +1041,15 @@ function openModal(id, pushHistory = false) {
 
     <div class="pt-3 border-t border-hud-border flex items-center justify-between text-xs font-mono text-slate-400">
       <span>${t.workbenchLabel} <strong class="text-white">${item.workbench}</strong></span>
-      <button onclick="copyRecipeName('${item.nameEn}')" class="px-3 py-1.5 bg-slate-800 hover:bg-slate-700 border border-slate-600 rounded text-slate-300 hover:text-white transition">
-        <i class="fa-solid fa-copy mr-1"></i> ${t.copyBtn}
-      </button>
+      <div class="flex items-center gap-2">
+        <button onclick="addToQueue('${item.id}', 1, event)" class="px-3 py-1.5 bg-cyan-950/80 hover:bg-cyan-900 border border-hud-cyan/60 rounded text-hud-cyan hover:text-white font-mono text-xs transition flex items-center gap-1.5 cursor-pointer">
+          <i class="fa-solid fa-plus text-xs"></i>
+          <span>${t.addToQueue}</span>
+        </button>
+        <button onclick="copyRecipeName('${item.nameEn}')" class="px-3 py-1.5 bg-slate-800 hover:bg-slate-700 border border-slate-600 rounded text-slate-300 hover:text-white transition">
+          <i class="fa-solid fa-copy mr-1"></i> ${t.copyBtn}
+        </button>
+      </div>
     </div>
   `;
 
@@ -785,6 +1071,8 @@ function closeModal() {
 }
 
 window.addEventListener('click', function(e) {
+  const queueModal = document.getElementById('craft-queue-modal');
+  if (e.target === queueModal) closeQueueModal();
   const modal = document.getElementById('detail-modal');
   if (e.target === modal) closeModal();
 });
