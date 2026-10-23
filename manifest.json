@@ -1,0 +1,19 @@
+{
+  "name": "Once Human - Master Codex & Recipe Matrix",
+  "short_name": "OnceHuman Codex",
+  "description": "Kompletní herní databáze receptů, volného vaření (Chef Matrix), synergií a technologií pro Once Human.",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#05080f",
+  "theme_color": "#00f0ff",
+  "orientation": "any",
+  "icons": [
+    {
+      "src": "./icons/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
+

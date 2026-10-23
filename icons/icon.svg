@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="100%" height="100%">
+  <defs>
+    <radialGradient id="bgGrad" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#0d1522" />
+      <stop offset="100%" stop-color="#05080f" />
+    </radialGradient>
+    <linearGradient id="cyanGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#00f0ff" />
+      <stop offset="100%" stop-color="#0088cc" />
+    </linearGradient>
+    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="12" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+  </defs>
+
+  <!-- Background Canvas -->
+  <rect width="512" height="512" rx="100" fill="url(#bgGrad)" stroke="#1e334d" stroke-width="8" />
+
+  <!-- Outer Cyber Tech Ring -->
+  <circle cx="256" cy="256" r="200" fill="none" stroke="#1e334d" stroke-width="4" stroke-dasharray="16 12" />
+  <circle cx="256" cy="256" r="160" fill="none" stroke="#00f0ff" stroke-width="6" opacity="0.4" />
+
+  <!-- Atom Orbits -->
+  <ellipse cx="256" cy="256" rx="140" ry="50" fill="none" stroke="url(#cyanGrad)" stroke-width="10" transform="rotate(0 256 256)" filter="url(#glow)" />
+  <ellipse cx="256" cy="256" rx="140" ry="50" fill="none" stroke="url(#cyanGrad)" stroke-width="10" transform="rotate(60 256 256)" filter="url(#glow)" />
+  <ellipse cx="256" cy="256" rx="140" ry="50" fill="none" stroke="url(#cyanGrad)" stroke-width="10" transform="rotate(120 256 256)" filter="url(#glow)" />
+
+  <!-- Orbiting Nodes -->
+  <circle cx="396" cy="256" r="14" fill="#ffb703" filter="url(#glow)" />
+  <circle cx="186" cy="135" r="14" fill="#00f0ff" filter="url(#glow)" />
+  <circle cx="186" cy="377" r="14" fill="#00f0ff" filter="url(#glow)" />
+
+  <!-- Core Reactor -->
+  <circle cx="256" cy="256" r="38" fill="#05080f" stroke="#00f0ff" stroke-width="8" />
+  <circle cx="256" cy="256" r="22" fill="#ffb703" filter="url(#glow)" />
+</svg>
+

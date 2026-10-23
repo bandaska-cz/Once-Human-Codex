@@ -1,0 +1,70 @@
+/* ==========================================================================
+   ONCE HUMAN CODEX - CUSTOM HUD STYLES
+   ========================================================================== */
+
+body {
+  background-color: #05080f;
+  background-image: 
+    radial-gradient(circle at 50% 0%, rgba(0, 240, 255, 0.08) 0%, transparent 60%),
+    radial-gradient(circle at 90% 90%, rgba(181, 23, 158, 0.05) 0%, transparent 50%),
+    linear-gradient(to right, rgba(255, 255, 255, 0.015) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.015) 1px, transparent 1px);
+  background-size: 100% 100%, 100% 100%, 40px 40px, 40px 40px;
+}
+
+/* Cyberpunk / Tactical HUD angled corner */
+.hud-cut-tr {
+  clip-path: polygon(0 0, calc(100% - 14px) 0, 100% 14px, 100% 100%, 0 100%);
+}
+
+/* Global Body-Level Floating Tooltip (Immune to card clipping) */
+#global-portal-tooltip {
+  position: fixed;
+  width: 290px;
+  max-width: calc(100vw - 32px);
+  z-index: 99999;
+  pointer-events: auto;
+  transition: opacity 0.15s ease-out, transform 0.15s ease-out;
+}
+
+#global-portal-tooltip::before {
+  content: '';
+  position: absolute;
+  top: -8px;
+  bottom: -8px;
+  left: -8px;
+  right: -8px;
+  background: transparent;
+  z-index: -1;
+}
+
+/* Custom Tactical Scrollbars */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #05080f;
+}
+::-webkit-scrollbar-thumb {
+  background: #1e334d;
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #00f0ff;
+}
+
+/* Modern Web Performance: Off-screen card rendering deferral */
+.recipe-card-deferred {
+  content-visibility: auto;
+  contain-intrinsic-size: auto none auto 280px;
+}
+
+/* Subtle glow animations */
+@keyframes pulseGlow {
+  0%, 100% { opacity: 0.6; }
+  50% { opacity: 1; }
+}
+.animate-pulse-glow {
+  animation: pulseGlow 3s ease-in-out infinite;
+}
