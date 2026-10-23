@@ -12,6 +12,18 @@ const i18n = {
         tabBosses: "Taktika na bossy",
         tabMemetics: "Memetic Specializace",
         tabMods: "Mody zbraní & zbrojí",
+        tabBuilds: "Bojové Buildy & Synergie",
+        buildWeaponsTitle: "Doporučené zbraně (Primary & Secondary):",
+        buildArmorTitle: "Kombinace zbroje (Armor Set):",
+        buildModsTitle: "Doporučené mody pro jednotlivé sloty:",
+        buildDeviantTitle: "Deviant & Cradle Synergie:",
+        buildFoodTitle: "Bojové jídlo & pití (Buff Food):",
+        buildStatsTitle: "Priority sub-statů (Stat Priorities):",
+        mapFarmingRoutesTitle: "Farmící trasy:",
+        mapCustomRouteBtn: "Plánovat trasu",
+        mapClearRouteBtn: "Zrušit trasu",
+        mapRouteStopsLabel: "Zastávek:",
+        mapRouteTotalDist: "Celková délka trasy:",
         baitLabel: "Doporučená návnada:",
         habitatLabel: "Prostředí / Výskyt:",
         bossPhasesTitle: "Fázování a klíčové mechaniky:",
@@ -141,6 +153,18 @@ const i18n = {
         tabBosses: "Boss Tactics & Raids",
         tabMemetics: "Memetic Specializations",
         tabMods: "Weapon & Armor Mods",
+        tabBuilds: "Combat Builds & Synergies",
+        buildWeaponsTitle: "Recommended Weapons (Primary & Secondary):",
+        buildArmorTitle: "Armor Set Synergies:",
+        buildModsTitle: "Slot-by-Slot Recommended Mods:",
+        buildDeviantTitle: "Deviant & Cradle Synergy:",
+        buildFoodTitle: "Combat Buff Food & Drink:",
+        buildStatsTitle: "Stat Priorities:",
+        mapFarmingRoutesTitle: "Farming Routes:",
+        mapCustomRouteBtn: "Plan Custom Route",
+        mapClearRouteBtn: "Clear Route",
+        mapRouteStopsLabel: "Stops:",
+        mapRouteTotalDist: "Total Route Distance:",
         baitLabel: "Recommended Bait:",
         habitatLabel: "Habitat / Location:",
         bossPhasesTitle: "Phases & Core Mechanics:",
@@ -18040,6 +18064,1018 @@ const gearMods = [
   }
 ];
 
+
+/* ==========================================================================
+   META COMBAT BUILDS & ARCHETYPE SYNERGIES (8 META LOADOUTS)
+   ========================================================================== */
+const combatBuilds = [
+  {
+    "id": "build-shrapnel-valor",
+    "nameEn": "Shrapnel Carnage Crit Build (SOCR - The Last Valor)",
+    "nameCs": "Shrapnel Carnage Crit Build (SOCR - The Last Valor)",
+    "rarity": "Legendary",
+    "categoryEn": "Combat Builds",
+    "categoryCs": "Bojové Buildy",
+    "scenario": "all",
+    "icon": "fa-crosshairs",
+    "archetypeEn": "Shrapnel",
+    "archetypeCs": "Shrapnel (Střepiny)",
+    "primaryWeaponEn": "SOCR - The Last Valor (Legendary Assault Rifle, Heavy Calibration)",
+    "primaryWeaponCs": "SOCR - The Last Valor (Legendární Assault Rifle, Kalibrace: Heavy / Crit)",
+    "secondaryWeaponEn": "DE.50 - Wildfire (The Bullseye debuff +10% Vulnerability)",
+    "secondaryWeaponCs": "DE.50 - Wildfire (Pistole s efektem The Bullseye: +10% zranitelnost)",
+    "armorSetEn": "4× Lonewolf (Stacking Crit Rate & Crit DMG) + 1× Bastille Mask (+10% Weapon DMG above 70% HP)",
+    "armorSetCs": "4× Lonewolf (Stackování Crit Rate & Crit DMG) + 1× Bastille Maska (+10% Weapon DMG při 70%+ HP)",
+    "recommendedModsEn": {
+      "weapon": "Shrapnel Carnage (Violent)",
+      "helmet": "Fateful Strike",
+      "mask": "Targeting Strike",
+      "top": "Quick Return",
+      "bottom": "Dead Shot",
+      "gloves": "Crit Boost",
+      "boots": "Covered Advance"
+    },
+    "recommendedModsCs": {
+      "weapon": "Masakr střepin (Shrapnel Carnage) - Violent",
+      "helmet": "Fateful Strike (Konverze na Crit DMG)",
+      "mask": "Targeting Strike",
+      "top": "Quick Return",
+      "bottom": "Dead Shot (Shrapnel Souvenir)",
+      "gloves": "Crit Boost",
+      "boots": "Covered Advance"
+    },
+    "recommendedDeviantEn": "Lonewolf Whisper (+Damage vulnerability debuff & aggro decoy)",
+    "recommendedDeviantCs": "Lonewolf Whisper (Volání osamělého vlka - +Damage debuff na cíl a odlákání aggra)",
+    "cradlePerksEn": [
+      "Automatic Weapon Enhancement",
+      "Shrapnel Amplification",
+      "Steady Hand",
+      "Sprint Momentum",
+      "Boss Hunter"
+    ],
+    "cradlePerksCs": [
+      "Vylepšení automatických zbraní",
+      "Zesílení střepin (Shrapnel)",
+      "Pevná ruka (Steady Hand)",
+      "Hybnost sprintu",
+      "Lovec bossů (Boss Hunter)"
+    ],
+    "buffFoodId": "rec-canned-seafood-oil",
+    "buffFoodNameEn": "Canned Seafood Oil (+30% Crit DMG for 30m)",
+    "buffFoodNameCs": "Rybí konzerva na oleji (+30% Crit DMG na 30 min)",
+    "buffDrinkId": "rec-ice-tea",
+    "buffDrinkNameEn": "Stardust Ice Tea (+Stamina regeneration)",
+    "buffDrinkNameCs": "Ledový čaj Stardust (+Regenerace staminy)",
+    "statPrioritiesEn": "Crit Rate (50%+) > Crit DMG (180%+) > Weapon DMG > Magazine Capacity",
+    "statPrioritiesCs": "Crit Rate (50%+) > Crit DMG (180%+) > Weapon DMG > Kapacita zásobníku",
+    "descriptionEn": "Undisputed king of PvE DPS against monolithic bosses and elite aberrations. Every critical bullet triggers lethal Shrapnel fragments targeting unexposed body parts, multiplying your damage output.",
+    "descriptionCs": "Král PvE DPS pro souboje s monolitními bossy a elitními mutanty. Každý kritický zásah spouští smrtící střepiny (Shrapnel) do dalších částí těla bosse, čímž násobí celkové udělené poškození.",
+    "effectsEn": [
+      "Primary: SOCR - The Last Valor + DE.50 Wildfire",
+      "Armor: 4× Lonewolf + 1× Bastille Mask",
+      "Deviant: Lonewolf Whisper",
+      "Food Buff: Canned Seafood Oil (+30% Crit DMG)"
+    ],
+    "effectsCs": [
+      "Zbraně: SOCR - The Last Valor + DE.50 Wildfire",
+      "Zbroj: 4× Lonewolf + 1× Bastille Maska",
+      "Deviant: Lonewolf Whisper",
+      "Jídlo: Rybí konzerva na oleji (+30% Crit DMG)"
+    ],
+    "ingredientsEn": [
+      {
+        "name": "Steel Ingot",
+        "amount": 25,
+        "isPrimary": true
+      },
+      {
+        "name": "Aluminum Ingot",
+        "amount": 20
+      },
+      {
+        "name": "Special Plastics",
+        "amount": 15
+      },
+      {
+        "name": "Standard Weapon Parts",
+        "amount": 10
+      },
+      {
+        "name": "Stardust Source",
+        "amount": 40
+      }
+    ],
+    "ingredientsCs": [
+      {
+        "name": "Ocelový ingot",
+        "amount": 25,
+        "isPrimary": true
+      },
+      {
+        "name": "Hliníkový ingot",
+        "amount": 20
+      },
+      {
+        "name": "Speciální plasty",
+        "amount": 15
+      },
+      {
+        "name": "Běžné součástky zbraní",
+        "amount": 10
+      },
+      {
+        "name": "Stardust Source",
+        "amount": 40
+      }
+    ],
+    "workbench": "Gear Workbench & Cradle",
+    "relatedRecipeId": "gear-01"
+  },
+  {
+    "id": "build-frost-vortex-jaws",
+    "nameEn": "Frost Vortex Shatter Storm (KV-SBR Little Jaws / Icy Rain)",
+    "nameCs": "Frost Vortex Shatter Storm (KV-SBR Little Jaws / Icy Rain)",
+    "rarity": "Legendary",
+    "categoryEn": "Combat Builds",
+    "categoryCs": "Bojové Buildy",
+    "scenario": "all",
+    "icon": "fa-snowflake",
+    "archetypeEn": "Frost Vortex",
+    "archetypeCs": "Frost Vortex (Ledový vír)",
+    "primaryWeaponEn": "KV-SBR - Little Jaws / SMG Icy Rain (Frost Vortex AoE & Ice Crystal)",
+    "primaryWeaponCs": "KV-SBR - Little Jaws / SMG Icy Rain (Ledový vír AoE a mrazivé krystaly)",
+    "secondaryWeaponEn": "Recurve Bow (Frost Snare & Slow)",
+    "secondaryWeaponCs": "Recurve Bow (Mrazivá past & Zpomalení nepřátel)",
+    "armorSetEn": "4× Shelterer (Frost DMG & Elemental Shield) + 1× Falcon Boots (+Movement Speed)",
+    "armorSetCs": "4× Shelterer (Mrazivé poškození & Elementální štít) + 1× Falcon Boty (+Rychlost pohybu)",
+    "recommendedModsEn": {
+      "weapon": "Vortex Generator (Expanded Vortex Radius & Duration)",
+      "helmet": "Frost Blessing (Healing inside vortex)",
+      "mask": "Vortex Expansion",
+      "top": "Elemental Overload",
+      "bottom": "Frost Slowdown",
+      "gloves": "Elemental Resonance",
+      "boots": "Frost Step"
+    },
+    "recommendedModsCs": {
+      "weapon": "Vortex Generator (Větší rádius a trvání ledového víru)",
+      "helmet": "Frost Blessing (Léčení uvnitř víru)",
+      "mask": "Vortex Expansion",
+      "top": "Elemental Overload",
+      "bottom": "Frost Slowdown",
+      "gloves": "Elemental Resonance",
+      "boots": "Frost Step"
+    },
+    "recommendedDeviantEn": "Polar Jelly (Freezes surrounding enemies & applies Frost Vulnerability)",
+    "recommendedDeviantCs": "Polar Jelly (Polární medúza - Zmrazuje nepřátele v okolí a aplikuje Mrazivou zranitelnost)",
+    "cradlePerksEn": [
+      "Frost Amplification",
+      "Elemental Echo",
+      "Tactical Reload",
+      "Vortex Snare",
+      "Shield Overcharge"
+    ],
+    "cradlePerksCs": [
+      "Zesílení mrazivého poškození",
+      "Elementální ozvěna (Echo)",
+      "Taktické přebíjení",
+      "Vortex past (Snare)",
+      "Přetížení štítu"
+    ],
+    "buffFoodId": "rec-safety-sandwich",
+    "buffFoodNameEn": "Safety Sandwich (+Sanity protection & Frost resistance)",
+    "buffFoodNameCs": "Bezpečnostní sendvič (Ochrana Sanity a mrazivá odolnost)",
+    "buffDrinkId": "rec-cold-brew-tea",
+    "buffDrinkNameEn": "Cold Brew Tea (+Elemental DMG boost)",
+    "buffDrinkNameCs": "Cold Brew čaj (+Zvýšení elementálního poškození)",
+    "statPrioritiesEn": "Status DMG > Elemental DMG > Magazine Size > Frost Trigger Chance",
+    "statPrioritiesCs": "Status DMG > Elementální poškození > Kapacita zásobníku > Šance na vír",
+    "descriptionEn": "Unrivaled crowd control and dungeon clearing build. Spawns continuous cryogenic vortexes that suck in groups of enemies and shatter them with cascading elemental frost damage.",
+    "descriptionCs": "Nepřekonatelný build pro kontrolu davů a čištění sil dungeonů. Vytváří nepřetržité kryogenní víry, které vtahují skupiny nepřátel a drtí je lavinou mrazivého elementálního poškození.",
+    "effectsEn": [
+      "Primary: KV-SBR Little Jaws + Recurve Bow",
+      "Armor: 4× Shelterer + 1× Falcon Boots",
+      "Deviant: Polar Jelly",
+      "Food Buff: Cold Brew Tea (+Elemental DMG)"
+    ],
+    "effectsCs": [
+      "Zbraně: KV-SBR Little Jaws + Recurve Bow",
+      "Zbroj: 4× Shelterer + 1× Falcon Boty",
+      "Deviant: Polar Jelly",
+      "Jídlo: Cold Brew čaj (+Elementální DMG)"
+    ],
+    "ingredientsEn": [
+      {
+        "name": "Aluminum Ingot",
+        "amount": 30,
+        "isPrimary": true
+      },
+      {
+        "name": "Special Plastics",
+        "amount": 20
+      },
+      {
+        "name": "Electronic Parts",
+        "amount": 15
+      },
+      {
+        "name": "Stardust Source",
+        "amount": 45
+      }
+    ],
+    "ingredientsCs": [
+      {
+        "name": "Hliníkový ingot",
+        "amount": 30,
+        "isPrimary": true
+      },
+      {
+        "name": "Speciální plasty",
+        "amount": 20
+      },
+      {
+        "name": "Elektronické součástky",
+        "amount": 15
+      },
+      {
+        "name": "Stardust Source",
+        "amount": 45
+      }
+    ],
+    "workbench": "Gear Workbench & Cradle",
+    "relatedRecipeId": "gear-02"
+  },
+  {
+    "id": "build-burn-boom",
+    "nameEn": "Blaze & Firestorm Inferno (KVD - Boom! Boom! / KAM Abyss)",
+    "nameCs": "Blaze & Firestorm Inferno (KVD - Boom! Boom! / KAM Abyss)",
+    "rarity": "Legendary",
+    "categoryEn": "Combat Builds",
+    "categoryCs": "Bojové Buildy",
+    "scenario": "all",
+    "icon": "fa-fire",
+    "archetypeEn": "Burn",
+    "archetypeCs": "Burn (Plameny & Popálení)",
+    "primaryWeaponEn": "KVD - Boom! Boom! (Explosive Fire LMG)",
+    "primaryWeaponCs": "KVD - Boom! Boom! (Těžký kulomet s explozivním ohněm)",
+    "secondaryWeaponEn": "Double-Barrel Shotgun (Dragon's Breath fire burst)",
+    "secondaryWeaponCs": "Dvojhlavňová brokovnice (Dragon's Breath ohnivá salva)",
+    "armorSetEn": "3× Heavy Duty (Fire Resistance & Max HP) + 2× Shelterer (Elemental DMG)",
+    "armorSetCs": "3× Heavy Duty (Ohnivá odolnost & Max HP) + 2× Shelterer (Elementální DMG)",
+    "recommendedModsEn": {
+      "weapon": "Blaze Resonance (Stacking burn layers up to 10)",
+      "helmet": "Flame Trap",
+      "mask": "Blaze Amplifier",
+      "top": "Fire Resistance & Overcharge",
+      "bottom": "Inferno Rush",
+      "gloves": "Status Surge",
+      "boots": "Scorched Earth"
+    },
+    "recommendedModsCs": {
+      "weapon": "Blaze Resonance (Stackování vrstev hoření až na 10)",
+      "helmet": "Flame Trap",
+      "mask": "Blaze Amplifier",
+      "top": "Fire Resistance & Overcharge",
+      "bottom": "Inferno Rush",
+      "gloves": "Status Surge",
+      "boots": "Scorched Earth"
+    },
+    "recommendedDeviantEn": "Pyro Dino (Spews dragon flames and increases overall fire damage by +25%)",
+    "recommendedDeviantCs": "Pyro Dino (Ohnivý dinosaurus - Chrlí plameny na bosse a zvyšuje veškeré ohnivé poškození o 25%)",
+    "cradlePerksEn": [
+      "Flame Infusion",
+      "Sustained Burn",
+      "Heavy Weapons Master",
+      "Thermal Shield",
+      "Rapid Cycle"
+    ],
+    "cradlePerksCs": [
+      "Plamenná infuze (Flame Infusion)",
+      "Udržitelné hoření",
+      "Mistr těžkých zbraní (LMG)",
+      "Termální štít",
+      "Rychlý cyklus chlazení"
+    ],
+    "buffFoodId": "rec-ghost-cookies",
+    "buffFoodNameEn": "Ghost Cookies (+Phase damage & Fire resistance)",
+    "buffFoodNameCs": "Ghost Cookies (Fázové poškození a odolnost)",
+    "buffDrinkId": "rec-fruit-tea",
+    "buffDrinkNameEn": "Wild Fruit Tea (+Hydration & Status duration)",
+    "buffDrinkNameCs": "Ovocný čaj (+Hydratace a trvání statusů)",
+    "statPrioritiesEn": "Elemental DMG > Status DMG > Burn Duration > Max HP",
+    "statPrioritiesCs": "Elementální DMG > Status DMG > Trvání hoření > Max HP",
+    "descriptionEn": "Devastating thermal burn build capable of setting entire packs ablaze. Burn stacks tick rapidly and explode into fiery novas, dealing lethal damage over time.",
+    "descriptionCs": "Ničivý ohnivý build se schopností zapálit celé skupiny mutantů. Vrstvy hoření tikají rapidní rychlostí a explodují do ohnivých nov, které taví bossy bez nutnosti míření na weakspoty.",
+    "effectsEn": [
+      "Primary: KVD Boom! Boom! + Double Barrel",
+      "Armor: 3× Heavy Duty + 2× Shelterer",
+      "Deviant: Pyro Dino (+25% Fire DMG)",
+      "Food Buff: Ghost Cookies"
+    ],
+    "effectsCs": [
+      "Zbraně: KVD Boom! Boom! + Brokovnice",
+      "Zbroj: 3× Heavy Duty + 2× Shelterer",
+      "Deviant: Pyro Dino (+25% Ohnivé DMG)",
+      "Jídlo: Ghost Cookies"
+    ],
+    "ingredientsEn": [
+      {
+        "name": "Steel Ingot",
+        "amount": 35,
+        "isPrimary": true
+      },
+      {
+        "name": "Electronic Parts",
+        "amount": 20
+      },
+      {
+        "name": "Gunpowder",
+        "amount": 50
+      },
+      {
+        "name": "Stardust Source",
+        "amount": 40
+      }
+    ],
+    "ingredientsCs": [
+      {
+        "name": "Ocelový ingot",
+        "amount": 35,
+        "isPrimary": true
+      },
+      {
+        "name": "Elektronické součástky",
+        "amount": 20
+      },
+      {
+        "name": "Střelný prach",
+        "amount": 50
+      },
+      {
+        "name": "Stardust Source",
+        "amount": 40
+      }
+    ],
+    "workbench": "Gear Workbench & Cradle",
+    "relatedRecipeId": "gear-03"
+  },
+  {
+    "id": "build-power-surge-outsider",
+    "nameEn": "Electro Shockwave Power Surge (SOCR - Outsider / MP7)",
+    "nameCs": "Electro Shockwave Power Surge (SOCR - Outsider / MP7)",
+    "rarity": "Legendary",
+    "categoryEn": "Combat Builds",
+    "categoryCs": "Bojové Buildy",
+    "scenario": "all",
+    "icon": "fa-bolt",
+    "archetypeEn": "Power Surge",
+    "archetypeCs": "Power Surge (Elektrický přepěťový šok)",
+    "primaryWeaponEn": "SOCR - Outsider (Summons lightning strikes from above)",
+    "primaryWeaponCs": "SOCR - Outsider (Vyvolává bleskové výboje z nebe)",
+    "secondaryWeaponEn": "DE.50 - Jaws / Wildfire",
+    "secondaryWeaponCs": "DE.50 - Jaws / Wildfire",
+    "armorSetEn": "4× Mayfly Set (Power Surge & Fire Rate) + 1× Lonewolf Mask",
+    "armorSetCs": "4× Mayfly Set (Přepětí & Kadence střelby) + 1× Lonewolf Maska",
+    "recommendedModsEn": {
+      "weapon": "Static Shock (Guaranteed lightning strike every 3 hits)",
+      "helmet": "Thunderbolt Cascade",
+      "mask": "Shock Therapy",
+      "top": "Electric Overload",
+      "bottom": "Capacitor Discharge",
+      "gloves": "High Voltage Surge",
+      "boots": "Lightning Sprint"
+    },
+    "recommendedModsCs": {
+      "weapon": "Static Shock (Garantovaný blesk každé 3 zásahy)",
+      "helmet": "Thunderbolt Cascade",
+      "mask": "Shock Therapy",
+      "top": "Electric Overload",
+      "bottom": "Capacitor Discharge",
+      "gloves": "High Voltage Surge",
+      "boots": "Lightning Sprint"
+    },
+    "recommendedDeviantEn": "Electric Eel (Boosts weapon shock damage and recharges cradle batteries)",
+    "recommendedDeviantCs": "Electric Eel (Elektrický úhoř - Zvyšuje elektro poškození zbraně a dobíjí baterie)",
+    "cradlePerksEn": [
+      "Shock Amplification",
+      "Chain Reaction",
+      "Static Retention",
+      "Quick Draw",
+      "Lightning Reflexes"
+    ],
+    "cradlePerksCs": [
+      "Zesílení šoku (Shock Amplification)",
+      "Řetězová reakce blesků",
+      "Statická retence",
+      "Rychlé tasení zbraně",
+      "Bleskové reflexy"
+    ],
+    "buffFoodId": "rec-anti-gravity",
+    "buffFoodNameEn": "Anti-Gravity Milkshake (+High-voltage mobility & Jump height)",
+    "buffFoodNameCs": "Anti-Gravity Milkshake (+Mobilita ve výskoku)",
+    "buffDrinkId": "rec-energy-drink",
+    "buffDrinkNameEn": "Stardust Energy Drink (+Stamina & Shock rate)",
+    "buffDrinkNameCs": "Stardust Energetický nápoj (+Stamina a kadence)",
+    "statPrioritiesEn": "Status DMG > Attack Speed > Elemental DMG > Reload Speed",
+    "statPrioritiesCs": "Status DMG > Rychlost útoku > Elementální DMG > Rychlost přebití",
+    "descriptionEn": "High-octane mobile combat build that chains lethal lightning forks across surrounding targets, stunning and electrocuting elites instantly.",
+    "descriptionCs": "Bleskový mobilní build, který řetězí ničivé elektrické výboje mezi nepřáteli. Paralyzuje elitní monstrozity a ničí štíty mutantů bleskovou kadencí.",
+    "effectsEn": [
+      "Primary: SOCR Outsider + MP7",
+      "Armor: 4× Mayfly Set + 1× Lonewolf",
+      "Deviant: Electric Eel (+Shock DMG)",
+      "Food Buff: Anti-Gravity Milkshake"
+    ],
+    "effectsCs": [
+      "Zbraně: SOCR Outsider + MP7",
+      "Zbroj: 4× Mayfly Set + 1× Lonewolf",
+      "Deviant: Elektrický úhoř (+Shock DMG)",
+      "Jídlo: Anti-Gravity Milkshake"
+    ],
+    "ingredientsEn": [
+      {
+        "name": "Electronic Parts",
+        "amount": 35,
+        "isPrimary": true
+      },
+      {
+        "name": "Copper Wire",
+        "amount": 50
+      },
+      {
+        "name": "Aluminum Ingot",
+        "amount": 20
+      },
+      {
+        "name": "Stardust Source",
+        "amount": 40
+      }
+    ],
+    "ingredientsCs": [
+      {
+        "name": "Elektronické součástky",
+        "amount": 35,
+        "isPrimary": true
+      },
+      {
+        "name": "Měděný drát",
+        "amount": 50
+      },
+      {
+        "name": "Hliníkový ingot",
+        "amount": 20
+      },
+      {
+        "name": "Stardust Source",
+        "amount": 40
+      }
+    ],
+    "workbench": "Gear Workbench & Cradle",
+    "relatedRecipeId": "gear-04"
+  },
+  {
+    "id": "build-unstable-bomber-jaws",
+    "nameEn": "Unstable Explosive Bomber (DE.50 - Jaws Pistol)",
+    "nameCs": "Unstable Explosive Bomber (DE.50 - Jaws Pistol)",
+    "rarity": "Legendary",
+    "categoryEn": "Combat Builds",
+    "categoryCs": "Bojové Buildy",
+    "scenario": "all",
+    "icon": "fa-bomb",
+    "archetypeEn": "Unstable Bomber",
+    "archetypeCs": "Unstable Bomber (Nestabilní bomba)",
+    "primaryWeaponEn": "DE.50 - Jaws (Heavy Handgun with explosive charge implants)",
+    "primaryWeaponCs": "DE.50 - Jaws (Těžká pistole s implantovanou explozivní náloží)",
+    "secondaryWeaponEn": "SN700 Sniper Rifle / Recurve Bow",
+    "secondaryWeaponCs": "SN700 Odstřelovací puška / Reflexní luk",
+    "armorSetEn": "4× Renegade (Explosive DMG & Weakspot) + 1× Bastille Top",
+    "armorSetCs": "4× Renegade (Explozivní poškození & Weakspot) + 1× Bastille Vesta",
+    "recommendedModsEn": {
+      "weapon": "Detonation Catalyst (Critical bombs trigger secondary explosions)",
+      "helmet": "Blast Radius Boost",
+      "mask": "Demolition Expert",
+      "top": "Heavy Caliber",
+      "bottom": "Explosive Souvenir",
+      "gloves": "Crit Damage Amplifier",
+      "boots": "Tactical Evade"
+    },
+    "recommendedModsCs": {
+      "weapon": "Detonation Catalyst (Kritické bomby vyvolávají sekundární explozi)",
+      "helmet": "Blast Radius Boost",
+      "mask": "Demolition Expert",
+      "top": "Heavy Caliber",
+      "bottom": "Explosive Souvenir",
+      "gloves": "Crit Damage Amplifier",
+      "boots": "Tactical Evade"
+    },
+    "recommendedDeviantEn": "Butterfly's Emissary (Marks weakspots and guarantees critical headshots)",
+    "recommendedDeviantCs": "Butterfly's Emissary (Motýlí posel - Označuje slabá místa a garantuje 100% kritické zásahy)",
+    "cradlePerksEn": [
+      "Explosive Synergy",
+      "Heavy Impact",
+      "Precision Drill",
+      "Armor Piercing",
+      "Opportunist"
+    ],
+    "cradlePerksCs": [
+      "Explozivní synergie",
+      "Těžký dopad (Heavy Impact)",
+      "Přesný vrták (Precision Drill)",
+      "Průraznost zbroje (Armor Piercing)",
+      "Oportunista"
+    ],
+    "buffFoodId": "rec-miracle-tea",
+    "buffFoodNameEn": "Miracle Tea (+Weakspot & Explosive multiplier)",
+    "buffFoodNameCs": "Miracle Tea (+Násobič poškození weakspotů)",
+    "buffDrinkId": "rec-purified-water",
+    "buffDrinkNameEn": "Pure Spring Water (+Hydration stability)",
+    "buffDrinkNameCs": "Čistá pramenitá voda (+Stabilita)",
+    "statPrioritiesEn": "Crit Rate > Crit DMG > Weakspot DMG > Explosive DMG",
+    "statPrioritiesCs": "Crit Rate > Crit DMG > Weakspot DMG > Explozivní poškození",
+    "descriptionEn": "Extreme single-target burst DPS handgun build. Each fired bullet plants a micro-bomb inside the enemy body that detonates for colossal critical damage numbers.",
+    "descriptionCs": "Extrémní burst poškození do jednoho cíle pomocí pistole. Každá kulka implantuje mikrobombu do těla nepřítele, která následně detonuje s masivními kritickými čísly.",
+    "effectsEn": [
+      "Primary: DE.50 Jaws + SN700 Sniper",
+      "Armor: 4× Renegade + 1× Bastille Top",
+      "Deviant: Butterfly's Emissary",
+      "Food Buff: Miracle Tea (+Weakspot & Explosive)"
+    ],
+    "effectsCs": [
+      "Zbraně: DE.50 Jaws + SN700 Sniper",
+      "Zbroj: 4× Renegade + 1× Bastille Vesta",
+      "Deviant: Motýlí posel",
+      "Jídlo: Miracle Tea (+Weakspot a exploze)"
+    ],
+    "ingredientsEn": [
+      {
+        "name": "Steel Ingot",
+        "amount": 20,
+        "isPrimary": true
+      },
+      {
+        "name": "Gunpowder",
+        "amount": 40
+      },
+      {
+        "name": "Special Plastics",
+        "amount": 15
+      },
+      {
+        "name": "Stardust Source",
+        "amount": 35
+      }
+    ],
+    "ingredientsCs": [
+      {
+        "name": "Ocelový ingot",
+        "amount": 20,
+        "isPrimary": true
+      },
+      {
+        "name": "Střelný prach",
+        "amount": 40
+      },
+      {
+        "name": "Speciální plasty",
+        "amount": 15
+      },
+      {
+        "name": "Stardust Source",
+        "amount": 35
+      }
+    ],
+    "workbench": "Gear Workbench & Cradle",
+    "relatedRecipeId": "gear-05"
+  },
+  {
+    "id": "build-bounce-wildfire",
+    "nameEn": "Ricochet Bounce & Bullseye (DE.50 Wildfire / AWS.338 Bingo)",
+    "nameCs": "Ricochet Bounce & Bullseye (DE.50 Wildfire / AWS.338 Bingo)",
+    "rarity": "Legendary",
+    "categoryEn": "Combat Builds",
+    "categoryCs": "Bojové Buildy",
+    "scenario": "all",
+    "icon": "fa-bullseye",
+    "archetypeEn": "Bounce & Bullseye",
+    "archetypeCs": "Bounce & Bullseye (Odrazy projektilů)",
+    "primaryWeaponEn": "AWS.338 - Bingo (Legendary Sniper Rifle with guaranteed Bullseye)",
+    "primaryWeaponCs": "AWS.338 - Bingo (Legendární odstřelovací puška s garantovaným Bullseye)",
+    "secondaryWeaponEn": "DE.50 - Wildfire (Bouncing bullets hitting 2 additional targets)",
+    "secondaryWeaponCs": "DE.50 - Wildfire (Odrazy střel na další 2 cíle)",
+    "armorSetEn": "3× Falcon (Crit Rate & Movement) + 2× Agent (Weakspot DMG)",
+    "armorSetCs": "3× Falcon (Kritický zásah & Rychlost) + 2× Agent (Weakspot DMG)",
+    "recommendedModsEn": {
+      "weapon": "Bouncing Echo (Ricocheting bullets deal 120% base damage)",
+      "helmet": "Bullseye Hunter",
+      "mask": "Weakspot Perfectionist",
+      "top": "Precision Sight",
+      "bottom": "Deadly Ricochet",
+      "gloves": "Marksman Grip",
+      "boots": "Swift Step"
+    },
+    "recommendedModsCs": {
+      "weapon": "Bouncing Echo (Odražené střely způsobují 120% základního poškození)",
+      "helmet": "Bullseye Hunter",
+      "mask": "Weakspot Perfectionist",
+      "top": "Precision Sight",
+      "bottom": "Deadly Ricochet",
+      "gloves": "Marksman Grip",
+      "boots": "Swift Step"
+    },
+    "recommendedDeviantEn": "Dr. Teddy / Lonewolf Whisper",
+    "recommendedDeviantCs": "Dr. Teddy (Léčení) / Lonewolf Whisper (Zranitelnost cílů)",
+    "cradlePerksEn": [
+      "Sniper Elite",
+      "Ricochet Extension",
+      "Bullseye Debuff",
+      "High Ground",
+      "Steady Breathing"
+    ],
+    "cradlePerksCs": [
+      "Sniper Elita",
+      "Prodloužení odrazu (Ricochet)",
+      "Bullseye debuff zranitelnosti",
+      "Výhoda vyvýšeného terénu",
+      "Pevný dech"
+    ],
+    "buffFoodId": "rec-stargazy-pie",
+    "buffFoodNameEn": "Stargazy Pie (+Weakspot & Crit DMG bonus)",
+    "buffFoodNameCs": "Stargazy Pie (+Bonus k Weakspotům a Crit DMG)",
+    "buffDrinkId": "rec-corn-juice",
+    "buffDrinkNameEn": "Corn Juice (+Aim stability)",
+    "buffDrinkNameCs": "Kukuřičná šťáva (+Stabilita míření)",
+    "statPrioritiesEn": "Weakspot DMG > Crit DMG > Weapon DMG > Distance Dropoff",
+    "statPrioritiesCs": "Weakspot DMG > Crit DMG > Poškození zbraně > Pokles na dálku",
+    "descriptionEn": "Long-range sniper build featuring deadly projectile ricochets. Marks targets with Bullseye vulnerability and clears entire elite squadrons from high vantage points.",
+    "descriptionCs": "Ostrostřelecký sniper build s odrazy střel pro likvidaci celých skupin nepřátel jedním výstřelem na dálku. Aplikuje debuff Bullseye a čistí outposty z vyvýšených pozic.",
+    "effectsEn": [
+      "Primary: AWS.338 Bingo + DE.50 Wildfire",
+      "Armor: 3× Falcon + 2× Agent",
+      "Deviant: Lonewolf Whisper",
+      "Food Buff: Stargazy Pie (+Weakspot & Crit)"
+    ],
+    "effectsCs": [
+      "Zbraně: AWS.338 Bingo + DE.50 Wildfire",
+      "Zbroj: 3× Falcon + 2× Agent",
+      "Deviant: Lonewolf Whisper",
+      "Jídlo: Stargazy Pie (+Weakspot a Crit)"
+    ],
+    "ingredientsEn": [
+      {
+        "name": "Tungsten Ingot",
+        "amount": 25,
+        "isPrimary": true
+      },
+      {
+        "name": "Special Plastics",
+        "amount": 15
+      },
+      {
+        "name": "Standard Weapon Parts",
+        "amount": 15
+      },
+      {
+        "name": "Stardust Source",
+        "amount": 50
+      }
+    ],
+    "ingredientsCs": [
+      {
+        "name": "Wolframový ingot",
+        "amount": 25,
+        "isPrimary": true
+      },
+      {
+        "name": "Speciální plasty",
+        "amount": 15
+      },
+      {
+        "name": "Běžné součástky zbraní",
+        "amount": 15
+      },
+      {
+        "name": "Stardust Source",
+        "amount": 50
+      }
+    ],
+    "workbench": "Gear Workbench & Cradle",
+    "relatedRecipeId": "gear-06"
+  },
+  {
+    "id": "build-fortress-tank",
+    "nameEn": "Fortress Warfare Ironclad Bruiser (MG4 Predator / ACS12)",
+    "nameCs": "Fortress Warfare Ironclad Bruiser (MG4 Predator / ACS12)",
+    "rarity": "Legendary",
+    "categoryEn": "Combat Builds",
+    "categoryCs": "Bojové Buildy",
+    "scenario": "all",
+    "icon": "fa-shield-halved",
+    "archetypeEn": "Fortress Warfare",
+    "archetypeCs": "Fortress Warfare (Obranná pevnost & Nezranitelnost)",
+    "primaryWeaponEn": "MG4 - Predator (Heavy Machine Gun with Fortress Barrier Shield)",
+    "primaryWeaponCs": "MG4 - Predator (Těžký kulomet vytvářející ochranný štít pevnosti)",
+    "secondaryWeaponEn": "ACS12 - Hammerhead (Combat Shotgun for close-quarters engagement)",
+    "secondaryWeaponCs": "ACS12 - Hammerhead (Bojová automatická brokovnice)",
+    "armorSetEn": "4× Bastille (Unbreakable shield & 40% Damage Reduction) + 1× Heavy Duty",
+    "armorSetCs": "4× Bastille (Nezlomný štít & 40% redukce poškození) + 1× Heavy Duty",
+    "recommendedModsEn": {
+      "weapon": "Fortress Bastion (Projects fortress circle absorbing 50% damage)",
+      "helmet": "Iron Will",
+      "mask": "Shield Resonator",
+      "top": "Damage Absorber",
+      "bottom": "Unshakable Stance",
+      "gloves": "Heavy Gunner Stabilizer",
+      "boots": "Juggernaut March"
+    },
+    "recommendedModsCs": {
+      "weapon": "Fortress Bastion (Vytváří kruh pevnosti pohlcující 50% poškození)",
+      "helmet": "Iron Will",
+      "mask": "Shield Resonator",
+      "top": "Damage Absorber",
+      "bottom": "Unshakable Stance",
+      "gloves": "Heavy Gunner Stabilizer",
+      "boots": "Juggernaut March"
+    },
+    "recommendedDeviantEn": "Dr. Teddy (Continuous HP recovery) / Shattered Maiden",
+    "recommendedDeviantCs": "Dr. Teddy (Nepřetržitá regenerace životů) / Shattered Maiden (Štíty)",
+    "cradlePerksEn": [
+      "Fortress Dominion",
+      "Heavy Plating",
+      "Sustained Suppression",
+      "Bloodbath",
+      "Armor Repair"
+    ],
+    "cradlePerksCs": [
+      "Pevnostní dominance",
+      "Těžké plátování (Heavy Plating)",
+      "Dlouhotrvající potlačení palbou",
+      "Krvavá lázeň (Bloodbath)",
+      "Automatická oprava zbroje"
+    ],
+    "buffFoodId": "rec-bacon-burger",
+    "buffFoodNameEn": "Bacon Burger (+30% Max HP & Damage reduction)",
+    "buffFoodNameCs": "Bacon Burger (+30% Max HP a redukce poškození)",
+    "buffDrinkId": "rec-purified-water",
+    "buffDrinkNameEn": "Purified Water (+Hydration)",
+    "buffDrinkNameCs": "Čistá voda (+Hydratace)",
+    "statPrioritiesEn": "Max HP > Damage Reduction > Weapon DMG > Reload Speed",
+    "statPrioritiesCs": "Max HP > Redukce poškození > Poškození zbraně > Rychlost přebití",
+    "descriptionEn": "Unshakable frontline tank build designed for Prime Wars and Master Raids. Absorbs monolithic hits, grants team shields, and suppresses bosses with unrelenting firepower.",
+    "descriptionCs": "Nezlomný tankovací bruiser build pro Prime Wars a nejtěžší Master dungeony. Stojí v první linii, pohlcuje útoky bossů bez mrknutí oka a zásobuje tým ochrannými štíty.",
+    "effectsEn": [
+      "Primary: MG4 Predator + ACS12 Shotgun",
+      "Armor: 4× Bastille + 1× Heavy Duty",
+      "Deviant: Dr. Teddy (Constant Regen)",
+      "Food Buff: Bacon Burger (+30% Max HP)"
+    ],
+    "effectsCs": [
+      "Zbraně: MG4 Predator + ACS12 Brokovnice",
+      "Zbroj: 4× Bastille + 1× Heavy Duty",
+      "Deviant: Dr. Teddy (Regenerace)",
+      "Jídlo: Bacon Burger (+30% Max HP)"
+    ],
+    "ingredientsEn": [
+      {
+        "name": "Steel Ingot",
+        "amount": 40,
+        "isPrimary": true
+      },
+      {
+        "name": "Rubber",
+        "amount": 30
+      },
+      {
+        "name": "Special Plastics",
+        "amount": 20
+      },
+      {
+        "name": "Stardust Source",
+        "amount": 45
+      }
+    ],
+    "ingredientsCs": [
+      {
+        "name": "Ocelový ingot",
+        "amount": 40,
+        "isPrimary": true
+      },
+      {
+        "name": "Guma",
+        "amount": 30
+      },
+      {
+        "name": "Speciální plasty",
+        "amount": 20
+      },
+      {
+        "name": "Stardust Source",
+        "amount": 45
+      }
+    ],
+    "workbench": "Gear Workbench & Cradle",
+    "relatedRecipeId": "gear-07"
+  },
+  {
+    "id": "build-fast-gunner",
+    "nameEn": "Fast Gunner Endless Barrage (RPK - Bullet Hose / MG4)",
+    "nameCs": "Fast Gunner Endless Barrage (RPK - Bullet Hose / MG4)",
+    "rarity": "Legendary",
+    "categoryEn": "Combat Builds",
+    "categoryCs": "Bojové Buildy",
+    "scenario": "all",
+    "icon": "fa-gauge-high",
+    "archetypeEn": "Fast Gunner",
+    "archetypeCs": "Fast Gunner (Extrémní kadence & Bezedný zásobník)",
+    "primaryWeaponEn": "RPK - Fast Gunner Special (Continuous fire with chamber auto-refill)",
+    "primaryWeaponCs": "RPK - Fast Gunner Special (Nekonečná palba s doplňováním nábojů do komory)",
+    "secondaryWeaponEn": "KVD - Boom! Boom!",
+    "secondaryWeaponCs": "KVD - Boom! Boom!",
+    "armorSetEn": "3× Lonewolf + 2× Bastille",
+    "armorSetCs": "3× Lonewolf + 2× Bastille",
+    "recommendedModsEn": {
+      "weapon": "Fast Gunner Momentum (Every 10 rounds fired refills 5 ammo to chamber)",
+      "helmet": "Endless Barrage",
+      "mask": "Speed Stacker",
+      "top": "Rapid Fire Drill",
+      "bottom": "Magazine Feeder",
+      "gloves": "Recoil Dampener",
+      "boots": "Adrenaline Rush"
+    },
+    "recommendedModsCs": {
+      "weapon": "Fast Gunner Momentum (Každých 10 výstřelů doplňuje 5 nábojů do komory)",
+      "helmet": "Endless Barrage",
+      "mask": "Speed Stacker",
+      "top": "Rapid Fire Drill",
+      "bottom": "Magazine Feeder",
+      "gloves": "Recoil Dampener",
+      "boots": "Adrenaline Rush"
+    },
+    "recommendedDeviantEn": "Lonewolf Whisper / Harvester",
+    "recommendedDeviantCs": "Lonewolf Whisper / Harvester",
+    "cradlePerksEn": [
+      "Rapid Fire",
+      "Magazine Conservation",
+      "Penetrating Rounds",
+      "Suppression",
+      "Relentless Assault"
+    ],
+    "cradlePerksCs": [
+      "Rychlá střelba (Rapid Fire)",
+      "Šetření municí v zásobníku",
+      "Průrazné projektily",
+      "Potlačení cílů",
+      "Neúprosný útok"
+    ],
+    "buffFoodId": "rec-canned-seafood-oil",
+    "buffFoodNameEn": "Canned Seafood Oil (+Fire rate & Crit multiplier)",
+    "buffFoodNameCs": "Rybí konzerva na oleji (+Kadence a Crit)",
+    "buffDrinkId": "rec-ice-tea",
+    "buffDrinkNameEn": "Stardust Ice Tea (+Stamina regeneration)",
+    "buffDrinkNameCs": "Ledový čaj Stardust (+Stamina)",
+    "statPrioritiesEn": "Fire Rate > Weapon DMG > Magazine Capacity > Crit Rate",
+    "statPrioritiesCs": "Kadence střelby > Poškození zbraně > Kapacita zásobníku > Crit Rate",
+    "descriptionEn": "A magazine that never empties. Pours hundreds of rounds into bullet-sponge bosses without ever needing to reload, ramping up fire rate and weapon damage exponentially.",
+    "descriptionCs": "Zásobník, který nikdy nevyschne. Chrlí stovky nábojů do bossů bez nutnosti přebíjet. S každou vystřelenou kulkou roste kadence a zbraň se mění v laser ničivé síly.",
+    "effectsEn": [
+      "Primary: RPK Fast Gunner + KVD Boom! Boom!",
+      "Armor: 3× Lonewolf + 2× Bastille",
+      "Deviant: Lonewolf Whisper",
+      "Food Buff: Canned Seafood Oil"
+    ],
+    "effectsCs": [
+      "Zbraně: RPK Fast Gunner + KVD Boom! Boom!",
+      "Zbroj: 3× Lonewolf + 2× Bastille",
+      "Deviant: Lonewolf Whisper",
+      "Jídlo: Rybí konzerva na oleji"
+    ],
+    "ingredientsEn": [
+      {
+        "name": "Steel Ingot",
+        "amount": 35,
+        "isPrimary": true
+      },
+      {
+        "name": "Aluminum Ingot",
+        "amount": 25
+      },
+      {
+        "name": "Electronic Parts",
+        "amount": 15
+      },
+      {
+        "name": "Stardust Source",
+        "amount": 40
+      }
+    ],
+    "ingredientsCs": [
+      {
+        "name": "Ocelový ingot",
+        "amount": 35,
+        "isPrimary": true
+      },
+      {
+        "name": "Hliníkový ingot",
+        "amount": 25
+      },
+      {
+        "name": "Elektronické součástky",
+        "amount": 15
+      },
+      {
+        "name": "Stardust Source",
+        "amount": 40
+      }
+    ],
+    "workbench": "Gear Workbench & Cradle",
+    "relatedRecipeId": "gear-08"
+  }
+];
+
+/* ==========================================================================
+   FARMING ROUTE PRESETS & RESOURCE GATHERING RUNS
+   ========================================================================== */
+const farmingRoutePresets = [
+  {
+    "id": "blackfell_crates",
+    "nameCs": "Blackfell Crate & Mod Run (Lv. 45+)",
+    "nameEn": "Blackfell Crate & Mod Run (Lv. 45+)",
+    "region": "blackfell",
+    "descriptionCs": "Denní farmící okruh pro bedny se zbraněmi, brněním, mody a speciálními plasty.",
+    "descriptionEn": "Daily high-yield route for weapon/armor crates, high-tier mods, and special plastics.",
+    "waypointIds": [
+      "tow-blackfell",
+      "loc-blackfell-city",
+      "str-blackfell-hospital",
+      "loc-rec-anti-gravity",
+      "loc-poi-blackfell-govt",
+      "res-blackfell-oil",
+      "res-fallen-acid"
+    ]
+  },
+  {
+    "id": "red_sands_oil_acid",
+    "nameCs": "Red Sands: Wolfram, Kyselina & PSI (Lv. 40+)",
+    "nameEn": "Red Sands: Tungsten, Acid & PSI (Lv. 40+)",
+    "region": "red_sands",
+    "descriptionCs": "Klíčová trasa pro těžbu wolframu, oázu s rostlinami Spikemato a zisk kyseliny v Silo PSI.",
+    "descriptionEn": "Key route for tungsten mining, Spikemato desert crops, and acid farming in Silo PSI.",
+    "waypointIds": [
+      "tow-70zone",
+      "str-70zone-base",
+      "res-redsands-tungsten",
+      "res-oasis-spikemato",
+      "loc-silo-psi"
+    ]
+  },
+  {
+    "id": "dayton_copper_sulfur",
+    "nameCs": "Dayton Starter Farm: Měď, Síra & Burger (Lv. 1-10)",
+    "nameEn": "Dayton Starter Farm: Copper, Sulfur & Burger (Lv. 1-10)",
+    "region": "wetlands",
+    "descriptionCs": "Počáteční okruh pro rychlý rozjezd metalurgie, zisk střelného prachu a receptu na Bacon Burger.",
+    "descriptionEn": "Starter gathering route for early metallurgy, gunpowder crafting, and Bacon Burger formula.",
+    "waypointIds": [
+      "tow-deadsville",
+      "loc-deadsville",
+      "res-dayton-copper",
+      "loc-rec-bacon-burger",
+      "str-dayton-hospital",
+      "loc-fish-largemouth-bass"
+    ]
+  },
+  {
+    "id": "iron_river_mines",
+    "nameCs": "Iron River: Železo, Kyselina & High Banks (Lv. 20-30)",
+    "nameEn": "Iron River: Iron, Acid & High Banks (Lv. 20-30)",
+    "region": "iron_river",
+    "descriptionCs": "Průmyslová trasa pro těžbu železa, čerpání kyseliny v Greywater a recept Safety Sandwich.",
+    "descriptionEn": "Industrial run for iron ore, Greywater acid pumping, and Safety Sandwich recipe.",
+    "waypointIds": [
+      "tow-highbanks",
+      "loc-high-banks",
+      "res-highland-iron",
+      "str-highland-ruins",
+      "res-greywater-acid",
+      "loc-rec-safety-sandwich"
+    ]
+  },
+  {
+    "id": "chalk_peak_tungsten",
+    "nameCs": "Chalk Peak: Wolfram, Stříbro & Stargazy (Lv. 30-40)",
+    "nameEn": "Chalk Peak: Tungsten, Silver & Stargazy (Lv. 30-40)",
+    "region": "chalk_peak",
+    "descriptionCs": "Vysokohorská trasa pro těžbu wolframu, vzácných rud, tavírnu a recept na Stargazy Pie.",
+    "descriptionEn": "Mountain harvesting loop for tungsten ore, precious silver/gold, and Stargazy Pie formula.",
+    "waypointIds": [
+      "tow-tallgrass",
+      "loc-tall-grass-inn",
+      "res-chalk-silver",
+      "res-chalk-aluminum",
+      "str-furnace-lair",
+      "loc-rec-stargazy-pie"
+    ]
+  }
+];
 
 /* ==========================================================================
    NALCOTT INTERACTIVE TACTICAL MAP LOCATIONS & GPS PIN DIRECTORY (59 PINS)

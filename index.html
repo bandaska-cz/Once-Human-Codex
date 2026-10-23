@@ -200,6 +200,11 @@
         <i class="fa-solid fa-puzzle-piece"></i>
         <span id="tab-txt-mods">Weapon & Armor Mods</span>
       </button>
+
+      <button onclick="switchTab('builds')" id="tab-btn-builds" class="tab-button px-4 py-2.5 rounded font-orbitron text-xs sm:text-sm font-semibold tracking-wide transition-all bg-hud-surface text-slate-300 hover:text-white border border-hud-border flex items-center space-x-2">
+        <i class="fa-solid fa-shield-halved text-hud-cyan"></i>
+        <span id="tab-txt-builds">Bojové Buildy & Synergie</span>
+      </button>
     </div>
 
     <!-- Interactive Cooking Synergy Matrix / Calculator (Visible in Creative Tab) -->
@@ -627,12 +632,51 @@
           <button type="button" onclick="jumpToRegion('blackfell')" class="px-2 py-0.5 rounded bg-purple-950/50 hover:bg-purple-900 border border-purple-500/40 text-purple-300 hover:text-white transition cursor-pointer shrink-0">Blackfell</button>
           <button type="button" onclick="jumpToRegion('winter')" class="px-2 py-0.5 rounded bg-sky-950/50 hover:bg-sky-900 border border-sky-400/40 text-sky-200 hover:text-white transition cursor-pointer shrink-0">Onyx Tundra</button>
         </div>
+
+        <!-- Farming Routes & Waypoints Bar -->
+        <div class="flex items-center justify-between gap-2 overflow-x-auto pt-1.5 border-t border-hud-border/40 w-full text-[10px] font-mono">
+          <div class="flex items-center gap-1.5 shrink-0">
+            <span class="text-amber-400 font-bold uppercase flex items-center gap-1">
+              <i class="fa-solid fa-route text-amber-400"></i>
+              <span id="map-lbl-routes">Trasy:</span>
+            </span>
+            <button type="button" onclick="loadFarmingRoutePreset('blackfell_crates')" class="px-2 py-0.5 rounded bg-amber-950/50 hover:bg-amber-900 border border-amber-500/40 text-amber-300 hover:text-white transition cursor-pointer shrink-0">
+              📦 Blackfell Crate Run
+            </button>
+            <button type="button" onclick="loadFarmingRoutePreset('red_sands_oil_acid')" class="px-2 py-0.5 rounded bg-amber-950/50 hover:bg-amber-900 border border-amber-500/40 text-amber-300 hover:text-white transition cursor-pointer shrink-0">
+              🛢️ Ropa & Kyselina
+            </button>
+            <button type="button" onclick="loadFarmingRoutePreset('dayton_copper_sulfur')" class="px-2 py-0.5 rounded bg-amber-950/50 hover:bg-amber-900 border border-amber-500/40 text-amber-300 hover:text-white transition cursor-pointer shrink-0">
+              ⛏️ Dayton Starter Farm
+            </button>
+            <button type="button" onclick="loadFarmingRoutePreset('iron_river_mines')" class="px-2 py-0.5 rounded bg-amber-950/50 hover:bg-amber-900 border border-amber-500/40 text-amber-300 hover:text-white transition cursor-pointer shrink-0">
+              ⚙️ Iron River Železo & Cín
+            </button>
+            <button type="button" onclick="loadFarmingRoutePreset('chalk_peak_tungsten')" class="px-2 py-0.5 rounded bg-amber-950/50 hover:bg-amber-900 border border-amber-500/40 text-amber-300 hover:text-white transition cursor-pointer shrink-0">
+              💎 Chalk Peak Wolfram
+            </button>
+          </div>
+
+          <div class="flex items-center gap-1.5 shrink-0 ml-auto">
+            <button id="btn-toggle-custom-route" type="button" onclick="toggleCustomRouteMode()" class="px-2 py-0.5 rounded border border-hud-cyan/50 bg-hud-cyan/15 text-hud-cyan hover:bg-hud-cyan hover:text-black font-bold transition cursor-pointer">
+              <i class="fa-solid fa-draw-polygon mr-1"></i><span id="map-lbl-plan-route">Plánovat trasu</span>
+            </button>
+            <button id="btn-clear-route" type="button" onclick="clearActiveRoute()" class="hidden px-2 py-0.5 rounded border border-rose-500/50 bg-rose-950/50 text-rose-300 hover:text-white font-bold transition cursor-pointer">
+              <i class="fa-solid fa-trash-can mr-1"></i><span id="map-lbl-clear-route">Zrušit trasu</span>
+            </button>
+          </div>
+        </div>
       </div>
 
       <!-- Map Viewport -->
       <div class="map-viewport-wrapper flex-1 relative overflow-hidden bg-[#03060c] w-full" style="height: calc(92vh - 125px); min-height: 440px;">
         <!-- Tactical Radar View -->
         <div id="tactical-map-viewport" class="w-full h-full relative cursor-grab active:cursor-grabbing overflow-hidden select-none" style="height: 100%; min-height: 440px;">
+          <!-- Floating HUD Route Summary Card -->
+          <div id="map-route-hud-panel" class="hidden absolute top-3 left-3 z-20 max-w-xs sm:max-w-sm bg-hud-surface/95 border border-amber-500/70 rounded-lg p-3 shadow-[0_0_20px_rgba(245,158,11,0.25)] backdrop-blur-md text-xs font-mono">
+            <!-- Dynamically populated when route is active -->
+          </div>
+
           <div id="tactical-map-canvas" class="w-full h-full absolute inset-0 transition-transform duration-75 origin-center will-change-transform">
             <!-- Dynamically populated by renderTacticalMap() -->
           </div>

@@ -747,12 +747,17 @@ function initSearchIndex() {
       memeticTokens = ` ${item.levelBracket || ''} ${item.tierRanking || ''} ${item.resetItem || ''} memetic specializace specialization mastery perk cleaner reset talent link sulfur chemist solar drill biomass missile`;
     }
 
+    let buildTokens = '';
+    if (item.primaryWeaponCs || item.armorSetCs || item.statPrioritiesCs) {
+      buildTokens = ` ${item.primaryWeaponCs || ''} ${item.primaryWeaponEn || ''} ${item.secondaryWeaponCs || ''} ${item.secondaryWeaponEn || ''} ${item.armorSetCs || ''} ${item.armorSetEn || ''} ${item.archetypeCs || ''} ${item.archetypeEn || ''} ${item.statPrioritiesCs || ''} ${item.statPrioritiesEn || ''} ${item.recommendedDeviantCs || ''} ${item.recommendedDeviantEn || ''} build loadout meta shrapnel frost burn surge bomber bounce tank fast gunner zbraň výbava`;
+    }
+
     let modTokens = '';
     if (item.gearSlot || item.modArchetypeCs || item.subStatsPriorityCs) {
       modTokens = ` ${item.gearSlot || ''} ${item.modArchetypeCs || ''} ${item.modArchetypeEn || ''} ${item.subStatsPriorityCs || ''} ${item.subStatsPriorityEn || ''} ${item.dropSourceCs || ''} ${item.dropSourceEn || ''} mod modifikace zbraň zbroj slot substat sub-stat helm mask top vesta kalhoty bottoms gloves rukavice shoes boty shrapnel burn frost surge bounce bomber`;
     }
 
-    item._searchIndex = (csTokens + ' ' + enTokens + ' ' + (item.scenario || '') + ' ' + invTokens + ' ' + gearTokens + ' ' + deviantTokens + ' ' + zoneTokens + ' ' + fishTokens + ' ' + bossTokens + ' ' + memeticTokens + ' ' + modTokens).toLowerCase();
+    item._searchIndex = (csTokens + ' ' + enTokens + ' ' + (item.scenario || '') + ' ' + invTokens + ' ' + gearTokens + ' ' + deviantTokens + ' ' + zoneTokens + ' ' + fishTokens + ' ' + bossTokens + ' ' + memeticTokens + ' ' + modTokens + buildTokens).toLowerCase();
   });
 }
 
@@ -857,7 +862,7 @@ window.addEventListener('keydown', function(e) {
 });
 
 function getAllRecipes() {
-  return [...discoveredRecipes, ...creativeDishes, ...medicineRecipes, ...inventionRecipes, ...gearRecipes, ...deviantRecipes, ...zoneRecipes, ...fishRecipes, ...bossTactics, ...memeticSpecializations, ...gearMods];
+  return [...discoveredRecipes, ...creativeDishes, ...medicineRecipes, ...inventionRecipes, ...gearRecipes, ...deviantRecipes, ...zoneRecipes, ...fishRecipes, ...bossTactics, ...memeticSpecializations, ...gearMods, ...combatBuilds];
 }
 
 function findRecipeById(id) {
@@ -876,6 +881,7 @@ function determineRecipeTab(recipeId) {
   if (bossTactics.some(r => r.id === recipeId)) return 'bosses';
   if (memeticSpecializations.some(r => r.id === recipeId)) return 'memetics';
   if (gearMods.some(r => r.id === recipeId)) return 'mods';
+  if (typeof combatBuilds !== 'undefined' && combatBuilds.some(r => r.id === recipeId)) return 'builds';
   return 'discovered';
 }
 
@@ -904,6 +910,7 @@ function getActiveDataset() {
     case 'bosses': return bossTactics;
     case 'memetics': return memeticSpecializations;
     case 'mods': return gearMods;
+    case 'builds': return combatBuilds;
     default: return discoveredRecipes;
   }
 }
@@ -995,6 +1002,22 @@ function applyLanguageUI() {
   const mapLblJump = document.getElementById('map-lbl-jump');
   if (mapLblJump) mapLblJump.innerText = t.mapRegionQuickJump || (currentLang === 'cs' ? 'Region:' : 'Region:');
 
+  const buildsTabEl = document.getElementById('tab-txt-builds');
+  if (buildsTabEl && typeof combatBuilds !== 'undefined') {
+    buildsTabEl.innerText = `${t.tabBuilds || 'Combat Builds & Synergies'} (${combatBuilds.length})`;
+  }
+
+  const mapLblRoutes = document.getElementById('map-lbl-routes');
+  if (mapLblRoutes) mapLblRoutes.innerText = t.mapFarmingRoutesTitle || (currentLang === 'cs' ? 'Trasy:' : 'Routes:');
+  const mapLblPlan = document.getElementById('map-lbl-plan-route');
+  if (mapLblPlan) {
+    mapLblPlan.innerText = isCustomRoutePlanning 
+      ? (currentLang === 'cs' ? 'Ukončit plánování' : 'Stop Planning') 
+      : (t.mapCustomRouteBtn || (currentLang === 'cs' ? 'Plánovat trasu' : 'Plan Route'));
+  }
+  const mapLblClear = document.getElementById('map-lbl-clear-route');
+  if (mapLblClear) mapLblClear.innerText = t.mapClearRouteBtn || (currentLang === 'cs' ? 'Zrušit trasu' : 'Clear Route');
+
   // Language buttons visual sync
   const csBtn = document.getElementById('lang-cs');
   const enBtn = document.getElementById('lang-en');
@@ -1027,7 +1050,8 @@ function switchTab(tabId, updateHash = true) {
     { id: 'tab-btn-fishing', name: 'fishing' },
     { id: 'tab-btn-bosses', name: 'bosses' },
     { id: 'tab-btn-memetics', name: 'memetics' },
-    { id: 'tab-btn-mods', name: 'mods' }
+    { id: 'tab-btn-mods', name: 'mods' },
+    { id: 'tab-btn-builds', name: 'builds' }
   ];
 
   buttons.forEach(btn => {
@@ -1313,6 +1337,11 @@ function renderRecipeCards(items) {
             ${item.tierRanking ? `
               <span class="text-[9px] font-mono uppercase px-1.5 py-0.5 rounded border border-amber-500/60 bg-amber-950/80 text-amber-300 font-bold flex items-center gap-1 shadow-[0_0_8px_rgba(245,158,11,0.25)]">
                 <i class="fa-solid fa-award text-[8px] text-amber-400"></i>${item.tierRanking.split(' ')[0]}
+              </span>
+            ` : ''}
+            ${item.primaryWeaponCs ? `
+              <span class="text-[9px] font-mono uppercase px-1.5 py-0.5 rounded border border-cyan-500/60 bg-cyan-950/80 text-cyan-300 font-bold flex items-center gap-1 shadow-[0_0_8px_rgba(0,240,255,0.25)]">
+                <i class="fa-solid fa-shield-halved text-hud-cyan text-[8px]"></i>${currentLang === 'cs' ? (item.archetypeCs || 'Archetyp') : (item.archetypeEn || 'Archetype')}
               </span>
             ` : ''}
             ${item.gearSlot ? `
@@ -1656,6 +1685,123 @@ function openModal(id, pushHistory = false) {
         `).join('')}
       </div>
     </div>
+
+    <!-- Dedicated Combat Build & Loadout Matrix Section -->
+    ${item.primaryWeaponCs ? `
+      <div class="mb-5 p-4 bg-slate-900/95 border border-hud-cyan/60 rounded-lg shadow-[0_0_20px_rgba(0,240,255,0.2)]">
+        <div class="flex items-center justify-between mb-3 border-b border-hud-cyan/30 pb-2 flex-wrap gap-2">
+          <div class="flex items-center gap-2">
+            <span class="w-2.5 h-2.5 rounded-full bg-hud-cyan animate-pulse"></span>
+            <span class="font-orbitron font-bold text-hud-cyan text-sm sm:text-base uppercase tracking-wider">
+              ${currentLang === 'cs' ? 'Bojový Archetyp & Synergie' : 'Combat Build & Loadout Matrix'}
+            </span>
+          </div>
+          <span class="text-xs font-mono px-2.5 py-0.5 rounded bg-cyan-950/80 text-cyan-300 border border-hud-cyan/40 font-bold">
+            ${currentLang === 'cs' ? item.archetypeCs : item.archetypeEn}
+          </span>
+        </div>
+
+        <!-- Weapons & Armor Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-3 mb-3">
+          <!-- Weapons -->
+          <div class="p-3 rounded bg-slate-950/70 border border-slate-800">
+            <h5 class="text-[11px] font-mono uppercase text-hud-cyan mb-2 flex items-center gap-1.5 font-bold">
+              <i class="fa-solid fa-gun text-hud-cyan"></i>${t.buildWeaponsTitle || (currentLang === 'cs' ? 'Doporučené zbraně:' : 'Recommended Weapons:')}
+            </h5>
+            <div class="text-xs space-y-1.5 font-sans">
+              <div class="text-white"><strong class="text-amber-400 font-mono text-[11px]">Primary:</strong> ${currentLang === 'cs' ? item.primaryWeaponCs : item.primaryWeaponEn}</div>
+              <div class="text-slate-300"><strong class="text-cyan-400 font-mono text-[11px]">Secondary:</strong> ${currentLang === 'cs' ? item.secondaryWeaponCs : item.secondaryWeaponEn}</div>
+            </div>
+          </div>
+
+          <!-- Armor Set -->
+          <div class="p-3 rounded bg-slate-950/70 border border-slate-800">
+            <h5 class="text-[11px] font-mono uppercase text-amber-400 mb-2 flex items-center gap-1.5 font-bold">
+              <i class="fa-solid fa-shield-halved text-amber-400"></i>${t.buildArmorTitle || (currentLang === 'cs' ? 'Kombinace zbroje:' : 'Armor Set Synergies:')}
+            </h5>
+            <div class="text-xs text-white leading-relaxed font-sans">
+              ${currentLang === 'cs' ? item.armorSetCs : item.armorSetEn}
+            </div>
+          </div>
+        </div>
+
+        <!-- Slot by Slot Mods -->
+        <div class="mb-3 p-3 rounded bg-slate-950/70 border border-slate-800">
+          <h5 class="text-[11px] font-mono uppercase text-purple-400 mb-2.5 flex items-center gap-1.5 font-bold">
+            <i class="fa-solid fa-puzzle-piece text-purple-400"></i>${t.buildModsTitle || (currentLang === 'cs' ? 'Doporučené mody pro jednotlivé sloty:' : 'Slot-by-Slot Recommended Mods:')}
+          </h5>
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2 text-xs">
+            ${(() => {
+              const mods = currentLang === 'cs' ? item.recommendedModsCs : item.recommendedModsEn;
+              if (!mods) return '';
+              const slotLabels = {
+                weapon: currentLang === 'cs' ? 'Zbraň' : 'Weapon',
+                helmet: currentLang === 'cs' ? 'Helma' : 'Helmet',
+                mask: currentLang === 'cs' ? 'Maska' : 'Mask',
+                top: currentLang === 'cs' ? 'Vesta' : 'Top',
+                bottom: currentLang === 'cs' ? 'Kalhoty' : 'Bottom',
+                gloves: currentLang === 'cs' ? 'Rukavice' : 'Gloves',
+                boots: currentLang === 'cs' ? 'Boty' : 'Boots'
+              };
+              return Object.entries(mods).map(([slot, modName]) => `
+                <div class="p-1.5 rounded bg-slate-900 border border-slate-700/60 flex items-center justify-between gap-1 text-[11px]">
+                  <span class="text-slate-400 font-mono text-[10px] uppercase font-bold">${slotLabels[slot] || slot}:</span>
+                  <span class="text-purple-300 font-semibold text-right truncate" title="${modName}">${modName}</span>
+                </div>
+              `).join('');
+            })()}
+          </div>
+        </div>
+
+        <!-- Deviant & Food Synergies Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-3 mb-3">
+          <!-- Deviant & Cradle -->
+          <div class="p-3 rounded bg-slate-950/70 border border-slate-800">
+            <h5 class="text-[11px] font-mono uppercase text-rose-400 mb-2 flex items-center gap-1.5 font-bold">
+              <i class="fa-solid fa-ghost text-rose-400"></i>${t.buildDeviantTitle || (currentLang === 'cs' ? 'Deviant & Cradle:' : 'Deviant & Cradle:')}
+            </h5>
+            <div class="text-xs text-white mb-2 font-sans font-semibold">
+              ${currentLang === 'cs' ? item.recommendedDeviantCs : item.recommendedDeviantEn}
+            </div>
+            <div class="text-[11px] font-mono text-slate-400">
+              <strong class="text-slate-300 uppercase block mb-1">Cradle Perky:</strong>
+              ${(currentLang === 'cs' ? item.cradlePerksCs : item.cradlePerksEn).join(' • ')}
+            </div>
+          </div>
+
+          <!-- Buff Food & Drink -->
+          <div class="p-3 rounded bg-slate-950/70 border border-slate-800">
+            <h5 class="text-[11px] font-mono uppercase text-emerald-400 mb-2 flex items-center gap-1.5 font-bold">
+              <i class="fa-solid fa-utensils text-emerald-400"></i>${t.buildFoodTitle || (currentLang === 'cs' ? 'Bojové jídlo & pití:' : 'Buff Food & Drink:')}
+            </h5>
+            <div class="space-y-2 text-xs">
+              <div class="flex items-center justify-between gap-2 p-1.5 rounded bg-slate-900 border border-slate-700/60">
+                <span class="text-white truncate">${currentLang === 'cs' ? item.buffFoodNameCs : item.buffFoodNameEn}</span>
+                ${item.buffFoodId ? `
+                  <button type="button" onclick="openModal('${item.buffFoodId}', true)" class="px-2 py-0.5 rounded bg-emerald-950/80 hover:bg-emerald-900 border border-emerald-500/50 text-emerald-300 text-[10px] font-mono shrink-0 cursor-pointer">
+                    Recept <i class="fa-solid fa-arrow-right ml-1"></i>
+                  </button>
+                ` : ''}
+              </div>
+              <div class="flex items-center justify-between gap-2 p-1.5 rounded bg-slate-900 border border-slate-700/60">
+                <span class="text-slate-300 truncate">${currentLang === 'cs' ? item.buffDrinkNameCs : item.buffDrinkNameEn}</span>
+                ${item.buffDrinkId ? `
+                  <button type="button" onclick="openModal('${item.buffDrinkId}', true)" class="px-2 py-0.5 rounded bg-cyan-950/80 hover:bg-cyan-900 border border-cyan-500/50 text-cyan-300 text-[10px] font-mono shrink-0 cursor-pointer">
+                    Recept <i class="fa-solid fa-arrow-right ml-1"></i>
+                  </button>
+                ` : ''}
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Stat Priorities -->
+        <div class="p-2.5 rounded bg-cyan-950/40 border border-cyan-800/60 text-xs font-mono text-cyan-200 flex items-center gap-2">
+          <i class="fa-solid fa-chart-line text-hud-cyan text-sm"></i>
+          <span><strong class="text-hud-cyan">${t.buildStatsTitle || (currentLang === 'cs' ? 'Priority statů:' : 'Stat Priorities:')}</strong> ${currentLang === 'cs' ? item.statPrioritiesCs : item.statPrioritiesEn}</span>
+        </div>
+      </div>
+    ` : ''}
 
     <!-- Weapon Archetype, Unique Perk & Synergy Section -->
     ${item.archetype ? `
@@ -3262,6 +3408,29 @@ function renderTacticalMap() {
         <path d="M 580,740 L 380,620 L 280,560" fill="none" stroke="#475569" stroke-width="2" stroke-dasharray="4 4" stroke-opacity="0.6" />
         <path d="M 450,300 L 380,320 L 320,240" fill="none" stroke="#475569" stroke-width="2" stroke-dasharray="4 4" stroke-opacity="0.6" />
 
+        <!-- ==================== FARMING ROUTE PATH & WAYPOINT BADGES ==================== -->
+        ${(() => {
+          if (!activeRoute || !activeRoute.waypoints || activeRoute.waypoints.length < 1) return '';
+          const pts = activeRoute.waypoints.map(w => `${w.x * 10},${w.y * 10}`).join(' ');
+          const polyline = activeRoute.waypoints.length >= 2 ? `
+            <polyline points="${pts}" stroke="#f59e0b" stroke-width="3.5" stroke-dasharray="8 5" fill="none" class="route-line-anim" stroke-linecap="round" stroke-linejoin="round" />
+            <polyline points="${pts}" stroke="#fbbf24" stroke-width="1.2" fill="none" opacity="0.6" />
+          ` : '';
+
+          const badges = activeRoute.waypoints.map((w, idx) => {
+            const bx = w.x * 10;
+            const by = w.y * 10 - 18;
+            return `
+              <g class="route-waypoint-badge pointer-events-none" transform="translate(${bx}, ${by})">
+                <circle cx="0" cy="0" r="10" fill="#f59e0b" stroke="#000" stroke-width="2" />
+                <text x="0" y="3.5" text-anchor="middle" font-family="Orbitron, sans-serif" font-weight="900" font-size="9.5" fill="#000">${idx + 1}</text>
+              </g>
+            `;
+          }).join('');
+
+          return polyline + badges;
+        })()}
+
         <!-- ==================== INTERACTIVE PINS ==================== -->
         <g id="map-pins-container">
           ${visiblePins.map(loc => {
@@ -3292,12 +3461,189 @@ function renderTacticalMap() {
   `;
 }
 
+/* ==========================================================================
+   FARMING ROUTE PLANNER & PRESETS STATE & LOGIC
+   ========================================================================== */
+let activeRoute = null;
+let isCustomRoutePlanning = false;
+let customRouteWaypoints = [];
+
+function calculateRouteDistance(waypoints) {
+  if (!waypoints || waypoints.length < 2) return 0;
+  let total = 0;
+  for (let i = 0; i < waypoints.length - 1; i++) {
+    const a = waypoints[i];
+    const b = waypoints[i + 1];
+    const dx = (a.x - b.x) * 50;
+    const dy = (a.y - b.y) * 50;
+    total += Math.round(Math.sqrt(dx * dx + dy * dy));
+  }
+  return total;
+}
+
+function loadFarmingRoutePreset(presetId) {
+  if (typeof farmingRoutePresets === 'undefined' || typeof mapLocations === 'undefined') return;
+  const preset = farmingRoutePresets.find(p => p.id === presetId);
+  if (!preset) return;
+
+  const waypoints = [];
+  preset.waypointIds.forEach(id => {
+    const loc = mapLocations.find(l => l.id === id);
+    if (loc) waypoints.push(loc);
+  });
+
+  const dist = calculateRouteDistance(waypoints);
+  activeRoute = {
+    ...preset,
+    waypoints,
+    totalMeters: dist
+  };
+  isCustomRoutePlanning = false;
+
+  // Jump to region if center is known
+  if (preset.region && typeof jumpToRegion === 'function') {
+    jumpToRegion(preset.region);
+  } else if (waypoints[0] && typeof focusMapOnLocation === 'function') {
+    focusMapOnLocation(waypoints[0].id, false);
+  }
+
+  updateRouteHud();
+  renderTacticalMap();
+
+  const title = currentLang === 'cs' ? (preset.nameCs || preset.nameEn) : preset.nameEn;
+  showNotification(`${currentLang === 'cs' ? 'Aktivována trasa:' : 'Active Route:'} ${title}`);
+}
+
+function toggleCustomRouteMode() {
+  isCustomRoutePlanning = !isCustomRoutePlanning;
+  const btn = document.getElementById('btn-toggle-custom-route');
+  const t = i18n[currentLang];
+
+  if (isCustomRoutePlanning) {
+    if (btn) {
+      btn.className = "px-2 py-0.5 rounded border border-amber-500 bg-amber-500 text-black font-bold transition cursor-pointer shadow-[0_0_10px_rgba(245,158,11,0.4)]";
+      btn.innerHTML = `<i class="fa-solid fa-check mr-1"></i><span>${currentLang === 'cs' ? 'Hotovo' : 'Done'}</span>`;
+    }
+    // Start custom route with clean waypoints if no route or if a preset was loaded
+    if (!activeRoute || activeRoute.id !== 'custom_route') {
+      customRouteWaypoints = [];
+      activeRoute = {
+        id: 'custom_route',
+        nameCs: 'Vlastní naplánovaná trasa',
+        nameEn: 'Custom Planned Route',
+        waypoints: customRouteWaypoints,
+        totalMeters: 0
+      };
+    } else {
+      customRouteWaypoints = [...(activeRoute.waypoints || [])];
+    }
+    showNotification(currentLang === 'cs' ? 'Klikáním na piny na mapě sestavte svou trasu.' : 'Click pins on map to add stops to your route.');
+  } else {
+    if (btn) {
+      btn.className = "px-2 py-0.5 rounded border border-hud-cyan/50 bg-hud-cyan/15 text-hud-cyan hover:bg-hud-cyan hover:text-black font-bold transition cursor-pointer";
+      btn.innerHTML = `<i class="fa-solid fa-draw-polygon mr-1"></i><span id="map-lbl-plan-route">${t.mapCustomRouteBtn || (currentLang === 'cs' ? 'Plánovat trasu' : 'Plan Route')}</span>`;
+    }
+    showNotification(currentLang === 'cs' ? 'Plánování trasy dokončeno.' : 'Route planning complete.');
+  }
+
+  updateRouteHud();
+  renderTacticalMap();
+}
+
+function clearActiveRoute() {
+  activeRoute = null;
+  isCustomRoutePlanning = false;
+  customRouteWaypoints = [];
+  const btn = document.getElementById('btn-toggle-custom-route');
+  const t = i18n[currentLang];
+  if (btn) {
+    btn.className = "px-2 py-0.5 rounded border border-hud-cyan/50 bg-hud-cyan/15 text-hud-cyan hover:bg-hud-cyan hover:text-black font-bold transition cursor-pointer";
+    btn.innerHTML = `<i class="fa-solid fa-draw-polygon mr-1"></i><span id="map-lbl-plan-route">${t.mapCustomRouteBtn || (currentLang === 'cs' ? 'Plánovat trasu' : 'Plan Route')}</span>`;
+  }
+  updateRouteHud();
+  renderTacticalMap();
+}
+
+function updateRouteHud() {
+  const panel = document.getElementById('map-route-hud-panel');
+  const clearBtn = document.getElementById('btn-clear-route');
+  if (!panel) return;
+
+  if (!activeRoute || !activeRoute.waypoints || activeRoute.waypoints.length === 0) {
+    panel.classList.add('hidden');
+    if (clearBtn) clearBtn.classList.add('hidden');
+    return;
+  }
+
+  panel.classList.remove('hidden');
+  if (clearBtn) clearBtn.classList.remove('hidden');
+
+  const title = currentLang === 'cs' ? (activeRoute.nameCs || activeRoute.nameEn) : activeRoute.nameEn;
+  const stopsCount = activeRoute.waypoints.length;
+  const dist = activeRoute.totalMeters || calculateRouteDistance(activeRoute.waypoints);
+  const startLoc = activeRoute.waypoints[0];
+  const nearestTower = (startLoc && typeof getNearestTeleportTower === 'function') ? getNearestTeleportTower(startLoc) : null;
+
+  panel.innerHTML = `
+    <div class="flex items-center justify-between pb-1.5 mb-1.5 border-b border-amber-500/40">
+      <div class="flex items-center gap-1.5 text-amber-400 font-bold uppercase text-[11px]">
+        <i class="fa-solid fa-route text-amber-400"></i>
+        <span>${title}</span>
+      </div>
+      <button onclick="clearActiveRoute()" class="text-slate-400 hover:text-white transition w-5 h-5 flex items-center justify-center rounded hover:bg-slate-800 cursor-pointer" title="${currentLang === 'cs' ? 'Zavřít trasu' : 'Close route'}">
+        <i class="fa-solid fa-xmark text-xs"></i>
+      </button>
+    </div>
+    <div class="flex items-center justify-between text-[11px] text-slate-300 mb-1.5">
+      <span><strong class="text-white">${stopsCount}</strong> ${currentLang === 'cs' ? 'zastávek' : 'stops'}</span>
+      <span class="text-amber-300 font-bold">cca ${dist} m</span>
+    </div>
+    ${startLoc ? `
+      <div class="text-[10px] text-slate-400 border-t border-slate-800/80 pt-1.5 flex flex-col gap-0.5">
+        <div><strong class="text-slate-300">${currentLang === 'cs' ? 'Start bod:' : 'Start:'}</strong> <span class="text-hud-cyan cursor-pointer hover:underline" onclick="focusMapOnLocation('${startLoc.id}', false)">${currentLang === 'cs' ? startLoc.nameCs : startLoc.nameEn}</span></div>
+        ${(nearestTower && startLoc.category !== 'tower') ? `
+          <div class="text-sky-300 flex items-center gap-1">
+            <i class="fa-solid fa-tower-broadcast text-[9px] text-sky-400"></i>
+            <span>${currentLang === 'cs' ? nearestTower.tower.nameCs : nearestTower.tower.nameEn} (${nearestTower.distanceMeters}m ${currentLang === 'cs' ? nearestTower.direction.cs : nearestTower.direction.en})</span>
+          </div>
+        ` : ''}
+      </div>
+    ` : ''}
+    ${isCustomRoutePlanning ? `
+      <div class="mt-2 pt-1.5 border-t border-hud-cyan/30 text-[10px] text-hud-cyan flex items-center gap-1">
+        <i class="fa-solid fa-hand-pointer animate-pulse"></i>
+        <span>${currentLang === 'cs' ? 'Klikáním na piny přidáváte / odebíráte body' : 'Click pins on map to add/remove stops'}</span>
+      </div>
+    ` : ''}
+  `;
+}
+
 function handlePinClick(locId, event) {
   if (event) event.stopPropagation();
-  selectedPinId = locId;
   const loc = mapLocations.find(l => l.id === locId);
   if (!loc) return;
 
+  if (isCustomRoutePlanning) {
+    const existingIdx = customRouteWaypoints.findIndex(w => w.id === locId);
+    if (existingIdx !== -1) {
+      customRouteWaypoints.splice(existingIdx, 1);
+    } else {
+      customRouteWaypoints.push(loc);
+    }
+    const dist = calculateRouteDistance(customRouteWaypoints);
+    activeRoute = {
+      id: 'custom_route',
+      nameCs: 'Vlastní naplánovaná trasa',
+      nameEn: 'Custom Planned Route',
+      waypoints: customRouteWaypoints,
+      totalMeters: dist
+    };
+    updateRouteHud();
+    renderTacticalMap();
+    return;
+  }
+
+  selectedPinId = locId;
   renderTacticalMap();
 
   const x = event && event.clientX ? event.clientX : window.innerWidth / 2;

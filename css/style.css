@@ -182,3 +182,15 @@ body {
 }
 
 
+
+
+/* Animated Farming Route Line */
+.route-line-anim {
+  animation: routeDashMove 1.5s linear infinite;
+}
+
+@keyframes routeDashMove {
+  to {
+    stroke-dashoffset: -26;
+  }
+}
