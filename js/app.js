@@ -823,6 +823,11 @@ function updateUrlHash(type, id) {
 // Global Keyboard Shortcuts (Escape to close, / to focus search)
 window.addEventListener('keydown', function(e) {
   if (e.key === 'Escape') {
+    const mapModal = document.getElementById('world-map-modal');
+    if (mapModal && !mapModal.classList.contains('hidden')) {
+      closeWorldMapModal();
+      return;
+    }
     const modal = document.getElementById('detail-modal');
     const backupModal = document.getElementById('backup-modal');
     if (backupModal && !backupModal.classList.contains('hidden')) {
@@ -951,6 +956,36 @@ function applyLanguageUI() {
   if (gridTabPower) gridTabPower.innerText = t.gridTabPower || 'Energetická síť';
   const gridTabAcid = document.getElementById('grid-tab-lbl-acid');
   if (gridTabAcid) gridTabAcid.innerText = t.gridTabAcid || 'Farma na kyselinu';
+
+  // Map HUD translations sync
+  const mapBtnLabel = document.getElementById('map-btn-label');
+  if (mapBtnLabel) mapBtnLabel.innerText = t.mapBtnLabel || (currentLang === 'cs' ? 'Mapa' : 'Map');
+  const mapModalTitle = document.getElementById('map-modal-title');
+  if (mapModalTitle) mapModalTitle.innerText = t.mapModalTitle || 'TAKTICKÁ MAPA NALCOTTU';
+  const mapModalSubtitle = document.getElementById('map-modal-subtitle');
+  if (mapModalSubtitle) mapModalSubtitle.innerText = t.mapModalSubtitle || 'Interaktivní radarový přehled lokací, receptů, bossů a sil';
+  const mapModeLblTac = document.getElementById('map-mode-lbl-tactical');
+  if (mapModeLblTac) mapModeLblTac.innerText = t.mapModeTactical || 'Taktický radar';
+  const mapModeLblGen = document.getElementById('map-mode-lbl-mapgenie');
+  if (mapModeLblGen) mapModeLblGen.innerText = t.mapModeMapGenie || 'MapGenie Live';
+  const mapSearchInput = document.getElementById('mapSearchInput');
+  if (mapSearchInput) mapSearchInput.placeholder = t.mapSearchPlaceholder || 'Hledat na mapě...';
+  const mapResetLbl = document.getElementById('map-btn-reset-lbl');
+  if (mapResetLbl) mapResetLbl.innerText = t.mapResetBtn || 'Reset';
+  const mapFltAll = document.getElementById('map-lbl-filter-all');
+  if (mapFltAll) mapFltAll.innerText = t.mapLayerAll || 'Vše';
+  const mapFltRecipe = document.getElementById('map-lbl-filter-recipe');
+  if (mapFltRecipe) mapFltRecipe.innerText = t.mapLayerRecipes || 'Recepty';
+  const mapFltMonolith = document.getElementById('map-lbl-filter-monolith');
+  if (mapFltMonolith) mapFltMonolith.innerText = t.mapLayerBosses || 'Bossové';
+  const mapFltSilo = document.getElementById('map-lbl-filter-silo');
+  if (mapFltSilo) mapFltSilo.innerText = t.mapLayerSilos || 'Sila';
+  const mapFltSettlement = document.getElementById('map-lbl-filter-settlement');
+  if (mapFltSettlement) mapFltSettlement.innerText = t.mapLayerSettlements || 'Osady';
+  const mapFltFishing = document.getElementById('map-lbl-filter-fishing');
+  if (mapFltFishing) mapFltFishing.innerText = t.mapLayerFishing || 'Rybolov';
+  const mapFltCrate = document.getElementById('map-lbl-filter-crate');
+  if (mapFltCrate) mapFltCrate.innerText = t.mapLayerCrates || 'Truhly';
 
   // Language buttons visual sync
   const csBtn = document.getElementById('lang-cs');
@@ -1485,10 +1520,21 @@ function renderRecipeCards(items) {
 
       <!-- Card Footer Action -->
       <div class="pt-3 border-t border-hud-border flex items-center justify-between text-xs font-mono text-slate-400">
-        <span class="truncate max-w-[200px]" title="${item.workbench}">
+        <span class="truncate max-w-[180px]" title="${item.workbench}">
           <i class="fa-solid fa-toolbox text-hud-cyan mr-1"></i>${item.workbench}
         </span>
-        <div class="flex items-center gap-2">
+        <div class="flex items-center gap-1.5">
+          ${(typeof findLocationByRecipeId === 'function' && findLocationByRecipeId(item.id)) ? `
+            <button 
+              type="button" 
+              onclick="openMapToItem('${item.id}', event)" 
+              title="${currentLang === 'cs' ? 'Zobrazit na taktické mapě' : 'Show on tactical map'}"
+              class="px-2 py-0.5 rounded bg-cyan-950/70 hover:bg-cyan-900 border border-hud-cyan/50 hover:border-hud-cyan text-hud-cyan hover:text-white text-[11px] font-mono flex items-center gap-1 transition cursor-pointer shadow-[0_0_8px_rgba(0,240,255,0.2)]"
+            >
+              <i class="fa-solid fa-map-location-dot text-[9px]"></i>
+              <span>${currentLang === 'cs' ? 'Mapa' : 'Map'}</span>
+            </button>
+          ` : ''}
           <button 
             type="button"
             onclick="addToQueue('${item.id}', 1, event)" 
@@ -2064,9 +2110,28 @@ function openModal(id, pushHistory = false) {
       </div>
     </div>
 
-    <div class="mb-4 bg-slate-900/80 p-2.5 rounded-lg border border-hud-border text-xs font-mono">
-      <span class="text-slate-400 block text-[10px] uppercase font-bold text-hud-cyan">${t.sourceTitle}:</span>
-      <span class="text-slate-200">${source}</span>
+    <div class="mb-4 bg-slate-900/80 p-3 rounded-lg border border-hud-border text-xs font-mono flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2.5">
+      <div>
+        <span class="text-slate-400 block text-[10px] uppercase font-bold text-hud-cyan">${t.sourceTitle}:</span>
+        <span class="text-slate-200">${source}</span>
+        ${(typeof findLocationByRecipeId === 'function' && findLocationByRecipeId(item.id)) ? `
+          <div class="text-[11px] text-cyan-300 mt-1 flex items-center gap-1.5">
+            <i class="fa-solid fa-location-crosshairs text-hud-cyan text-[10px]"></i>
+            <span>GPS: <strong class="text-white">${findLocationByRecipeId(item.id).coords}</strong> (${currentLang === 'cs' ? findLocationByRecipeId(item.id).regionNameCs : findLocationByRecipeId(item.id).regionNameEn})</span>
+          </div>
+        ` : ''}
+      </div>
+      ${(typeof findLocationByRecipeId === 'function' && findLocationByRecipeId(item.id)) ? `
+        <button 
+          type="button" 
+          onclick="openMapToItem('${item.id}', event)" 
+          title="${currentLang === 'cs' ? 'Zobrazit na interaktivní mapě Nalcottu' : 'Show on interactive Nalcott map'}"
+          class="px-3 py-1.5 bg-hud-cyan/20 hover:bg-hud-cyan/30 border border-hud-cyan rounded text-hud-cyan hover:text-white text-xs font-mono font-bold flex items-center gap-1.5 transition shrink-0 cursor-pointer shadow-[0_0_12px_rgba(0,240,255,0.25)]"
+        >
+          <i class="fa-solid fa-map-location-dot text-xs"></i>
+          <span>${t.showOnMapBtn || (currentLang === 'cs' ? 'Zobrazit na mapě' : 'Show on Map')}</span>
+        </button>
+      ` : ''}
     </div>
 
     <div class="pt-3 border-t border-hud-border flex items-center justify-between text-xs font-mono text-slate-400">
@@ -2825,4 +2890,496 @@ function renderAcidFarmTab(container) {
   `;
 }
 
+
+/* ==========================================================================
+   NALCOTT INTERACTIVE TACTICAL WORLD MAP CONTROLLER (RADAR HUD & MAPGENIE)
+   ========================================================================== */
+let currentMapMode = 'tactical'; // 'tactical' | 'mapgenie'
+let activeMapFilter = 'all'; // 'all' | 'recipe' | 'monolith' | 'silo' | 'settlement' | 'fishing' | 'crate'
+let mapSearchTerm = '';
+let mapScale = 1.0;
+let mapPanX = 0;
+let mapPanY = 0;
+let isDraggingMap = false;
+let startPointerX = 0;
+let startPointerY = 0;
+let initialPanX = 0;
+let initialPanY = 0;
+let selectedPinId = null;
+let mapListenersInitialized = false;
+
+function openWorldMapModal() {
+  const modal = document.getElementById('world-map-modal');
+  if (!modal) return;
+  modal.classList.remove('hidden');
+
+  updateMapCounts();
+  updateMapFilterPills();
+  renderTacticalMap();
+
+  if (!mapListenersInitialized) {
+    initMapInteractions();
+    mapListenersInitialized = true;
+  }
+}
+
+function closeWorldMapModal() {
+  const modal = document.getElementById('world-map-modal');
+  if (modal) modal.classList.add('hidden');
+  closePinPopover();
+}
+
+function switchMapMode(mode) {
+  currentMapMode = mode;
+  const btnTac = document.getElementById('map-mode-tactical');
+  const btnGenie = document.getElementById('map-mode-mapgenie');
+  const tacView = document.getElementById('tactical-map-viewport');
+  const tacBar = document.getElementById('tactical-map-toolbar');
+  const genieContainer = document.getElementById('mapgenie-container');
+  const genieIframe = document.getElementById('mapgenie-iframe');
+
+  if (mode === 'tactical') {
+    if (btnTac) btnTac.className = "px-2.5 py-1 rounded text-xs font-mono font-bold transition-all bg-hud-cyan text-black shadow cursor-pointer";
+    if (btnGenie) btnGenie.className = "px-2.5 py-1 rounded text-xs font-mono font-bold transition-all text-slate-400 hover:text-white cursor-pointer";
+    if (tacView) tacView.classList.remove('hidden');
+    if (tacBar) tacBar.classList.remove('hidden');
+    if (genieContainer) genieContainer.classList.add('hidden');
+    renderTacticalMap();
+  } else {
+    if (btnTac) btnTac.className = "px-2.5 py-1 rounded text-xs font-mono font-bold transition-all text-slate-400 hover:text-white cursor-pointer";
+    if (btnGenie) btnGenie.className = "px-2.5 py-1 rounded text-xs font-mono font-bold transition-all bg-hud-cyan text-black shadow cursor-pointer";
+    if (tacView) tacView.classList.add('hidden');
+    if (tacBar) tacBar.classList.add('hidden');
+    if (genieContainer) genieContainer.classList.remove('hidden');
+
+    // Lazy-load MapGenie embed URL upon first switch
+    if (genieIframe && !genieIframe.src) {
+      genieIframe.src = 'https://mapgenie.io/once-human/maps/nalcott?embed=light';
+    }
+  }
+}
+
+function updateMapCounts() {
+  if (typeof mapLocations === 'undefined') return;
+  const counts = { all: mapLocations.length, recipe: 0, monolith: 0, silo: 0, settlement: 0, fishing: 0, crate: 0 };
+  mapLocations.forEach(loc => {
+    if (counts[loc.category] !== undefined) counts[loc.category]++;
+  });
+
+  const ids = ['all', 'recipe', 'monolith', 'silo', 'settlement', 'fishing', 'crate'];
+  ids.forEach(id => {
+    const el = document.getElementById(`map-cnt-${id}`);
+    if (el) el.innerText = counts[id] || 0;
+  });
+}
+
+function setMapFilter(cat) {
+  activeMapFilter = cat;
+  updateMapFilterPills();
+  renderTacticalMap();
+  closePinPopover();
+}
+
+function updateMapFilterPills() {
+  const ids = ['all', 'recipe', 'monolith', 'silo', 'settlement', 'fishing', 'crate'];
+  ids.forEach(id => {
+    const btn = document.getElementById(`map-filter-${id}`);
+    if (!btn) return;
+    if (id === activeMapFilter) {
+      btn.className = "map-filter-pill px-2.5 py-1 rounded border border-hud-cyan bg-hud-cyan text-black font-bold text-[11px] transition shadow-[0_0_8px_rgba(0,240,255,0.3)] cursor-pointer";
+    } else {
+      btn.className = "map-filter-pill px-2.5 py-1 rounded border border-hud-border bg-hud-card text-slate-300 hover:text-white text-[11px] transition cursor-pointer";
+    }
+  });
+}
+
+function handleMapSearch(val) {
+  mapSearchTerm = (val || '').toLowerCase().trim();
+  renderTacticalMap();
+  closePinPopover();
+}
+
+function zoomMap(factor) {
+  mapScale = Math.min(Math.max(mapScale * factor, 0.6), 4.5);
+  applyMapTransform();
+}
+
+function resetMapTransform() {
+  mapScale = 1.0;
+  mapPanX = 0;
+  mapPanY = 0;
+  applyMapTransform();
+  closePinPopover();
+}
+
+function applyMapTransform() {
+  const group = document.getElementById('map-world-group');
+  if (group) {
+    group.setAttribute('transform', `translate(${mapPanX}, ${mapPanY}) scale(${mapScale})`);
+  }
+}
+
+function initMapInteractions() {
+  const viewport = document.getElementById('tactical-map-viewport');
+  if (!viewport) return;
+
+  viewport.addEventListener('mousedown', (e) => {
+    if (e.target.closest('#map-pin-popover') || e.target.closest('button')) return;
+    isDraggingMap = true;
+    startPointerX = e.clientX;
+    startPointerY = e.clientY;
+    initialPanX = mapPanX;
+    initialPanY = mapPanY;
+    viewport.classList.add('is-dragging');
+  });
+
+  window.addEventListener('mousemove', (e) => {
+    if (isDraggingMap) {
+      const dx = e.clientX - startPointerX;
+      const dy = e.clientY - startPointerY;
+      mapPanX = initialPanX + dx;
+      mapPanY = initialPanY + dy;
+      applyMapTransform();
+    }
+
+    // Update GPS cursor coords in HUD legend
+    const hudCoords = document.getElementById('map-hud-cursor-coords');
+    if (hudCoords && viewport) {
+      const rect = viewport.getBoundingClientRect();
+      const relX = (e.clientX - rect.left) / rect.width;
+      const relY = (e.clientY - rect.top) / rect.height;
+      if (relX >= 0 && relX <= 1 && relY >= 0 && relY <= 1) {
+        const gameX = Math.round(1500 + relX * 7000);
+        const gameY = Math.round(-8000 + relY * 7000);
+        hudCoords.innerText = `GPS: (X: ${gameX}, Y: ${gameY})`;
+      }
+    }
+  });
+
+  window.addEventListener('mouseup', () => {
+    if (isDraggingMap) {
+      isDraggingMap = false;
+      viewport.classList.remove('is-dragging');
+    }
+  });
+
+  viewport.addEventListener('wheel', (e) => {
+    e.preventDefault();
+    const zoomFactor = e.deltaY < 0 ? 1.15 : 0.85;
+    zoomMap(zoomFactor);
+  }, { passive: false });
+
+  // Touch handlers for mobile
+  viewport.addEventListener('touchstart', (e) => {
+    if (e.touches.length === 1) {
+      if (e.target.closest('#map-pin-popover') || e.target.closest('button')) return;
+      isDraggingMap = true;
+      startPointerX = e.touches[0].clientX;
+      startPointerY = e.touches[0].clientY;
+      initialPanX = mapPanX;
+      initialPanY = mapPanY;
+    }
+  }, { passive: true });
+
+  viewport.addEventListener('touchmove', (e) => {
+    if (isDraggingMap && e.touches.length === 1) {
+      const dx = e.touches[0].clientX - startPointerX;
+      const dy = e.touches[0].clientY - startPointerY;
+      mapPanX = initialPanX + dx;
+      mapPanY = initialPanY + dy;
+      applyMapTransform();
+    }
+  }, { passive: true });
+
+  viewport.addEventListener('touchend', () => {
+    isDraggingMap = false;
+  });
+}
+
+function renderTacticalMap() {
+  const container = document.getElementById('tactical-map-canvas');
+  if (!container || typeof mapLocations === 'undefined') return;
+
+  const visiblePins = mapLocations.filter(loc => {
+    if (activeMapFilter !== 'all' && loc.category !== activeMapFilter) return false;
+    if (mapSearchTerm) {
+      const name = (currentLang === 'cs' ? loc.nameCs : loc.nameEn).toLowerCase();
+      const region = (currentLang === 'cs' ? loc.regionNameCs : loc.regionNameEn).toLowerCase();
+      const loot = (currentLang === 'cs' ? (loc.lootCs || '') : (loc.lootEn || '')).toLowerCase();
+      const desc = (currentLang === 'cs' ? (loc.descriptionCs || '') : (loc.descriptionEn || '')).toLowerCase();
+      if (!name.includes(mapSearchTerm) && !region.includes(mapSearchTerm) && !loot.includes(mapSearchTerm) && !desc.includes(mapSearchTerm)) {
+        return false;
+      }
+    }
+    return true;
+  });
+
+  const getEmoji = (cat) => {
+    switch (cat) {
+      case 'settlement': return '🏘️';
+      case 'monolith': return '💀';
+      case 'silo': return '🏛️';
+      case 'recipe': return '🍽️';
+      case 'fishing': return '🎣';
+      case 'crate': return '📦';
+      default: return '📍';
+    }
+  };
+
+  container.innerHTML = `
+    <svg id="tactical-svg" viewBox="0 0 1000 1000" class="w-full h-full block">
+      <defs>
+        <!-- Fine HUD grid pattern -->
+        <pattern id="tacGrid" width="50" height="50" patternUnits="userSpaceOnUse">
+          <path d="M 50 0 L 0 0 0 50" fill="none" stroke="#101d2d" stroke-width="0.8" />
+        </pattern>
+        <pattern id="tacGridMajor" width="200" height="200" patternUnits="userSpaceOnUse">
+          <rect width="200" height="200" fill="url(#tacGrid)" />
+          <path d="M 200 0 L 0 0 0 200" fill="none" stroke="#1e334d" stroke-width="1.5" />
+        </pattern>
+
+        <!-- Conical radar gradient -->
+        <linearGradient id="radarSweepGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stop-color="#00f0ff" stop-opacity="0.25" />
+          <stop offset="100%" stop-color="#00f0ff" stop-opacity="0" />
+        </linearGradient>
+      </defs>
+
+      <!-- Background Grid -->
+      <rect width="1000" height="1000" fill="#04070e" />
+      <rect width="1000" height="1000" fill="url(#tacGridMajor)" />
+
+      <!-- Transformable World Group -->
+      <g id="map-world-group" transform="translate(${mapPanX}, ${mapPanY}) scale(${mapScale})">
+        <!-- Radar Range Circles -->
+        <circle cx="500" cy="500" r="160" fill="none" stroke="#1a2d42" stroke-width="1" stroke-dasharray="4 6" />
+        <circle cx="500" cy="500" r="320" fill="none" stroke="#1a2d42" stroke-width="1" stroke-dasharray="4 6" />
+        <circle cx="500" cy="500" r="460" fill="none" stroke="#1a2d42" stroke-width="1" stroke-dasharray="4 6" />
+
+        <!-- Crosshair Axes -->
+        <line x1="500" y1="20" x2="500" y2="980" stroke="#1a2d42" stroke-width="1" stroke-dasharray="2 4" />
+        <line x1="20" y1="500" x2="980" y2="500" stroke="#1a2d42" stroke-width="1" stroke-dasharray="2 4" />
+
+        <!-- Rotating Radar Sweep Overlay -->
+        <g class="radar-sweep-beam">
+          <path d="M 500 500 L 980 500 A 480 480 0 0 0 839 160 Z" fill="url(#radarSweepGrad)" />
+        </g>
+
+        <!-- ==================== NALCOTT REGION LANDMASSES ==================== -->
+        <!-- Dayton Wetlands (Lv 1-10) -->
+        <polygon points="660,630 890,650 910,880 670,890 640,760" fill="#10b981" fill-opacity="0.08" stroke="#10b981" stroke-width="1.8" stroke-dasharray="8 4" />
+        <text x="780" y="865" text-anchor="middle" font-family="Orbitron, sans-serif" font-weight="bold" font-size="12" fill="#10b981" fill-opacity="0.5">DAYTON WETLANDS [LV. 1-10]</text>
+
+        <!-- Broken Delta (Lv 10-20) -->
+        <polygon points="430,620 660,630 670,890 460,910 400,770" fill="#06b6d4" fill-opacity="0.08" stroke="#06b6d4" stroke-width="1.8" stroke-dasharray="8 4" />
+        <text x="540" y="885" text-anchor="middle" font-family="Orbitron, sans-serif" font-weight="bold" font-size="12" fill="#06b6d4" fill-opacity="0.5">BROKEN DELTA [LV. 10-20]</text>
+
+        <!-- Iron River (Lv 20-30) -->
+        <polygon points="440,370 780,370 760,620 430,620" fill="#3b82f6" fill-opacity="0.08" stroke="#3b82f6" stroke-width="1.8" stroke-dasharray="8 4" />
+        <text x="610" y="420" text-anchor="middle" font-family="Orbitron, sans-serif" font-weight="bold" font-size="12" fill="#3b82f6" fill-opacity="0.5">IRON RIVER [LV. 20-30]</text>
+
+        <!-- Chalk Peak (Lv 30-40) -->
+        <polygon points="160,390 440,370 430,760 180,730" fill="#f59e0b" fill-opacity="0.08" stroke="#f59e0b" stroke-width="1.8" stroke-dasharray="8 4" />
+        <text x="290" y="620" text-anchor="middle" font-family="Orbitron, sans-serif" font-weight="bold" font-size="12" fill="#f59e0b" fill-opacity="0.5">CHALK PEAK [LV. 30-40]</text>
+
+        <!-- Red Sands (Lv 40-50) -->
+        <polygon points="230,160 550,160 550,370 230,390" fill="#ef4444" fill-opacity="0.08" stroke="#ef4444" stroke-width="1.8" stroke-dasharray="8 4" />
+        <text x="380" y="270" text-anchor="middle" font-family="Orbitron, sans-serif" font-weight="bold" font-size="12" fill="#ef4444" fill-opacity="0.5">RED SANDS [LV. 40-50]</text>
+
+        <!-- Blackfell Fallen Zone (Lv 45+) -->
+        <polygon points="550,160 850,160 820,370 550,370" fill="#b5179e" fill-opacity="0.09" stroke="#b5179e" stroke-width="1.8" stroke-dasharray="8 4" />
+        <text x="690" y="270" text-anchor="middle" font-family="Orbitron, sans-serif" font-weight="bold" font-size="12" fill="#b5179e" fill-opacity="0.5">BLACKFELL FALLEN ZONE [LV. 45+]</text>
+
+        <!-- The Way of Winter: Onyx Tundra (Far North) -->
+        <polygon points="280,30 780,30 820,160 240,160" fill="#93c5fd" fill-opacity="0.09" stroke="#93c5fd" stroke-width="1.8" stroke-dasharray="8 4" />
+        <text x="520" y="90" text-anchor="middle" font-family="Orbitron, sans-serif" font-weight="bold" font-size="12" fill="#93c5fd" fill-opacity="0.6">THE WAY OF WINTER (ONYX TUNDRA)</text>
+
+        <!-- Tactical Waterways & River Streams -->
+        <path d="M 280,480 Q 420,520 540,620 T 630,760 T 740,880" fill="none" stroke="#00f0ff" stroke-width="4" stroke-opacity="0.35" stroke-linecap="round" />
+        <path d="M 540,620 Q 600,680 580,780 T 520,890" fill="none" stroke="#00f0ff" stroke-width="3" stroke-opacity="0.25" stroke-linecap="round" />
+        <path d="M 680,430 Q 640,490 600,520" fill="none" stroke="#00f0ff" stroke-width="2.5" stroke-opacity="0.25" stroke-linecap="round" />
+
+        <!-- Tactical Roads & Highway Routes -->
+        <path d="M 740,760 L 580,740 L 520,820" fill="none" stroke="#475569" stroke-width="2" stroke-dasharray="4 4" stroke-opacity="0.6" />
+        <path d="M 580,740 L 600,520 L 450,300" fill="none" stroke="#475569" stroke-width="2" stroke-dasharray="4 4" stroke-opacity="0.6" />
+        <path d="M 580,740 L 380,620 L 280,560" fill="none" stroke="#475569" stroke-width="2" stroke-dasharray="4 4" stroke-opacity="0.6" />
+        <path d="M 450,300 L 380,320 L 320,240" fill="none" stroke="#475569" stroke-width="2" stroke-dasharray="4 4" stroke-opacity="0.6" />
+
+        <!-- ==================== INTERACTIVE PINS ==================== -->
+        <g id="map-pins-container">
+          ${visiblePins.map(loc => {
+            const isSelected = selectedPinId === loc.id;
+            const primaryName = currentLang === 'cs' ? loc.nameCs.split(' (')[0] : loc.nameEn.split(' (')[0];
+            const px = loc.x * 10;
+            const py = loc.y * 10;
+            const emoji = getEmoji(loc.category);
+
+            return `
+              <g class="map-pin-marker" data-pin-id="${loc.id}" transform="translate(${px}, ${py})" onclick="handlePinClick('${loc.id}', event)">
+                ${isSelected ? `
+                  <circle class="pin-ripple-anim" cx="0" cy="0" r="22" stroke="${loc.color}" fill="${loc.color}" fill-opacity="0.2" />
+                  <circle cx="0" cy="0" r="16" fill="none" stroke="${loc.color}" stroke-width="1.5" stroke-dasharray="2 3" />
+                ` : ''}
+                <circle cx="0" cy="0" r="12" fill="#0d1522" stroke="${loc.color}" stroke-width="2" />
+                <text x="0" y="4.5" text-anchor="middle" font-size="10">${emoji}</text>
+                <text x="0" y="24" text-anchor="middle" font-family="Rajdhani, sans-serif" font-weight="700" font-size="9.5" fill="#f1f5f9" stroke="#04070e" stroke-width="3" paint-order="stroke">${primaryName}</text>
+              </g>
+            `;
+          }).join('')}
+        </g>
+      </g>
+    </svg>
+  `;
+}
+
+function handlePinClick(locId, event) {
+  if (event) event.stopPropagation();
+  selectedPinId = locId;
+  const loc = mapLocations.find(l => l.id === locId);
+  if (!loc) return;
+
+  renderTacticalMap();
+
+  const x = event && event.clientX ? event.clientX : window.innerWidth / 2;
+  const y = event && event.clientY ? event.clientY : window.innerHeight / 2;
+  showPinPopover(loc, x, y);
+}
+
+function openMapToItem(recipeId, event) {
+  if (event) event.stopPropagation();
+  if (typeof findLocationByRecipeId !== 'function') return;
+  const loc = findLocationByRecipeId(recipeId);
+  if (!loc) return;
+
+  // 1. Open map modal
+  openWorldMapModal();
+
+  // 2. Switch to tactical radar
+  switchMapMode('tactical');
+
+  // 3. Reset category filter if it would hide this location
+  if (activeMapFilter !== 'all' && activeMapFilter !== loc.category) {
+    activeMapFilter = 'all';
+    updateMapFilterPills();
+  }
+  mapSearchTerm = '';
+  const searchInput = document.getElementById('mapSearchInput');
+  if (searchInput) searchInput.value = '';
+
+  // 4. Center map smoothly on location with zoom
+  focusMapOnLocation(loc.id, true);
+}
+
+function focusMapOnLocation(locId, triggerPulse = true) {
+  const loc = mapLocations.find(l => l.id === locId);
+  if (!loc) return;
+
+  selectedPinId = locId;
+  mapScale = 2.2;
+  const targetX = loc.x * 10;
+  const targetY = loc.y * 10;
+  mapPanX = 500 - (targetX * mapScale);
+  mapPanY = 500 - (targetY * mapScale);
+
+  renderTacticalMap();
+
+  // Show popover centered over viewport
+  const viewport = document.getElementById('tactical-map-viewport');
+  if (viewport) {
+    const rect = viewport.getBoundingClientRect();
+    const centerX = rect.left + rect.width / 2;
+    const centerY = rect.top + rect.height / 2;
+    showPinPopover(loc, centerX, centerY);
+  }
+}
+
+function showPinPopover(loc, x, y) {
+  const popover = document.getElementById('map-pin-popover');
+  if (!popover) return;
+
+  const t = i18n[currentLang];
+  const primaryName = currentLang === 'cs' ? loc.nameCs : loc.nameEn;
+  const desc = currentLang === 'cs' ? loc.descriptionCs : loc.descriptionEn;
+  const regionName = currentLang === 'cs' ? loc.regionNameCs : loc.regionNameEn;
+  const loot = currentLang === 'cs' ? loc.lootCs : loc.lootEn;
+  const relatedId = loc.relatedRecipeId || (loc.relatedItemIds && loc.relatedItemIds[0]);
+
+  popover.innerHTML = `
+    <div class="flex items-center justify-between mb-2 pb-2 border-b border-hud-border">
+      <div class="flex items-center gap-1.5 flex-wrap">
+        <span class="w-2.5 h-2.5 rounded-full inline-block shadow-sm" style="background: ${loc.color}"></span>
+        <span class="font-mono text-[10px] uppercase font-bold px-1.5 py-0.5 rounded bg-slate-800 text-slate-300 border border-slate-700">
+          ${loc.category.toUpperCase()}
+        </span>
+        <span class="text-[10px] font-mono text-hud-cyan">${regionName}</span>
+      </div>
+      <button onclick="closePinPopover()" class="text-slate-400 hover:text-white transition w-5 h-5 flex items-center justify-center rounded hover:bg-slate-800 cursor-pointer">
+        <i class="fa-solid fa-xmark text-xs"></i>
+      </button>
+    </div>
+
+    <h4 class="font-orbitron font-bold text-white text-sm mb-1 leading-snug">${primaryName}</h4>
+    <div class="text-[11px] font-mono text-cyan-300 mb-2 flex items-center gap-1">
+      <i class="fa-solid fa-location-crosshairs text-hud-cyan text-[10px]"></i>
+      <span>GPS: <strong>${loc.coords}</strong></span>
+    </div>
+
+    <p class="text-slate-300 text-[11px] leading-relaxed mb-2.5">${desc}</p>
+
+    ${loot ? `
+      <div class="mb-3 p-2 rounded bg-slate-900/90 border border-slate-800 text-[11px] font-mono text-amber-300">
+        <strong class="text-slate-400 block text-[9px] uppercase mb-0.5"><i class="fa-solid fa-gift mr-1 text-amber-400"></i>${t.mapLootLabel || 'Klíčový loot / Recept:'}</strong>
+        <span>${loot}</span>
+      </div>
+    ` : ''}
+
+    ${relatedId ? `
+      <button 
+        type="button"
+        onclick="navigateToCodexItem('${relatedId}')"
+        class="w-full py-1.5 px-3 bg-hud-cyan/20 hover:bg-hud-cyan/30 border border-hud-cyan rounded text-hud-cyan hover:text-white text-xs font-mono font-bold flex items-center justify-center gap-2 transition cursor-pointer shadow-[0_0_12px_rgba(0,240,255,0.25)]"
+      >
+        <i class="fa-solid fa-book-open text-xs"></i>
+        <span>${t.openInCodexBtn || 'Otevřít v Codexu'}</span>
+        <i class="fa-solid fa-arrow-right text-[10px] ml-auto"></i>
+      </button>
+    ` : ''}
+  `;
+
+  popover.classList.remove('hidden');
+
+  const viewport = document.getElementById('tactical-map-viewport');
+  if (!viewport) return;
+  const vpRect = viewport.getBoundingClientRect();
+  const popWidth = 320;
+  const popHeight = 220;
+
+  let left = x - vpRect.left - (popWidth / 2);
+  let top = y - vpRect.top - popHeight - 20;
+
+  if (left < 12) left = 12;
+  if (left + popWidth > vpRect.width - 12) left = vpRect.width - popWidth - 12;
+  if (top < 12) top = y - vpRect.top + 25;
+  if (top + popHeight > vpRect.height - 12) top = vpRect.height - popHeight - 12;
+
+  popover.style.left = `${left}px`;
+  popover.style.top = `${top}px`;
+}
+
+function closePinPopover() {
+  const popover = document.getElementById('map-pin-popover');
+  if (popover) popover.classList.add('hidden');
+}
+
+function navigateToCodexItem(recipeId) {
+  closeWorldMapModal();
+  const all = getAllRecipes();
+  const item = all.find(r => r.id === recipeId);
+  if (!item) return;
+
+  const tab = determineRecipeTab(recipeId);
+  if (tab) switchTab(tab, true);
+
+  openModal(recipeId, true);
+}
 

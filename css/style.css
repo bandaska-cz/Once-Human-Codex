@@ -68,3 +68,52 @@ body {
 .animate-pulse-glow {
   animation: pulseGlow 3s ease-in-out infinite;
 }
+
+/* ==========================================================================
+   TACTICAL RADAR MAP ANIMATIONS & STYLING
+   ========================================================================== */
+
+/* Rotating radar beam sweep */
+@keyframes radarSweep {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+.radar-sweep-beam {
+  transform-origin: 500px 500px;
+  animation: radarSweep 10s linear infinite;
+  pointer-events: none;
+}
+
+/* Pulsing highlight ripple for focused pin */
+@keyframes pinRipple {
+  0% {
+    r: 10px;
+    opacity: 0.9;
+    stroke-width: 3px;
+  }
+  100% {
+    r: 40px;
+    opacity: 0;
+    stroke-width: 1px;
+  }
+}
+.pin-ripple-anim {
+  animation: pinRipple 1.6s cubic-bezier(0, 0.2, 0.8, 1) infinite;
+  pointer-events: none;
+}
+
+/* Map pin transition */
+.map-pin-marker {
+  transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1), filter 0.2s ease;
+  cursor: pointer;
+}
+.map-pin-marker:hover {
+  transform: scale(1.35);
+  filter: drop-shadow(0 0 10px rgba(0, 240, 255, 0.8));
+}
+
+/* Crosshair cursor for radar grid */
+#tactical-map-viewport.is-dragging {
+  cursor: grabbing !important;
+}
+

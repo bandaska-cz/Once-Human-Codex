@@ -83,7 +83,18 @@
           </button>
         </div>
 
-                <!-- Crafting Queue / Shopping List Button -->
+                <!-- Interactive Tactical World Map Button -->
+        <button 
+          id="map-toggle-btn"
+          onclick="openWorldMapModal()" 
+          title="Interaktivní taktická mapa Nalcottu"
+          class="inline-flex items-center space-x-1.5 bg-hud-card hover:bg-hud-cyan/15 border border-hud-cyan/50 hover:border-hud-cyan text-hud-cyan hover:text-white px-2.5 sm:px-3 py-1.5 rounded transition-all text-xs font-mono shadow-[0_0_12px_rgba(0,240,255,0.2)] cursor-pointer"
+        >
+          <i class="fa-solid fa-map-location-dot text-hud-cyan"></i>
+          <span class="hidden sm:inline" id="map-btn-label">Mapa</span>
+        </button>
+
+        <!-- Crafting Queue / Shopping List Button -->
         <button 
           id="queue-toggle-btn"
           onclick="openQueueModal()" 
@@ -498,6 +509,139 @@
       <!-- Container where current calculator tab is dynamically rendered -->
       <div id="grid-calc-content">
         <!-- Rendered by renderGridCalc() -->
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== NALCOTT TACTICAL WORLD MAP MODAL ==================== -->
+  <div id="world-map-modal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-2 sm:p-4 bg-black/85 backdrop-blur-md">
+    <div class="bg-hud-surface border border-hud-cyan/50 rounded-lg max-w-6xl w-full h-[94vh] flex flex-col relative overflow-hidden shadow-[0_0_40px_rgba(0,240,255,0.25)]">
+      <!-- Modal Header -->
+      <div class="p-3 sm:p-4 border-b border-hud-border flex items-center justify-between gap-3 bg-hud-card/90 shrink-0">
+        <div class="flex items-center gap-2.5">
+          <div class="w-9 h-9 rounded bg-hud-cyan/10 border border-hud-cyan flex items-center justify-center text-hud-cyan shadow-[0_0_12px_rgba(0,240,255,0.3)] shrink-0">
+            <i class="fa-solid fa-map-location-dot text-base animate-pulse"></i>
+          </div>
+          <div>
+            <div class="flex items-center gap-2">
+              <h3 id="map-modal-title" class="font-orbitron font-bold text-white text-sm sm:text-base tracking-wide">TAKTICKÁ MAPA NALCOTTU</h3>
+              <span class="text-[9px] font-mono uppercase bg-hud-cyan/20 text-hud-cyan border border-hud-cyan/40 px-1.5 py-0.5 rounded">GPS RADAR HUD</span>
+            </div>
+            <p id="map-modal-subtitle" class="text-[11px] font-mono text-slate-400 hidden sm:block">Interaktivní radarový přehled lokací, receptů, bossů a sil</p>
+          </div>
+        </div>
+
+        <!-- Mode Toggle Switch (Tactical Radar vs MapGenie Live) & Close -->
+        <div class="flex items-center gap-2">
+          <div class="flex items-center bg-hud-bg border border-hud-border rounded p-1">
+            <button id="map-mode-tactical" onclick="switchMapMode('tactical')" class="px-2.5 py-1 rounded text-xs font-mono font-bold transition-all bg-hud-cyan text-black shadow cursor-pointer">
+              <i class="fa-solid fa-satellite-dish mr-1"></i><span id="map-mode-lbl-tactical">Taktický radar</span>
+            </button>
+            <button id="map-mode-mapgenie" onclick="switchMapMode('mapgenie')" class="px-2.5 py-1 rounded text-xs font-mono font-bold transition-all text-slate-400 hover:text-white cursor-pointer">
+              <i class="fa-solid fa-globe mr-1"></i><span id="map-mode-lbl-mapgenie">MapGenie Live</span>
+            </button>
+          </div>
+
+          <button onclick="closeWorldMapModal()" title="Zavřít (Esc)" class="text-slate-400 hover:text-white transition w-8 h-8 rounded border border-hud-border flex items-center justify-center bg-hud-card cursor-pointer">
+            <i class="fa-solid fa-xmark text-sm"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- Map Toolbar (Tactical Mode Filters & Controls) -->
+      <div id="tactical-map-toolbar" class="p-2.5 border-b border-hud-border/80 bg-hud-surface/90 flex flex-wrap items-center justify-between gap-2 text-xs font-mono shrink-0">
+        <!-- Category Filter Pills -->
+        <div class="flex flex-wrap items-center gap-1.5">
+          <button onclick="setMapFilter('all')" id="map-filter-all" class="map-filter-pill px-2.5 py-1 rounded border border-hud-cyan bg-hud-cyan text-black font-bold text-[11px] transition shadow-[0_0_8px_rgba(0,240,255,0.3)] cursor-pointer">
+            <span id="map-lbl-filter-all">Vše</span> (<span id="map-cnt-all">0</span>)
+          </button>
+          <button onclick="setMapFilter('recipe')" id="map-filter-recipe" class="map-filter-pill px-2.5 py-1 rounded border border-hud-border bg-hud-card text-slate-300 hover:text-white text-[11px] transition cursor-pointer">
+            🍽️ <span id="map-lbl-filter-recipe">Recepty</span> (<span id="map-cnt-recipe">0</span>)
+          </button>
+          <button onclick="setMapFilter('monolith')" id="map-filter-monolith" class="map-filter-pill px-2.5 py-1 rounded border border-hud-border bg-hud-card text-slate-300 hover:text-white text-[11px] transition cursor-pointer">
+            💀 <span id="map-lbl-filter-monolith">Bossové</span> (<span id="map-cnt-monolith">0</span>)
+          </button>
+          <button onclick="setMapFilter('silo')" id="map-filter-silo" class="map-filter-pill px-2.5 py-1 rounded border border-hud-border bg-hud-card text-slate-300 hover:text-white text-[11px] transition cursor-pointer">
+            🏛️ <span id="map-lbl-filter-silo">Sila</span> (<span id="map-cnt-silo">0</span>)
+          </button>
+          <button onclick="setMapFilter('settlement')" id="map-filter-settlement" class="map-filter-pill px-2.5 py-1 rounded border border-hud-border bg-hud-card text-slate-300 hover:text-white text-[11px] transition cursor-pointer">
+            🏘️ <span id="map-lbl-filter-settlement">Osady</span> (<span id="map-cnt-settlement">0</span>)
+          </button>
+          <button onclick="setMapFilter('fishing')" id="map-filter-fishing" class="map-filter-pill px-2.5 py-1 rounded border border-hud-border bg-hud-card text-slate-300 hover:text-white text-[11px] transition cursor-pointer">
+            🎣 <span id="map-lbl-filter-fishing">Rybolov</span> (<span id="map-cnt-fishing">0</span>)
+          </button>
+          <button onclick="setMapFilter('crate')" id="map-filter-crate" class="map-filter-pill px-2.5 py-1 rounded border border-hud-border bg-hud-card text-slate-300 hover:text-white text-[11px] transition cursor-pointer">
+            📦 <span id="map-lbl-filter-crate">Truhly</span> (<span id="map-cnt-crate">0</span>)
+          </button>
+        </div>
+
+        <!-- Search & Zoom Controls -->
+        <div class="flex items-center gap-2 ml-auto">
+          <div class="relative w-40 sm:w-52">
+            <input 
+              type="text" 
+              id="mapSearchInput" 
+              oninput="handleMapSearch(this.value)" 
+              placeholder="Hledat na mapě..."
+              class="w-full bg-hud-bg border border-hud-border rounded px-2.5 py-1 text-xs text-white placeholder-slate-500 focus:border-hud-cyan outline-none pr-6 font-sans"
+            >
+            <i class="fa-solid fa-magnifying-glass text-slate-500 text-[10px] absolute right-2 top-2"></i>
+          </div>
+          <div class="flex items-center gap-1 border border-hud-border rounded bg-hud-card p-0.5">
+            <button onclick="zoomMap(1.25)" title="Přiblížit (+)" class="w-7 h-7 rounded hover:bg-hud-cyan/20 text-slate-300 hover:text-hud-cyan flex items-center justify-center transition cursor-pointer">
+              <i class="fa-solid fa-plus text-xs"></i>
+            </button>
+            <button onclick="zoomMap(0.8)" title="Oddálit (-)" class="w-7 h-7 rounded hover:bg-hud-cyan/20 text-slate-300 hover:text-hud-cyan flex items-center justify-center transition cursor-pointer">
+              <i class="fa-solid fa-minus text-xs"></i>
+            </button>
+            <button onclick="resetMapTransform()" title="Resetovat pohled" class="px-2 h-7 rounded hover:bg-hud-cyan/20 text-slate-300 hover:text-hud-cyan text-[11px] font-mono flex items-center gap-1 transition cursor-pointer">
+              <i class="fa-solid fa-compress text-[10px]"></i>
+              <span class="hidden sm:inline" id="map-btn-reset-lbl">Reset</span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Map Viewport -->
+      <div class="flex-1 relative overflow-hidden bg-[#03060c]">
+        <!-- Tactical Radar View -->
+        <div id="tactical-map-viewport" class="w-full h-full relative cursor-grab active:cursor-grabbing overflow-hidden select-none">
+          <div id="tactical-map-canvas" class="absolute inset-0 transition-transform duration-75 origin-center will-change-transform">
+            <!-- Dynamically populated by renderTacticalMap() -->
+          </div>
+
+          <!-- Tactical Pin Popover -->
+          <div id="map-pin-popover" class="hidden absolute z-30 max-w-sm w-80 bg-hud-surface/95 border border-hud-cyan rounded-lg p-3.5 shadow-[0_0_25px_rgba(0,240,255,0.35)] backdrop-blur-md text-xs pointer-events-auto">
+            <!-- Populated on pin click/focus -->
+          </div>
+
+          <!-- Tactical Radar Legend Overlay -->
+          <div class="absolute bottom-3 left-3 pointer-events-none z-10 bg-hud-surface/85 border border-hud-border/80 rounded p-2 text-[10px] font-mono text-slate-400 space-y-0.5 backdrop-blur-sm hidden sm:block">
+            <div class="text-hud-cyan font-bold flex items-center gap-1.5">
+              <span class="w-2 h-2 rounded-full bg-hud-cyan animate-pulse"></span> NALCOTT CONTINENT RADAR
+            </div>
+            <div>Posun: Tažením myši • Zoom: Kolečko / Tlačítka</div>
+            <div id="map-hud-cursor-coords">GPS: (X: --, Y: --)</div>
+          </div>
+        </div>
+
+        <!-- MapGenie Live View -->
+        <div id="mapgenie-container" class="hidden w-full h-full relative flex flex-col">
+          <div class="p-2 bg-slate-900 border-b border-hud-border flex items-center justify-between text-xs font-mono text-slate-300 shrink-0">
+            <span><i class="fa-solid fa-globe text-hud-cyan mr-1.5"></i>MapGenie Once Human Interactive Map (Live Checklist)</span>
+            <a href="https://mapgenie.io/once-human/maps/nalcott" target="_blank" rel="noopener noreferrer" class="text-hud-cyan hover:underline flex items-center gap-1">
+              <span>Otevřít v novém okně</span>
+              <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
+            </a>
+          </div>
+          <iframe 
+            id="mapgenie-iframe" 
+            src="" 
+            class="w-full flex-1 border-0" 
+            loading="lazy" 
+            allowfullscreen>
+          </iframe>
+        </div>
       </div>
     </div>
   </div>
