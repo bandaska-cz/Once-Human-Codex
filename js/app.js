@@ -732,7 +732,17 @@ function initSearchIndex() {
       zoneTokens = ` ${item.zoneType || ''} ${item.levelRange || ''} ${item.monolithBossCs || ''} ${item.monolithBossEn || ''} ${item.silosCs || ''} ${item.silosEn || ''} ${(item.mysticCratesCs || []).join(' ')} ${(item.mysticCratesEn || []).join(' ')} ${(item.keyLootCs || []).join(' ')} ${(item.keyLootEn || []).join(' ')} zone zóna region průzkum exploration dungeon silo monolith mystic crate truhla`;
     }
 
-    item._searchIndex = (csTokens + ' ' + enTokens + ' ' + (item.scenario || '') + ' ' + invTokens + ' ' + gearTokens + ' ' + deviantTokens + ' ' + zoneTokens).toLowerCase();
+    let fishTokens = '';
+    if (item.habitatCs || item.preferredBaitCs || item.culinaryUseCs || item.tradingValueCs) {
+      fishTokens = ` ${item.habitatCs || ''} ${item.habitatEn || ''} ${item.preferredBaitCs || ''} ${item.preferredBaitEn || ''} ${item.culinaryUseCs || ''} ${item.culinaryUseEn || ''} ${item.tradingValueCs || ''} ${item.tradingValueEn || ''} ryba rybolov fishing bait návnada úlovek akvárium catch eel úhoř`;
+    }
+
+    let bossTokens = '';
+    if (item.weakspotsCs || item.phasesCs || item.recommendedArchetypesCs) {
+      bossTokens = ` ${item.weakspotsCs || ''} ${item.weakspotsEn || ''} ${(item.phasesCs || []).join(' ')} ${(item.phasesEn || []).join(' ')} ${item.recommendedArchetypesCs || ''} ${item.recommendedArchetypesEn || ''} ${item.recommendedDeviantsCs || ''} ${item.recommendedDeviantsEn || ''} boss raid taktika mechanika monolith wipe weakspot fázování silo hunter treant arachsiam hound giant`;
+    }
+
+    item._searchIndex = (csTokens + ' ' + enTokens + ' ' + (item.scenario || '') + ' ' + invTokens + ' ' + gearTokens + ' ' + deviantTokens + ' ' + zoneTokens + ' ' + fishTokens + ' ' + bossTokens).toLowerCase();
   });
 }
 
@@ -786,7 +796,7 @@ function handleHashChange() {
     openModal(recipeId, false);
   } else if (hash.startsWith('tab=')) {
     const tabName = hash.replace('tab=', '');
-    if (activeTab !== tabName && ['discovered', 'creative', 'medicine', 'inventions', 'gear', 'deviants', 'zones'].includes(tabName)) {
+    if (activeTab !== tabName && ['discovered', 'creative', 'medicine', 'inventions', 'gear', 'deviants', 'zones', 'fishing', 'bosses'].includes(tabName)) {
       switchTab(tabName, false);
     }
   }
@@ -832,7 +842,7 @@ window.addEventListener('keydown', function(e) {
 });
 
 function getAllRecipes() {
-  return [...discoveredRecipes, ...creativeDishes, ...medicineRecipes, ...inventionRecipes, ...gearRecipes, ...deviantRecipes, ...zoneRecipes];
+  return [...discoveredRecipes, ...creativeDishes, ...medicineRecipes, ...inventionRecipes, ...gearRecipes, ...deviantRecipes, ...zoneRecipes, ...fishRecipes, ...bossTactics];
 }
 
 function findRecipeById(id) {
@@ -847,6 +857,8 @@ function determineRecipeTab(recipeId) {
   if (gearRecipes.some(r => r.id === recipeId)) return 'gear';
   if (deviantRecipes.some(r => r.id === recipeId)) return 'deviants';
   if (zoneRecipes.some(r => r.id === recipeId)) return 'zones';
+  if (fishRecipes.some(r => r.id === recipeId)) return 'fishing';
+  if (bossTactics.some(r => r.id === recipeId)) return 'bosses';
   return 'discovered';
 }
 
@@ -871,6 +883,8 @@ function getActiveDataset() {
     case 'gear': return gearRecipes;
     case 'deviants': return deviantRecipes;
     case 'zones': return zoneRecipes;
+    case 'fishing': return fishRecipes;
+    case 'bosses': return bossTactics;
     default: return discoveredRecipes;
   }
 }
@@ -901,6 +915,10 @@ function applyLanguageUI() {
   if (devTabEl) devTabEl.innerText = `${t.tabDeviants || 'Deviants & Cradle'} (${deviantRecipes.length})`;
   const zoneTabEl = document.getElementById('tab-txt-zones');
   if (zoneTabEl) zoneTabEl.innerText = `${t.tabZones || 'Zones & Exploration'} (${zoneRecipes.length})`;
+  const fishTabEl = document.getElementById('tab-txt-fishing');
+  if (fishTabEl) fishTabEl.innerText = `${t.tabFishing || 'Fishing & Baits'} (${fishRecipes.length})`;
+  const bossTabEl = document.getElementById('tab-txt-bosses');
+  if (bossTabEl) bossTabEl.innerText = `${t.tabBosses || 'Boss Tactics & Raids'} (${bossTactics.length})`;
   document.getElementById('calc-title').innerText = t.calcTitle;
   document.getElementById('calc-desc').innerText = t.calcDesc;
   document.getElementById('searchInput').placeholder = t.searchPlaceholder;
@@ -944,7 +962,9 @@ function switchTab(tabId, updateHash = true) {
     { id: 'tab-btn-inventions', name: 'inventions' },
     { id: 'tab-btn-gear', name: 'gear' },
     { id: 'tab-btn-deviants', name: 'deviants' },
-    { id: 'tab-btn-zones', name: 'zones' }
+    { id: 'tab-btn-zones', name: 'zones' },
+    { id: 'tab-btn-fishing', name: 'fishing' },
+    { id: 'tab-btn-bosses', name: 'bosses' }
   ];
 
   buttons.forEach(btn => {
@@ -1212,6 +1232,16 @@ function renderRecipeCards(items) {
                 <i class="fa-solid fa-location-dot text-[8px] text-hud-cyan"></i>${item.levelRange}
               </span>
             ` : ''}
+            ${item.habitatCs ? `
+              <span class="text-[9px] font-mono uppercase px-1.5 py-0.5 rounded border border-cyan-500/60 bg-cyan-950/80 text-cyan-300 font-bold flex items-center gap-1 shadow-[0_0_8px_rgba(6,182,212,0.25)]">
+                <i class="fa-solid fa-fish-fins text-[8px] text-cyan-400"></i>${currentLang === 'cs' ? (item.categoryCs || 'Rybolov') : (item.categoryEn || 'Fishing')}
+              </span>
+            ` : ''}
+            ${item.weakspotsCs ? `
+              <span class="text-[9px] font-mono uppercase px-1.5 py-0.5 rounded border border-red-500/60 bg-red-950/80 text-red-300 font-bold flex items-center gap-1 shadow-[0_0_8px_rgba(239,68,68,0.25)]">
+                <i class="fa-solid fa-skull-crossbones text-[8px] text-red-400"></i>${currentLang === 'cs' ? 'Boss Encounter' : 'Boss Raid'}
+              </span>
+            ` : ''}
           </div>
           <div class="flex items-center gap-2">
             <span class="text-[10px] font-mono uppercase px-2 py-0.5 rounded border ${rar.bg} ${rar.text} ${rar.border} font-bold flex items-center space-x-1">
@@ -1306,6 +1336,40 @@ function renderRecipeCards(items) {
               ${currentLang === 'cs' ? 'Mystické truhly' : 'Mystic Crates'}:
             </span>
             <strong class="text-hud-cyan font-bold">${item.mysticCratesCs.length}</strong>
+          </div>
+        ` : ''}
+
+        <!-- Fishing Habitat & Preferred Bait Preview -->
+        ${item.preferredBaitCs ? `
+          <div class="mb-3 p-2.5 bg-cyan-950/40 border border-cyan-500/40 rounded text-xs text-cyan-200 leading-snug">
+            <div class="flex items-center justify-between mb-1">
+              <span class="text-[10px] uppercase font-bold text-cyan-400 flex items-center gap-1">
+                <i class="fa-solid fa-worm text-[9px]"></i>${currentLang === 'cs' ? 'Návnada' : 'Bait'}:
+              </span>
+              <span class="font-mono text-[11px] text-white font-semibold">${currentLang === 'cs' ? item.preferredBaitCs : item.preferredBaitEn}</span>
+            </div>
+            ${item.culinaryUseCs ? `
+              <div class="text-[11px] text-slate-300 border-t border-cyan-800/50 pt-1 mt-1 truncate" title="${currentLang === 'cs' ? item.culinaryUseCs : item.culinaryUseEn}">
+                <i class="fa-solid fa-utensils text-cyan-400 text-[9px] mr-1"></i>${currentLang === 'cs' ? item.culinaryUseCs : item.culinaryUseEn}
+              </div>
+            ` : ''}
+          </div>
+        ` : ''}
+
+        <!-- Boss Weakspots & Recommended Archetypes Preview -->
+        ${item.weakspotsCs ? `
+          <div class="mb-3 p-2.5 bg-red-950/30 border border-red-500/40 rounded text-xs text-red-200 leading-snug">
+            <div class="flex items-center gap-1 text-[10px] uppercase font-bold text-red-400 mb-1">
+              <i class="fa-solid fa-crosshairs text-[9px]"></i>${currentLang === 'cs' ? 'Weakspot' : 'Weakspot'}:
+              <span class="text-white font-normal truncate">${currentLang === 'cs' ? item.weakspotsCs : item.weakspotsEn}</span>
+            </div>
+            ${item.recommendedArchetypesCs ? `
+              <div class="text-[11px] font-mono text-amber-300 border-t border-red-800/50 pt-1 mt-1 flex items-center gap-1.5 truncate">
+                <i class="fa-solid fa-bullseye text-amber-400 text-[9px]"></i>
+                <span class="text-slate-400">${currentLang === 'cs' ? 'Doporučený build' : 'Recommended'}:</span>
+                <strong class="text-amber-200 truncate">${currentLang === 'cs' ? item.recommendedArchetypesCs : item.recommendedArchetypesEn}</strong>
+              </div>
+            ` : ''}
           </div>
         ` : ''}
 
@@ -1638,6 +1702,118 @@ function openModal(id, pushHistory = false) {
                 </div>
               `).join('')}
             </div>
+          </div>
+        ` : ''}
+      </div>
+    ` : ''}
+
+    <!-- Fishing Guide, Bait & Habitat Section -->
+    ${item.preferredBaitCs || item.habitatCs ? `
+      <div class="mb-4 p-4 bg-slate-900/90 border border-cyan-500/60 rounded-lg shadow-[0_0_20px_rgba(6,182,212,0.15)]">
+        <div class="flex items-center justify-between mb-3 flex-wrap gap-2">
+          <span class="text-xs font-orbitron font-bold text-white flex items-center gap-1.5">
+            <i class="fa-solid fa-fish-fins text-hud-cyan"></i>
+            ${currentLang === 'cs' ? (item.categoryCs || 'Rybolov') : (item.categoryEn || 'Fishing')} • <span class="text-hud-cyan">${primaryName}</span>
+          </span>
+          ${item.tradingValueCs ? `
+            <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-cyan-950/80 text-cyan-300 border border-cyan-500/60 font-bold">
+              <i class="fa-solid fa-coins mr-1 text-amber-400"></i>${currentLang === 'cs' ? item.tradingValueCs : item.tradingValueEn}
+            </span>
+          ` : ''}
+        </div>
+
+        <div class="space-y-2 text-xs font-mono mb-3">
+          ${item.preferredBaitCs ? `
+            <div class="p-2.5 rounded bg-hud-bg/90 border border-hud-border flex items-start gap-2">
+              <i class="fa-solid fa-worm text-amber-400 mt-0.5 shrink-0"></i>
+              <div>
+                <strong class="block text-slate-400 text-[10px] uppercase">${t.baitLabel || 'Doporučená návnada:'}</strong>
+                <span class="text-white font-semibold">${currentLang === 'cs' ? item.preferredBaitCs : item.preferredBaitEn}</span>
+              </div>
+            </div>
+          ` : ''}
+          ${item.habitatCs ? `
+            <div class="p-2.5 rounded bg-hud-bg/90 border border-hud-border flex items-start gap-2">
+              <i class="fa-solid fa-water text-cyan-400 mt-0.5 shrink-0"></i>
+              <div>
+                <strong class="block text-slate-400 text-[10px] uppercase">${t.habitatLabel || 'Prostředí / Výskyt:'}</strong>
+                <span class="text-slate-200">${currentLang === 'cs' ? item.habitatCs : item.habitatEn}</span>
+              </div>
+            </div>
+          ` : ''}
+          ${item.culinaryUseCs ? `
+            <div class="p-2.5 rounded bg-amber-950/30 border border-amber-500/40 text-amber-200 flex items-start gap-2">
+              <i class="fa-solid fa-utensils text-amber-400 mt-0.5 shrink-0"></i>
+              <div>
+                <strong class="block text-amber-400 text-[10px] uppercase font-bold">${currentLang === 'cs' ? 'Kulinářské / Herní využití:' : 'Culinary / Gameplay Usage:'}</strong>
+                <span>${currentLang === 'cs' ? item.culinaryUseCs : item.culinaryUseEn}</span>
+              </div>
+            </div>
+          ` : ''}
+        </div>
+      </div>
+    ` : ''}
+
+    <!-- Boss Raid Tactics, Phases & Weakspots Section -->
+    ${item.weakspotsCs || item.phasesCs ? `
+      <div class="mb-4 p-4 bg-slate-900/90 border border-red-500/60 rounded-lg shadow-[0_0_20px_rgba(239,68,68,0.15)]">
+        <div class="flex items-center justify-between mb-3 flex-wrap gap-2">
+          <span class="text-xs font-orbitron font-bold text-white flex items-center gap-1.5">
+            <i class="fa-solid fa-skull-crossbones text-red-400"></i>
+            ${currentLang === 'cs' ? (item.categoryCs || 'Boss Taktika') : (item.categoryEn || 'Boss Tactics')} • <span class="text-red-300">${primaryName}</span>
+          </span>
+          ${item.monolithBossCs ? `
+            <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-red-950/80 text-red-300 border border-red-500/60 font-bold uppercase">
+              <i class="fa-solid fa-dungeon mr-1"></i>${currentLang === 'cs' ? item.monolithBossCs : item.monolithBossEn}
+            </span>
+          ` : ''}
+        </div>
+
+        ${item.weakspotsCs ? `
+          <div class="mb-3 p-2.5 rounded bg-red-950/40 border border-red-500/50 text-xs text-red-200">
+            <strong class="block text-red-400 text-[10px] uppercase font-mono flex items-center gap-1 mb-0.5">
+              <i class="fa-solid fa-crosshairs"></i>${t.bossWeakspotsTitle || 'Slabá místa (Weakspots):'}
+            </strong>
+            <span class="font-bold text-white">${currentLang === 'cs' ? item.weakspotsCs : item.weakspotsEn}</span>
+          </div>
+        ` : ''}
+
+        ${item.phasesCs && item.phasesCs.length > 0 ? `
+          <div class="mb-3 bg-hud-bg/90 p-3 rounded border border-hud-border">
+            <strong class="block text-slate-400 text-[10px] uppercase font-mono mb-2 flex items-center gap-1">
+              <i class="fa-solid fa-diagram-project text-hud-cyan"></i>${t.bossPhasesTitle || 'Fázování a klíčové mechaniky:'}
+            </strong>
+            <div class="space-y-1.5">
+              ${(currentLang === 'cs' ? item.phasesCs : item.phasesEn).map((phase, pIdx) => `
+                <div class="p-2 rounded bg-slate-800/60 border border-slate-700/60 text-xs text-slate-200 flex items-start gap-2">
+                  <span class="w-5 h-5 rounded-full bg-red-950 border border-red-500/60 text-red-300 text-[10px] font-bold font-mono flex items-center justify-center shrink-0 mt-0.5">
+                    ${pIdx + 1}
+                  </span>
+                  <span class="leading-relaxed">${phase}</span>
+                </div>
+              `).join('')}
+            </div>
+          </div>
+        ` : ''}
+
+        ${item.recommendedArchetypesCs || item.recommendedDeviantsCs ? `
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs font-mono">
+            ${item.recommendedArchetypesCs ? `
+              <div class="p-2.5 rounded bg-amber-950/30 border border-amber-500/40 text-amber-200">
+                <span class="text-[10px] text-amber-400 font-bold uppercase block mb-1 flex items-center gap-1">
+                  <i class="fa-solid fa-gun"></i>${t.recommendedBuildsTitle || 'Doporučený archetyp:'}
+                </span>
+                <strong class="text-white">${currentLang === 'cs' ? item.recommendedArchetypesCs : item.recommendedArchetypesEn}</strong>
+              </div>
+            ` : ''}
+            ${item.recommendedDeviantsCs ? `
+              <div class="p-2.5 rounded bg-purple-950/30 border border-purple-500/40 text-purple-200">
+                <span class="text-[10px] text-purple-400 font-bold uppercase block mb-1 flex items-center gap-1">
+                  <i class="fa-solid fa-ghost"></i>${currentLang === 'cs' ? 'Doporučený Deviant:' : 'Recommended Deviant:'}
+                </span>
+                <strong class="text-white">${currentLang === 'cs' ? item.recommendedDeviantsCs : item.recommendedDeviantsEn}</strong>
+              </div>
+            ` : ''}
           </div>
         ` : ''}
       </div>

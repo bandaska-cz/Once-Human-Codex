@@ -8,6 +8,13 @@ const i18n = {
         tabGear: "Zbraně & Zbroje",
         tabDeviants: "Devianti & Cradle",
         tabZones: "Zóny & Průzkum",
+        tabFishing: "Rybolov & Návnady",
+        tabBosses: "Taktika na bossy",
+        baitLabel: "Doporučená návnada:",
+        habitatLabel: "Prostředí / Výskyt:",
+        bossPhasesTitle: "Fázování a klíčové mechaniky:",
+        bossWeakspotsTitle: "Slabá místa (Weakspots):",
+        recommendedBuildsTitle: "Doporučený archetyp & Deviant:",
         deviantContainmentTitle: "Podmínky Securement Unit (Optimalizace)",
         cradleSynergyTitle: "Doporučená Cradle synergie:",
         deviantSkillTitle: "Aktivní / Teritoriální schopnost:",
@@ -97,6 +104,13 @@ const i18n = {
         tabGear: "Weapons & Armor",
         tabDeviants: "Deviants & Cradle",
         tabZones: "Zones & Exploration",
+        tabFishing: "Fishing & Baits",
+        tabBosses: "Boss Tactics & Raids",
+        baitLabel: "Recommended Bait:",
+        habitatLabel: "Habitat / Location:",
+        bossPhasesTitle: "Phases & Core Mechanics:",
+        bossWeakspotsTitle: "Weakspots:",
+        recommendedBuildsTitle: "Recommended Archetype & Deviant:",
         deviantContainmentTitle: "Securement Unit Conditions (Optimal Environment)",
         cradleSynergyTitle: "Recommended Cradle Synergy:",
         deviantSkillTitle: "Active / Territory Skill:",
@@ -218,7 +232,21 @@ const i18n = {
       "Standard Activator": { locationCs: "Výroba na Supplies Workbench z bylin a čisté vody.", locationEn: "Crafted at Supplies Workbench from Herbs and Purified Water.", recipeId: "m-01" },
       "Standardní aktivátor": { locationCs: "Výroba na Supplies Workbench z bylin a čisté vody.", locationEn: "Crafted at Supplies Workbench from Herbs and Purified Water.", recipeId: "m-01" },
       "Stardust Source": { locationCs: "Očista teritoria (Purification), bossové v Silo/Monolithu, nebo rafinace Stardust Ore v Electric Furnace.", locationEn: "Territory Purification, Silo bosses, or refining Stardust Ore at Electric Furnace.", recipeId: null },
-      "Zdroj hvězdného prachu (Stardust)": { locationCs: "Očista teritoria (Purification), bossové v Silo/Monolithu, nebo rafinace Stardust Ore v Electric Furnace.", locationEn: "Territory Purification, Silo bosses, or refining Stardust Ore at Electric Furnace.", recipeId: null }
+      "Zdroj hvězdného prachu (Stardust)": { locationCs: "Očista teritoria (Purification), bossové v Silo/Monolithu, nebo rafinace Stardust Ore v Electric Furnace.", locationEn: "Territory Purification, Silo bosses, or refining Stardust Ore at Electric Furnace.", recipeId: null },
+      "Fishing Rod": { locationCs: "Výroba na Supplies Workbench z dřeva a měděného ingotu. Slouží k lovu ryb v řekách i na moři.", locationEn: "Crafted at Supplies Workbench using Wood and Copper Ingot.", recipeId: null },
+      "Rybářský prut": { locationCs: "Výroba na Supplies Workbench z dřeva a měděného ingotu. Slouží k lovu ryb v řekách i na moři.", locationEn: "Crafted at Supplies Workbench using Wood and Copper Ingot.", recipeId: null },
+      "Universal Bait": { locationCs: "Výroba na Supplies Workbench ze strouhanky a kukuřice, nebo nákup u rybářských NPC prodejců.", locationEn: "Crafted at Supplies Workbench or purchased from Fishing Merchants.", recipeId: null },
+      "Univerzální návnada": { locationCs: "Výroba na Supplies Workbench ze strouhanky a kukuřice, nebo nákup u rybářských NPC prodejců.", locationEn: "Crafted at Supplies Workbench or purchased from Fishing Merchants.", recipeId: null },
+      "Minnow Bait": { locationCs: "Lov malých rybek u břehů do čeřenu nebo výroba z rybího masa na ponku.", locationEn: "Caught near riverbanks or crafted at Supplies Workbench using fish flesh.", recipeId: null },
+      "Hrouzek": { locationCs: "Lov malých rybek u břehů do čeřenu nebo výroba z rybího masa na ponku.", locationEn: "Caught near riverbanks or crafted at Supplies Workbench using fish flesh.", recipeId: null },
+      "Dough Bait": { locationCs: "Výroba z mouky a vody na Supplies Workbench.", locationEn: "Crafted from Flour and Purified Water at Supplies Workbench.", recipeId: null },
+      "Těsto": { locationCs: "Výroba z mouky a vody na Supplies Workbench.", locationEn: "Crafted from Flour and Purified Water at Supplies Workbench.", recipeId: null },
+      "Controller Used": { locationCs: "Spotřební klíč získávaný z týdenních eventů, Commissions a purifikace k otevření odměn z bossů.", locationEn: "Consumable key obtained from Weekly Commissions, purification and prime wars to unlock boss loot.", recipeId: null },
+      "Použitý Controller": { locationCs: "Spotřební klíč získávaný z týdenních eventů, Commissions a purifikace k otevření odměn z bossů.", locationEn: "Consumable key obtained from Weekly Commissions, purification and prime wars to unlock boss loot.", recipeId: null },
+      "EMP Grenade": { locationCs: "Taktický granát vyrobený na ponku z elektronických součástek a síry pro znehybnění robotů.", locationEn: "Tactical grenade crafted from electronic parts and sulfur to disable shielding and cybernetics.", recipeId: null },
+      "EMP granát": { locationCs: "Taktický granát vyrobený na ponku z elektronických součástek a síry pro znehybnění robotů.", locationEn: "Tactical grenade crafted from electronic parts and sulfur to disable shielding and cybernetics.", recipeId: null },
+      "Adrenaline Shot": { locationCs: "Lékařská záchranná injekce pro okamžité oživení padlého hráče v raidu.", locationEn: "Emergency medical syringe used for reviving downed squad members in raids.", recipeId: null },
+      "Adrenalinová injekce": { locationCs: "Lékařská záchranná injekce pro okamžité oživení padlého hráče v raidu.", locationEn: "Emergency medical syringe used for reviving downed squad members in raids.", recipeId: null }
     };
 
     function getIngredientMeta(ingName) {
@@ -15496,6 +15524,827 @@ const zoneRecipes = [
     "descriptionCs": "Monolitický kráter uvězňující Forsaken Gianta - tyčící se humanoidní manifestaci nezkrotné stardustové zkázy."
   }
 ];
+
+const fishRecipes = [
+  {
+    "id": "fish-01",
+    "nameEn": "Electric Eel (Deviant Catch)",
+    "nameCs": "Elektrický úhoř (Deviant rybolovu)",
+    "categoryEn": "Deviant Fish",
+    "categoryCs": "Deviant rybolovu",
+    "habitatEn": "Freshwater Rivers (Dayton Wetlands, Meyer's Market, Red Sands Oasis)",
+    "habitatCs": "Sladkovodní řeky (Dayton Wetlands, Meyer's Market, oáza v Red Sands)",
+    "preferredBaitEn": "Universal Bait / Minnow Bait (Dusk & Night)",
+    "preferredBaitCs": "Univerzální návnada / Hrouzek (Soumrak a noc)",
+    "culinaryUseEn": "Placed in Territory Securement Unit to boost all power generator capacities by +10W to +15W.",
+    "culinaryUseCs": "Umísťuje se do zabezpečovací jednotky základny – zvyšuje výkon všech generátorů o +10W až +15W.",
+    "tradingValueEn": "Invaluable Deviant / High player-to-player trade commodity",
+    "tradingValueCs": "Nevyčíslitelný Deviant / Vysoce ceněná komodita mezi hráči",
+    "rarity": "Legendary",
+    "scenario": "core",
+    "workbench": "Supplies Workbench (Fishing Tackle)",
+    "energy": 0,
+    "hydration": 0,
+    "buffDuration": "Aktivní Deviant základny",
+    "sourceEn": "River fishing with Minnow Bait during dusk and night",
+    "sourceCs": "Říční rybolov s hrouzkem (Minnow Bait) za soumraku a v noci",
+    "effectsEn": [
+      "Deviant Entity: Live Electric Eel caught via rod and reel",
+      "+10W to +15W electrical power boost to each installed generator",
+      "Higher catch probability during nocturnal rainstorms",
+      "Must be kept in Isolated Securement Unit with water and electricity"
+    ],
+    "effectsCs": [
+      "Entita Devianta: Živý elektrický úhoř ulovený na rybářský prut",
+      "+10W až +15W navýšení elektrického výkonu každého generátoru na základně",
+      "Zvýšená pravděpodobnost úlovku během nočních bouřek a deště",
+      "Vyžaduje umístění v Izolační zabezpečovací jednotce s vodou a příkonem"
+    ],
+    "ingredientsEn": [
+      { "name": "Fishing Rod", "amount": "1x", "isPrimary": true },
+      { "name": "Universal Bait", "amount": "3x" }
+    ],
+    "ingredientsCs": [
+      { "name": "Rybářský prut", "amount": "1x", "isPrimary": true },
+      { "name": "Univerzální návnada", "amount": "3x" }
+    ],
+    "descriptionEn": "A high-voltage bio-electric eel whose shock discharges can run an entire homestead's electrical power grid.",
+    "descriptionCs": "Vysokonapěťový bioelektrický úhoř, jehož výboje dokáží napájet celou elektrickou síť teritoria."
+  },
+  {
+    "id": "fish-02",
+    "nameEn": "Barramundi (Asian Seabass)",
+    "nameCs": "Ropušnice / Barramundi",
+    "categoryEn": "Saltwater Trophy Fish",
+    "categoryCs": "Mořská trofejní ryba",
+    "habitatEn": "Coastal bays, Harborside docks & deep sea estuaries (Broken Delta, Red Sands)",
+    "habitatCs": "Pobřežní zátoky, přístavní mola Harborside a ústí moře (Broken Delta, Red Sands)",
+    "preferredBaitEn": "Minnow Bait / Dough Bait",
+    "preferredBaitCs": "Návnada z hrouzka (Minnow Bait) / Těsto",
+    "culinaryUseEn": "Fish with French Fries (+8% Crit Rate, +15% Max HP)",
+    "culinaryUseCs": "Fish with French Fries (+8% šance na kritický zásah, +15% Max HP)",
+    "tradingValueEn": "Fish Merchant Margot: 120 Energy Links per fish",
+    "tradingValueCs": "Rybářka Margot v Meyer's Market: 120 Energy Links za kus",
+    "rarity": "Rare",
+    "scenario": "core",
+    "workbench": "Cooking Stove & Prep Table",
+    "energy": 45,
+    "hydration": 10,
+    "buffDuration": "Gurmánský buff: 30 min",
+    "sourceEn": "Deep saltwater fishing at Harborside docks",
+    "sourceCs": "Mořský hlubinný rybolov z přístavního mola Harborside",
+    "effectsEn": [
+      "Key ingredient for endgame Crit Rate dish: Fish with French Fries",
+      "Provides +8% flat Critical Strike chance for 30 minutes",
+      "Aggressive fight on rod - requires keeping line tension in yellow/green zone",
+      "Exchanged for rare fishing vouchers and furniture trophies"
+    ],
+    "effectsCs": [
+      "Klíčová surovina pro endgame pokrm: Fish with French Fries",
+      "Zajišťuje +8% šanci na kritický zásah na 30 minut",
+      "Bojovná ryba při navíjení - udržujte tah vlasce v zeleném poli",
+      "Lze směnit za rybářské žetony a nástěnné trofeje do domu"
+    ],
+    "ingredientsEn": [
+      { "name": "Raw Barramundi Meat", "amount": "1x", "isPrimary": true },
+      { "name": "Potato (Fries)", "amount": "2x" },
+      { "name": "Cooking Oil", "amount": "1x" }
+    ],
+    "ingredientsCs": [
+      { "name": "Syrové maso Barramundi", "amount": "1x", "isPrimary": true },
+      { "name": "Brambory na hranolky", "amount": "2x" },
+      { "name": "Kukuřičný olej", "amount": "1x" }
+    ],
+    "descriptionEn": "A muscular predatory saltwater fish prized by Meta-Human gourmets for its flaky white meat and critical combat potency.",
+    "descriptionCs": "Svalnatá dravá mořská ryba vyhledávaná gurmány pro své křehké maso propůjčující vysokou bojovou efektivitu."
+  },
+  {
+    "id": "fish-03",
+    "nameEn": "Northern Pike",
+    "nameCs": "Štika severní",
+    "categoryEn": "Freshwater Predator",
+    "categoryCs": "Sladkovodní dravec",
+    "habitatEn": "Deep inland river lakes & gorges (Iron River, Chalk Peak)",
+    "habitatCs": "Hluboká jezera a říční kaňony (Iron River, Chalk Peak)",
+    "preferredBaitEn": "Minnow Bait / Universal Bait",
+    "preferredBaitCs": "Návnada z hrouzka (Minnow Bait) / Univerzální návnada",
+    "culinaryUseEn": "Canned Seafood in Oil (+15% Weapon Damage, +10% Reload Speed)",
+    "culinaryUseCs": "Canned Seafood in Oil (+15% zbraňové poškození, +10% rychlost přebíjení)",
+    "tradingValueEn": "Fish Merchant Margot: 100 Energy Links",
+    "tradingValueCs": "Rybářka Margot: 100 Energy Links",
+    "rarity": "Rare",
+    "scenario": "core",
+    "workbench": "Cooking Stove & Canning Facility",
+    "energy": 40,
+    "hydration": 10,
+    "buffDuration": "Bojový buff: 30 min",
+    "sourceEn": "Deep river bends in Iron River & Chalk Peak",
+    "sourceCs": "Hluboké říční zátočiny v Iron River a Chalk Peak",
+    "effectsEn": [
+      "Core ingredient for premier weapon damage canned food",
+      "Boosts ballistic weapon damage by +15% and reload speed by +10%",
+      "Long-bodied freshwater predator active throughout daytime hours",
+      "Can be preserved indefinitely when combined with aluminum cans"
+    ],
+    "effectsCs": [
+      "Hlavní surovina pro špičkovou konzervu zvyšující zbraňové poškození",
+      "Navyšuje balistické poškození o +15% a zrychluje přebíjení o +10%",
+      "Dlouhé dravé tělo, aktivní po celou dobu denního světla",
+      "V konzervě s hliníkem má nekonečnou trvanlivost bez kažení"
+    ],
+    "ingredientsEn": [
+      { "name": "Northern Pike Fillet", "amount": "1x", "isPrimary": true },
+      { "name": "Aluminum Ingot", "amount": "1x" },
+      { "name": "Pure Olive Oil", "amount": "1x" }
+    ],
+    "ingredientsCs": [
+      { "name": "Filet ze štiky", "amount": "1x", "isPrimary": true },
+      { "name": "Hliníkový ingot (Konzerva)", "amount": "1x" },
+      { "name": "Čistý rostlinný olej", "amount": "1x" }
+    ],
+    "descriptionEn": "A sharp-toothed freshwater hunter lurking among reeds. Its nutrient-rich meat sharpens reflexes and firearm handling.",
+    "descriptionCs": "Ostrými zuby vyzbrojený lovec číhající v rákosí. Jeho maso zbystřuje reflexy a zlepšuje manipulaci se zbraněmi."
+  },
+  {
+    "id": "fish-04",
+    "nameEn": "Rainbow Trout",
+    "nameCs": "Pstruh duhový",
+    "categoryEn": "Alpine Coldwater Fish",
+    "categoryCs": "Horská lososovitá ryba",
+    "habitatEn": "Fast-moving cold mountain streams (Chalk Peak, Onyx Tundra)",
+    "habitatCs": "Rychle tekoucí studené horské potoky (Chalk Peak, arktická tundra)",
+    "preferredBaitEn": "Dough Bait / Insect Bait",
+    "preferredBaitCs": "Těsto (Dough Bait) / Hmyzí návnada",
+    "culinaryUseEn": "Herbal Grilled Trout (+15 Sanity / min, +20% Stamina recovery)",
+    "culinaryUseCs": "Bylinkový pečený pstruh (+15 Sanity / min, +20% obnova staminy)",
+    "tradingValueEn": "Local Traders: 60 Energy Links",
+    "tradingValueCs": "Obchodníci: 60 Energy Links",
+    "rarity": "Fine",
+    "scenario": "core",
+    "workbench": "Campfire & Cooking Stove",
+    "energy": 35,
+    "hydration": 15,
+    "buffDuration": "Regenerační buff: 30 min",
+    "sourceEn": "Mountain streams beneath waterfalls in Chalk Peak",
+    "sourceCs": "Horské bystřiny pod vodopády v Chalk Peak",
+    "effectsEn": [
+      "Continuous Sanity recovery (+15/min) negating moderate pollution drain",
+      "+20% Stamina restoration speed while sprinting and climbing cliffs",
+      "Readily caught with inexpensive Dough Bait in rapid alpine currents",
+      "High hydration value when consumed grilled with herbs"
+    ],
+    "effectsCs": [
+      "Průběžná obnova psychiky (+15 Sanity/min) bránící vyčerpání v kontaminaci",
+      "+20% rychlost obnovy staminy při sprintu a šplhání po skalách",
+      "Snadný lov s levnou návnadou z těsta v peřejích horských potoků",
+      "Vysoká hydratační hodnota při přípravě na bylinkách"
+    ],
+    "ingredientsEn": [
+      { "name": "Rainbow Trout", "amount": "1x", "isPrimary": true },
+      { "name": "Herbs / Coneflower", "amount": "2x" },
+      { "name": "Salt", "amount": "1x" }
+    ],
+    "ingredientsCs": [
+      { "name": "Pstruh duhový", "amount": "1x", "isPrimary": true },
+      { "name": "Bylinky / Echinacea", "amount": "2x" },
+      { "name": "Sůl", "amount": "1x" }
+    ],
+    "descriptionEn": "A shimmering salmonid fish inhabiting crystalline mountain streams. Provides clean nourishment and psychic stabilization.",
+    "descriptionCs": "Třpytivá lososovitá ryba z křišťálových horských bystřin. Poskytuje čisté nasycení a zklidňuje mysl."
+  },
+  {
+    "id": "fish-05",
+    "nameEn": "Black Bass",
+    "nameCs": "Okounek pstruhový (Black Bass)",
+    "categoryEn": "Freshwater Game Fish",
+    "categoryCs": "Sladkovodní dravá ryba",
+    "habitatEn": "Quiet river bends and lake shallows (Dayton Wetlands, Iron River)",
+    "habitatCs": "Klidné říční zátoky a mělčiny jezer (Dayton Wetlands, Iron River)",
+    "preferredBaitEn": "Minnow Bait / Dough Bait",
+    "preferredBaitCs": "Hrouzek (Minnow Bait) / Těsto",
+    "culinaryUseEn": "Crispy Bass Fillet (+10% Energy Link acquisition from all sources)",
+    "culinaryUseCs": "Křupavý okouní filet (+10% zisk Energy Links ze všech zdrojů)",
+    "tradingValueEn": "Fish Merchant: 50 Energy Links",
+    "tradingValueCs": "Rybářka Margot: 50 Energy Links",
+    "rarity": "Fine",
+    "scenario": "core",
+    "workbench": "Kitchen Stove",
+    "energy": 35,
+    "hydration": 10,
+    "buffDuration": "Ekonomický buff: 30 min",
+    "sourceEn": "Lakes and quiet estuaries across Dayton Wetlands",
+    "sourceCs": "Jezera a klidné zátoky v Dayton Wetlands",
+    "effectsEn": [
+      "Economic buff: Increases Energy Link yield by +10% from monster kills & quests",
+      "Abundant catch ideal for leveling fishing mastery quickly",
+      "Mild, lean meat suitable for basic and advanced frying recipes",
+      "Bites actively during morning and afternoon sunshine"
+    ],
+    "effectsCs": [
+      "Ekonomický buff: Zvyšuje zisk Energy Links o +10% z monster i úkolů",
+      "Hojný úlovek ideální pro rychlý trénink rybářských dovedností",
+      "Jemné libové maso vhodné pro smažení a pečení",
+      "Nejlépe bere během dopoledního a odpoledního slunečného počasí"
+    ],
+    "ingredientsEn": [
+      { "name": "Black Bass Meat", "amount": "1x", "isPrimary": true },
+      { "name": "Wheat Flour", "amount": "2x" },
+      { "name": "Cooking Oil", "amount": "1x" }
+    ],
+    "ingredientsCs": [
+      { "name": "Maso z okounka", "amount": "1x", "isPrimary": true },
+      { "name": "Pšeničná mouka", "amount": "2x" },
+      { "name": "Rostlinný olej", "amount": "1x" }
+    ],
+    "descriptionEn": "A ubiquitous freshwater game fish. Its hearty meat stimulates focus and merchant intuition.",
+    "descriptionCs": "Oblíbená sportovní sladkovodní ryba. Její vydatné maso stimuluje soustředění a obchodní intuici."
+  },
+  {
+    "id": "fish-06",
+    "nameEn": "Golden Arowana",
+    "nameCs": "Zlatý ostnojazyčnatec (Arowana)",
+    "categoryEn": "Exotic Trophy Fish",
+    "categoryCs": "Exotická trofejní ryba",
+    "habitatEn": "Hidden tropical lagoons & misty marsh basins (Broken Delta)",
+    "habitatCs": "Skryté tropické laguny a mlžné bažiny (Broken Delta)",
+    "preferredBaitEn": "Universal Bait (Dawn & Clear Sky)",
+    "preferredBaitCs": "Univerzální návnada (Za úsvitu za jasné oblohy)",
+    "culinaryUseEn": "High-value trade commodity & luxury mounted wall trophy",
+    "culinaryUseCs": "Luxusní nástěnná trofej do základny nebo prodej za vysokou částku",
+    "tradingValueEn": "Fish Merchant Margot: 500 Energy Links + 5 Fish Vouchers",
+    "tradingValueCs": "Rybářka Margot: 500 Energy Links + 5 rybářských poukazů",
+    "rarity": "Epic",
+    "scenario": "core",
+    "workbench": "Taxidermy Table & Supplies Bench",
+    "energy": 50,
+    "hydration": 20,
+    "buffDuration": "Prestižní dekorace / 500 EL",
+    "sourceEn": "Deepest swamp pools in Broken Delta at dawn",
+    "sourceCs": "Nejhlubší tůně v Broken Delta za rozbřesku",
+    "effectsEn": [
+      "Extremely rare trophy fish sought after by collectors",
+      "Exchanges for 500+ Energy Links and specialized merchant vouchers",
+      "Can be crafted into an ornate living aquarium or wall mount",
+      "High fighting power during reeling - requires heavy-duty fishing rod"
+    ],
+    "effectsCs": [
+      "Mimořádně vzácná trofejní ryba vyhledávaná sběrateli",
+      "Lze směnit za 500+ Energy Links a speciální rybářské poukazy",
+      "Lze vypreparovat jako luxusní nástěnnou trofej nebo umístit do akvária",
+      "Silný odpor při navíjení - vyžaduje kvalitní karbonový prut"
+    ],
+    "ingredientsEn": [
+      { "name": "Golden Arowana", "amount": "1x", "isPrimary": true },
+      { "name": "Wooden Frame", "amount": "2x" }
+    ],
+    "ingredientsCs": [
+      { "name": "Zlatá Arowana", "amount": "1x", "isPrimary": true },
+      { "name": "Dřevěný rám na trofej", "amount": "2x" }
+    ],
+    "descriptionEn": "A magnificent dragon-scaled ancient fish glistening with metallic gold scales. Believed to bring immense wealth to its angler.",
+    "descriptionCs": "Nádherná prastará ryba s dračími zlatavými šupinami. Traduje se, že svému rybáři přináší mimořádné bohatství."
+  },
+  {
+    "id": "fish-07",
+    "nameEn": "Stardust Piranha",
+    "nameCs": "Stardustová piraňa",
+    "categoryEn": "Mutated Predator",
+    "categoryCs": "Mutovaný vodní predátor",
+    "habitatEn": "Polluted industrial water runoff (Refinery Pollution Plant & Blackfell coast)",
+    "habitatCs": "Průmyslové zamořené toky (Refinery Pollution Plant a pobřeží Blackfell)",
+    "preferredBaitEn": "Raw Meat Bait / Minnow Bait",
+    "preferredBaitCs": "Návnada ze syrového masa / Hrouzek",
+    "culinaryUseEn": "Spicy Piranha Soup (+15% Status Damage, +20% Burn / Vortex duration)",
+    "culinaryUseCs": "Pikantní piraňová polévka (+15% Status poškození, +20% trvání Burn / Vortex)",
+    "tradingValueEn": "Black Market Alchemists: 80 Energy Links",
+    "tradingValueCs": "Černý trh v Greywater: 80 Energy Links",
+    "rarity": "Rare",
+    "scenario": "core",
+    "workbench": "Kitchen Stove",
+    "energy": 40,
+    "hydration": 20,
+    "buffDuration": "Elementální buff: 30 min",
+    "sourceEn": "Polluted purple water pools across Iron River & Red Sands",
+    "sourceCs": "Zamořené fialové vody v Iron River a Red Sands",
+    "effectsEn": [
+      "Premier status damage dish for elemental builds (Burn, Power Surge, Frost)",
+      "Increases status anomaly duration by +20% and elemental tick damage by +15%",
+      "Survives exclusively in waters with high Stardust pollution index",
+      "Fierce bite - strikes the hook almost instantly when baited with meat"
+    ],
+    "effectsCs": [
+      "Špičkový pokrm pro elementální archetypy (Burn, Power Surge, Frost Vortex)",
+      "Zvyšuje trvání elementálních anomálií o +20% a tick poškození o +15%",
+      "Přežívá výhradně ve vodách s vysokým stupněm stardustového zamoření",
+      "Dravý záběr - na masovou návnadu útočí téměř okamžitě po nahození"
+    ],
+    "ingredientsEn": [
+      { "name": "Stardust Piranha", "amount": "1x", "isPrimary": true },
+      { "name": "Chili Pepper", "amount": "2x" },
+      { "name": "Purified Water", "amount": "1x" }
+    ],
+    "ingredientsCs": [
+      { "name": "Stardustová piraňa", "amount": "1x", "isPrimary": true },
+      { "name": "Chilli papričky", "amount": "2x" },
+      { "name": "Čistá voda", "amount": "1x" }
+    ],
+    "descriptionEn": "A vicious carnivorous fish adapted to chemical radiation. Its razor teeth and mutagenic flesh ignite intense elemental combustion.",
+    "descriptionCs": "Zákeřná masožravá ryba adaptovaná na chemickou radiaci. Její mutované maso podporuje elementální vznícení."
+  },
+  {
+    "id": "fish-08",
+    "nameEn": "Nile Tilapia",
+    "nameCs": "Tilapie nilská",
+    "categoryEn": "Common Table Fish",
+    "categoryCs": "Běžná konzumní ryba",
+    "habitatEn": "All shallow freshwater ponds and creeks across world map",
+    "habitatCs": "Všechna sladkovodní jezírka a potoky napříč celou mapou",
+    "preferredBaitEn": "Dough Bait",
+    "preferredBaitCs": "Těsto (Dough Bait)",
+    "culinaryUseEn": "Pan-Seared Fish (+30 Food Energy, +15 Hydration)",
+    "culinaryUseCs": "Pečená ryba na pánvi (+30 energie jídla, +15 hydratace)",
+    "tradingValueEn": "Fish Merchant: 25 Energy Links",
+    "tradingValueCs": "Rybářka Margot: 25 Energy Links",
+    "rarity": "Common",
+    "scenario": "core",
+    "workbench": "Campfire & Stove",
+    "energy": 30,
+    "hydration": 15,
+    "buffDuration": "Základní nasycení: 20 min",
+    "sourceEn": "Any open pond or stream in Dayton Wetlands & Broken Delta",
+    "sourceCs": "Jakýkoliv rybník nebo potok v Dayton Wetlands a Broken Delta",
+    "effectsEn": [
+      "Reliable entry-level sustenance for traveling Meta-Humans",
+      "Easily caught without specialized fishing equipment",
+      "Quickly fills hunger and thirst bars during early wilderness exploration",
+      "Can be decomposed into fish fillets for general culinary recipes"
+    ],
+    "effectsCs": [
+      "Spolehlivý zdroj obživy pro začínající i cestující Meta-Humany",
+      "Snadný lov bez nutnosti drahého rybářského vybavení",
+      "Rychle doplní ukazatel hladu i žízně během průzkumu divočiny",
+      "Lze naporcovat na univerzální rybí filety pro libovolné recepty"
+    ],
+    "ingredientsEn": [
+      { "name": "Raw Tilapia", "amount": "1x", "isPrimary": true },
+      { "name": "Log (Campfire wood)", "amount": "1x" }
+    ],
+    "ingredientsCs": [
+      { "name": "Syrová tilapie", "amount": "1x", "isPrimary": true },
+      { "name": "Dřevo na ohniště", "amount": "1x" }
+    ],
+    "descriptionEn": "A hardy, resilient freshwater fish thriving in almost any puddle. The foundation of survival cooking in the post-apocalyptic wild.",
+    "descriptionCs": "Odolná sladkovodní ryba prosperující téměř v každé vodní ploše. Základní stavební kámen survivalového vaření v pustině."
+  },
+  {
+    "id": "fish-09",
+    "nameEn": "Bait Crafting: Dough & Minnow Baits",
+    "nameCs": "Výroba návnad: Těsto a Hrouzek",
+    "categoryEn": "Fishing Tackle & Baits",
+    "categoryCs": "Rybářské návnady",
+    "habitatEn": "Supplies Workbench / Field Crafting",
+    "habitatCs": "Pracovní stůl zásob / Polní výroba",
+    "preferredBaitEn": "Crafted from Corn, Wheat, Raw Meat",
+    "preferredBaitCs": "Vyrábí se z kukuřice, pšenice a syrového masa",
+    "culinaryUseEn": "Essential tackle for landing common to legendary aquatic species",
+    "culinaryUseCs": "Nezbytné vybavení pro lov všech druhů ryb ve hře",
+    "tradingValueEn": "Crafting cost: Very low / Vital for fishing progression",
+    "tradingValueCs": "Výrobní cena: Velmi nízká / Klíčové pro rybolov",
+    "rarity": "Common",
+    "scenario": "core",
+    "workbench": "Supplies Workbench",
+    "energy": 0,
+    "hydration": 0,
+    "buffDuration": "Spotřební návnada",
+    "sourceEn": "Crafting recipe unlocked at basic Memetics survival node",
+    "sourceCs": "Recept odemčený v základním memetickém stromu přežití",
+    "effectsEn": [
+      "Dough Bait: Attracts herbivorous and omnivorous species (Tilapia, Carp, Trout)",
+      "Minnow Bait: Attracts predatory species (Pike, Bass, Barramundi, Electric Eel)",
+      "Craft in batches of 10x for extended angling expeditions",
+      "Higher bait quality reduces the time fish take to bite the hook"
+    ],
+    "effectsCs": [
+      "Těsto (Dough Bait): Láká všežravé a býložravé ryby (Tilapie, Kapr, Pstruh)",
+      "Hrouzek (Minnow Bait): Láká dravé druhy (Štika, Okounek, Barramundi, Elektrický úhoř)",
+      "Výroba v dávkách po 10 kusech pro dlouhé rybářské výpravy",
+      "Kvalitnější návnada výrazně zkracuje dobu čekání na záběr"
+    ],
+    "ingredientsEn": [
+      { "name": "Corn / Wheat", "amount": "2x", "isPrimary": true },
+      { "name": "Raw Meat", "amount": "1x" }
+    ],
+    "ingredientsCs": [
+      { "name": "Kukuřice / Pšenice", "amount": "2x", "isPrimary": true },
+      { "name": "Syrové maso", "amount": "1x" }
+    ],
+    "descriptionEn": "Specially formulated fishing lures blending grain dough and predatory scent extracts to coax elusive river monsters to the surface.",
+    "descriptionCs": "Speciálně namíchané rybářské návnady kombinující obilné těsto a masové esence pro vyvolání okamžitého záběru."
+  },
+  {
+    "id": "fish-10",
+    "nameEn": "Fiberglass & Carbon Fishing Rods",
+    "nameCs": "Sklolaminátový a karbonový rybářský prut",
+    "categoryEn": "Fishing Tackle & Equipment",
+    "categoryCs": "Rybářské vybavení",
+    "habitatEn": "Gear Workbench & Supplies Workbench",
+    "habitatCs": "Pracovní stůl na výstroj a zásoby",
+    "preferredBaitEn": "Universal Rod System",
+    "preferredBaitCs": "Univerzální systém prutů",
+    "culinaryUseEn": "High-tension durability for catching heavy legendary trophy fish",
+    "culinaryUseCs": "Vysoká odolnost v tahu pro ulovení těžkých legendárních trofejí",
+    "tradingValueEn": "Essential Gear / Long-term fishing investment",
+    "tradingValueCs": "Základní výbava / Dlouhodobá investice",
+    "rarity": "Rare",
+    "scenario": "core",
+    "workbench": "Advanced Gear Workbench",
+    "energy": 0,
+    "hydration": 0,
+    "buffDuration": "Trvalé rybářské náčiní",
+    "sourceEn": "Crafted using Wood, Steel Ingot, Carbon Fiber",
+    "sourceCs": "Výroba ze dřeva, ocelových ingotů a karbonových vláken",
+    "effectsEn": [
+      "Increases cast distance by +40%, reaching deep-water honeyholes",
+      "Significantly expands tension green-zone during the fish reeling struggle",
+      "Required to land heavy aggressive catches like Barramundi and Electric Eel without snapping line",
+      "Equippable in quick-slot for instant angling at any shoreline"
+    ],
+    "effectsCs": [
+      "Prodlužuje vzdálenost nahození o +40% do hlubokých lovných tůní",
+      "Výrazně rozšiřuje zelenou zónu bezpečného tahu během přetahování s rybou",
+      "Nezbytný pro zdolání velkých ryb jako Barramundi a Elektrický úhoř bez přetržení vlasce",
+      "Lze nasadit do rychlého slotu pro okamžité rybaření u kteréhokoliv břehu"
+    ],
+    "ingredientsEn": [
+      { "name": "Steel Ingot", "amount": "5x", "isPrimary": true },
+      { "name": "Carbon Fiber / Hardwood", "amount": "4x" },
+      { "name": "Fiber (Fishing line)", "amount": "10x" }
+    ],
+    "ingredientsCs": [
+      { "name": "Ocelový ingot", "amount": "5x", "isPrimary": true },
+      { "name": "Karbonová vlákna / Tvrdé dřevo", "amount": "4x" },
+      { "name": "Rostlinná vlákna na vlasec", "amount": "10x" }
+    ],
+    "descriptionEn": "Reinforced tournament-grade angling rod engineered from composite alloys. Withstands intense violent thrashes from mutated river leviathans.",
+    "descriptionCs": "Zesílený závodní rybářský prut z kompozitních slitin. Odolá prudkým výpadům i těch nejdivočejších zmutovaných říčních monster."
+  }
+];
+
+const bossTactics = [
+  {
+    "id": "boss-01",
+    "nameEn": "Ravenous Hunter (Monolith of Greed)",
+    "nameCs": "Ravenous Hunter (Monolit chamtivosti)",
+    "categoryEn": "Monolith Boss",
+    "categoryCs": "Boss Monolitu",
+    "monolithBossEn": "Ravenous Hunter (Level 10+)",
+    "monolithBossCs": "Ravenous Hunter (Úroveň 10+)",
+    "weakspotsEn": "Gatling gun arm joint, glowing pulsating chest bio-core",
+    "weakspotsCs": "Kloub paže s rotačním kulometem, svítící pulzující bio-jádro na hrudi",
+    "phasesEn": [
+      "Phase 1: Continuous Gatling suppressive fire. Break line of sight behind concrete pillars.",
+      "Phase 2: Hunter spits corrosive acid pools and flings invulnerable Egg Sac pods across arena.",
+      "Wipe/Danger Mechanic: Egg pods must be destroyed with grenades or explosive barrels within 20s before swarms hatch!",
+      "Enrage: Leaping shockwave slam when HP drops below 25%."
+    ],
+    "phasesCs": [
+      "Fáze 1: Souvislá krycí palba z rotačního kulometu. Schovávejte se za betonovými sloupy.",
+      "Fáze 2: Boss chrlí kyselinové louže a odhazuje po aréně vajíčka (Egg Sacs).",
+      "Nebezpečná mechanika: Vajíčka je nutné okamžitě rozstřílet nebo odpálit granáty, než se z nich vylíhnou roje monster!",
+      "Zuřivost (Enrage): Skokový dopad s rázovou vlnou při poklesu zdraví pod 25%."
+    ],
+    "recommendedArchetypesEn": "Shrapnel (SOCR), Burn, high-capacity Assault Rifles",
+    "recommendedArchetypesCs": "Střepiny (Shrapnel), Burn (Oheň), velkokapacitní útočné pušky",
+    "recommendedDeviantsEn": "Festering Gel (Instant cover & healing), Butterfly's Emissary (Weakspot mark)",
+    "recommendedDeviantsCs": "Festering Gel (Okamžitý kryt a obnova HP/Sanity), Butterfly's Emissary",
+    "rarity": "Common",
+    "scenario": "core",
+    "workbench": "Monolith Portal Chamber",
+    "energy": 0,
+    "hydration": 0,
+    "buffDuration": "Doporučený level: 10+",
+    "sourceEn": "Monolith of Greed (Dayton Wetlands)",
+    "sourceCs": "Monolith of Greed (Dayton Wetlands)",
+    "effectsEn": [
+      "Guaranteed drop: Festering Gel combat deviant",
+      "Weakspot shot on Gatling arm triggers extended weapon stagger",
+      "Pillars crumble after taking sustained Gatling fire - rotate clockwise",
+      "Use controllers at final rift for double mod drop rewards"
+    ],
+    "effectsCs": [
+      "Garantovaný drop: Bojový Deviant Festering Gel",
+      "Zásah slabiny na kulometné paži vyvolá dočasné omráčení bosse",
+      "Betonové sloupy se po delší palbě rozpadají - obíhejte arénu po směru hodinových ručiček",
+      "Na konci použijte Controller pro zisk dvojnásobných modifikací"
+    ],
+    "ingredientsEn": [
+      { "name": "Rift Anchors Cleared", "amount": "3x / 3x", "isPrimary": true },
+      { "name": "Frag Grenades", "amount": "3x" },
+      { "name": "Sanity Gummy", "amount": "2x" }
+    ],
+    "ingredientsCs": [
+      { "name": "Aktivované Rift Anchory", "amount": "3x / 3x", "isPrimary": true },
+      { "name": "Tříštivé granáty (Frag Grenades)", "amount": "3x" },
+      { "name": "Želé na příčetnost (Sanity Gummy)", "amount": "2x" }
+    ],
+    "descriptionEn": "A cyber-organic bio-titan fused with an anti-aircraft Gatling rotary cannon. Controls swarms of ravenous parasite larvae.",
+    "descriptionCs": "Kyber-organický bio-titán srostlý s protiletadlovým rotačním kulometem. Vládne roji nenasytných parazitických larev."
+  },
+  {
+    "id": "boss-02",
+    "nameEn": "Treant (Monolith of Fog)",
+    "nameCs": "Treant (Monolit mlhy)",
+    "categoryEn": "Monolith Boss",
+    "categoryCs": "Boss Monolitu",
+    "monolithBossEn": "Treant (Level 20+)",
+    "monolithBossCs": "Treant (Úroveň 20+)",
+    "weakspotsEn": "Entangled woman on its back (Takes +300% critical damage), Root Nodes",
+    "weakspotsCs": "Uvězněná dívka na zádech (Utrpí +300% kritické poškození), Kořenové uzly",
+    "phasesEn": [
+      "Phase 1: Immune barrier active. Players must locate and destroy 3 pulsating Root Nodes around arena.",
+      "Phase 2: Treant rains down homing spore missiles and sweeps vines across floor (Jump over vines).",
+      "Vulnerability Stun Window: Once 3 nodes shatter, Treant collapses face-first for 15s. ALL fire directed at the woman on its back!",
+      "Toxic Fog: Floor gradually fills with miasma - climb wooden scaffolding to shoot."
+    ],
+    "phasesCs": [
+      "Fáze 1: Nezranitelný štít – po obvodu arény musíte vyhledat a zničit 3 pulzující kořenové uzly (Root Nodes).",
+      "Fáze 2: Boss sesílá naváděné spory a šlehá liánami po zemi (Přeskakujte šlehající šlahouny).",
+      "Omráčení a okno zranitelnosti: Po zničení uzlů Treant padá hlavou k zemi na 15s. Okamžitě veškerou palbu směřujte do dívky na zádech!",
+      "Toxická mlha: Podlaha arény se plní stardustovou mlhou – vystoupejte na dřevěná lešení."
+    ],
+    "recommendedArchetypesEn": "Weakspot / Bull's Eye (AWS.338 Bingo, Recurve Bow), Fast Gunner",
+    "recommendedArchetypesCs": "Weakspot / Bull's Eye (AWS.338 Bingo, Recurve Bow), Fast Gunner",
+    "recommendedDeviantsEn": "Butterfly's Emissary (Highlights back weakspot for +15% DMG), Pup Buddy",
+    "recommendedDeviantsCs": "Butterfly's Emissary (Zvýrazňuje slabinu na zádech o +15% DMG), Pup Buddy",
+    "rarity": "Fine",
+    "scenario": "core",
+    "workbench": "Monolith Portal Chamber",
+    "energy": 0,
+    "hydration": 0,
+    "buffDuration": "Doporučený level: 20+",
+    "sourceEn": "Monolith of Fog (Broken Delta)",
+    "sourceCs": "Monolith of Fog (Broken Delta)",
+    "effectsEn": [
+      "Shooting the entangled host on Treant's back inflicts massive 3x Weakspot multiplier",
+      "Sniper rifles and compound bows can defeat boss in a single stun rotation",
+      "Keep moving between elevated platforms to avoid ground vine whip attacks",
+      "Controller reward yields premier tier-2 armor blueprints and calibration mods"
+    ],
+    "effectsCs": [
+      "Střelba do dívky na zádech aktivuje masivní 3x násobič kritického Weakspot poškození",
+      "Odstřelovací pušky a luky dokáží bosse vyřídit během jediného omráčení",
+      "Pohybujte se po vyvýšených plošinách, abyste se vyhnuli šlehání lián po zemi",
+      "Odměna za Controller dává plány zbrojí a kalibrační mody 2. úrovně"
+    ],
+    "ingredientsEn": [
+      { "name": "Rift Anchors Cleared", "amount": "4x / 4x", "isPrimary": true },
+      { "name": "Sniper Ammo", "amount": "40x" },
+      { "name": "Adrenaline Shot", "amount": "1x" }
+    ],
+    "ingredientsCs": [
+      { "name": "Aktivované Rift Anchory", "amount": "4x / 4x", "isPrimary": true },
+      { "name": "Odstřelovačská munice", "amount": "40x" },
+      { "name": "Adrenalinová injekce", "amount": "1x" }
+    ],
+    "descriptionEn": "A colossal fungal colossus corrupted by deep-earth stardust roots. Suspends an innocent human host upon its thorny shoulders.",
+    "descriptionCs": "Kolosální houbový kolos prorostlý stardustovými kořeny. Na svých trnitých zádech nese uvězněnou lidskou oběť."
+  },
+  {
+    "id": "boss-03",
+    "nameEn": "Arachsiam (Monolith of Mirage)",
+    "nameCs": "Arachsiam (Monolit přeludů)",
+    "categoryEn": "Monolith Boss",
+    "categoryCs": "Boss Monolitu",
+    "monolithBossEn": "Arachsiam (Level 30+)",
+    "monolithBossCs": "Arachsiam (Úroveň 30+)",
+    "weakspotsEn": "Abdomen venom sac (Glowing green underbelly), Chelicerae mouthparts",
+    "weakspotsCs": "Jedový vak na zadečku (Zeleně svítící břicho), Kusadla na hlavě",
+    "phasesEn": [
+      "Phase 1: Web spit and lunging fangs. Stepping on white web ground slows movement by 60%!",
+      "Phase 2: Cocoon Shield. Arachsiam retreats to the ceiling encased in an invulnerable cocoon.",
+      "Wipe/Danger Mechanic: Swarms of suicide exploding spiderlings rush players. Burn them down with AOE or fire!",
+      "Acid Geysers: Arachsiam spits high-damage toxic mortar shells creating lingering poison puddles."
+    ],
+    "phasesCs": [
+      "Fáze 1: Plivání pavučin a výpady kusadel. Šlápnutí do bílé sítě na zemi zpomaluje běh o 60%!",
+      "Fáze 2: Kokonový štít – boss vyšplhá ke stropu a zapouzdří se do nezranitelného kokonu.",
+      "Nebezpečná mechanika: Vlny sebevražedných explodujících pavoučků běží na hráče. Likvidujte je plošným ohněm!",
+      "Kyselinové gejzíry: Boss vystřeluje obloukem jedovaté bomby tvořící louže kyseliny."
+    ],
+    "recommendedArchetypesEn": "Burn (KVD Boom!, Pyro Dino), Frost Vortex (Icy Rain), Shotguns (ACS12)",
+    "recommendedArchetypesCs": "Burn / Oheň (KVD Boom!, Pyro Dino), Frost Vortex (Icy Rain), Brokovnice",
+    "recommendedDeviantsEn": "Pyro Dino (Incinerates spider swarms), Festering Gel (Purges toxic acid)",
+    "recommendedDeviantsCs": "Pyro Dino (Spaluje roje pavoučků), Festering Gel (Odstraňuje jed a léčí)",
+    "rarity": "Rare",
+    "scenario": "core",
+    "workbench": "Monolith Portal Chamber",
+    "energy": 0,
+    "hydration": 0,
+    "buffDuration": "Doporučený level: 30+",
+    "sourceEn": "Monolith of Mirage (Iron River)",
+    "sourceCs": "Monolith of Mirage (Iron River)",
+    "effectsEn": [
+      "Heavy crowd-control encounter demanding swift AOE target acquisition",
+      "Burn elemental archetype melts through spider swarm waves effortlessly",
+      "Avoid touching ground webbing to maintain full sprint mobility",
+      "Unlocks access to middle-tier calibration recipes and weapon mods"
+    ],
+    "effectsCs": [
+      "Boj s vysokým nárokem na kontrolu davu a rychlou likvidaci plošných cílů",
+      "Elementální oheň (Burn) likviduje vlny pavoučků s naprostou lehkostí",
+      "Vyhýbejte se pavučinám na zemi pro zachování plné rychlosti pohybu",
+      "Odemyká přístup ke kalibračním plánům a zbraňovým modům střední úrovně"
+    ],
+    "ingredientsEn": [
+      { "name": "Rift Anchors Cleared", "amount": "4x / 4x", "isPrimary": true },
+      { "name": "Molotov Cocktails", "amount": "4x" },
+      { "name": "Detox Potion / Gummy", "amount": "2x" }
+    ],
+    "ingredientsCs": [
+      { "name": "Aktivované Rift Anchory", "amount": "4x / 4x", "isPrimary": true },
+      { "name": "Zápalné lahve (Molotov Cocktails)", "amount": "4x" },
+      { "name": "Detoxikační lektvar / Želé", "amount": "2x" }
+    ],
+    "descriptionEn": "A subterranean arachnid broodmother swollen with mutagenic venom and acidic pheromones.",
+    "descriptionCs": "Podzemní pavoučí matka napěchovaná mutagenním jedem a kyselinovými feromony."
+  },
+  {
+    "id": "boss-04",
+    "nameEn": "Shadow Hound (Monolith of Thirst)",
+    "nameCs": "Shadow Hound (Monolit žízně)",
+    "categoryEn": "Monolith Boss",
+    "categoryCs": "Boss Monolitu",
+    "monolithBossEn": "Shadow Hound (Level 40+)",
+    "monolithBossCs": "Shadow Hound (Úroveň 40+)",
+    "weakspotsEn": "Illuminated Stardust collar around neck, glowing crystal on chest",
+    "weakspotsCs": "Zářící stardustový obojek kolem krku, krystal na hrudi",
+    "phasesEn": [
+      "Phase 1: High-speed predatory lunges and shadow teleportation bites.",
+      "Phase 2 (Phantom Pack): Disappears into mist and unleashes spectral shadow doubles that charge players.",
+      "Wipe/Danger Mechanic (Solar Eclipse Beam): Boss charges a lethal arena-sweeping dark laser. HIDE BEHIND STONE MONOLITHS IMMEDIATELY!",
+      "Sky Crash: Leaps high into atmosphere; jump right as shadow hits ground to evade massive floor shockwave."
+    ],
+    "phasesCs": [
+      "Fáze 1: Bleskurychlé kousavé výpady a teleportace za záda hráčů.",
+      "Fáze 2 (Smečka stínů): Boss mizí v mlze a vypouští přízračné stínové kopie útočící v řadě.",
+      "Smrtící mechanika (Temný paprsek): Boss nabíjí ničivý laser přes celou arénu. OKAMŽITĚ SE SCHOVEJTE ZA KAMENNÉ OBELISKY!",
+      "Nebeský dopad: Boss vyletí do vzduchu a dopadne – vteřinu před dopadem vyskočte do vzduchu (přeskočte rázovou vlnu)."
+    ],
+    "recommendedArchetypesEn": "Unstable Bomber (DE.50 Jaws), Shrapnel (SOCR Last Valor), Fast Gunner (MG4)",
+    "recommendedArchetypesCs": "Unstable Bomber (DE.50 Jaws), Shrapnel (SOCR Last Valor), Fast Gunner (MG4)",
+    "recommendedDeviantsEn": "Lonewolf Whisper (Holds boss aggro), Dr. Teddy (Free revive safety net)",
+    "recommendedDeviantsCs": "Lonewolf Whisper (Strhává aggro bosse na sebe), Dr. Teddy (Záchranné oživení)",
+    "rarity": "Epic",
+    "scenario": "core",
+    "workbench": "Monolith Portal Chamber",
+    "energy": 0,
+    "hydration": 0,
+    "buffDuration": "Doporučený level: 40+",
+    "sourceEn": "Monolith of Thirst (Chalk Peak)",
+    "sourceCs": "Monolith of Thirst (Chalk Peak)",
+    "effectsEn": [
+      "Guaranteed chance to drop Legendary Deviant Lonewolf Whisper",
+      "Jumping right as the boss crashes to the ground prevents 100% of knockdown damage",
+      "Stone pillars block the one-hit kill Solar Eclipse dark laser beam",
+      "Top tier calibration drop source for Level 40 sniper and heavy weapons"
+    ],
+    "effectsCs": [
+      "Šance na zisk legendárního bojového Devianta Lonewolf Whisper",
+      "Výskok do vzduchu přesně při dopadu bosse zcela neguje poškození z rázové vlny",
+      "Kamenné obelisky spolehlivě blokují smrtící temný laserový paprsek",
+      "Prvotřídní zdroj kalibračních modů 4. úrovně pro odstřelovačky a těžké zbraně"
+    ],
+    "ingredientsEn": [
+      { "name": "Rift Anchors Cleared", "amount": "5x / 5x", "isPrimary": true },
+      { "name": "Adrenaline Shot", "amount": "2x" },
+      { "name": "Energy Drink (Stamina)", "amount": "2x" }
+    ],
+    "ingredientsCs": [
+      { "name": "Aktivované Rift Anchory", "amount": "5x / 5x", "isPrimary": true },
+      { "name": "Adrenalinová injekce", "amount": "2x" },
+      { "name": "Energetický nápoj na staminu", "amount": "2x" }
+    ],
+    "descriptionEn": "An otherworldly apex wolf entity enveloped in dimensional distortion. Commands dark matter lasers and packs of phantom shadow beasts.",
+    "descriptionCs": "Z jiného světa pocházející dravá šelma zahalená v dimenzionální deformaci. Vládne laserům temné hmoty a smečkám stínů."
+  },
+  {
+    "id": "boss-05",
+    "nameEn": "Forsaken Giant (Monolith of Purity Raid)",
+    "nameCs": "Forsaken Giant (Raid Monolitu čistoty)",
+    "categoryEn": "Endgame Raid",
+    "categoryCs": "Endgame Raid",
+    "monolithBossEn": "Forsaken Giant (Level 50 Endgame Titan)",
+    "monolithBossCs": "Forsaken Giant (Úroveň 50 Endgame Titán)",
+    "weakspotsEn": "Open chest core heart, glowing wrist crystals, belly eyeball",
+    "weakspotsCs": "Otevřené jádro v hrudníku, svítící krystaly na zápěstích, oko na břiše",
+    "phasesEn": [
+      "Phase 1 (Hand Slams): Giant smashes stone platform with fists. Shoot the glowing crystals on wrists to stop shockwave pulses.",
+      "Phase 2 (Meteors & Jump Rope): Stardust meteors rain down while red expanding shockwave rings roll across floor. JUMP OVER EVERY RING!",
+      "Phase 3 (WIPE DPS CHECK): Giant exposes open glowing heart and charges team-wipe cataclysm. All players MUST focus fire on heart core!",
+      "Sweeping Laser: Giant fires dual sweeping beam from eyes. Grapple or sprint to opposite arena edge."
+    ],
+    "phasesCs": [
+      "Fáze 1 (Údery pěstmi): Obr buší pěstmi do plošiny. Ničte svítící krystaly na jeho zápěstích, abyste zastavili otřesy.",
+      "Fáze 2 (Meteory & Švihadlo): Padají stardustové meteory a po podlaze se valí červené světelné prstence. PŘESKAKUJTE KAŽDÝ PRSTENEC!",
+      "Fáze 3 (TÝMOVÝ WIPE DPS CHECK): Obr otevře pulzující hrudní jádro a nabíjí totální vyhlazení týmu. Všichni hráči MUSÍ pálit plným DPS do srdce!",
+      "Zametací laser: Obr pálí dvojitý laser z očí. Okamžitě přeběhněte nebo přeskočte na opačnou stranu arény."
+    ],
+    "recommendedArchetypesEn": "Maximum Endgame DPS: SOCR Last Valor, AWS Bingo, DE.50 Jaws",
+    "recommendedArchetypesCs": "Maximální Endgame DPS: SOCR Last Valor, AWS Bingo, DE.50 Jaws",
+    "recommendedDeviantsEn": "Lonewolf Whisper (+12% Vulnerability), Pyro Dino (+28.5% Burn DMG), Dr. Teddy",
+    "recommendedDeviantsCs": "Lonewolf Whisper (+12% Vulnerability), Pyro Dino (+28.5% Burn DMG), Dr. Teddy",
+    "rarity": "Legendary",
+    "scenario": "core",
+    "workbench": "Monolith Portal Chamber",
+    "energy": 0,
+    "hydration": 0,
+    "buffDuration": "Doporučený level: 50 (Raid)",
+    "sourceEn": "Monolith of Purity (Red Sands)",
+    "sourceCs": "Monolith of Purity (Red Sands)",
+    "effectsEn": [
+      "The ultimate pinnacle endgame raid encounter in Once Human",
+      "Failing the Phase 3 chest core DPS check instantly wipes the entire fireteam",
+      "Jumping rhythmically over ground rings is mandatory for all players",
+      "Yields Tier-5 Pristine Gold Calibrations and guaranteed legendary mod boxes"
+    ],
+    "effectsCs": [
+      "Vrcholný endgame raidový souboj v celé hře Once Human",
+      "Nezvládnutí DPS fáze na hrudním jádře ve Fázi 3 okamžitě vymaže celý tým",
+      "Rytmické přeskakování rázových kruhů na zemi je povinné pro každého hráče",
+      "Odměnou jsou zlaté kalibrace Tier 5 a garantované legendární výběrové bedny modů"
+    ],
+    "ingredientsEn": [
+      { "name": "Controller Used", "amount": "1x / Clear", "isPrimary": true },
+      { "name": "Stardust Canned Meat", "amount": "1x" },
+      { "name": "Adrenaline Shot", "amount": "3x" }
+    ],
+    "ingredientsCs": [
+      { "name": "Použitý Controller", "amount": "1x / Průchod", "isPrimary": true },
+      { "name": "Stardust Canned Meat (Buff jídlo)", "amount": "1x" },
+      { "name": "Adrenalinová injekce", "amount": "3x" }
+    ],
+    "descriptionEn": "A monumental Stardust manifestation towering hundreds of meters high. Possesses the raw power to shatter continents if left unchecked.",
+    "descriptionCs": "Monumentální stardustová manifestace tyčící se stovky metrů vysoko. Má sílu roztříštit celý kontinent, pokud není zničena."
+  },
+  {
+    "id": "boss-06",
+    "nameEn": "Rabid Hound & Rosetta Heavy Shocktroopers",
+    "nameCs": "Rabid Hound & Těžkooděnci Rosetty",
+    "categoryEn": "Silo Elite Encounter",
+    "categoryCs": "Elitní boss v silech",
+    "monolithBossEn": "Silo Wardens & Cyber-Aberrants (Level 35-50)",
+    "monolithBossCs": "Velitelé sil a kyber-anomálie (Úroveň 35-50)",
+    "weakspotsEn": "Backpack power cells, unarmored head visor, joints",
+    "weakspotsCs": "Napájecí baterie na zádech, nechráněný průzor v helmě, klouby",
+    "phasesEn": [
+      "Heavy Energy Shields: Heavy troopers project frontal directional shields. Flank behind or use Bounce / AOE.",
+      "Rocket Barrage: Laser sight locks onto player before launching 4x homing missiles. Dodge-roll sideways.",
+      "EMP Vulnerability: Throwing EMP Grenades disables shields and stuns cybernetic chassis for 5 seconds.",
+      "Cyber-Hound Rusher: Mechanical dogs sprint forward to tackle and pin player down - eliminate first!"
+    ],
+    "phasesCs": [
+      "Energetické štíty: Těžkooděnci nesou neprůstřelné čelní štíty. Obíhejte je zezadu nebo využijte Bounce / plošné granáty.",
+      "Raketová salva: Červený laser zaměří hráče před odpálením 4 naváděných raket. Uhýbejte kotoulem do strany.",
+      "Zranitelnost vůči EMP: Zásah EMP granátem vyřadí štíty a omráčí robotické systémy na 5 vteřin.",
+      "Mechanický pes (Cyber-Hound): Robotičtí psi sprintují přímo na hráče pro povalení k zemi – likvidujte je jako první!"
+    ],
+    "recommendedArchetypesEn": "Bounce (R500 Memento), Power Surge (MPS7), Unstable Bomber",
+    "recommendedArchetypesCs": "Odraz (Bounce - R500 Memento), Power Surge (MPS7), Unstable Bomber",
+    "recommendedDeviantsEn": "Pup Buddy (Counter-tackles charging enemies), Festering Gel",
+    "recommendedDeviantsCs": "Pup Buddy (Sráží útočící psy k zemi), Festering Gel",
+    "rarity": "Epic",
+    "scenario": "core",
+    "workbench": "Securement Silo Terminal",
+    "energy": 0,
+    "hydration": 0,
+    "buffDuration": "Doporučený level: 35 - 50",
+    "sourceEn": "Securement Silo SIGMA, THETA & PSI",
+    "sourceCs": "Securement Silo SIGMA, THETA a PSI",
+    "effectsEn": [
+      "Standard tactical encounter throughout Master and Nightmare Silo expeditions",
+      "EMP grenades completely nullify frontal ballistic energy shields",
+      "High drop rate of specialized armor modification components",
+      "Positioning behind cover prevents catastrophic rocket barrage wipes"
+    ],
+    "effectsCs": [
+      "Standardní taktický střet v náročných silech na Master a Nightmare obtížnostech",
+      "EMP granáty okamžitě ruší čelní energetické štíty nepřátel",
+      "Vysoká šance na drop specializovaných zbrojních komponentů",
+      "Krytí za překážkami brání smrtícímu poškození z raketových salv"
+    ],
+    "ingredientsEn": [
+      { "name": "EMP Grenade", "amount": "3x", "isPrimary": true },
+      { "name": "Armor Plate", "amount": "2x" }
+    ],
+    "ingredientsCs": [
+      { "name": "EMP granát", "amount": "3x", "isPrimary": true },
+      { "name": "Plát zbroje (Armor Plate)", "amount": "2x" }
+    ],
+    "descriptionEn": "Rosetta's elite biomechanical guard division tasked with defending subterranean securement vaults at any cost.",
+    "descriptionCs": "Elitní biomechanická strážní divize Rosetty pověřená obranou podzemních zabezpečovacích sil za každou cenu."
+  }
+];
+
 
 
 
