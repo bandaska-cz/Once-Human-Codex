@@ -2915,7 +2915,15 @@ function openWorldMapModal() {
 
   updateMapCounts();
   updateMapFilterPills();
-  renderTacticalMap();
+
+  if (currentMapMode === 'tactical') {
+    renderTacticalMap();
+  } else {
+    const genieIframe = document.getElementById('mapgenie-iframe');
+    if (genieIframe && (!genieIframe.getAttribute('src') || !genieIframe.src.includes('mapgenie.io'))) {
+      genieIframe.src = 'https://mapgenie.io/once-human/maps/nalcott?embed=light';
+    }
+  }
 
   if (!mapListenersInitialized) {
     initMapInteractions();
@@ -2953,7 +2961,7 @@ function switchMapMode(mode) {
     if (genieContainer) genieContainer.classList.remove('hidden');
 
     // Lazy-load MapGenie embed URL upon first switch
-    if (genieIframe && !genieIframe.src) {
+    if (genieIframe && (!genieIframe.getAttribute('src') || !genieIframe.src.includes('mapgenie.io'))) {
       genieIframe.src = 'https://mapgenie.io/once-human/maps/nalcott?embed=light';
     }
   }

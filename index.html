@@ -515,7 +515,7 @@
 
   <!-- ==================== NALCOTT TACTICAL WORLD MAP MODAL ==================== -->
   <div id="world-map-modal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-2 sm:p-4 bg-black/85 backdrop-blur-md">
-    <div class="bg-hud-surface border border-hud-cyan/50 rounded-lg max-w-6xl w-full h-[94vh] flex flex-col relative overflow-hidden shadow-[0_0_40px_rgba(0,240,255,0.25)]">
+    <div class="map-modal-dialog bg-hud-surface border border-hud-cyan/50 rounded-lg max-w-6xl w-full flex flex-col relative overflow-hidden shadow-[0_0_40px_rgba(0,240,255,0.25)]" style="height: 92vh; max-height: 92vh; min-height: 520px;">
       <!-- Modal Header -->
       <div class="p-3 sm:p-4 border-b border-hud-border flex items-center justify-between gap-3 bg-hud-card/90 shrink-0">
         <div class="flex items-center gap-2.5">
@@ -603,10 +603,10 @@
       </div>
 
       <!-- Map Viewport -->
-      <div class="flex-1 relative overflow-hidden bg-[#03060c]">
+      <div class="map-viewport-wrapper flex-1 relative overflow-hidden bg-[#03060c] w-full" style="height: calc(92vh - 125px); min-height: 440px;">
         <!-- Tactical Radar View -->
-        <div id="tactical-map-viewport" class="w-full h-full relative cursor-grab active:cursor-grabbing overflow-hidden select-none">
-          <div id="tactical-map-canvas" class="absolute inset-0 transition-transform duration-75 origin-center will-change-transform">
+        <div id="tactical-map-viewport" class="w-full h-full relative cursor-grab active:cursor-grabbing overflow-hidden select-none" style="height: 100%; min-height: 440px;">
+          <div id="tactical-map-canvas" class="w-full h-full absolute inset-0 transition-transform duration-75 origin-center will-change-transform">
             <!-- Dynamically populated by renderTacticalMap() -->
           </div>
 
@@ -626,7 +626,7 @@
         </div>
 
         <!-- MapGenie Live View -->
-        <div id="mapgenie-container" class="hidden w-full h-full relative flex flex-col">
+        <div id="mapgenie-container" class="hidden w-full h-full relative flex flex-col" style="height: 100%; min-height: 440px;">
           <div class="p-2 bg-slate-900 border-b border-hud-border flex items-center justify-between text-xs font-mono text-slate-300 shrink-0">
             <span><i class="fa-solid fa-globe text-hud-cyan mr-1.5"></i>MapGenie Once Human Interactive Map (Live Checklist)</span>
             <a href="https://mapgenie.io/once-human/maps/nalcott" target="_blank" rel="noopener noreferrer" class="text-hud-cyan hover:underline flex items-center gap-1">
@@ -638,6 +638,7 @@
             id="mapgenie-iframe" 
             src="" 
             class="w-full flex-1 border-0" 
+            style="width: 100%; height: calc(100% - 36px); min-height: 400px; border: 0;"
             loading="lazy" 
             allowfullscreen>
           </iframe>

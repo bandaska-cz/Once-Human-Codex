@@ -117,3 +117,68 @@ body {
   cursor: grabbing !important;
 }
 
+/* ==========================================================================
+   MAP MODAL SIZING & VIEWPORT EXPANSION FIXES
+   ========================================================================== */
+#world-map-modal .map-modal-dialog {
+  height: 92vh !important;
+  max-height: 92vh !important;
+  min-height: 520px !important;
+  display: flex !important;
+  flex-direction: column !important;
+}
+
+#world-map-modal .map-viewport-wrapper {
+  flex: 1 1 0% !important;
+  height: calc(92vh - 125px) !important;
+  min-height: 440px !important;
+  position: relative !important;
+  overflow: hidden !important;
+  background-color: #03060c !important;
+}
+
+#tactical-map-viewport {
+  width: 100% !important;
+  height: 100% !important;
+  min-height: 440px !important;
+  position: relative !important;
+  overflow: hidden !important;
+}
+
+#tactical-map-canvas {
+  width: 100% !important;
+  height: 100% !important;
+  position: absolute !important;
+  inset: 0 !important;
+}
+
+#tactical-svg {
+  width: 100% !important;
+  height: 100% !important;
+  min-height: 440px !important;
+  display: block !important;
+}
+
+#mapgenie-container {
+  width: 100% !important;
+  height: 100% !important;
+  min-height: 440px !important;
+  display: flex !important;
+  flex-direction: column !important;
+}
+
+#mapgenie-container.hidden,
+#tactical-map-viewport.hidden,
+#tactical-map-toolbar.hidden {
+  display: none !important;
+}
+
+#mapgenie-iframe {
+  width: 100% !important;
+  height: calc(100% - 36px) !important;
+  min-height: 400px !important;
+  flex: 1 1 0% !important;
+  border: 0 !important;
+}
+
+
