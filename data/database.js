@@ -1360,6 +1360,7 @@ const i18n = {
     const inventionRecipes = [
 
 
+
       /* --- 1. REFINING & METALLURGY RECIPES --- */
       {
         id: "tech-glass",
@@ -8887,6 +8888,956 @@ const i18n = {
     ],
     "descriptionEn": "Micro-soldering technique turning raw components into valuable commodity chips traded to merchants for pure profit.",
     "descriptionCs": "Specializovaná výrobní technologie na produkci drahých obchodních čipsetů pro prodej u NPC obchodníků."
+  },
+
+  {
+    "id": "fish-01",
+    "researchInvention": {
+      "chance": "High (Vysoká šance)",
+      "materialsCs": [
+        {
+          "name": "Dřevo",
+          "amount": "25x"
+        },
+        {
+          "name": "Rostlinná vlákna",
+          "amount": "15x"
+        },
+        {
+          "name": "Měděný ingot",
+          "amount": "5x"
+        }
+      ],
+      "materialsEn": [
+        {
+          "name": "Wood",
+          "amount": "25x"
+        },
+        {
+          "name": "Plant Fiber",
+          "amount": "15x"
+        },
+        {
+          "name": "Copper Ingot",
+          "amount": "5x"
+        }
+      ],
+      "reverseEngineeringCs": "Lze nalézt a analyzovat v rybářských docích a chatkách v Dayton Wetlands.",
+      "reverseEngineeringEn": "Can be found and analyzed in fishing docks and shacks across Dayton Wetlands."
+    },
+    "nameEn": "Bamboo Fishing Rod",
+    "nameCs": "Základní bambusový rybářský prut (Bamboo Rod)",
+    "categoryEn": "Fishing Gear",
+    "categoryCs": "Rybářská výbava",
+    "scenario": "core",
+    "rarity": "Common",
+    "workbench": "Supplies Workbench",
+    "energy": 0,
+    "hydration": 0,
+    "buffDuration": "Freshwater Light Fishing",
+    "sourceEn": "Basic Survival & Angling Memetic",
+    "sourceCs": "Přežití a rybaření v Memetics",
+    "effectsEn": [
+      "Basic light fishing rod for freshwater lakes and tranquil river bends",
+      "Capable of catching small common fish (Sardines, Carp, Tilapia)",
+      "Essential early food and oil gathering tool"
+    ],
+    "effectsCs": [
+      "Základní lehký rybářský prut pro sladkovodní jezera a klidné říční tůně",
+      "Umožňuje lov běžných menších ryb (sardinky, kapři, tilápie)",
+      "Základní nástroj pro získávání čerstvého rybího masa a oleje"
+    ],
+    "ingredientsEn": [
+      {
+        "name": "Wood",
+        "amount": "20x",
+        "isPrimary": true
+      },
+      {
+        "name": "Plant Fiber",
+        "amount": "10x"
+      }
+    ],
+    "ingredientsCs": [
+      {
+        "name": "Dřevo",
+        "amount": "20x",
+        "isPrimary": true
+      },
+      {
+        "name": "Rostlinná vlákna",
+        "amount": "10x"
+      }
+    ],
+    "descriptionEn": "Simple flexible wooden rod crafted from sturdy branches for basic riverside survival fishing.",
+    "descriptionCs": "Jednoduchý pružný dřevěný prut pro základní přežití a lov ryb v jezerech a řekách."
+  },
+
+  {
+    "id": "fish-02",
+    "researchInvention": {
+      "chance": "High (Vysoká šance)",
+      "materialsCs": [
+        {
+          "name": "Bronzový ingot",
+          "amount": "15x"
+        },
+        {
+          "name": "Plast",
+          "amount": "15x"
+        },
+        {
+          "name": "Guma (Rubber)",
+          "amount": "8x"
+        }
+      ],
+      "materialsEn": [
+        {
+          "name": "Bronze Ingot",
+          "amount": "15x"
+        },
+        {
+          "name": "Plastic",
+          "amount": "15x"
+        },
+        {
+          "name": "Rubber",
+          "amount": "8x"
+        }
+      ],
+      "reverseEngineeringCs": "Lze analyzovat z rybářských prodejen a přístavních skladů v Harborside a Meyer's Market.",
+      "reverseEngineeringEn": "Can be analyzed from bait shops and dockside warehouses in Harborside and Meyer's Market."
+    },
+    "nameEn": "Fiberglass Fishing Rod",
+    "nameCs": "Sklolaminátový rybářský prut (Fiberglass Rod)",
+    "categoryEn": "Fishing Gear",
+    "categoryCs": "Rybářská výbava",
+    "scenario": "core",
+    "rarity": "Fine",
+    "workbench": "Intermediate Supplies Workbench",
+    "energy": 0,
+    "hydration": 0,
+    "buffDuration": "Medium Tension & Cast Range",
+    "sourceEn": "Intermediate Angling Memetic",
+    "sourceCs": "Pokročilé rybaření v Memetics",
+    "effectsEn": [
+      "Higher line tension tolerance and 25% longer casting distance",
+      "Capable of hooking medium predatory fish (Largemouth Bass, Salmon, Catfish)",
+      "Reduces hook break chance by 35%"
+    ],
+    "effectsCs": [
+      "Vyšší nosnost vlasce a o 25 % delší dosah náhozu",
+      "Umožňuje zdolávání středně velkých dravých ryb (okouni, lososi, sumci)",
+      "Snižuje riziko přetržení vlasce o 35 %"
+    ],
+    "ingredientsEn": [
+      {
+        "name": "Bronze Ingot",
+        "amount": "10x",
+        "isPrimary": true
+      },
+      {
+        "name": "Plastic",
+        "amount": "10x"
+      },
+      {
+        "name": "Twine",
+        "amount": "10x"
+      },
+      {
+        "name": "Rubber",
+        "amount": "5x"
+      }
+    ],
+    "ingredientsCs": [
+      {
+        "name": "Bronzový ingot",
+        "amount": "10x",
+        "isPrimary": true
+      },
+      {
+        "name": "Plast",
+        "amount": "10x"
+      },
+      {
+        "name": "Motouz",
+        "amount": "10x"
+      },
+      {
+        "name": "Guma (Rubber)",
+        "amount": "5x"
+      }
+    ],
+    "descriptionEn": "Resilient composite rod balanced for pulling heavier predatory species from turbulent waters.",
+    "descriptionCs": "Odolný kompozitní prut s navijákem určený pro lov větších dravých ryb v hlubších vodách."
+  },
+
+  {
+    "id": "fish-03",
+    "researchInvention": {
+      "chance": "High (Vysoká šance)",
+      "materialsCs": [
+        {
+          "name": "Uhlíková vlákna (Carbon Fiber)",
+          "amount": "20x"
+        },
+        {
+          "name": "Ocelový ingot",
+          "amount": "20x"
+        },
+        {
+          "name": "Elektronické součástky",
+          "amount": "12x"
+        }
+      ],
+      "materialsEn": [
+        {
+          "name": "Carbon Fiber",
+          "amount": "20x"
+        },
+        {
+          "name": "Steel Ingot",
+          "amount": "20x"
+        },
+        {
+          "name": "Electronic Parts",
+          "amount": "12x"
+        }
+      ],
+      "reverseEngineeringCs": "Lze rozebrat z jachetních mol a luxusních rybářských klubů v Chalk Peak a Red Sands.",
+      "reverseEngineeringEn": "Can be salvaged from yacht marinas and exclusive angling clubs in Chalk Peak and Red Sands."
+    },
+    "nameEn": "Carbon Fiber Fishing Rod",
+    "nameCs": "Karbonový rybářský prut (Carbon Fiber Rod)",
+    "categoryEn": "Fishing Gear",
+    "categoryCs": "Rybářská výbava",
+    "scenario": "core",
+    "rarity": "Epic",
+    "workbench": "Advanced Supplies Workbench",
+    "energy": 0,
+    "hydration": 0,
+    "buffDuration": "Elite Deep-Sea & Trophy Rod",
+    "sourceEn": "Master Angler Memetic",
+    "sourceCs": "Mistrovské rybaření v Memetics",
+    "effectsEn": [
+      "Maximum tensile strength and precision drag control for battling apex game fish",
+      "Required to successfully catch legendary Arowana, Northern Pike, Barramundi, and Electric Eel",
+      "Greatly widens the reeling success sweet-spot during the fishing minigame"
+    ],
+    "effectsCs": [
+      "Maximální pevnost v tahu a precizní brzda pro souboje s trofejními rybami",
+      "Nezbytný pro úspěšný lov legendární Arowany, Štiky, Barramundi a Elektrického úhoře",
+      "Výrazně zvětšuje bezpečnou zónu při navíjení během rybářské minihry"
+    ],
+    "ingredientsEn": [
+      {
+        "name": "Carbon Fiber",
+        "amount": "15x",
+        "isPrimary": true
+      },
+      {
+        "name": "Steel Ingot",
+        "amount": "15x"
+      },
+      {
+        "name": "Electronic Parts",
+        "amount": "8x"
+      },
+      {
+        "name": "Rubber",
+        "amount": "10x"
+      }
+    ],
+    "ingredientsCs": [
+      {
+        "name": "Uhlíková vlákna (Carbon Fiber)",
+        "amount": "15x",
+        "isPrimary": true
+      },
+      {
+        "name": "Ocelový ingot",
+        "amount": "15x"
+      },
+      {
+        "name": "Elektronické součástky",
+        "amount": "8x"
+      },
+      {
+        "name": "Guma (Rubber)",
+        "amount": "10x"
+      }
+    ],
+    "descriptionEn": "Top-of-the-line carbon rod designed to conquer deep oceans and haul in colossal mutated aquatic creatures.",
+    "descriptionCs": "Špičkový karbonový prut pro lov v hlubokém oceánu a zdolávání nejvzácnějších trofejních ryb."
+  },
+
+  {
+    "id": "fish-04",
+    "researchInvention": {
+      "chance": "High (Vysoká šance)",
+      "materialsCs": [
+        {
+          "name": "Kukuřice",
+          "amount": "10x"
+        },
+        {
+          "name": "Čistá voda",
+          "amount": "5x"
+        },
+        {
+          "name": "Cukr",
+          "amount": "2x"
+        }
+      ],
+      "materialsEn": [
+        {
+          "name": "Corn",
+          "amount": "10x"
+        },
+        {
+          "name": "Purified Water",
+          "amount": "5x"
+        },
+        {
+          "name": "Sugar",
+          "amount": "2x"
+        }
+      ],
+      "reverseEngineeringCs": "Lze analyzovat z misek s návnadou u rybářských mol v Dayton Wetlands.",
+      "reverseEngineeringEn": "Can be analyzed from bait prep bowls near fishing docks in Dayton Wetlands."
+    },
+    "nameEn": "Dough Bait",
+    "nameCs": "Těsto na ryby - Základní návnada (Dough Bait)",
+    "categoryEn": "Fishing Gear",
+    "categoryCs": "Rybářská výbava",
+    "scenario": "core",
+    "rarity": "Common",
+    "workbench": "Supplies Workbench",
+    "energy": 0,
+    "hydration": 0,
+    "buffDuration": "Herbivore Attraction",
+    "sourceEn": "Basic Survival & Angling Memetic",
+    "sourceCs": "Přežití a rybaření v Memetics",
+    "effectsEn": [
+      "Attracts small freshwater omnivores and schooling fish",
+      "High catch rate for Sardines, Carp, Sunfish, and Tilapia",
+      "Very low crafting cost using common farm crops"
+    ],
+    "effectsCs": [
+      "Láká menší sladkovodní býložravé a hejnové ryby",
+      "Vysoká úspěšnost záběru u sardinek, kaprů, měsíčníků a tilápií",
+      "Velmi levná výroba z běžně dostupných plodin"
+    ],
+    "ingredientsEn": [
+      {
+        "name": "Corn",
+        "amount": "2x",
+        "isPrimary": true
+      },
+      {
+        "name": "Purified Water",
+        "amount": "1x"
+      }
+    ],
+    "ingredientsCs": [
+      {
+        "name": "Kukuřice",
+        "amount": "2x",
+        "isPrimary": true
+      },
+      {
+        "name": "Čistá voda",
+        "amount": "1x"
+      }
+    ],
+    "descriptionEn": "Flour and corn dough kneaded into bite-sized pellets favored by peaceful freshwater fish.",
+    "descriptionCs": "Jednoduchá těstová návnada z kukuřice a vody pro spolehlivý lov menších říčních ryb."
+  },
+
+  {
+    "id": "fish-05",
+    "researchInvention": {
+      "chance": "High (Vysoká šance)",
+      "materialsCs": [
+        {
+          "name": "Syrové maso",
+          "amount": "5x"
+        },
+        {
+          "name": "Sůl (Salt)",
+          "amount": "5x"
+        },
+        {
+          "name": "Motouz",
+          "amount": "5x"
+        }
+      ],
+      "materialsEn": [
+        {
+          "name": "Raw Meat",
+          "amount": "5x"
+        },
+        {
+          "name": "Salt",
+          "amount": "5x"
+        },
+        {
+          "name": "Twine",
+          "amount": "5x"
+        }
+      ],
+      "reverseEngineeringCs": "Lze nalézt v kádích s živou nástrahou v Harborside a Broken Delta.",
+      "reverseEngineeringEn": "Can be salvaged from live bait tanks across Harborside and Broken Delta."
+    },
+    "nameEn": "Minnow Bait",
+    "nameCs": "Živá návnada - Rybka / Střevle (Minnow Bait)",
+    "categoryEn": "Fishing Gear",
+    "categoryCs": "Rybářská výbava",
+    "scenario": "core",
+    "rarity": "Fine",
+    "workbench": "Supplies Workbench",
+    "energy": 0,
+    "hydration": 0,
+    "buffDuration": "Predator Lure",
+    "sourceEn": "Intermediate Angling Memetic",
+    "sourceCs": "Pokročilé rybaření v Memetics",
+    "effectsEn": [
+      "Attracts carnivorous predators in lakes, estuaries, and coastal waters",
+      "Target bait for Largemouth Bass, Salmon, Catfish, and Snakehead",
+      "Significantly increases bite frequency from heavy fish"
+    ],
+    "effectsCs": [
+      "Přitahuje dravé masožravé ryby v jezerech, zátokách i u mořského pobřeží",
+      "Cílová návnada pro okouny, lososy, sumce a hadohlavce",
+      "Výrazně zkracuje dobu čekání na záběr velké ryby"
+    ],
+    "ingredientsEn": [
+      {
+        "name": "Raw Meat",
+        "amount": "1x",
+        "isPrimary": true
+      },
+      {
+        "name": "Salt",
+        "amount": "1x"
+      },
+      {
+        "name": "Plant Fiber",
+        "amount": "2x"
+      }
+    ],
+    "ingredientsCs": [
+      {
+        "name": "Syrové maso",
+        "amount": "1x",
+        "isPrimary": true
+      },
+      {
+        "name": "Sůl (Salt)",
+        "amount": "1x"
+      },
+      {
+        "name": "Rostlinná vlákna",
+        "amount": "2x"
+      }
+    ],
+    "descriptionEn": "Preserved live-style bait irresistible to hunting game fish lurking in deeper currents.",
+    "descriptionCs": "Masožravá nástraha napodobující malou rybku, která spolehlivě provokuje velké dravce k útoku."
+  },
+
+  {
+    "id": "fish-06",
+    "researchInvention": {
+      "chance": "High (Vysoká šance)",
+      "materialsCs": [
+        {
+          "name": "Kukuřice",
+          "amount": "10x"
+        },
+        {
+          "name": "Syrové maso",
+          "amount": "5x"
+        },
+        {
+          "name": "Sůl (Salt)",
+          "amount": "5x"
+        },
+        {
+          "name": "Koření (Spice)",
+          "amount": "3x"
+        }
+      ],
+      "materialsEn": [
+        {
+          "name": "Corn",
+          "amount": "10x"
+        },
+        {
+          "name": "Raw Meat",
+          "amount": "5x"
+        },
+        {
+          "name": "Salt",
+          "amount": "5x"
+        },
+        {
+          "name": "Spice",
+          "amount": "3x"
+        }
+      ],
+      "reverseEngineeringCs": "Lze získat z rybářských skladů a velkoobchodů v Meyer's Market.",
+      "reverseEngineeringEn": "Can be obtained from commercial fishing wholesalers in Meyer's Market."
+    },
+    "nameEn": "Universal Bait",
+    "nameCs": "Univerzální rybářská návnada (Universal Bait)",
+    "categoryEn": "Fishing Gear",
+    "categoryCs": "Rybářská výbava",
+    "scenario": "core",
+    "rarity": "Fine",
+    "workbench": "Intermediate Supplies Workbench",
+    "energy": 0,
+    "hydration": 0,
+    "buffDuration": "All-Species Attractant",
+    "sourceEn": "Master Angler Memetic",
+    "sourceCs": "Mistrovské rybaření v Memetics",
+    "effectsEn": [
+      "Formulated with balanced scent plumes effective in freshwater rivers, lakes, and open oceans",
+      "Attracts both schooling foragers and large predatory species",
+      "High general success rate across all Once Human fishing zones"
+    ],
+    "effectsCs": [
+      "Všestranná pachová stopa účinná ve sladkých řekách, horských jezerech i otevřeném moři",
+      "Láká jak hejnové ryby, tak velké dravé druhy",
+      "Vysoká spolehlivost záběru bez ohledu na lokaci a typ vody"
+    ],
+    "ingredientsEn": [
+      {
+        "name": "Corn",
+        "amount": "2x",
+        "isPrimary": true
+      },
+      {
+        "name": "Raw Meat",
+        "amount": "1x"
+      },
+      {
+        "name": "Salt",
+        "amount": "1x"
+      },
+      {
+        "name": "Purified Water",
+        "amount": "1x"
+      }
+    ],
+    "ingredientsCs": [
+      {
+        "name": "Kukuřice",
+        "amount": "2x",
+        "isPrimary": true
+      },
+      {
+        "name": "Syrové maso",
+        "amount": "1x"
+      },
+      {
+        "name": "Sůl (Salt)",
+        "amount": "1x"
+      },
+      {
+        "name": "Čistá voda",
+        "amount": "1x"
+      }
+    ],
+    "descriptionEn": "Carefully balanced blend of grain and meat scents designed to tempt nearly every fish in Nalcott.",
+    "descriptionCs": "Univerzální směs kukuřice, masa a koření lákající široké spektrum rybích druhů."
+  },
+
+  {
+    "id": "fish-07",
+    "researchInvention": {
+      "chance": "High (Vysoká šance)",
+      "materialsCs": [
+        {
+          "name": "Zdroj hvězdného prachu (Stardust)",
+          "amount": "15x"
+        },
+        {
+          "name": "Měděný ingot",
+          "amount": "10x"
+        },
+        {
+          "name": "Sklo",
+          "amount": "5x"
+        }
+      ],
+      "materialsEn": [
+        {
+          "name": "Stardust Source",
+          "amount": "15x"
+        },
+        {
+          "name": "Copper Ingot",
+          "amount": "10x"
+        },
+        {
+          "name": "Glass",
+          "amount": "5x"
+        }
+      ],
+      "reverseEngineeringCs": "Lze demontovat z hydrobiologických laboratoří Rosetta v Chalk Peak a Red Sands.",
+      "reverseEngineeringEn": "Can be salvaged from Rosetta hydrobiology containment facilities in Chalk Peak and Red Sands."
+    },
+    "nameEn": "Stardust Anomaly Lure",
+    "nameCs": "Anomální třpytka z hvězdného prachu (Stardust Lure)",
+    "categoryEn": "Fishing Gear",
+    "categoryCs": "Rybářská výbava",
+    "scenario": "core",
+    "rarity": "Epic",
+    "workbench": "Advanced Supplies Workbench",
+    "energy": 0,
+    "hydration": 0,
+    "buffDuration": "Rare Mutated Fish & Deviant Lure",
+    "sourceEn": "Master Angler Memetic",
+    "sourceCs": "Mistrovské rybaření v Memetics",
+    "effectsEn": [
+      "Emits an otherworldly pulsating bioluminescence in polluted and deep waters",
+      "Essential lure to catch the legendary Electric Eel deviant and apex trophy fish (Arowana, Barramundi)",
+      "Triples the probability of hooking anomalous and mutated fish variants"
+    ],
+    "effectsCs": [
+      "Vyzařuje anomální bioluminiscenční pulzy přitahující mutované organismy",
+      "Nezbytná nástraha pro ulovení vzácného Devianta Elektrického úhoře a trofejních ryb (Arowana, Barramundi)",
+      "Trojnásobně zvyšuje šanci na záběr mutovaných ryb s unikátními kulinářskými buffy"
+    ],
+    "ingredientsEn": [
+      {
+        "name": "Stardust Source",
+        "amount": "3x",
+        "isPrimary": true
+      },
+      {
+        "name": "Copper Ingot",
+        "amount": "5x"
+      },
+      {
+        "name": "Glass",
+        "amount": "2x"
+      },
+      {
+        "name": "Gunpowder",
+        "amount": "1x"
+      }
+    ],
+    "ingredientsCs": [
+      {
+        "name": "Zdroj hvězdného prachu (Stardust)",
+        "amount": "3x",
+        "isPrimary": true
+      },
+      {
+        "name": "Měděný ingot",
+        "amount": "5x"
+      },
+      {
+        "name": "Sklo",
+        "amount": "2x"
+      },
+      {
+        "name": "Střelný prach",
+        "amount": "1x"
+      }
+    ],
+    "descriptionEn": "High-tech luminescent lure pulsing with Stardust radiation, irresistible to apex aberrations and Deviants.",
+    "descriptionCs": "Špičková třpytka zářící anomálním hvězdným světlem, schopná přilákat i ty nejvzácnější vodní Devianty."
+  },
+
+  {
+    "id": "fish-08",
+    "researchInvention": {
+      "chance": "High (Vysoká šance)",
+      "materialsCs": [
+        {
+          "name": "Dřevo",
+          "amount": "35x"
+        },
+        {
+          "name": "Motouz",
+          "amount": "20x"
+        },
+        {
+          "name": "Ocelový ingot",
+          "amount": "10x"
+        }
+      ],
+      "materialsEn": [
+        {
+          "name": "Wood",
+          "amount": "35x"
+        },
+        {
+          "name": "Twine",
+          "amount": "20x"
+        },
+        {
+          "name": "Steel Ingot",
+          "amount": "10x"
+        }
+      ],
+      "reverseEngineeringCs": "Lze analyzovat z rybářských vrší a krabích pastí na pobřeží Broken Delta.",
+      "reverseEngineeringEn": "Can be analyzed from crab pots and weir traps along the Broken Delta coastline."
+    },
+    "nameEn": "Fish Trap / Crab Pot",
+    "nameCs": "Rybářská & Krabí past (Fish Trap / Crab Pot)",
+    "categoryEn": "Fishing Gear",
+    "categoryCs": "Rybářská výbava",
+    "scenario": "core",
+    "rarity": "Common",
+    "workbench": "Territory Build Mode",
+    "energy": 0,
+    "hydration": 0,
+    "buffDuration": "Passive Aquatic Harvesting",
+    "sourceEn": "Basic Survival & Angling Memetic",
+    "sourceCs": "Přežití a rybaření v Memetics",
+    "effectsEn": [
+      "Submerged basket passively trapping fish, crabs, and shellfish near territory shores",
+      "Generates continuous raw seafood without requiring active angling time",
+      "Baiting the pot with Dough or Meat doubles trapping yield"
+    ],
+    "effectsCs": [
+      "Ponořená past pro pasivní odchyt ryb, krabů a škeblí u břehu základny",
+      "Zajišťuje stálý přísun čerstvých plodů moře bez nutnosti trávit čas u prutu",
+      "Vložení návnady (těsto nebo maso) zdvojnásobuje rychlost a množství úlovku"
+    ],
+    "ingredientsEn": [
+      {
+        "name": "Wood",
+        "amount": "25x",
+        "isPrimary": true
+      },
+      {
+        "name": "Twine",
+        "amount": "15x"
+      },
+      {
+        "name": "Metal Scraps",
+        "amount": "10x"
+      }
+    ],
+    "ingredientsCs": [
+      {
+        "name": "Dřevo",
+        "amount": "25x",
+        "isPrimary": true
+      },
+      {
+        "name": "Motouz",
+        "amount": "15x"
+      },
+      {
+        "name": "Kovový šrot",
+        "amount": "10x"
+      }
+    ],
+    "descriptionEn": "Deployable submerged wire-and-wood trap that catches coastal crustaceans and fish around the clock.",
+    "descriptionCs": "Ponorná past z proutí a drátu pro nepřetržitý automatický lov ryb a krabů podél pobřeží."
+  },
+
+  {
+    "id": "fish-09",
+    "researchInvention": {
+      "chance": "High (Vysoká šance)",
+      "materialsCs": [
+        {
+          "name": "Sklo",
+          "amount": "30x"
+        },
+        {
+          "name": "Ocelový ingot",
+          "amount": "20x"
+        },
+        {
+          "name": "Elektronické součástky",
+          "amount": "12x"
+        }
+      ],
+      "materialsEn": [
+        {
+          "name": "Glass",
+          "amount": "30x"
+        },
+        {
+          "name": "Steel Ingot",
+          "amount": "20x"
+        },
+        {
+          "name": "Electronic Parts",
+          "amount": "12x"
+        }
+      ],
+      "reverseEngineeringCs": "Lze demontovat z hotelových recepcí a mořských akvárií v Blackfell City.",
+      "reverseEngineeringEn": "Can be salvaged from luxury hotel lobbies and public aquariums in Blackfell City."
+    },
+    "nameEn": "Aquarium Display Tank",
+    "nameCs": "Akvárium pro trofejní ryby (Aquarium Tank)",
+    "categoryEn": "Fishing Gear",
+    "categoryCs": "Rybářská výbava",
+    "scenario": "core",
+    "rarity": "Fine",
+    "workbench": "Territory Build Mode",
+    "energy": 10,
+    "hydration": 0,
+    "buffDuration": "Live Fish Storage & Territory Sanity",
+    "sourceEn": "Interior & Armory Memetic",
+    "sourceCs": "Vnitřní vybavení a komfort v Memetics",
+    "effectsEn": [
+      "Holds and displays live trophy fish or captured aquatic Deviants in pristine water",
+      "Keeps caught fish permanently alive (zero spoilage)",
+      "Provides a soothing base ambiance that accelerates resting Sanity regeneration"
+    ],
+    "effectsCs": [
+      "Uchovává a vystavuje živé trofejní ryby nebo vodní Devianty v čisté vodě",
+      "Udržuje ryby trvale živé (nulové kažení čerstvého úlovku)",
+      "Příjemná uklidňující atmosféra v základně zrychluje regeneraci Sanity při odpočinku"
+    ],
+    "ingredientsEn": [
+      {
+        "name": "Glass",
+        "amount": "25x",
+        "isPrimary": true
+      },
+      {
+        "name": "Steel Ingot",
+        "amount": "15x"
+      },
+      {
+        "name": "Electronic Parts",
+        "amount": "8x"
+      },
+      {
+        "name": "Purified Water",
+        "amount": "10x"
+      }
+    ],
+    "ingredientsCs": [
+      {
+        "name": "Sklo",
+        "amount": "25x",
+        "isPrimary": true
+      },
+      {
+        "name": "Ocelový ingot",
+        "amount": "15x"
+      },
+      {
+        "name": "Elektronické součástky",
+        "amount": "8x"
+      },
+      {
+        "name": "Čistá voda",
+        "amount": "10x"
+      }
+    ],
+    "descriptionEn": "Illuminated glass tank allowing anglers to keep and admire rare prized catches indefinitely.",
+    "descriptionCs": "Osvětlené prosklené akvárium pro uchování a obdivování nejvzácnějších živých rybích úlovků."
+  },
+
+  {
+    "id": "fish-10",
+    "researchInvention": {
+      "chance": "High (Vysoká šance)",
+      "materialsCs": [
+        {
+          "name": "Guma (Rubber)",
+          "amount": "20x"
+        },
+        {
+          "name": "Ocelový ingot",
+          "amount": "15x"
+        },
+        {
+          "name": "Měděný ingot",
+          "amount": "10x"
+        }
+      ],
+      "materialsEn": [
+        {
+          "name": "Rubber",
+          "amount": "20x"
+        },
+        {
+          "name": "Steel Ingot",
+          "amount": "15x"
+        },
+        {
+          "name": "Copper Ingot",
+          "amount": "10x"
+        }
+      ],
+      "reverseEngineeringCs": "Lze rozebrat z vodních výzkumných stanic v Iron River.",
+      "reverseEngineeringEn": "Can be salvaged from environmental hydrological stations in Iron River."
+    },
+    "nameEn": "Electric Eel Catching Net",
+    "nameCs": "Izolovaný podběrák na úhoře (Eel Catching Net)",
+    "categoryEn": "Fishing Gear",
+    "categoryCs": "Rybářská výbava",
+    "scenario": "core",
+    "rarity": "Fine",
+    "workbench": "Intermediate Supplies Workbench",
+    "energy": 0,
+    "hydration": 0,
+    "buffDuration": "Shock-Proof Landing Gear",
+    "sourceEn": "Master Angler Memetic",
+    "sourceCs": "Mistrovské rybaření v Memetics",
+    "effectsEn": [
+      "Insulated heavy mesh net protecting the angler from high-voltage discharges",
+      "Guarantees safe landing of the combat Deviant Electric Eel without shocking the player",
+      "Prevents fish escape at the final landing phase"
+    ],
+    "effectsCs": [
+      "Izolovaná pryžová síť chránící rybáře před vysokonapěťovými elektrickými výboji",
+      "Zaručuje bezpečné vylovení bojového Devianta Elektrického úhoře bez zranění hráče",
+      "Zabraňuje vytržení a úniku ryby v závěrečné fázi vytahování na břeh"
+    ],
+    "ingredientsEn": [
+      {
+        "name": "Rubber",
+        "amount": "15x",
+        "isPrimary": true
+      },
+      {
+        "name": "Steel Ingot",
+        "amount": "10x"
+      },
+      {
+        "name": "Twine",
+        "amount": "15x"
+      },
+      {
+        "name": "Copper Ingot",
+        "amount": "5x"
+      }
+    ],
+    "ingredientsCs": [
+      {
+        "name": "Guma (Rubber)",
+        "amount": "15x",
+        "isPrimary": true
+      },
+      {
+        "name": "Ocelový ingot",
+        "amount": "10x"
+      },
+      {
+        "name": "Motouz",
+        "amount": "15x"
+      },
+      {
+        "name": "Měděný ingot",
+        "amount": "5x"
+      }
+    ],
+    "descriptionEn": "Shock-resistant landing net designed for safely capturing electrogenic aquatic life and deviants.",
+    "descriptionCs": "Speciální dielektrický podběrák pro bezpečné vylovení silně elektrizujících vodních tvorů a Deviantů."
   }
 ];
 
