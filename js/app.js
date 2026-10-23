@@ -986,6 +986,14 @@ function applyLanguageUI() {
   if (mapFltFishing) mapFltFishing.innerText = t.mapLayerFishing || 'Rybolov';
   const mapFltCrate = document.getElementById('map-lbl-filter-crate');
   if (mapFltCrate) mapFltCrate.innerText = t.mapLayerCrates || 'Truhly';
+  const mapFltTower = document.getElementById('map-lbl-filter-tower');
+  if (mapFltTower) mapFltTower.innerText = t.mapLayerTowers || (currentLang === 'cs' ? 'Věže' : 'Towers');
+  const mapFltStronghold = document.getElementById('map-lbl-filter-stronghold');
+  if (mapFltStronghold) mapFltStronghold.innerText = t.mapLayerStrongholds || (currentLang === 'cs' ? 'Strongholdy' : 'Strongholds');
+  const mapFltResource = document.getElementById('map-lbl-filter-resource');
+  if (mapFltResource) mapFltResource.innerText = t.mapLayerResources || (currentLang === 'cs' ? 'Těžba' : 'Mining');
+  const mapLblJump = document.getElementById('map-lbl-jump');
+  if (mapLblJump) mapLblJump.innerText = t.mapRegionQuickJump || (currentLang === 'cs' ? 'Region:' : 'Region:');
 
   // Language buttons visual sync
   const csBtn = document.getElementById('lang-cs');
@@ -2114,12 +2122,26 @@ function openModal(id, pushHistory = false) {
       <div>
         <span class="text-slate-400 block text-[10px] uppercase font-bold text-hud-cyan">${t.sourceTitle}:</span>
         <span class="text-slate-200">${source}</span>
-        ${(typeof findLocationByRecipeId === 'function' && findLocationByRecipeId(item.id)) ? `
-          <div class="text-[11px] text-cyan-300 mt-1 flex items-center gap-1.5">
-            <i class="fa-solid fa-location-crosshairs text-hud-cyan text-[10px]"></i>
-            <span>GPS: <strong class="text-white">${findLocationByRecipeId(item.id).coords}</strong> (${currentLang === 'cs' ? findLocationByRecipeId(item.id).regionNameCs : findLocationByRecipeId(item.id).regionNameEn})</span>
-          </div>
-        ` : ''}
+        ${(() => {
+          if (typeof findLocationByRecipeId !== 'function') return '';
+          const itemLoc = findLocationByRecipeId(item.id);
+          if (!itemLoc) return '';
+          const towerNav = typeof getNearestTeleportTower === 'function' ? getNearestTeleportTower(itemLoc) : null;
+          return `
+            <div class="text-[11px] text-cyan-300 mt-1 flex flex-wrap items-center gap-x-2 gap-y-1">
+              <span class="flex items-center gap-1.5">
+                <i class="fa-solid fa-location-crosshairs text-hud-cyan text-[10px]"></i>
+                <span>GPS: <strong class="text-white">${itemLoc.coords}</strong> (${currentLang === 'cs' ? itemLoc.regionNameCs : itemLoc.regionNameEn})</span>
+              </span>
+              ${towerNav ? `
+                <span class="text-sky-300 flex items-center gap-1 bg-sky-950/60 px-1.5 py-0.5 rounded border border-sky-800/50 text-[10px]">
+                  <i class="fa-solid fa-tower-broadcast text-sky-400"></i>
+                  <span>cca ${towerNav.distanceMeters} m ${currentLang === 'cs' ? towerNav.direction.cs : towerNav.direction.en} ${currentLang === 'cs' ? 'od' : 'from'} ${currentLang === 'cs' ? towerNav.tower.nameCs : towerNav.tower.nameEn}</span>
+                </span>
+              ` : ''}
+            </div>
+          `;
+        })()}
       </div>
       ${(typeof findLocationByRecipeId === 'function' && findLocationByRecipeId(item.id)) ? `
         <button 
@@ -2969,12 +2991,12 @@ function switchMapMode(mode) {
 
 function updateMapCounts() {
   if (typeof mapLocations === 'undefined') return;
-  const counts = { all: mapLocations.length, recipe: 0, monolith: 0, silo: 0, settlement: 0, fishing: 0, crate: 0 };
+  const counts = { all: mapLocations.length, tower: 0, stronghold: 0, resource: 0, recipe: 0, monolith: 0, silo: 0, settlement: 0, fishing: 0, crate: 0 };
   mapLocations.forEach(loc => {
     if (counts[loc.category] !== undefined) counts[loc.category]++;
   });
 
-  const ids = ['all', 'recipe', 'monolith', 'silo', 'settlement', 'fishing', 'crate'];
+  const ids = ['all', 'tower', 'stronghold', 'resource', 'recipe', 'monolith', 'silo', 'settlement', 'fishing', 'crate'];
   ids.forEach(id => {
     const el = document.getElementById(`map-cnt-${id}`);
     if (el) el.innerText = counts[id] || 0;
@@ -2989,16 +3011,40 @@ function setMapFilter(cat) {
 }
 
 function updateMapFilterPills() {
-  const ids = ['all', 'recipe', 'monolith', 'silo', 'settlement', 'fishing', 'crate'];
+  const ids = ['all', 'tower', 'stronghold', 'resource', 'recipe', 'monolith', 'silo', 'settlement', 'fishing', 'crate'];
   ids.forEach(id => {
     const btn = document.getElementById(`map-filter-${id}`);
     if (!btn) return;
     if (id === activeMapFilter) {
-      btn.className = "map-filter-pill px-2.5 py-1 rounded border border-hud-cyan bg-hud-cyan text-black font-bold text-[11px] transition shadow-[0_0_8px_rgba(0,240,255,0.3)] cursor-pointer";
+      btn.className = "map-filter-pill px-2 py-1 rounded border border-hud-cyan bg-hud-cyan text-black font-bold text-[11px] transition shadow-[0_0_8px_rgba(0,240,255,0.3)] cursor-pointer";
     } else {
-      btn.className = "map-filter-pill px-2.5 py-1 rounded border border-hud-border bg-hud-card text-slate-300 hover:text-white text-[11px] transition cursor-pointer";
+      let colorClass = "text-slate-300";
+      if (id === 'tower') colorClass = "text-sky-300";
+      else if (id === 'stronghold') colorClass = "text-orange-300";
+      else if (id === 'resource') colorClass = "text-amber-300";
+      btn.className = `map-filter-pill px-2 py-1 rounded border border-hud-border bg-hud-card ${colorClass} hover:text-white text-[11px] transition cursor-pointer`;
     }
   });
+}
+
+const regionCenters = {
+  dayton: { x: 775, y: 750 },
+  delta: { x: 540, y: 760 },
+  iron_river: { x: 605, y: 500 },
+  chalk_peak: { x: 305, y: 565 },
+  red_sands: { x: 390, y: 275 },
+  blackfell: { x: 685, y: 265 },
+  winter: { x: 530, y: 95 }
+};
+
+function jumpToRegion(regionKey) {
+  const center = regionCenters[regionKey];
+  if (!center) return;
+  mapScale = 1.9;
+  mapPanX = 500 - (center.x * mapScale);
+  mapPanY = 500 - (center.y * mapScale);
+  applyMapTransform();
+  closePinPopover();
 }
 
 function handleMapSearch(val) {
@@ -3124,6 +3170,9 @@ function renderTacticalMap() {
 
   const getEmoji = (cat) => {
     switch (cat) {
+      case 'tower': return '🗼';
+      case 'stronghold': return '⚔️';
+      case 'resource': return '⛏️';
       case 'settlement': return '🏘️';
       case 'monolith': return '💀';
       case 'silo': return '🏛️';
@@ -3221,12 +3270,15 @@ function renderTacticalMap() {
             const px = loc.x * 10;
             const py = loc.y * 10;
             const emoji = getEmoji(loc.category);
+            const isTower = loc.category === 'tower';
 
             return `
               <g class="map-pin-marker" data-pin-id="${loc.id}" transform="translate(${px}, ${py})" onclick="handlePinClick('${loc.id}', event)">
                 ${isSelected ? `
                   <circle class="pin-ripple-anim" cx="0" cy="0" r="22" stroke="${loc.color}" fill="${loc.color}" fill-opacity="0.2" />
                   <circle cx="0" cy="0" r="16" fill="none" stroke="${loc.color}" stroke-width="1.5" stroke-dasharray="2 3" />
+                ` : isTower ? `
+                  <circle cx="0" cy="0" r="16" fill="none" stroke="#38bdf8" stroke-width="1.2" stroke-dasharray="2 2" opacity="0.8" />
                 ` : ''}
                 <circle cx="0" cy="0" r="12" fill="#0d1522" stroke="${loc.color}" stroke-width="2" />
                 <text x="0" y="4.5" text-anchor="middle" font-size="10">${emoji}</text>
@@ -3311,6 +3363,7 @@ function showPinPopover(loc, x, y) {
   const regionName = currentLang === 'cs' ? loc.regionNameCs : loc.regionNameEn;
   const loot = currentLang === 'cs' ? loc.lootCs : loc.lootEn;
   const relatedId = loc.relatedRecipeId || (loc.relatedItemIds && loc.relatedItemIds[0]);
+  const nearestTowerInfo = (loc.category !== 'tower' && typeof getNearestTeleportTower === 'function') ? getNearestTeleportTower(loc) : null;
 
   popover.innerHTML = `
     <div class="flex items-center justify-between mb-2 pb-2 border-b border-hud-border">
@@ -3331,6 +3384,23 @@ function showPinPopover(loc, x, y) {
       <i class="fa-solid fa-location-crosshairs text-hud-cyan text-[10px]"></i>
       <span>GPS: <strong>${loc.coords}</strong></span>
     </div>
+
+    ${nearestTowerInfo ? `
+      <div class="mb-2.5 p-2 rounded bg-sky-950/60 border border-sky-800/80 text-[11px] font-mono text-sky-200">
+        <div class="flex items-center gap-1.5 text-sky-300 font-bold mb-0.5">
+          <i class="fa-solid fa-tower-broadcast text-sky-400"></i>
+          <span>${t.mapNearestTowerLabel || (currentLang === 'cs' ? 'Nejbližší Teleport věž:' : 'Nearest Teleport Tower:')}</span>
+        </div>
+        <div class="flex items-center justify-between gap-1 text-[11px]">
+          <span class="text-white font-semibold cursor-pointer hover:underline hover:text-hud-cyan" onclick="focusMapOnLocation('${nearestTowerInfo.tower.id}', false)">
+            ${currentLang === 'cs' ? nearestTowerInfo.tower.nameCs : nearestTowerInfo.tower.nameEn}
+          </span>
+          <span class="text-cyan-300 font-mono text-[10px] shrink-0 font-bold bg-sky-900/60 px-1.5 py-0.2 rounded border border-sky-700/50">
+            ${nearestTowerInfo.distanceMeters} m ${currentLang === 'cs' ? nearestTowerInfo.direction.cs : nearestTowerInfo.direction.en}
+          </span>
+        </div>
+      </div>
+    ` : ''}
 
     <p class="text-slate-300 text-[11px] leading-relaxed mb-2.5">${desc}</p>
 

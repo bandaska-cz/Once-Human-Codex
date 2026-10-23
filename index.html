@@ -549,56 +549,83 @@
       </div>
 
       <!-- Map Toolbar (Tactical Mode Filters & Controls) -->
-      <div id="tactical-map-toolbar" class="p-2.5 border-b border-hud-border/80 bg-hud-surface/90 flex flex-wrap items-center justify-between gap-2 text-xs font-mono shrink-0">
-        <!-- Category Filter Pills -->
-        <div class="flex flex-wrap items-center gap-1.5">
-          <button onclick="setMapFilter('all')" id="map-filter-all" class="map-filter-pill px-2.5 py-1 rounded border border-hud-cyan bg-hud-cyan text-black font-bold text-[11px] transition shadow-[0_0_8px_rgba(0,240,255,0.3)] cursor-pointer">
-            <span id="map-lbl-filter-all">Vše</span> (<span id="map-cnt-all">0</span>)
-          </button>
-          <button onclick="setMapFilter('recipe')" id="map-filter-recipe" class="map-filter-pill px-2.5 py-1 rounded border border-hud-border bg-hud-card text-slate-300 hover:text-white text-[11px] transition cursor-pointer">
-            🍽️ <span id="map-lbl-filter-recipe">Recepty</span> (<span id="map-cnt-recipe">0</span>)
-          </button>
-          <button onclick="setMapFilter('monolith')" id="map-filter-monolith" class="map-filter-pill px-2.5 py-1 rounded border border-hud-border bg-hud-card text-slate-300 hover:text-white text-[11px] transition cursor-pointer">
-            💀 <span id="map-lbl-filter-monolith">Bossové</span> (<span id="map-cnt-monolith">0</span>)
-          </button>
-          <button onclick="setMapFilter('silo')" id="map-filter-silo" class="map-filter-pill px-2.5 py-1 rounded border border-hud-border bg-hud-card text-slate-300 hover:text-white text-[11px] transition cursor-pointer">
-            🏛️ <span id="map-lbl-filter-silo">Sila</span> (<span id="map-cnt-silo">0</span>)
-          </button>
-          <button onclick="setMapFilter('settlement')" id="map-filter-settlement" class="map-filter-pill px-2.5 py-1 rounded border border-hud-border bg-hud-card text-slate-300 hover:text-white text-[11px] transition cursor-pointer">
-            🏘️ <span id="map-lbl-filter-settlement">Osady</span> (<span id="map-cnt-settlement">0</span>)
-          </button>
-          <button onclick="setMapFilter('fishing')" id="map-filter-fishing" class="map-filter-pill px-2.5 py-1 rounded border border-hud-border bg-hud-card text-slate-300 hover:text-white text-[11px] transition cursor-pointer">
-            🎣 <span id="map-lbl-filter-fishing">Rybolov</span> (<span id="map-cnt-fishing">0</span>)
-          </button>
-          <button onclick="setMapFilter('crate')" id="map-filter-crate" class="map-filter-pill px-2.5 py-1 rounded border border-hud-border bg-hud-card text-slate-300 hover:text-white text-[11px] transition cursor-pointer">
-            📦 <span id="map-lbl-filter-crate">Truhly</span> (<span id="map-cnt-crate">0</span>)
-          </button>
+      <div id="tactical-map-toolbar" class="p-2 sm:p-2.5 border-b border-hud-border/80 bg-hud-surface/90 flex flex-col gap-2 text-xs font-mono shrink-0">
+        <!-- Top Toolbar Row: Filters & Search/Zoom -->
+        <div class="flex flex-wrap items-center justify-between gap-2">
+          <!-- Category Filter Pills -->
+          <div class="flex flex-wrap items-center gap-1.5">
+            <button onclick="setMapFilter('all')" id="map-filter-all" class="map-filter-pill px-2 py-1 rounded border border-hud-cyan bg-hud-cyan text-black font-bold text-[11px] transition shadow-[0_0_8px_rgba(0,240,255,0.3)] cursor-pointer">
+              <span id="map-lbl-filter-all">Vše</span> (<span id="map-cnt-all">0</span>)
+            </button>
+            <button onclick="setMapFilter('tower')" id="map-filter-tower" class="map-filter-pill px-2 py-1 rounded border border-hud-border bg-hud-card text-sky-300 hover:text-white text-[11px] transition cursor-pointer">
+              🗼 <span id="map-lbl-filter-tower">Věže</span> (<span id="map-cnt-tower">0</span>)
+            </button>
+            <button onclick="setMapFilter('stronghold')" id="map-filter-stronghold" class="map-filter-pill px-2 py-1 rounded border border-hud-border bg-hud-card text-orange-300 hover:text-white text-[11px] transition cursor-pointer">
+              ⚔️ <span id="map-lbl-filter-stronghold">Strongholdy</span> (<span id="map-cnt-stronghold">0</span>)
+            </button>
+            <button onclick="setMapFilter('resource')" id="map-filter-resource" class="map-filter-pill px-2 py-1 rounded border border-hud-border bg-hud-card text-amber-300 hover:text-white text-[11px] transition cursor-pointer">
+              ⛏️ <span id="map-lbl-filter-resource">Těžba</span> (<span id="map-cnt-resource">0</span>)
+            </button>
+            <button onclick="setMapFilter('recipe')" id="map-filter-recipe" class="map-filter-pill px-2 py-1 rounded border border-hud-border bg-hud-card text-slate-300 hover:text-white text-[11px] transition cursor-pointer">
+              🍽️ <span id="map-lbl-filter-recipe">Recepty</span> (<span id="map-cnt-recipe">0</span>)
+            </button>
+            <button onclick="setMapFilter('monolith')" id="map-filter-monolith" class="map-filter-pill px-2 py-1 rounded border border-hud-border bg-hud-card text-slate-300 hover:text-white text-[11px] transition cursor-pointer">
+              💀 <span id="map-lbl-filter-monolith">Bossové</span> (<span id="map-cnt-monolith">0</span>)
+            </button>
+            <button onclick="setMapFilter('silo')" id="map-filter-silo" class="map-filter-pill px-2 py-1 rounded border border-hud-border bg-hud-card text-slate-300 hover:text-white text-[11px] transition cursor-pointer">
+              🏛️ <span id="map-lbl-filter-silo">Sila</span> (<span id="map-cnt-silo">0</span>)
+            </button>
+            <button onclick="setMapFilter('settlement')" id="map-filter-settlement" class="map-filter-pill px-2 py-1 rounded border border-hud-border bg-hud-card text-slate-300 hover:text-white text-[11px] transition cursor-pointer">
+              🏘️ <span id="map-lbl-filter-settlement">Osady</span> (<span id="map-cnt-settlement">0</span>)
+            </button>
+            <button onclick="setMapFilter('fishing')" id="map-filter-fishing" class="map-filter-pill px-2 py-1 rounded border border-hud-border bg-hud-card text-slate-300 hover:text-white text-[11px] transition cursor-pointer">
+              🎣 <span id="map-lbl-filter-fishing">Rybolov</span> (<span id="map-cnt-fishing">0</span>)
+            </button>
+            <button onclick="setMapFilter('crate')" id="map-filter-crate" class="map-filter-pill px-2 py-1 rounded border border-hud-border bg-hud-card text-slate-300 hover:text-white text-[11px] transition cursor-pointer">
+              📦 <span id="map-lbl-filter-crate">Truhly</span> (<span id="map-cnt-crate">0</span>)
+            </button>
+          </div>
+
+          <!-- Search & Zoom Controls -->
+          <div class="flex items-center gap-2 ml-auto">
+            <div class="relative w-36 sm:w-48">
+              <input 
+                type="text" 
+                id="mapSearchInput" 
+                oninput="handleMapSearch(this.value)" 
+                placeholder="Hledat na mapě..."
+                class="w-full bg-hud-bg border border-hud-border rounded px-2.5 py-1 text-xs text-white placeholder-slate-500 focus:border-hud-cyan outline-none pr-6 font-sans"
+              >
+              <i class="fa-solid fa-magnifying-glass text-slate-500 text-[10px] absolute right-2 top-2"></i>
+            </div>
+            <div class="flex items-center gap-1 border border-hud-border rounded bg-hud-card p-0.5">
+              <button onclick="zoomMap(1.25)" title="Přiblížit (+)" class="w-7 h-7 rounded hover:bg-hud-cyan/20 text-slate-300 hover:text-hud-cyan flex items-center justify-center transition cursor-pointer">
+                <i class="fa-solid fa-plus text-xs"></i>
+              </button>
+              <button onclick="zoomMap(0.8)" title="Oddálit (-)" class="w-7 h-7 rounded hover:bg-hud-cyan/20 text-slate-300 hover:text-hud-cyan flex items-center justify-center transition cursor-pointer">
+                <i class="fa-solid fa-minus text-xs"></i>
+              </button>
+              <button onclick="resetMapTransform()" title="Resetovat pohled" class="px-2 h-7 rounded hover:bg-hud-cyan/20 text-slate-300 hover:text-hud-cyan text-[11px] font-mono flex items-center gap-1 transition cursor-pointer">
+                <i class="fa-solid fa-compress text-[10px]"></i>
+                <span class="hidden sm:inline" id="map-btn-reset-lbl">Reset</span>
+              </button>
+            </div>
+          </div>
         </div>
 
-        <!-- Search & Zoom Controls -->
-        <div class="flex items-center gap-2 ml-auto">
-          <div class="relative w-40 sm:w-52">
-            <input 
-              type="text" 
-              id="mapSearchInput" 
-              oninput="handleMapSearch(this.value)" 
-              placeholder="Hledat na mapě..."
-              class="w-full bg-hud-bg border border-hud-border rounded px-2.5 py-1 text-xs text-white placeholder-slate-500 focus:border-hud-cyan outline-none pr-6 font-sans"
-            >
-            <i class="fa-solid fa-magnifying-glass text-slate-500 text-[10px] absolute right-2 top-2"></i>
-          </div>
-          <div class="flex items-center gap-1 border border-hud-border rounded bg-hud-card p-0.5">
-            <button onclick="zoomMap(1.25)" title="Přiblížit (+)" class="w-7 h-7 rounded hover:bg-hud-cyan/20 text-slate-300 hover:text-hud-cyan flex items-center justify-center transition cursor-pointer">
-              <i class="fa-solid fa-plus text-xs"></i>
-            </button>
-            <button onclick="zoomMap(0.8)" title="Oddálit (-)" class="w-7 h-7 rounded hover:bg-hud-cyan/20 text-slate-300 hover:text-hud-cyan flex items-center justify-center transition cursor-pointer">
-              <i class="fa-solid fa-minus text-xs"></i>
-            </button>
-            <button onclick="resetMapTransform()" title="Resetovat pohled" class="px-2 h-7 rounded hover:bg-hud-cyan/20 text-slate-300 hover:text-hud-cyan text-[11px] font-mono flex items-center gap-1 transition cursor-pointer">
-              <i class="fa-solid fa-compress text-[10px]"></i>
-              <span class="hidden sm:inline" id="map-btn-reset-lbl">Reset</span>
-            </button>
-          </div>
+        <!-- Regional Jump Quick Bar -->
+        <div class="flex items-center gap-1.5 overflow-x-auto pt-1.5 border-t border-hud-border/40 w-full text-[10px] font-mono text-slate-400">
+          <span class="text-slate-500 uppercase shrink-0 flex items-center gap-1 font-bold">
+            <i class="fa-solid fa-crosshairs text-hud-cyan text-[10px]"></i>
+            <span id="map-lbl-jump">Region:</span>
+          </span>
+          <button type="button" onclick="jumpToRegion('dayton')" class="px-2 py-0.5 rounded bg-emerald-950/50 hover:bg-emerald-900 border border-emerald-500/40 text-emerald-300 hover:text-white transition cursor-pointer shrink-0">Dayton Wetlands</button>
+          <button type="button" onclick="jumpToRegion('delta')" class="px-2 py-0.5 rounded bg-cyan-950/50 hover:bg-cyan-900 border border-cyan-500/40 text-cyan-300 hover:text-white transition cursor-pointer shrink-0">Broken Delta</button>
+          <button type="button" onclick="jumpToRegion('iron_river')" class="px-2 py-0.5 rounded bg-blue-950/50 hover:bg-blue-900 border border-blue-500/40 text-blue-300 hover:text-white transition cursor-pointer shrink-0">Iron River</button>
+          <button type="button" onclick="jumpToRegion('chalk_peak')" class="px-2 py-0.5 rounded bg-amber-950/50 hover:bg-amber-900 border border-amber-500/40 text-amber-300 hover:text-white transition cursor-pointer shrink-0">Chalk Peak</button>
+          <button type="button" onclick="jumpToRegion('red_sands')" class="px-2 py-0.5 rounded bg-red-950/50 hover:bg-red-900 border border-red-500/40 text-red-300 hover:text-white transition cursor-pointer shrink-0">Red Sands</button>
+          <button type="button" onclick="jumpToRegion('blackfell')" class="px-2 py-0.5 rounded bg-purple-950/50 hover:bg-purple-900 border border-purple-500/40 text-purple-300 hover:text-white transition cursor-pointer shrink-0">Blackfell</button>
+          <button type="button" onclick="jumpToRegion('winter')" class="px-2 py-0.5 rounded bg-sky-950/50 hover:bg-sky-900 border border-sky-400/40 text-sky-200 hover:text-white transition cursor-pointer shrink-0">Onyx Tundra</button>
         </div>
       </div>
 

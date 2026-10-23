@@ -2,7 +2,7 @@
    ONCE HUMAN CODEX - SERVICE WORKER (OFFLINE PWA CACHING)
    ========================================================================== */
 
-const CACHE_NAME = 'once-human-codex-v4';
+const CACHE_NAME = 'once-human-codex-v5';
 const ASSETS_TO_CACHE = [
   './',
   './index.html',
