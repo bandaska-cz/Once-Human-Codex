@@ -25,6 +25,136 @@ let searchDebounceTimer = null;
 
 // Favorites Set stored in localStorage
 
+// Crafting Queue / Farming Planner State
+let craftQueue = [];
+try {
+  const savedQueue = JSON.parse(localStorage.getItem('once_human_craft_queue') || '[]');
+  if (Array.isArray(savedQueue)) craftQueue = savedQueue;
+} catch (e) {
+  craftQueue = [];
+}
+
+function saveCraftQueue() {
+  try {
+    localStorage.setItem('once_human_craft_queue', JSON.stringify(craftQueue));
+  } catch (e) {}
+  updateQueueBadge();
+}
+
+function updateQueueBadge() {
+  const badge = document.getElementById('queue-badge-count');
+  if (badge) {
+    const totalCount = craftQueue.reduce((sum, item) => sum + (item.count || 1), 0);
+    badge.innerText = totalCount;
+    if (totalCount > 0) {
+      badge.classList.remove('hidden');
+    } else {
+      badge.innerText = '0';
+    }
+  }
+}
+
+function addToQueue(recipeId, count = 1, event) {
+  if (event) event.stopPropagation();
+  const recipe = findRecipeById(recipeId);
+  if (!recipe) return;
+
+  const existing = craftQueue.find(q => q.recipeId === recipeId && !q.isResearch);
+  if (existing) {
+    existing.count = (existing.count || 1) + count;
+  } else {
+    craftQueue.push({ recipeId, count, isResearch: false });
+  }
+
+  saveCraftQueue();
+
+  const rName = currentLang === 'cs' ? recipe.nameCs : recipe.nameEn;
+  const msg = currentLang === 'cs' ? `Položka "${rName}" přidána do plánu (${count}×)` : `Added "${rName}" to plan (${count}×)`;
+  showNotification(msg);
+
+  const qModal = document.getElementById('craft-queue-modal');
+  if (qModal && !qModal.classList.contains('hidden')) {
+    renderQueueModalContent();
+  }
+}
+
+function addInventionToQueue(recipeId, count = 1, event) {
+  if (event) event.stopPropagation();
+  const recipe = findRecipeById(recipeId);
+  if (!recipe || !recipe.researchInvention) return;
+
+  const existing = craftQueue.find(q => q.recipeId === recipeId && q.isResearch);
+  if (existing) {
+    existing.count = (existing.count || 1) + count;
+  } else {
+    craftQueue.push({ recipeId, count, isResearch: true });
+  }
+
+  saveCraftQueue();
+
+  const rName = currentLang === 'cs' ? recipe.nameCs : recipe.nameEn;
+  const msg = currentLang === 'cs' ? `🧪 Výzkum "${rName}" přidán do plánu (${count}×)` : `🧪 Research "${rName}" added to plan (${count}×)`;
+  showNotification(msg);
+
+  const qModal = document.getElementById('craft-queue-modal');
+  if (qModal && !qModal.classList.contains('hidden')) {
+    renderQueueModalContent();
+  }
+}
+
+function updateQueueCountByIndex(index, delta) {
+  if (index < 0 || index >= craftQueue.length) return;
+  craftQueue[index].count = (craftQueue[index].count || 1) + delta;
+  if (craftQueue[index].count <= 0) {
+    craftQueue.splice(index, 1);
+  }
+  saveCraftQueue();
+  renderQueueModalContent();
+}
+
+function updateQueueCount(recipeId, delta) {
+  const item = craftQueue.find(q => q.recipeId === recipeId);
+  if (!item) return;
+  item.count = (item.count || 1) + delta;
+  if (item.count <= 0) {
+    removeFromQueue(recipeId);
+    return;
+  }
+  saveCraftQueue();
+  renderQueueModalContent();
+}
+
+function removeFromQueueByIndex(index) {
+  if (index < 0 || index >= craftQueue.length) return;
+  craftQueue.splice(index, 1);
+  saveCraftQueue();
+  renderQueueModalContent();
+}
+
+function removeFromQueue(recipeId) {
+  craftQueue = craftQueue.filter(q => q.recipeId !== recipeId);
+  saveCraftQueue();
+  renderQueueModalContent();
+}
+
+function clearQueue() {
+  craftQueue = [];
+  saveCraftQueue();
+  renderQueueModalContent();
+}
+
+function openQueueModal() {
+  const modal = document.getElementById('craft-queue-modal');
+  if (!modal) return;
+  renderQueueModalContent();
+  modal.classList.remove('hidden');
+}
+
+function closeQueueModal() {
+  const modal = document.getElementById('craft-queue-modal');
+  if (modal) modal.classList.add('hidden');
+}
+
 
 // Checked materials set stored in localStorage
 let checkedMaterials = new Set();
@@ -107,7 +237,12 @@ function calculateQueueMaterials() {
     const recipe = findRecipeById(item.recipeId);
     if (!recipe) return;
 
-    const ingredients = currentLang === 'cs' ? recipe.ingredientsCs : recipe.ingredientsEn;
+    let ingredients;
+    if (item.isResearch && recipe.researchInvention) {
+      ingredients = currentLang === 'cs' ? recipe.researchInvention.materialsCs : recipe.researchInvention.materialsEn;
+    } else {
+      ingredients = currentLang === 'cs' ? recipe.ingredientsCs : recipe.ingredientsEn;
+    }
     const mult = item.count || 1;
 
     ingredients.forEach(ing => {
@@ -115,7 +250,7 @@ function calculateQueueMaterials() {
       const amountPerCraft = match ? parseInt(match[0], 10) : 1;
       const totalAmount = amountPerCraft * mult;
 
-      if (rawDecompositionMode) {
+      if (rawDecompositionMode && !item.isResearch) {
         // Recursive raw decomposition to base natural resources
         const decomposed = decomposeSingleIngredient(ing.name, totalAmount, currentLang);
         decomposed.forEach(rawItem => {
@@ -196,10 +331,15 @@ function renderQueueModalContent() {
         </span>
       </h4>
       <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2 max-h-44 overflow-y-auto pr-1">
-        ${craftQueue.map(item => {
+        ${craftQueue.map((item, idx) => {
           const recipe = findRecipeById(item.recipeId);
           if (!recipe) return '';
-          const name = currentLang === 'cs' ? recipe.nameCs : recipe.nameEn;
+          let name = currentLang === 'cs' ? recipe.nameCs : recipe.nameEn;
+          let workbench = recipe.workbench;
+          if (item.isResearch) {
+            name = '🧪 ' + (currentLang === 'cs' ? 'Výzkum: ' : 'Research: ') + name;
+            workbench = currentLang === 'cs' ? 'Stůl pro technologický výzkum' : 'Tech Research Workbench';
+          }
           const rar = rarityConfig[recipe.rarity] || rarityConfig.Common;
 
           return `
@@ -209,13 +349,13 @@ function renderQueueModalContent() {
                   <span class="w-1.5 h-1.5 rounded-full ${rar.dot}"></span>
                   <span class="text-xs font-medium text-white truncate cursor-pointer hover:text-hud-cyan" onclick="openModal('${recipe.id}', true)">${name}</span>
                 </div>
-                <div class="text-[9px] font-mono text-slate-500 truncate">${recipe.workbench}</div>
+                <div class="text-[9px] font-mono text-slate-500 truncate">${workbench}</div>
               </div>
               <div class="flex items-center gap-1 shrink-0">
-                <button onclick="updateQueueCount('${recipe.id}', -1)" class="w-5 h-5 rounded bg-slate-800 hover:bg-slate-700 text-slate-300 flex items-center justify-center font-bold text-xs cursor-pointer">-</button>
+                <button onclick="updateQueueCountByIndex(${idx}, -1)" class="w-5 h-5 rounded bg-slate-800 hover:bg-slate-700 text-slate-300 flex items-center justify-center font-bold text-xs cursor-pointer">-</button>
                 <span class="w-5 text-center font-mono font-bold text-hud-cyan text-xs">${item.count}</span>
-                <button onclick="updateQueueCount('${recipe.id}', 1)" class="w-5 h-5 rounded bg-slate-800 hover:bg-slate-700 text-slate-300 flex items-center justify-center font-bold text-xs cursor-pointer">+</button>
-                <button onclick="removeFromQueue('${recipe.id}')" class="text-slate-500 hover:text-red-400 p-0.5 cursor-pointer ml-0.5">
+                <button onclick="updateQueueCountByIndex(${idx}, 1)" class="w-5 h-5 rounded bg-slate-800 hover:bg-slate-700 text-slate-300 flex items-center justify-center font-bold text-xs cursor-pointer">+</button>
+                <button onclick="removeFromQueueByIndex(${idx})" class="text-slate-500 hover:text-red-400 p-0.5 cursor-pointer ml-0.5">
                   <i class="fa-solid fa-xmark text-xs"></i>
                 </button>
               </div>
@@ -324,7 +464,10 @@ function copyQueueToDiscord() {
   text += `**${currentLang === 'cs' ? 'Plánovaná výroba' : 'Planned Items'}:**\n`;
   craftQueue.forEach(item => {
     const recipe = findRecipeById(item.recipeId);
-    const rName = recipe ? (currentLang === 'cs' ? recipe.nameCs : recipe.nameEn) : item.recipeId;
+    let rName = recipe ? (currentLang === 'cs' ? recipe.nameCs : recipe.nameEn) : item.recipeId;
+    if (item.isResearch) {
+      rName = '🧪 ' + (currentLang === 'cs' ? 'Výzkum: ' : 'Research: ') + rName;
+    }
     text += `• ${rName} (${item.count}×)\n`;
   });
 
@@ -582,6 +725,7 @@ window.onload = function() {
   applyLanguageUI();
   updateTotalStats();
   renderFilterControls();
+  updateQueueBadge();
   
   // Restore state from URL Hash if present
   handleInitialHash();

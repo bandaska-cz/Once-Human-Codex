@@ -1361,6 +1361,31 @@ const i18n = {
       /* --- 1. REFINING & METALLURGY RECIPES --- */
       {
         id: "tech-glass",
+      researchInvention: {
+      "chance": "High (Vysoká šance)",
+      "materialsCs": [
+            {
+                  "name": "Štěrk (Gravel)",
+                  "amount": "10x"
+            },
+            {
+                  "name": "Dřevěné uhlí",
+                  "amount": "5x"
+            }
+      ],
+      "materialsEn": [
+            {
+                  "name": "Gravel",
+                  "amount": "10x"
+            },
+            {
+                  "name": "Charcoal",
+                  "amount": "5x"
+            }
+      ],
+      "reverseEngineeringCs": "Lze recyklovat z rozbitých oken a tabulí v Dayton Wetlands a Broken Delta.",
+      "reverseEngineeringEn": "Can be salvaged from broken window glass in Dayton Wetlands and Broken Delta."
+},
         nameEn: "Glass",
         nameCs: "Sklo",
         categoryEn: "Refining",
@@ -1382,6 +1407,31 @@ const i18n = {
       },
       {
         id: "tech-charcoal",
+      researchInvention: {
+      "chance": "High (Vysoká šance)",
+      "materialsCs": [
+            {
+                  "name": "Dřevo (Logs)",
+                  "amount": "15x"
+            },
+            {
+                  "name": "Rostlinná vlákna",
+                  "amount": "10x"
+            }
+      ],
+      "materialsEn": [
+            {
+                  "name": "Wood (Logs)",
+                  "amount": "15x"
+            },
+            {
+                  "name": "Plant Fiber",
+                  "amount": "10x"
+            }
+      ],
+      "reverseEngineeringCs": "Lze analyzovat z ohnišť a starých krbů v kempech Dayton Wetlands.",
+      "reverseEngineeringEn": "Can be analyzed from campfires and old fireplaces in Dayton Wetlands campsites."
+},
         nameEn: "Charcoal",
         nameCs: "Dřevěné uhlí",
         categoryEn: "Refining",
@@ -1403,6 +1453,31 @@ const i18n = {
       },
       {
         id: "b-07",
+      researchInvention: {
+      "chance": "High (Vysoká šance)",
+      "materialsCs": [
+            {
+                  "name": "Měděná ruda",
+                  "amount": "10x"
+            },
+            {
+                  "name": "Dřevěné uhlí",
+                  "amount": "5x"
+            }
+      ],
+      "materialsEn": [
+            {
+                  "name": "Copper Ore",
+                  "amount": "10x"
+            },
+            {
+                  "name": "Charcoal",
+                  "amount": "5x"
+            }
+      ],
+      "reverseEngineeringCs": "Lze získat rozebráním měděných trubek a drátů v průmyslových skladech Broken Delta.",
+      "reverseEngineeringEn": "Can be salvaged from copper piping and wiring in Broken Delta industrial warehouses."
+},
         nameEn: "Copper Ingot",
         nameCs: "Měděný ingot",
         categoryEn: "Refining",
@@ -1424,6 +1499,39 @@ const i18n = {
       },
       {
         id: "b-08",
+      researchInvention: {
+      "chance": "High (Vysoká šance)",
+      "materialsCs": [
+            {
+                  "name": "Měděná ruda",
+                  "amount": "10x"
+            },
+            {
+                  "name": "Cínová ruda",
+                  "amount": "8x"
+            },
+            {
+                  "name": "Dřevěné uhlí",
+                  "amount": "5x"
+            }
+      ],
+      "materialsEn": [
+            {
+                  "name": "Copper Ore",
+                  "amount": "10x"
+            },
+            {
+                  "name": "Tin Ore",
+                  "amount": "8x"
+            },
+            {
+                  "name": "Charcoal",
+                  "amount": "5x"
+            }
+      ],
+      "reverseEngineeringCs": "Lze analyzovat z bronzového strojního šrotu v Harborside a Meyer's Market.",
+      "reverseEngineeringEn": "Can be salvaged from bronze machinery scrap in Harborside and Meyer's Market."
+},
         nameEn: "Bronze Ingot",
         nameCs: "Bronzový ingot",
         categoryEn: "Refining",
@@ -1445,6 +1553,39 @@ const i18n = {
       },
       {
         id: "b-05",
+      researchInvention: {
+      "chance": "High (Vysoká šance)",
+      "materialsCs": [
+            {
+                  "name": "Železná ruda",
+                  "amount": "15x"
+            },
+            {
+                  "name": "Dřevěné uhlí",
+                  "amount": "8x"
+            },
+            {
+                  "name": "Kovový šrot",
+                  "amount": "10x"
+            }
+      ],
+      "materialsEn": [
+            {
+                  "name": "Iron Ore",
+                  "amount": "15x"
+            },
+            {
+                  "name": "Charcoal",
+                  "amount": "8x"
+            },
+            {
+                  "name": "Metal Scraps",
+                  "amount": "10x"
+            }
+      ],
+      "reverseEngineeringCs": "Lze rozebrat z těžkých ocelových nosníků a vraků v Iron River a Greywater Camp.",
+      "reverseEngineeringEn": "Can be salvaged from heavy steel girders and vehicle wrecks in Iron River and Greywater Camp."
+},
         nameEn: "Steel Ingot",
         nameCs: "Ocelový ingot",
         categoryEn: "Refining",
@@ -1466,6 +1607,39 @@ const i18n = {
       },
       {
         id: "b-09",
+      researchInvention: {
+      "chance": "High (Vysoká šance)",
+      "materialsCs": [
+            {
+                  "name": "Hliníková ruda",
+                  "amount": "15x"
+            },
+            {
+                  "name": "Kyselina (Acid)",
+                  "amount": "5x"
+            },
+            {
+                  "name": "Dřevěné uhlí",
+                  "amount": "5x"
+            }
+      ],
+      "materialsEn": [
+            {
+                  "name": "Aluminum Ore",
+                  "amount": "15x"
+            },
+            {
+                  "name": "Acid",
+                  "amount": "5x"
+            },
+            {
+                  "name": "Charcoal",
+                  "amount": "5x"
+            }
+      ],
+      "reverseEngineeringCs": "Lze analyzovat z leteckých trosek a lehkých konstrukcí v Chalk Peak.",
+      "reverseEngineeringEn": "Can be analyzed from aircraft wreckage and lightweight alloy frames in Chalk Peak."
+},
         nameEn: "Aluminum Ingot",
         nameCs: "Hliníkový ingot",
         categoryEn: "Refining",
@@ -1487,6 +1661,39 @@ const i18n = {
       },
       {
         id: "b-10",
+      researchInvention: {
+      "chance": "High (Vysoká šance)",
+      "materialsCs": [
+            {
+                  "name": "Wolframová ruda",
+                  "amount": "15x"
+            },
+            {
+                  "name": "Kyselina (Acid)",
+                  "amount": "8x"
+            },
+            {
+                  "name": "Zdroj hvězdného prachu (Stardust)",
+                  "amount": "5x"
+            }
+      ],
+      "materialsEn": [
+            {
+                  "name": "Tungsten Ore",
+                  "amount": "15x"
+            },
+            {
+                  "name": "Acid",
+                  "amount": "8x"
+            },
+            {
+                  "name": "Stardust Source",
+                  "amount": "5x"
+            }
+      ],
+      "reverseEngineeringCs": "Lze získat ze špičkových vojenských laboratoří v Red Sands a Blackfell Oilfields.",
+      "reverseEngineeringEn": "Can be obtained from high-tier military labs in Red Sands and Blackfell Oilfields."
+},
         nameEn: "Tungsten Ingot",
         nameCs: "Wolframový ingot",
         categoryEn: "Refining",
@@ -1508,6 +1715,39 @@ const i18n = {
       },
       {
         id: "b-06",
+      researchInvention: {
+      "chance": "High (Vysoká šance)",
+      "materialsCs": [
+            {
+                  "name": "Síra (Sulfur)",
+                  "amount": "10x"
+            },
+            {
+                  "name": "Dřevěné uhlí",
+                  "amount": "5x"
+            },
+            {
+                  "name": "Kyselina (Acid)",
+                  "amount": "2x"
+            }
+      ],
+      "materialsEn": [
+            {
+                  "name": "Sulfur",
+                  "amount": "10x"
+            },
+            {
+                  "name": "Charcoal",
+                  "amount": "5x"
+            },
+            {
+                  "name": "Acid",
+                  "amount": "2x"
+            }
+      ],
+      "reverseEngineeringCs": "Lze najít ve zbytcích muničních skladů v Broken Delta a Iron River.",
+      "reverseEngineeringEn": "Can be scavenged from remnant munitions depots in Broken Delta and Iron River."
+},
         nameEn: "Gunpowder",
         nameCs: "Střelný prach",
         categoryEn: "Ammunition",
@@ -1531,6 +1771,39 @@ const i18n = {
       /* --- 2. COMPLETE AMMUNITION ROSTER --- */
       {
         id: "ammo-01",
+      researchInvention: {
+      "chance": "High (Vysoká šance)",
+      "materialsCs": [
+            {
+                  "name": "Měděný ingot",
+                  "amount": "6x"
+            },
+            {
+                  "name": "Střelný prach",
+                  "amount": "6x"
+            },
+            {
+                  "name": "Kovový šrot",
+                  "amount": "10x"
+            }
+      ],
+      "materialsEn": [
+            {
+                  "name": "Copper Ingot",
+                  "amount": "6x"
+            },
+            {
+                  "name": "Gunpowder",
+                  "amount": "6x"
+            },
+            {
+                  "name": "Metal Scraps",
+                  "amount": "10x"
+            }
+      ],
+      "reverseEngineeringCs": "Lze rozebrat z poškozených muničních beden v policejních stanicích Dayton Wetlands.",
+      "reverseEngineeringEn": "Can be reverse-engineered from damaged ammo crates at Dayton Wetlands police stations."
+},
         nameEn: "Pistol Ammo",
         nameCs: "Pistolové náboje",
         categoryEn: "Ammunition",
@@ -1552,6 +1825,39 @@ const i18n = {
       },
       {
         id: "ammo-02",
+      researchInvention: {
+      "chance": "High (Vysoká šance)",
+      "materialsCs": [
+            {
+                  "name": "Měděný ingot",
+                  "amount": "8x"
+            },
+            {
+                  "name": "Střelný prach",
+                  "amount": "8x"
+            },
+            {
+                  "name": "Plast",
+                  "amount": "6x"
+            }
+      ],
+      "materialsEn": [
+            {
+                  "name": "Copper Ingot",
+                  "amount": "8x"
+            },
+            {
+                  "name": "Gunpowder",
+                  "amount": "8x"
+            },
+            {
+                  "name": "Plastic",
+                  "amount": "6x"
+            }
+      ],
+      "reverseEngineeringCs": "Lze najít a analyzovat v loveckých chatách v Broken Delta.",
+      "reverseEngineeringEn": "Can be found and analyzed in hunter cabins across Broken Delta."
+},
         nameEn: "Shotgun Shells",
         nameCs: "Brokové náboje",
         categoryEn: "Ammunition",
@@ -1573,6 +1879,39 @@ const i18n = {
       },
       {
         id: "ammo-03",
+      researchInvention: {
+      "chance": "High (Vysoká šance)",
+      "materialsCs": [
+            {
+                  "name": "Ocelový ingot",
+                  "amount": "10x"
+            },
+            {
+                  "name": "Střelný prach",
+                  "amount": "12x"
+            },
+            {
+                  "name": "Standardní součástky",
+                  "amount": "8x"
+            }
+      ],
+      "materialsEn": [
+            {
+                  "name": "Steel Ingot",
+                  "amount": "10x"
+            },
+            {
+                  "name": "Gunpowder",
+                  "amount": "12x"
+            },
+            {
+                  "name": "Standard Parts",
+                  "amount": "8x"
+            }
+      ],
+      "reverseEngineeringCs": "Lze rozebrat z vojenských kontrolních stanovišť v Iron River a Greywater.",
+      "reverseEngineeringEn": "Can be salvaged from military checkpoints in Iron River and Greywater."
+},
         nameEn: "Standard Rifle Ammo (Medium-Caliber)",
         nameCs: "Standardní puškové náboje (Střední ráže)",
         categoryEn: "Ammunition",
@@ -1594,6 +1933,39 @@ const i18n = {
       },
       {
         id: "ammo-04",
+      researchInvention: {
+      "chance": "High (Vysoká šance)",
+      "materialsCs": [
+            {
+                  "name": "Ocelový ingot",
+                  "amount": "12x"
+            },
+            {
+                  "name": "Střelný prach",
+                  "amount": "15x"
+            },
+            {
+                  "name": "Zušlechtěné součástky",
+                  "amount": "6x"
+            }
+      ],
+      "materialsEn": [
+            {
+                  "name": "Steel Ingot",
+                  "amount": "12x"
+            },
+            {
+                  "name": "Gunpowder",
+                  "amount": "15x"
+            },
+            {
+                  "name": "Refined Parts",
+                  "amount": "6x"
+            }
+      ],
+      "reverseEngineeringCs": "Lze analyzovat z armádních beden těžké munice v Chalk Peak a Tall Grass Inn.",
+      "reverseEngineeringEn": "Can be analyzed from heavy munitions crates in Chalk Peak and Tall Grass Inn."
+},
         nameEn: "Heavy Rifle Ammo (Large-Caliber)",
         nameCs: "Těžké puškové náboje (Velká ráže)",
         categoryEn: "Ammunition",
@@ -1615,6 +1987,47 @@ const i18n = {
       },
       {
         id: "ammo-05",
+      researchInvention: {
+      "chance": "High (Vysoká šance)",
+      "materialsCs": [
+            {
+                  "name": "Wolframový ingot",
+                  "amount": "12x"
+            },
+            {
+                  "name": "Střelný prach",
+                  "amount": "20x"
+            },
+            {
+                  "name": "Kyselina (Acid)",
+                  "amount": "6x"
+            },
+            {
+                  "name": "Zušlechtěné součástky",
+                  "amount": "10x"
+            }
+      ],
+      "materialsEn": [
+            {
+                  "name": "Tungsten Ingot",
+                  "amount": "12x"
+            },
+            {
+                  "name": "Gunpowder",
+                  "amount": "20x"
+            },
+            {
+                  "name": "Acid",
+                  "amount": "6x"
+            },
+            {
+                  "name": "Refined Parts",
+                  "amount": "10x"
+            }
+      ],
+      "reverseEngineeringCs": "Lze získat z elitních zbraňových beden v Red Sands a pevnostech Blackfell.",
+      "reverseEngineeringEn": "Can be reverse-engineered from elite weapon crates in Red Sands and Blackfell fortresses."
+},
         nameEn: "AP Ammo (Armor-Piercing Tungsten)",
         nameCs: "Průrazné AP střelivo (Wolframové)",
         categoryEn: "Ammunition",
@@ -1636,6 +2049,47 @@ const i18n = {
       },
       {
         id: "ammo-06",
+      researchInvention: {
+      "chance": "High (Vysoká šance)",
+      "materialsCs": [
+            {
+                  "name": "Ocelový ingot",
+                  "amount": "10x"
+            },
+            {
+                  "name": "Střelný prach",
+                  "amount": "15x"
+            },
+            {
+                  "name": "Palivo / Rostlinný olej",
+                  "amount": "8x"
+            },
+            {
+                  "name": "Kyselina (Acid)",
+                  "amount": "4x"
+            }
+      ],
+      "materialsEn": [
+            {
+                  "name": "Steel Ingot",
+                  "amount": "10x"
+            },
+            {
+                  "name": "Gunpowder",
+                  "amount": "15x"
+            },
+            {
+                  "name": "Fuel / Vegetable Oil",
+                  "amount": "8x"
+            },
+            {
+                  "name": "Acid",
+                  "amount": "4x"
+            }
+      ],
+      "reverseEngineeringCs": "Lze analyzovat z chemických laboratoří ropné rafinérie v Iron River.",
+      "reverseEngineeringEn": "Can be analyzed from chemical labs in Iron River oil refinery compounds."
+},
         nameEn: "Incendiary Elemental Ammo",
         nameCs: "Zápalná elementální munice",
         categoryEn: "Ammunition",
@@ -1657,6 +2111,47 @@ const i18n = {
       },
       {
         id: "ammo-07",
+      researchInvention: {
+      "chance": "High (Vysoká šance)",
+      "materialsCs": [
+            {
+                  "name": "Ocelový ingot",
+                  "amount": "10x"
+            },
+            {
+                  "name": "Střelný prach",
+                  "amount": "15x"
+            },
+            {
+                  "name": "Zdroj hvězdného prachu (Stardust)",
+                  "amount": "6x"
+            },
+            {
+                  "name": "Elektronické součástky",
+                  "amount": "8x"
+            }
+      ],
+      "materialsEn": [
+            {
+                  "name": "Steel Ingot",
+                  "amount": "10x"
+            },
+            {
+                  "name": "Gunpowder",
+                  "amount": "15x"
+            },
+            {
+                  "name": "Stardust Source",
+                  "amount": "6x"
+            },
+            {
+                  "name": "Electronic Parts",
+                  "amount": "8x"
+            }
+      ],
+      "reverseEngineeringCs": "Lze získat v utajených Rosetta výzkumných zařízeních v Chalk Peak a Red Sands.",
+      "reverseEngineeringEn": "Can be salvaged from classified Rosetta research facilities in Chalk Peak and Red Sands."
+},
         nameEn: "Frost & Shock Elemental Ammo",
         nameCs: "Mrazivá & Šoková elementální munice",
         categoryEn: "Ammunition",
@@ -1680,6 +2175,47 @@ const i18n = {
       /* --- 3. TACTICAL ITEMS, THROWABLES & DRONES --- */
       {
         id: "tac-01",
+      researchInvention: {
+      "chance": "High (Vysoká šance)",
+      "materialsCs": [
+            {
+                  "name": "Standardní součástky",
+                  "amount": "15x"
+            },
+            {
+                  "name": "Elektronické součástky",
+                  "amount": "10x"
+            },
+            {
+                  "name": "Měděný ingot",
+                  "amount": "10x"
+            },
+            {
+                  "name": "Sklo",
+                  "amount": "5x"
+            }
+      ],
+      "materialsEn": [
+            {
+                  "name": "Standard Parts",
+                  "amount": "15x"
+            },
+            {
+                  "name": "Electronic Parts",
+                  "amount": "10x"
+            },
+            {
+                  "name": "Copper Ingot",
+                  "amount": "10x"
+            },
+            {
+                  "name": "Glass",
+                  "amount": "5x"
+            }
+      ],
+      "reverseEngineeringCs": "Lze analyzovat z vraků monitorovacích dronů u komunikačních věží Dayton Wetlands.",
+      "reverseEngineeringEn": "Can be analyzed from crashed surveillance drones at Dayton Wetlands communications towers."
+},
         nameEn: "Scout Drone",
         nameCs: "Průzkumný dron (Scout Drone)",
         categoryEn: "Tactical Tech",
@@ -1701,6 +2237,47 @@ const i18n = {
       },
       {
         id: "tac-02",
+      researchInvention: {
+      "chance": "High (Vysoká šance)",
+      "materialsCs": [
+            {
+                  "name": "Zušlechtěné součástky",
+                  "amount": "15x"
+            },
+            {
+                  "name": "Elektronické součástky",
+                  "amount": "12x"
+            },
+            {
+                  "name": "Ocelový ingot",
+                  "amount": "15x"
+            },
+            {
+                  "name": "Úložná baterie (Battery)",
+                  "amount": "2x"
+            }
+      ],
+      "materialsEn": [
+            {
+                  "name": "Refined Parts",
+                  "amount": "15x"
+            },
+            {
+                  "name": "Electronic Parts",
+                  "amount": "12x"
+            },
+            {
+                  "name": "Steel Ingot",
+                  "amount": "15x"
+            },
+            {
+                  "name": "Storage Battery",
+                  "amount": "2x"
+            }
+      ],
+      "reverseEngineeringCs": "Lze získat rozložením Rosetta bojových dronů v Chalk Peak.",
+      "reverseEngineeringEn": "Can be dismantled from Rosetta combat drones in Chalk Peak."
+},
         nameEn: "Combat Drone",
         nameCs: "Bojový útočný dron (Combat Drone)",
         categoryEn: "Tactical Tech",
@@ -1722,6 +2299,47 @@ const i18n = {
       },
       {
         id: "tac-03",
+      researchInvention: {
+      "chance": "High (Vysoká šance)",
+      "materialsCs": [
+            {
+                  "name": "Ocelový ingot",
+                  "amount": "12x"
+            },
+            {
+                  "name": "Guma (Rubber)",
+                  "amount": "10x"
+            },
+            {
+                  "name": "Standardní součástky",
+                  "amount": "10x"
+            },
+            {
+                  "name": "Střelný prach",
+                  "amount": "6x"
+            }
+      ],
+      "materialsEn": [
+            {
+                  "name": "Steel Ingot",
+                  "amount": "12x"
+            },
+            {
+                  "name": "Rubber",
+                  "amount": "10x"
+            },
+            {
+                  "name": "Standard Parts",
+                  "amount": "10x"
+            },
+            {
+                  "name": "Gunpowder",
+                  "amount": "6x"
+            }
+      ],
+      "reverseEngineeringCs": "Lze recyklovat z průmyslových ventilačních systémů v Iron River.",
+      "reverseEngineeringEn": "Can be recycled from industrial ventilation blowers in Iron River."
+},
         nameEn: "Portable Updraft Cannon",
         nameCs: "Přenosné větrné dělo (Updraft Cannon)",
         categoryEn: "Tactical Tech",
@@ -1743,6 +2361,47 @@ const i18n = {
       },
       {
         id: "tac-04",
+      researchInvention: {
+      "chance": "High (Vysoká šance)",
+      "materialsCs": [
+            {
+                  "name": "Guma (Rubber)",
+                  "amount": "15x"
+            },
+            {
+                  "name": "Ocelový ingot",
+                  "amount": "10x"
+            },
+            {
+                  "name": "Standardní součástky",
+                  "amount": "8x"
+            },
+            {
+                  "name": "Lepidlo (Adhesive)",
+                  "amount": "6x"
+            }
+      ],
+      "materialsEn": [
+            {
+                  "name": "Rubber",
+                  "amount": "15x"
+            },
+            {
+                  "name": "Steel Ingot",
+                  "amount": "10x"
+            },
+            {
+                  "name": "Standard Parts",
+                  "amount": "8x"
+            },
+            {
+                  "name": "Adhesive",
+                  "amount": "6x"
+            }
+      ],
+      "reverseEngineeringCs": "Lze analyzovat z tělocvičen a sportovních středisek v Broken Delta.",
+      "reverseEngineeringEn": "Can be analyzed from athletic equipment in Broken Delta gym complexes."
+},
         nameEn: "Spring Legs (Frog Gadget)",
         nameCs: "Pružinové nohy (Žabí skok)",
         categoryEn: "Tactical Tech",
@@ -1764,6 +2423,47 @@ const i18n = {
       },
       {
         id: "tac-05",
+      researchInvention: {
+      "chance": "High (Vysoká šance)",
+      "materialsCs": [
+            {
+                  "name": "Zdroj hvězdného prachu (Stardust)",
+                  "amount": "20x"
+            },
+            {
+                  "name": "Elektronické součástky",
+                  "amount": "15x"
+            },
+            {
+                  "name": "Hliníkový ingot",
+                  "amount": "15x"
+            },
+            {
+                  "name": "Sklo",
+                  "amount": "8x"
+            }
+      ],
+      "materialsEn": [
+            {
+                  "name": "Stardust Source",
+                  "amount": "20x"
+            },
+            {
+                  "name": "Electronic Parts",
+                  "amount": "15x"
+            },
+            {
+                  "name": "Aluminum Ingot",
+                  "amount": "15x"
+            },
+            {
+                  "name": "Glass",
+                  "amount": "8x"
+            }
+      ],
+      "reverseEngineeringCs": "Lze získat reverzním inženýrstvím experimentálních bran v Red Sands výzkumných komplexech.",
+      "reverseEngineeringEn": "Can be reverse-engineered from experimental teleport gates in Red Sands lab facilities."
+},
         nameEn: "Space Twister (Teleport Door)",
         nameCs: "Prostorový překrucovač (Teleport dveře)",
         categoryEn: "Tactical Tech",
@@ -1785,6 +2485,47 @@ const i18n = {
       },
       {
         id: "tac-06",
+      researchInvention: {
+      "chance": "High (Vysoká šance)",
+      "materialsCs": [
+            {
+                  "name": "Ocelový ingot",
+                  "amount": "10x"
+            },
+            {
+                  "name": "Střelný prach",
+                  "amount": "15x"
+            },
+            {
+                  "name": "Rostlinná biomasa",
+                  "amount": "20x"
+            },
+            {
+                  "name": "Kyselina (Acid)",
+                  "amount": "5x"
+            }
+      ],
+      "materialsEn": [
+            {
+                  "name": "Steel Ingot",
+                  "amount": "10x"
+            },
+            {
+                  "name": "Gunpowder",
+                  "amount": "15x"
+            },
+            {
+                  "name": "Plant Biomass",
+                  "amount": "20x"
+            },
+            {
+                  "name": "Acid",
+                  "amount": "5x"
+            }
+      ],
+      "reverseEngineeringCs": "Lze analyzovat z opuštěných sil a zemědělských raketových odpalovačů v Chalk Peak.",
+      "reverseEngineeringEn": "Can be analyzed from agricultural missile launchers and silo ruins in Chalk Peak."
+},
         nameEn: "Biomass Missile",
         nameCs: "Biomasová řízená střela (Prime War)",
         categoryEn: "Ammunition",
@@ -1806,6 +2547,47 @@ const i18n = {
       },
       {
         id: "tac-07",
+      researchInvention: {
+      "chance": "High (Vysoká šance)",
+      "materialsCs": [
+            {
+                  "name": "Sklo",
+                  "amount": "6x"
+            },
+            {
+                  "name": "Palivo / Biopalivo",
+                  "amount": "10x"
+            },
+            {
+                  "name": "Látka / Bavlna",
+                  "amount": "8x"
+            },
+            {
+                  "name": "Střelný prach",
+                  "amount": "4x"
+            }
+      ],
+      "materialsEn": [
+            {
+                  "name": "Glass",
+                  "amount": "6x"
+            },
+            {
+                  "name": "Fuel / Biofuel",
+                  "amount": "10x"
+            },
+            {
+                  "name": "Fabric / Cotton",
+                  "amount": "8x"
+            },
+            {
+                  "name": "Gunpowder",
+                  "amount": "4x"
+            }
+      ],
+      "reverseEngineeringCs": "Lze najít v táborech banditů a povstaleckých skrýších v Broken Delta.",
+      "reverseEngineeringEn": "Can be salvaged from rebel caches and bandit barricades in Broken Delta."
+},
         nameEn: "Molotov Cocktail",
         nameCs: "Zápalná láhev (Molotov)",
         categoryEn: "Tactical Tech",
@@ -1827,6 +2609,47 @@ const i18n = {
       },
       {
         id: "tac-08",
+      researchInvention: {
+      "chance": "High (Vysoká šance)",
+      "materialsCs": [
+            {
+                  "name": "Ocelový ingot",
+                  "amount": "8x"
+            },
+            {
+                  "name": "Střelný prach",
+                  "amount": "16x"
+            },
+            {
+                  "name": "Standardní součástky",
+                  "amount": "8x"
+            },
+            {
+                  "name": "Síra (Sulfur)",
+                  "amount": "6x"
+            }
+      ],
+      "materialsEn": [
+            {
+                  "name": "Steel Ingot",
+                  "amount": "8x"
+            },
+            {
+                  "name": "Gunpowder",
+                  "amount": "16x"
+            },
+            {
+                  "name": "Standard Parts",
+                  "amount": "8x"
+            },
+            {
+                  "name": "Sulfur",
+                  "amount": "6x"
+            }
+      ],
+      "reverseEngineeringCs": "Lze získat z vojenských muničních beden v bunkrech Iron River a Chalk Peak.",
+      "reverseEngineeringEn": "Can be salvaged from ordnance crates in Iron River and Chalk Peak bunkers."
+},
         nameEn: "High-Explosive Grenade",
         nameCs: "Tříštivý granát (HE Grenade)",
         categoryEn: "Tactical Tech",
@@ -1848,6 +2671,47 @@ const i18n = {
       },
       {
         id: "tac-09",
+      researchInvention: {
+      "chance": "High (Vysoká šance)",
+      "materialsCs": [
+            {
+                  "name": "Sklo",
+                  "amount": "8x"
+            },
+            {
+                  "name": "Elektronické součástky",
+                  "amount": "12x"
+            },
+            {
+                  "name": "Kyselina (Acid)",
+                  "amount": "8x"
+            },
+            {
+                  "name": "Měděný ingot",
+                  "amount": "10x"
+            }
+      ],
+      "materialsEn": [
+            {
+                  "name": "Glass",
+                  "amount": "8x"
+            },
+            {
+                  "name": "Electronic Parts",
+                  "amount": "12x"
+            },
+            {
+                  "name": "Acid",
+                  "amount": "8x"
+            },
+            {
+                  "name": "Copper Ingot",
+                  "amount": "10x"
+            }
+      ],
+      "reverseEngineeringCs": "Lze analyzovat z transformátorových rozvoden a vysokonapěťových stanic v Red Sands.",
+      "reverseEngineeringEn": "Can be analyzed from high-voltage transformer stations across Red Sands."
+},
         nameEn: "Lightning Bottle",
         nameCs: "Elektrická láhev (Lightning Bottle)",
         categoryEn: "Tactical Tech",
@@ -1869,6 +2733,47 @@ const i18n = {
       },
       {
         id: "tac-10",
+      researchInvention: {
+      "chance": "High (Vysoká šance)",
+      "materialsCs": [
+            {
+                  "name": "Zdroj hvězdného prachu (Stardust)",
+                  "amount": "15x"
+            },
+            {
+                  "name": "Ocelový ingot",
+                  "amount": "12x"
+            },
+            {
+                  "name": "Elektronické součástky",
+                  "amount": "10x"
+            },
+            {
+                  "name": "Guma (Rubber)",
+                  "amount": "8x"
+            }
+      ],
+      "materialsEn": [
+            {
+                  "name": "Stardust Source",
+                  "amount": "15x"
+            },
+            {
+                  "name": "Steel Ingot",
+                  "amount": "12x"
+            },
+            {
+                  "name": "Electronic Parts",
+                  "amount": "10x"
+            },
+            {
+                  "name": "Rubber",
+                  "amount": "8x"
+            }
+      ],
+      "reverseEngineeringCs": "Lze rozložit z ochranných štítů okolo trhlinových kotev (Rift Anchors) a základen Rosetta.",
+      "reverseEngineeringEn": "Can be dismantled from barrier projectors near Rift Anchors and Rosetta outposts."
+},
         nameEn: "Stardust Barrier",
         nameCs: "Hvězdná přenosná bariéra",
         categoryEn: "Tactical Tech",
@@ -1892,6 +2797,39 @@ const i18n = {
       /* --- 4. MINING TOOLS & LOGGING GEAR --- */
       {
         id: "tool-01",
+      researchInvention: {
+      "chance": "High (Vysoká šance)",
+      "materialsCs": [
+            {
+                  "name": "Měděný ingot",
+                  "amount": "10x"
+            },
+            {
+                  "name": "Dřevo (Logs)",
+                  "amount": "20x"
+            },
+            {
+                  "name": "Surová kůže (Rawhide)",
+                  "amount": "6x"
+            }
+      ],
+      "materialsEn": [
+            {
+                  "name": "Copper Ingot",
+                  "amount": "10x"
+            },
+            {
+                  "name": "Wood (Logs)",
+                  "amount": "20x"
+            },
+            {
+                  "name": "Rawhide",
+                  "amount": "6x"
+            }
+      ],
+      "reverseEngineeringCs": "Lze nalézt a analyzovat v hornických chatách v Dayton Wetlands.",
+      "reverseEngineeringEn": "Can be found and analyzed in mining sheds throughout Dayton Wetlands."
+},
         nameEn: "Copper Pickaxe",
         nameCs: "Měděný krumpáč",
         categoryEn: "Tools",
@@ -1913,6 +2851,39 @@ const i18n = {
       },
       {
         id: "tool-02",
+      researchInvention: {
+      "chance": "High (Vysoká šance)",
+      "materialsCs": [
+            {
+                  "name": "Bronzový ingot",
+                  "amount": "12x"
+            },
+            {
+                  "name": "Dřevo (Logs)",
+                  "amount": "20x"
+            },
+            {
+                  "name": "Kůže (Leather)",
+                  "amount": "6x"
+            }
+      ],
+      "materialsEn": [
+            {
+                  "name": "Bronze Ingot",
+                  "amount": "12x"
+            },
+            {
+                  "name": "Wood (Logs)",
+                  "amount": "20x"
+            },
+            {
+                  "name": "Leather",
+                  "amount": "6x"
+            }
+      ],
+      "reverseEngineeringCs": "Lze rozebrat v lomech a kovářských dílnách Broken Delta.",
+      "reverseEngineeringEn": "Can be salvaged from quarries and blacksmith workshops in Broken Delta."
+},
         nameEn: "Bronze Pickaxe",
         nameCs: "Bronzový krumpáč",
         categoryEn: "Tools",
@@ -1934,6 +2905,39 @@ const i18n = {
       },
       {
         id: "tool-03",
+      researchInvention: {
+      "chance": "High (Vysoká šance)",
+      "materialsCs": [
+            {
+                  "name": "Ocelový ingot",
+                  "amount": "15x"
+            },
+            {
+                  "name": "Dřevo (Logs)",
+                  "amount": "20x"
+            },
+            {
+                  "name": "Standardní součástky",
+                  "amount": "6x"
+            }
+      ],
+      "materialsEn": [
+            {
+                  "name": "Steel Ingot",
+                  "amount": "15x"
+            },
+            {
+                  "name": "Wood (Logs)",
+                  "amount": "20x"
+            },
+            {
+                  "name": "Standard Parts",
+                  "amount": "6x"
+            }
+      ],
+      "reverseEngineeringCs": "Lze získat z opuštěných důlních rypadel a těžebních center v Iron River.",
+      "reverseEngineeringEn": "Can be obtained from abandoned mining excavators in Iron River."
+},
         nameEn: "Steel Pickaxe",
         nameCs: "Ocelový krumpáč",
         categoryEn: "Tools",
@@ -1955,6 +2959,39 @@ const i18n = {
       },
       {
         id: "tool-04",
+      researchInvention: {
+      "chance": "High (Vysoká šance)",
+      "materialsCs": [
+            {
+                  "name": "Wolframový ingot",
+                  "amount": "15x"
+            },
+            {
+                  "name": "Zušlechtěné součástky",
+                  "amount": "10x"
+            },
+            {
+                  "name": "Uhlíková vlákna (Carbon Fiber)",
+                  "amount": "6x"
+            }
+      ],
+      "materialsEn": [
+            {
+                  "name": "Tungsten Ingot",
+                  "amount": "15x"
+            },
+            {
+                  "name": "Refined Parts",
+                  "amount": "10x"
+            },
+            {
+                  "name": "Carbon Fiber",
+                  "amount": "6x"
+            }
+      ],
+      "reverseEngineeringCs": "Lze rozebrat z hlubinných těžebních stanic v Red Sands.",
+      "reverseEngineeringEn": "Can be salvaged from deep mining operations in Red Sands."
+},
         nameEn: "Tungsten Alloy Pickaxe",
         nameCs: "Wolframový slitinový krumpáč",
         categoryEn: "Tools",
@@ -1976,6 +3013,47 @@ const i18n = {
       },
       {
         id: "tool-05",
+      researchInvention: {
+      "chance": "High (Vysoká šance)",
+      "materialsCs": [
+            {
+                  "name": "Ocelový ingot",
+                  "amount": "18x"
+            },
+            {
+                  "name": "Elektronické součástky",
+                  "amount": "10x"
+            },
+            {
+                  "name": "Standardní součástky",
+                  "amount": "12x"
+            },
+            {
+                  "name": "Palivo (Fuel)",
+                  "amount": "10x"
+            }
+      ],
+      "materialsEn": [
+            {
+                  "name": "Steel Ingot",
+                  "amount": "18x"
+            },
+            {
+                  "name": "Electronic Parts",
+                  "amount": "10x"
+            },
+            {
+                  "name": "Standard Parts",
+                  "amount": "12x"
+            },
+            {
+                  "name": "Fuel",
+                  "amount": "10x"
+            }
+      ],
+      "reverseEngineeringCs": "Lze analyzovat z dřevařských pil a lesnických základen v Broken Delta a Iron River.",
+      "reverseEngineeringEn": "Can be analyzed from lumber mills and forestry posts in Broken Delta and Iron River."
+},
         nameEn: "Logging Chainsaw",
         nameCs: "Motorová pila na dřevo (Chainsaw)",
         categoryEn: "Tools",
@@ -1997,6 +3075,47 @@ const i18n = {
       },
       {
         id: "tool-06",
+      researchInvention: {
+      "chance": "High (Vysoká šance)",
+      "materialsCs": [
+            {
+                  "name": "Hliníkový ingot",
+                  "amount": "20x"
+            },
+            {
+                  "name": "Elektronické součástky",
+                  "amount": "15x"
+            },
+            {
+                  "name": "Úložná baterie",
+                  "amount": "2x"
+            },
+            {
+                  "name": "Kyselina (Acid)",
+                  "amount": "8x"
+            }
+      ],
+      "materialsEn": [
+            {
+                  "name": "Aluminum Ingot",
+                  "amount": "20x"
+            },
+            {
+                  "name": "Electronic Parts",
+                  "amount": "15x"
+            },
+            {
+                  "name": "Storage Battery",
+                  "amount": "2x"
+            },
+            {
+                  "name": "Acid",
+                  "amount": "8x"
+            }
+      ],
+      "reverseEngineeringCs": "Lze rozložit z průzkumných těžebních souprav v Chalk Peak a Red Sands.",
+      "reverseEngineeringEn": "Can be dismantled from geological survey drilling rigs in Chalk Peak and Red Sands."
+},
         nameEn: "Advanced Electric Rock Drill",
         nameCs: "Pokročilý elektrický vrták (Electric Drill)",
         categoryEn: "Tools",
@@ -2020,6 +3139,47 @@ const i18n = {
       /* --- 5. MEMETIC SPECIALIZATIONS & UNIQUE PRODUCTS --- */
       {
         id: "t-mem-01",
+      researchInvention: {
+      "chance": "High (Vysoká šance)",
+      "materialsCs": [
+            {
+                  "name": "Zdroj hvězdného prachu (Stardust)",
+                  "amount": "25x"
+            },
+            {
+                  "name": "Kyselina (Acid)",
+                  "amount": "15x"
+            },
+            {
+                  "name": "Elektronické součástky",
+                  "amount": "15x"
+            },
+            {
+                  "name": "Hliníkový ingot",
+                  "amount": "12x"
+            }
+      ],
+      "materialsEn": [
+            {
+                  "name": "Stardust Source",
+                  "amount": "25x"
+            },
+            {
+                  "name": "Acid",
+                  "amount": "15x"
+            },
+            {
+                  "name": "Electronic Parts",
+                  "amount": "15x"
+            },
+            {
+                  "name": "Aluminum Ingot",
+                  "amount": "12x"
+            }
+      ],
+      "reverseEngineeringCs": "Lze analyzovat ze stabilizačních anomálních komor v Red Sands tajných laboratořích.",
+      "reverseEngineeringEn": "Can be analyzed from anomaly containment chambers in Red Sands secret labs."
+},
         nameEn: "Stardust Regulator",
         nameCs: "Hvězdný regulátor (Stardust Regulator)",
         categoryEn: "Memetic Special",
@@ -2041,6 +3201,47 @@ const i18n = {
       },
       {
         id: "t-mem-02",
+      researchInvention: {
+      "chance": "High (Vysoká šance)",
+      "materialsCs": [
+            {
+                  "name": "Elektronické součástky",
+                  "amount": "20x"
+            },
+            {
+                  "name": "Ocelový ingot",
+                  "amount": "15x"
+            },
+            {
+                  "name": "Měděný ingot",
+                  "amount": "15x"
+            },
+            {
+                  "name": "Sklo",
+                  "amount": "8x"
+            }
+      ],
+      "materialsEn": [
+            {
+                  "name": "Electronic Parts",
+                  "amount": "20x"
+            },
+            {
+                  "name": "Steel Ingot",
+                  "amount": "15x"
+            },
+            {
+                  "name": "Copper Ingot",
+                  "amount": "15x"
+            },
+            {
+                  "name": "Glass",
+                  "amount": "8x"
+            }
+      ],
+      "reverseEngineeringCs": "Lze získat z hlavních serverových sálů v Blackfell a Chalk Peak.",
+      "reverseEngineeringEn": "Can be salvaged from central mainframe server arrays in Blackfell and Chalk Peak."
+},
         nameEn: "Combo Chipset",
         nameCs: "Kombinovaný čipset (Combo Chipset)",
         categoryEn: "Memetic Special",
@@ -2062,6 +3263,47 @@ const i18n = {
       },
       {
         id: "t-mem-03",
+      researchInvention: {
+      "chance": "High (Vysoká šance)",
+      "materialsCs": [
+            {
+                  "name": "Guma (Rubber)",
+                  "amount": "15x"
+            },
+            {
+                  "name": "Měděný ingot",
+                  "amount": "10x"
+            },
+            {
+                  "name": "Sklo",
+                  "amount": "8x"
+            },
+            {
+                  "name": "Standardní součástky",
+                  "amount": "10x"
+            }
+      ],
+      "materialsEn": [
+            {
+                  "name": "Rubber",
+                  "amount": "15x"
+            },
+            {
+                  "name": "Copper Ingot",
+                  "amount": "10x"
+            },
+            {
+                  "name": "Glass",
+                  "amount": "8x"
+            },
+            {
+                  "name": "Standard Parts",
+                  "amount": "10x"
+            }
+      ],
+      "reverseEngineeringCs": "Lze nalézt v potopených lodích a přístavních docích v Harborside a Broken Delta.",
+      "reverseEngineeringEn": "Can be salvaged from sunken shipwrecks and harbor docks in Harborside & Broken Delta."
+},
         nameEn: "Portable Diving Gear",
         nameCs: "Přenosná potápěčská výstroj",
         categoryEn: "Memetic Special",
@@ -2083,6 +3325,47 @@ const i18n = {
       },
       {
         id: "t-mem-04",
+      researchInvention: {
+      "chance": "High (Vysoká šance)",
+      "materialsCs": [
+            {
+                  "name": "Zlatá ruda",
+                  "amount": "10x"
+            },
+            {
+                  "name": "Stříbrná ruda",
+                  "amount": "10x"
+            },
+            {
+                  "name": "Kyselina (Acid)",
+                  "amount": "8x"
+            },
+            {
+                  "name": "Dřevěné uhlí",
+                  "amount": "10x"
+            }
+      ],
+      "materialsEn": [
+            {
+                  "name": "Gold Ore",
+                  "amount": "10x"
+            },
+            {
+                  "name": "Silver Ore",
+                  "amount": "10x"
+            },
+            {
+                  "name": "Acid",
+                  "amount": "8x"
+            },
+            {
+                  "name": "Charcoal",
+                  "amount": "10x"
+            }
+      ],
+      "reverseEngineeringCs": "Lze rozluštit v bankovních trezorech a zlatnických dílnách v Blackfell a Red Sands.",
+      "reverseEngineeringEn": "Can be unlocked from bank vaults and jeweler shops in Blackfell and Red Sands."
+},
         nameEn: "Precious Metal Refining (Gold & Silver Ingot)",
         nameCs: "Rafinace drahých kovů (Zlatý a stříbrný ingot)",
         categoryEn: "Refining",
@@ -2106,6 +3389,39 @@ const i18n = {
       /* --- 6. WORKBENCHES & CRAFTING FACILITIES --- */
       {
         id: "t-01a",
+      researchInvention: {
+      "chance": "High (Vysoká šance)",
+      "materialsCs": [
+            {
+                  "name": "Dřevo (Logs)",
+                  "amount": "30x"
+            },
+            {
+                  "name": "Měděný ingot",
+                  "amount": "10x"
+            },
+            {
+                  "name": "Štěrk (Gravel)",
+                  "amount": "10x"
+            }
+      ],
+      "materialsEn": [
+            {
+                  "name": "Wood (Logs)",
+                  "amount": "30x"
+            },
+            {
+                  "name": "Copper Ingot",
+                  "amount": "10x"
+            },
+            {
+                  "name": "Gravel",
+                  "amount": "10x"
+            }
+      ],
+      "reverseEngineeringCs": "Lze recyklovat ze základních opuštěných úkrytů v Dayton Wetlands.",
+      "reverseEngineeringEn": "Can be salvaged from basic abandoned shelters in Dayton Wetlands."
+},
         nameEn: "Supplies Workbench I",
         nameCs: "Základní stůl na zásoby I",
         categoryEn: "Workbench",
@@ -2127,6 +3443,47 @@ const i18n = {
       },
       {
         id: "t-01b",
+      researchInvention: {
+      "chance": "High (Vysoká šance)",
+      "materialsCs": [
+            {
+                  "name": "Ocelový ingot",
+                  "amount": "25x"
+            },
+            {
+                  "name": "Zušlechtěné součástky",
+                  "amount": "15x"
+            },
+            {
+                  "name": "Elektronické součástky",
+                  "amount": "10x"
+            },
+            {
+                  "name": "Dřevo",
+                  "amount": "30x"
+            }
+      ],
+      "materialsEn": [
+            {
+                  "name": "Steel Ingot",
+                  "amount": "25x"
+            },
+            {
+                  "name": "Refined Parts",
+                  "amount": "15x"
+            },
+            {
+                  "name": "Electronic Parts",
+                  "amount": "10x"
+            },
+            {
+                  "name": "Wood",
+                  "amount": "30x"
+            }
+      ],
+      "reverseEngineeringCs": "Lze rozebrat v nemocničních skladech a dílnách v Iron River.",
+      "reverseEngineeringEn": "Can be dismantled from hospital storage and workshops in Iron River."
+},
         nameEn: "Intermediate Supplies Workbench II",
         nameCs: "Střední stůl na zásoby II",
         categoryEn: "Workbench",
@@ -2210,6 +3567,39 @@ const i18n = {
       },
       {
         id: "t-01d",
+      researchInvention: {
+      "chance": "High (Vysoká šance)",
+      "materialsCs": [
+            {
+                  "name": "Měděný ingot",
+                  "amount": "15x"
+            },
+            {
+                  "name": "Dřevo (Logs)",
+                  "amount": "30x"
+            },
+            {
+                  "name": "Surová kůže (Rawhide)",
+                  "amount": "10x"
+            }
+      ],
+      "materialsEn": [
+            {
+                  "name": "Copper Ingot",
+                  "amount": "15x"
+            },
+            {
+                  "name": "Wood (Logs)",
+                  "amount": "30x"
+            },
+            {
+                  "name": "Rawhide",
+                  "amount": "10x"
+            }
+      ],
+      "reverseEngineeringCs": "Lze analyzovat z policejních stanovišť a ranger boud v Dayton Wetlands.",
+      "reverseEngineeringEn": "Can be analyzed from police checkpoints and ranger cabins in Dayton Wetlands."
+},
         nameEn: "Gear Workbench I",
         nameCs: "Základní zbrojířský stůl I",
         categoryEn: "Workbench",
@@ -2463,6 +3853,47 @@ const i18n = {
       },
       {
         id: "t-01i",
+      researchInvention: {
+      "chance": "High (Vysoká šance)",
+      "materialsCs": [
+            {
+                  "name": "Wolframový ingot",
+                  "amount": "40x"
+            },
+            {
+                  "name": "Elektronické součástky",
+                  "amount": "25x"
+            },
+            {
+                  "name": "Kyselina (Acid)",
+                  "amount": "20x"
+            },
+            {
+                  "name": "Ocelový ingot",
+                  "amount": "35x"
+            }
+      ],
+      "materialsEn": [
+            {
+                  "name": "Tungsten Ingot",
+                  "amount": "40x"
+            },
+            {
+                  "name": "Electronic Parts",
+                  "amount": "25x"
+            },
+            {
+                  "name": "Acid",
+                  "amount": "20x"
+            },
+            {
+                  "name": "Steel Ingot",
+                  "amount": "35x"
+            }
+      ],
+      "reverseEngineeringCs": "Lze rozebrat v centrálních rafinérských věžích v Blackfell Oilfields.",
+      "reverseEngineeringEn": "Can be salvaged from central refining towers in Blackfell Oilfields."
+},
         nameEn: "Super Refinery Facility",
         nameCs: "Super Rafinérie (Super Refinery)",
         categoryEn: "Refining",
@@ -2680,6 +4111,47 @@ const i18n = {
       },
       {
         id: "t-00d",
+      researchInvention: {
+      "chance": "High (Vysoká šance)",
+      "materialsCs": [
+            {
+                  "name": "Ocelový ingot",
+                  "amount": "30x"
+            },
+            {
+                  "name": "Elektronické součástky",
+                  "amount": "15x"
+            },
+            {
+                  "name": "Zušlechtěné součástky",
+                  "amount": "15x"
+            },
+            {
+                  "name": "Guma (Rubber)",
+                  "amount": "10x"
+            }
+      ],
+      "materialsEn": [
+            {
+                  "name": "Steel Ingot",
+                  "amount": "30x"
+            },
+            {
+                  "name": "Electronic Parts",
+                  "amount": "15x"
+            },
+            {
+                  "name": "Refined Parts",
+                  "amount": "15x"
+            },
+            {
+                  "name": "Rubber",
+                  "amount": "10x"
+            }
+      ],
+      "reverseEngineeringCs": "Lze analyzovat z hlavních rozvoden elektřiny a generátoroven v Iron River.",
+      "reverseEngineeringEn": "Can be analyzed from main electrical distribution plants in Iron River."
+},
         nameEn: "Large Biomass Generator",
         nameCs: "Velký generátor na biomasu (25W)",
         categoryEn: "Power Facility",
@@ -2763,6 +4235,47 @@ const i18n = {
       },
       {
         id: "t-00f",
+        researchInvention: {
+        "chance": "High (Elektrotechnická formule)",
+        "materialsCs": [
+                {
+                        "name": "Ocelový ingot",
+                        "amount": "25x"
+                },
+                {
+                        "name": "Guma",
+                        "amount": "20x"
+                },
+                {
+                        "name": "Kyselina (Acid)",
+                        "amount": "20x"
+                },
+                {
+                        "name": "Elektronické součástky",
+                        "amount": "10x"
+                }
+        ],
+        "materialsEn": [
+                {
+                        "name": "Steel Ingot",
+                        "amount": "25x"
+                },
+                {
+                        "name": "Rubber",
+                        "amount": "20x"
+                },
+                {
+                        "name": "Acid",
+                        "amount": "20x"
+                },
+                {
+                        "name": "Electronic Parts",
+                        "amount": "10x"
+                }
+        ],
+        "reverseEngineeringCs": "Lze najít v trafostanicích a rozvodnách v Iron River a Chalk Peak.",
+        "reverseEngineeringEn": "Can be salvaged from substations and power plants in Iron River and Chalk Peak."
+},
         nameEn: "Storage Battery",
         nameCs: "Akumulátorová bateriová stanice",
         categoryEn: "Power Facility",
@@ -2784,6 +4297,47 @@ const i18n = {
       },
       {
         id: "t-00g",
+        researchInvention: {
+        "chance": "High (Anomální výzkum)",
+        "materialsCs": [
+                {
+                        "name": "Wolframový ingot",
+                        "amount": "40x"
+                },
+                {
+                        "name": "Elektronické součástky",
+                        "amount": "30x"
+                },
+                {
+                        "name": "Zdroj hvězdného prachu (Stardust)",
+                        "amount": "25x"
+                },
+                {
+                        "name": "Izolátor",
+                        "amount": "10x"
+                }
+        ],
+        "materialsEn": [
+                {
+                        "name": "Tungsten Ingot",
+                        "amount": "40x"
+                },
+                {
+                        "name": "Electronic Parts",
+                        "amount": "30x"
+                },
+                {
+                        "name": "Stardust Source",
+                        "amount": "25x"
+                },
+                {
+                        "name": "Insulator",
+                        "amount": "10x"
+                }
+        ],
+        "reverseEngineeringCs": "Lze získat analýzou anomálních reaktorů v Monolith zónách.",
+        "reverseEngineeringEn": "Can be acquired by analyzing anomaly reactors in Monolith zones."
+},
         nameEn: "Deviation Energy Generator",
         nameCs: "Deviační generátor energie (30W)",
         categoryEn: "Power Facility",
@@ -2807,6 +4361,39 @@ const i18n = {
       /* --- 8. WATER, AGRICULTURE & SURVIVAL INFRASTRUCTURE --- */
       {
         id: "t-02a",
+        researchInvention: {
+        "chance": "High (Základní přežití)",
+        "materialsCs": [
+                {
+                        "name": "Dřevo",
+                        "amount": "30x"
+                },
+                {
+                        "name": "Kovový šrot",
+                        "amount": "15x"
+                },
+                {
+                        "name": "Plastová fólie",
+                        "amount": "5x"
+                }
+        ],
+        "materialsEn": [
+                {
+                        "name": "Wood",
+                        "amount": "30x"
+                },
+                {
+                        "name": "Metal Scraps",
+                        "amount": "15x"
+                },
+                {
+                        "name": "Plastic Sheeting",
+                        "amount": "5x"
+                }
+        ],
+        "reverseEngineeringCs": "Lze najít v zahradách a k kempech přeživších v Dayton Wetlands.",
+        "reverseEngineeringEn": "Can be found in gardens and survivor camps in Dayton Wetlands."
+},
         nameEn: "Rainwater Collection System",
         nameCs: "Systém sběru dešťové vody",
         categoryEn: "Territory Facility",
@@ -2828,6 +4415,47 @@ const i18n = {
       },
       {
         id: "t-02b",
+        researchInvention: {
+        "chance": "High (Vysoká šance)",
+        "materialsCs": [
+                {
+                        "name": "Ocelový ingot",
+                        "amount": "25x"
+                },
+                {
+                        "name": "Elektronické součástky",
+                        "amount": "15x"
+                },
+                {
+                        "name": "Standardní součástky",
+                        "amount": "10x"
+                },
+                {
+                        "name": "Vodovzdorný plast",
+                        "amount": "5x"
+                }
+        ],
+        "materialsEn": [
+                {
+                        "name": "Steel Ingot",
+                        "amount": "25x"
+                },
+                {
+                        "name": "Electronic Parts",
+                        "amount": "15x"
+                },
+                {
+                        "name": "Standard Parts",
+                        "amount": "10x"
+                },
+                {
+                        "name": "Waterproof Plastic",
+                        "amount": "5x"
+                }
+        ],
+        "reverseEngineeringCs": "Lze demontovat u zavlažovacích nádrží v Broken Delta a Iron River.",
+        "reverseEngineeringEn": "Can be dismantled at irrigation reservoirs in Broken Delta and Iron River."
+},
         nameEn: "Water Pump",
         nameCs: "Elektrické vodní čerpadlo",
         categoryEn: "Territory Facility",
@@ -2849,6 +4477,47 @@ const i18n = {
       },
       {
         id: "t-02c",
+        researchInvention: {
+        "chance": "High (Optimální filtrace)",
+        "materialsCs": [
+                {
+                        "name": "Ocelový ingot",
+                        "amount": "35x"
+                },
+                {
+                        "name": "Elektronické součástky",
+                        "amount": "20x"
+                },
+                {
+                        "name": "Sklo",
+                        "amount": "15x"
+                },
+                {
+                        "name": "Membránový filtr",
+                        "amount": "10x"
+                }
+        ],
+        "materialsEn": [
+                {
+                        "name": "Steel Ingot",
+                        "amount": "35x"
+                },
+                {
+                        "name": "Electronic Parts",
+                        "amount": "20x"
+                },
+                {
+                        "name": "Glass",
+                        "amount": "15x"
+                },
+                {
+                        "name": "Membrane Filter",
+                        "amount": "10x"
+                }
+        ],
+        "reverseEngineeringCs": "Lze najít ve vodárnách a úpravnách vody v Chalk Peak.",
+        "reverseEngineeringEn": "Can be found in water treatment plants across Chalk Peak."
+},
         nameEn: "Reverse Osmosis Water Filter",
         nameCs: "Filtrační stanice reverzní osmózy",
         categoryEn: "Territory Facility",
@@ -2870,6 +4539,47 @@ const i18n = {
       },
       {
         id: "t-02d",
+        researchInvention: {
+        "chance": "High (Automatizace)",
+        "materialsCs": [
+                {
+                        "name": "Ocelový ingot",
+                        "amount": "20x"
+                },
+                {
+                        "name": "Měděné trubky",
+                        "amount": "12x"
+                },
+                {
+                        "name": "Elektronické součástky",
+                        "amount": "8x"
+                },
+                {
+                        "name": "Tryska",
+                        "amount": "5x"
+                }
+        ],
+        "materialsEn": [
+                {
+                        "name": "Steel Ingot",
+                        "amount": "20x"
+                },
+                {
+                        "name": "Copper Pipes",
+                        "amount": "12x"
+                },
+                {
+                        "name": "Electronic Parts",
+                        "amount": "8x"
+                },
+                {
+                        "name": "Nozzle",
+                        "amount": "5x"
+                }
+        ],
+        "reverseEngineeringCs": "Lze rozebrat ve sklenících v Broken Delta a Chalk Peak.",
+        "reverseEngineeringEn": "Can be salvaged from greenhouses in Broken Delta and Chalk Peak."
+},
         nameEn: "Automatic Irrigation Facility",
         nameCs: "Automatický zavlažovací systém",
         categoryEn: "Territory Facility",
@@ -2891,6 +4601,47 @@ const i18n = {
       },
       {
         id: "t-02e",
+        researchInvention: {
+        "chance": "High (Optická technologie)",
+        "materialsCs": [
+                {
+                        "name": "Měděný ingot",
+                        "amount": "15x"
+                },
+                {
+                        "name": "Sklo",
+                        "amount": "10x"
+                },
+                {
+                        "name": "Elektronické součástky",
+                        "amount": "8x"
+                },
+                {
+                        "name": "LED dioda",
+                        "amount": "4x"
+                }
+        ],
+        "materialsEn": [
+                {
+                        "name": "Copper Ingot",
+                        "amount": "15x"
+                },
+                {
+                        "name": "Glass",
+                        "amount": "10x"
+                },
+                {
+                        "name": "Electronic Parts",
+                        "amount": "8x"
+                },
+                {
+                        "name": "LED Diode",
+                        "amount": "4x"
+                }
+        ],
+        "reverseEngineeringCs": "Lze najít ve vědeckých laboratořích a botanických centrech.",
+        "reverseEngineeringEn": "Can be found in research laboratories and botanical centers."
+},
         nameEn: "Grow Light",
         nameCs: "Pěstitelské UV světlo (Grow Light)",
         categoryEn: "Territory Facility",
@@ -2912,6 +4663,39 @@ const i18n = {
       },
       {
         id: "t-02f",
+        researchInvention: {
+        "chance": "High (Základní zemědělství)",
+        "materialsCs": [
+                {
+                        "name": "Dřevo",
+                        "amount": "40x"
+                },
+                {
+                        "name": "Zkažené maso",
+                        "amount": "20x"
+                },
+                {
+                        "name": "Hnojivo",
+                        "amount": "10x"
+                }
+        ],
+        "materialsEn": [
+                {
+                        "name": "Wood",
+                        "amount": "40x"
+                },
+                {
+                        "name": "Spoiled Meat",
+                        "amount": "20x"
+                },
+                {
+                        "name": "Fertilizer",
+                        "amount": "10x"
+                }
+        ],
+        "reverseEngineeringCs": "Lze najít na jakékoliv zemědělské usedlosti.",
+        "reverseEngineeringEn": "Can be found at any rural farmstead."
+},
         nameEn: "Compost Bin",
         nameCs: "Kompostér (Compost Bin)",
         categoryEn: "Territory Facility",
@@ -2933,6 +4717,47 @@ const i18n = {
       },
       {
         id: "t-02g",
+        researchInvention: {
+        "chance": "High (Way of Winter Epic)",
+        "materialsCs": [
+                {
+                        "name": "Ocelový ingot",
+                        "amount": "60x"
+                },
+                {
+                        "name": "Hliníkový ingot",
+                        "amount": "30x"
+                },
+                {
+                        "name": "Elektronické součástky",
+                        "amount": "25x"
+                },
+                {
+                        "name": "Žáruvzdorná cihla",
+                        "amount": "20x"
+                }
+        ],
+        "materialsEn": [
+                {
+                        "name": "Steel Ingot",
+                        "amount": "60x"
+                },
+                {
+                        "name": "Aluminum Ingot",
+                        "amount": "30x"
+                },
+                {
+                        "name": "Electronic Parts",
+                        "amount": "25x"
+                },
+                {
+                        "name": "Refractory Brick",
+                        "amount": "20x"
+                }
+        ],
+        "reverseEngineeringCs": "Lze získat průzkumem tepelných stanic v Onyx Tundra (The Way of Winter).",
+        "reverseEngineeringEn": "Can be acquired by exploring thermal stations in Onyx Tundra (Way of Winter)."
+},
         nameEn: "Thermal Tower",
         nameCs: "Termální věž (Thermal Tower)",
         categoryEn: "Territory Facility",
@@ -2956,6 +4781,47 @@ const i18n = {
       /* --- 9. TURRETS, DEFENSES & TRAPS --- */
       {
         id: "t-03a",
+        researchInvention: {
+        "chance": "High (Základní obrana)",
+        "materialsCs": [
+                {
+                        "name": "Ocelový ingot",
+                        "amount": "15x"
+                },
+                {
+                        "name": "Standardní součástky",
+                        "amount": "10x"
+                },
+                {
+                        "name": "Měděný ingot",
+                        "amount": "5x"
+                },
+                {
+                        "name": "Lepidlo (Adhesive)",
+                        "amount": "8x"
+                }
+        ],
+        "materialsEn": [
+                {
+                        "name": "Steel Ingot",
+                        "amount": "15x"
+                },
+                {
+                        "name": "Standard Parts",
+                        "amount": "10x"
+                },
+                {
+                        "name": "Copper Ingot",
+                        "amount": "5x"
+                },
+                {
+                        "name": "Adhesive",
+                        "amount": "8x"
+                }
+        ],
+        "reverseEngineeringCs": "Lze rozebrat na kontrolních stanovištích a zátarasech v Broken Delta.",
+        "reverseEngineeringEn": "Can be salvaged from checkpoints and roadblocks in Broken Delta."
+},
         nameEn: "Rifle Turret I",
         nameCs: "Pušková obranná věžička I",
         categoryEn: "Defense",
@@ -2977,6 +4843,47 @@ const i18n = {
       },
       {
         id: "t-03b",
+        researchInvention: {
+        "chance": "High (Vysoká šance)",
+        "materialsCs": [
+                {
+                        "name": "Ocelový ingot",
+                        "amount": "25x"
+                },
+                {
+                        "name": "Rafinované součástky",
+                        "amount": "15x"
+                },
+                {
+                        "name": "Elektronické součástky",
+                        "amount": "10x"
+                },
+                {
+                        "name": "Lepidlo (Adhesive)",
+                        "amount": "12x"
+                }
+        ],
+        "materialsEn": [
+                {
+                        "name": "Steel Ingot",
+                        "amount": "25x"
+                },
+                {
+                        "name": "Refined Parts",
+                        "amount": "15x"
+                },
+                {
+                        "name": "Electronic Parts",
+                        "amount": "10x"
+                },
+                {
+                        "name": "Adhesive",
+                        "amount": "12x"
+                }
+        ],
+        "reverseEngineeringCs": "Lze najít na vojenských základnách v Iron River.",
+        "reverseEngineeringEn": "Can be found at military outposts in Iron River."
+},
         nameEn: "Shotgun Turret II",
         nameCs: "Broková obranná věž II",
         categoryEn: "Defense",
@@ -2998,6 +4905,47 @@ const i18n = {
       },
       {
         id: "t-03c",
+        researchInvention: {
+        "chance": "High (Těžká artilerie)",
+        "materialsCs": [
+                {
+                        "name": "Wolframový ingot",
+                        "amount": "40x"
+                },
+                {
+                        "name": "Hliníkový ingot",
+                        "amount": "30x"
+                },
+                {
+                        "name": "Elektronické součástky",
+                        "amount": "25x"
+                },
+                {
+                        "name": "Plast",
+                        "amount": "15x"
+                }
+        ],
+        "materialsEn": [
+                {
+                        "name": "Tungsten Ingot",
+                        "amount": "40x"
+                },
+                {
+                        "name": "Aluminum Ingot",
+                        "amount": "30x"
+                },
+                {
+                        "name": "Electronic Parts",
+                        "amount": "25x"
+                },
+                {
+                        "name": "Plastic",
+                        "amount": "15x"
+                }
+        ],
+        "reverseEngineeringCs": "Lze demontovat v pevných bunkrech Blackfell Oilfields a Red Sands.",
+        "reverseEngineeringEn": "Can be salvaged from heavy bunkers in Blackfell Oilfields and Red Sands."
+},
         nameEn: "Gatling Cannon Turret III",
         nameCs: "Automatická těžká věž Gatling III",
         categoryEn: "Defense",
@@ -3019,6 +4967,47 @@ const i18n = {
       },
       {
         id: "t-03d",
+        researchInvention: {
+        "chance": "High (Bodová obrana)",
+        "materialsCs": [
+                {
+                        "name": "Ocelový ingot",
+                        "amount": "30x"
+                },
+                {
+                        "name": "Elektronické součástky",
+                        "amount": "20x"
+                },
+                {
+                        "name": "Rafinované součástky",
+                        "amount": "15x"
+                },
+                {
+                        "name": "Senzor",
+                        "amount": "5x"
+                }
+        ],
+        "materialsEn": [
+                {
+                        "name": "Steel Ingot",
+                        "amount": "30x"
+                },
+                {
+                        "name": "Electronic Parts",
+                        "amount": "20x"
+                },
+                {
+                        "name": "Refined Parts",
+                        "amount": "15x"
+                },
+                {
+                        "name": "Sensor",
+                        "amount": "5x"
+                }
+        ],
+        "reverseEngineeringCs": "Lze rozebrat u muničních skladů v Chalk Peak.",
+        "reverseEngineeringEn": "Can be disassembled near ammo depots in Chalk Peak."
+},
         nameEn: "Close Defense Turret",
         nameCs: "Bodová protiraketová věž (Close Defense)",
         categoryEn: "Defense",
@@ -3040,6 +5029,47 @@ const i18n = {
       },
       {
         id: "t-03e",
+        researchInvention: {
+        "chance": "High (Zápalná obrana)",
+        "materialsCs": [
+                {
+                        "name": "Ocelový ingot",
+                        "amount": "20x"
+                },
+                {
+                        "name": "Měděný ingot",
+                        "amount": "15x"
+                },
+                {
+                        "name": "Směsné palivo",
+                        "amount": "10x"
+                },
+                {
+                        "name": "Gumové těsnění",
+                        "amount": "8x"
+                }
+        ],
+        "materialsEn": [
+                {
+                        "name": "Steel Ingot",
+                        "amount": "20x"
+                },
+                {
+                        "name": "Copper Ingot",
+                        "amount": "15x"
+                },
+                {
+                        "name": "Mixed Fuel",
+                        "amount": "10x"
+                },
+                {
+                        "name": "Rubber Gasket",
+                        "amount": "8x"
+                }
+        ],
+        "reverseEngineeringCs": "Lze najít u zátarasů a rafinačních nádrží.",
+        "reverseEngineeringEn": "Can be found at roadblocks and fuel depots."
+},
         nameEn: "Flamethrower Trap I",
         nameCs: "Plamenometná past I",
         categoryEn: "Defense",
@@ -3061,6 +5091,47 @@ const i18n = {
       },
       {
         id: "t-03f",
+        researchInvention: {
+        "chance": "High (Anomální past)",
+        "materialsCs": [
+                {
+                        "name": "Ocelový ingot",
+                        "amount": "25x"
+                },
+                {
+                        "name": "Elektronické součástky",
+                        "amount": "15x"
+                },
+                {
+                        "name": "Zdroj hvězdného prachu (Stardust)",
+                        "amount": "12x"
+                },
+                {
+                        "name": "Magnet",
+                        "amount": "10x"
+                }
+        ],
+        "materialsEn": [
+                {
+                        "name": "Steel Ingot",
+                        "amount": "25x"
+                },
+                {
+                        "name": "Electronic Parts",
+                        "amount": "15x"
+                },
+                {
+                        "name": "Stardust Source",
+                        "amount": "12x"
+                },
+                {
+                        "name": "Magnet",
+                        "amount": "10x"
+                }
+        ],
+        "reverseEngineeringCs": "Lze získat v laboratořích Rosetta výzkumu.",
+        "reverseEngineeringEn": "Can be retrieved from Rosetta research facilities."
+},
         nameEn: "Gravitational Grip Trap",
         nameCs: "Gravitační záchytná past (Gravitational Grip)",
         categoryEn: "Defense",
