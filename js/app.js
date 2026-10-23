@@ -563,7 +563,14 @@ function initSearchIndex() {
       ...(item.ingredientsEn || []).map(i => i.name)
     ].join(' ');
 
-    item._searchIndex = (csTokens + ' ' + enTokens + ' ' + (item.scenario || '')).toLowerCase();
+    let invTokens = '';
+    if (item.researchInvention) {
+      invTokens = ' tech invention výzkum technological research bench ' + 
+        (item.researchInvention.materialsCs || []).map(m => m.name).join(' ') + ' ' +
+        (item.researchInvention.materialsEn || []).map(m => m.name).join(' ') + ' ' +
+        (item.researchInvention.reverseEngineeringCs || '');
+    }
+    item._searchIndex = (csTokens + ' ' + enTokens + ' ' + (item.scenario || '') + ' ' + invTokens).toLowerCase();
   });
 }
 
@@ -972,13 +979,18 @@ function renderRecipeCards(items) {
       <div>
         <!-- Header: Category, Scenario, Rarity Badge & Favorite Star -->
         <div class="flex items-center justify-between gap-1.5 mb-2 flex-wrap">
-          <div class="flex items-center gap-1.5">
+          <div class="flex items-center gap-1.5 flex-wrap">
             <span class="text-[10px] font-mono uppercase px-2 py-0.5 rounded bg-slate-800 text-slate-300 border border-slate-700">
               ${categoryText}
             </span>
             <span class="text-[9px] font-mono uppercase px-1.5 py-0.5 rounded border ${scenBadge}">
               ${scenName}
             </span>
+            ${item.researchInvention ? `
+              <span class="text-[9px] font-mono uppercase px-1.5 py-0.5 rounded border border-purple-500/60 bg-purple-950/80 text-purple-300 font-bold flex items-center gap-1 shadow-[0_0_8px_rgba(181,23,158,0.3)]">
+                <i class="fa-solid fa-flask-vial text-[8px] text-hud-purple"></i>Tech Invention
+              </span>
+            ` : ''}
           </div>
           <div class="flex items-center gap-2">
             <span class="text-[10px] font-mono uppercase px-2 py-0.5 rounded border ${rar.bg} ${rar.text} ${rar.border} font-bold flex items-center space-x-1">
@@ -1180,6 +1192,51 @@ function openModal(id, pushHistory = false) {
         `).join('')}
       </div>
     </div>
+
+    
+    <!-- Technological Invention & Reverse Engineering Section -->
+    ${item.researchInvention ? `
+      <div class="mb-4 p-3.5 bg-purple-950/40 border border-purple-500/70 rounded-lg shadow-[0_0_15px_rgba(181,23,158,0.2)]">
+        <div class="flex items-center justify-between mb-2 flex-wrap gap-1">
+          <span class="text-xs font-orbitron font-bold text-purple-300 flex items-center gap-1.5">
+            <i class="fa-solid fa-flask-vial text-hud-purple"></i>
+            ${t.techInventionTitle}
+          </span>
+          <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-purple-900/80 text-purple-200 border border-purple-400/60 font-bold">
+            ${item.researchInvention.chance}
+          </span>
+        </div>
+        <p class="text-[11px] font-sans text-slate-300 mb-2.5 leading-relaxed">
+          ${t.techInventionDesc}
+        </p>
+        
+        <div class="mb-3">
+          <span class="text-[10px] font-mono uppercase text-purple-300 font-bold block mb-1.5 flex items-center justify-between">
+            <span><i class="fa-solid fa-microchip text-hud-purple mr-1"></i>${t.inventionMaterials}</span>
+            <span class="text-[9px] font-mono text-purple-400">Tech Research Bench Slot</span>
+          </span>
+          <div class="flex flex-wrap gap-1.5">
+            ${(currentLang === 'cs' ? item.researchInvention.materialsCs : item.researchInvention.materialsEn).map(m => `
+              <span class="text-[11px] font-mono px-2.5 py-1 rounded bg-hud-bg border border-purple-500/50 text-slate-200 inline-flex items-center gap-1.5 shadow-sm">
+                <span>${m.name}</span>
+                <strong class="text-hud-cyan font-bold">${m.amount}</strong>
+              </span>
+            `).join('')}
+          </div>
+        </div>
+
+        <div class="pt-2 border-t border-purple-900/70 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 text-[11px] font-mono">
+          <div class="text-slate-300 text-[10px] leading-relaxed">
+            <i class="fa-solid fa-recycle text-hud-cyan mr-1"></i>
+            <strong class="text-white">${t.reverseEngineeringLabel}</strong> ${currentLang === 'cs' ? item.researchInvention.reverseEngineeringCs : item.researchInvention.reverseEngineeringEn}
+          </div>
+          <button onclick="addInventionToQueue('${item.id}', 1, event)" class="px-2.5 py-1 bg-purple-900/60 hover:bg-purple-800 border border-purple-400/60 rounded text-purple-200 hover:text-white text-xs font-mono transition flex items-center gap-1 shrink-0 cursor-pointer">
+            <i class="fa-solid fa-plus text-[10px]"></i>
+            <span>${t.addInventionToQueueBtn}</span>
+          </button>
+        </div>
+      </div>
+    ` : ''}
 
     <!-- Detailed Ingredients breakdown with direct cross-links -->
     <div class="mb-4">

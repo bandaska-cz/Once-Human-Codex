@@ -65,7 +65,14 @@ const i18n = {
         exportBtn: "Exportovat do souboru",
         importBtn: "Importovat ze souboru",
         importSuccess: "Data úspěšně obnovena!",
-        importError: "Neplatný formát záložního souboru"
+                importError: "Neplatný formát záložního souboru",
+        techInventionTitle: "TECHNOLOGICKÝ VYNÁLEZ (TECH RESEARCH BENCH)",
+        techInventionDesc: "Kombinace surovin pro vložení do Tech Research Bench k odemčení formule bez utrácení Tech bodů.",
+        techInventionBadge: "Tech Invention",
+        inventionChanceLabel: "Šance:",
+        reverseEngineeringLabel: "Reverse Engineering:",
+        addInventionToQueueBtn: "Přidat suroviny vynálezu do plánu",
+        filterInventionsOnly: "🔬 Pouze Tech Inventions"
       },
       en: {
         subtitle: "ALL GAME RECIPES • SYNERGIES • APOTHECARY • FULL TECHNOLOGIES",
@@ -133,7 +140,14 @@ const i18n = {
         exportBtn: "Export to File",
         importBtn: "Import from File",
         importSuccess: "Data successfully restored!",
-        importError: "Invalid backup file format"
+                importError: "Invalid backup file format",
+        techInventionTitle: "TECHNOLOGICAL INVENTION (TECH RESEARCH BENCH)",
+        techInventionDesc: "Material combination to insert into Tech Research Bench to unlock formula without spending Tech Points.",
+        techInventionBadge: "Tech Invention",
+        inventionChanceLabel: "Chance:",
+        reverseEngineeringLabel: "Reverse Engineering:",
+        addInventionToQueueBtn: "Add Invention Materials to Plan",
+        filterInventionsOnly: "🔬 Tech Inventions Only"
       }
     };
 
@@ -1152,6 +1166,47 @@ const i18n = {
       },
       {
         id: "m-02b",
+        researchInvention: {
+        "chance": "High (Zaručeno)",
+        "materialsCs": [
+                {
+                        "name": "Sklo",
+                        "amount": "1x"
+                },
+                {
+                        "name": "Guma",
+                        "amount": "2x"
+                },
+                {
+                        "name": "Zdroj hvězdného prachu (Stardust)",
+                        "amount": "17x"
+                },
+                {
+                        "name": "Kyselina (Acid)",
+                        "amount": "5x"
+                }
+        ],
+        "materialsEn": [
+                {
+                        "name": "Glass",
+                        "amount": "1x"
+                },
+                {
+                        "name": "Rubber",
+                        "amount": "2x"
+                },
+                {
+                        "name": "Stardust Source",
+                        "amount": "17x"
+                },
+                {
+                        "name": "Acid",
+                        "amount": "5x"
+                }
+        ],
+        "reverseEngineeringCs": "Lze získat analýzou zdravotnických kontejnerů v nemocnicích a laboratořích v Red Sands.",
+        "reverseEngineeringEn": "Can be obtained by analyzing medical containers in hospitals and labs in Red Sands."
+},
         nameEn: "Quick Activator",
         nameCs: "Rychlý aktivátor",
         categoryEn: "Medicine",
@@ -2093,6 +2148,47 @@ const i18n = {
       },
       {
         id: "t-01c",
+        researchInvention: {
+        "chance": "High (Vysoká šance)",
+        "materialsCs": [
+                {
+                        "name": "Hliníkový ingot",
+                        "amount": "30x"
+                },
+                {
+                        "name": "Ocelový ingot",
+                        "amount": "25x"
+                },
+                {
+                        "name": "Elektronické součástky",
+                        "amount": "20x"
+                },
+                {
+                        "name": "Plast",
+                        "amount": "10x"
+                }
+        ],
+        "materialsEn": [
+                {
+                        "name": "Aluminum Ingot",
+                        "amount": "30x"
+                },
+                {
+                        "name": "Steel Ingot",
+                        "amount": "25x"
+                },
+                {
+                        "name": "Electronic Parts",
+                        "amount": "20x"
+                },
+                {
+                        "name": "Plastic",
+                        "amount": "10x"
+                }
+        ],
+        "reverseEngineeringCs": "Lze najít v lékařských centrech v Chalk Peak a Red Sands.",
+        "reverseEngineeringEn": "Can be salvaged from medical centers in Chalk Peak and Red Sands."
+},
         nameEn: "Advanced Supplies Workbench III",
         nameCs: "Pokročilý stůl na zásoby III",
         categoryEn: "Workbench",
@@ -2135,6 +2231,47 @@ const i18n = {
       },
       {
         id: "t-01e",
+        researchInvention: {
+        "chance": "High (Vysoká šance)",
+        "materialsCs": [
+                {
+                        "name": "Ocelový ingot",
+                        "amount": "30x"
+                },
+                {
+                        "name": "Standardní součástky",
+                        "amount": "20x"
+                },
+                {
+                        "name": "Elektronické součástky",
+                        "amount": "10x"
+                },
+                {
+                        "name": "Kovový šrot",
+                        "amount": "25x"
+                }
+        ],
+        "materialsEn": [
+                {
+                        "name": "Steel Ingot",
+                        "amount": "30x"
+                },
+                {
+                        "name": "Standard Parts",
+                        "amount": "20x"
+                },
+                {
+                        "name": "Electronic Parts",
+                        "amount": "10x"
+                },
+                {
+                        "name": "Metal Scraps",
+                        "amount": "25x"
+                }
+        ],
+        "reverseEngineeringCs": "Lze najít a recyklovat v Greywater Campu a vojenských základnách Iron River.",
+        "reverseEngineeringEn": "Can be found and recycled in Greywater Camp and Iron River military outposts."
+},
         nameEn: "Intermediate Gear Workbench II",
         nameCs: "Střední zbrojířský stůl II",
         categoryEn: "Workbench",
@@ -2156,6 +2293,47 @@ const i18n = {
       },
       {
         id: "t-01f",
+        researchInvention: {
+        "chance": "High (Ověřená permanentní formule)",
+        "materialsCs": [
+                {
+                        "name": "Ocelový ingot",
+                        "amount": "55x"
+                },
+                {
+                        "name": "Elektronické součástky",
+                        "amount": "25x"
+                },
+                {
+                        "name": "Součástky (Parts)",
+                        "amount": "25x"
+                },
+                {
+                        "name": "Plast",
+                        "amount": "7x"
+                }
+        ],
+        "materialsEn": [
+                {
+                        "name": "Steel Ingot",
+                        "amount": "55x"
+                },
+                {
+                        "name": "Electronic Parts",
+                        "amount": "25x"
+                },
+                {
+                        "name": "Parts",
+                        "amount": "25x"
+                },
+                {
+                        "name": "Plastic",
+                        "amount": "7x"
+                }
+        ],
+        "reverseEngineeringCs": "Lze rozebrat a analyzovat v opevněných základnách Blackfell Oilfields a pevnostech Red Sands.",
+        "reverseEngineeringEn": "Can be salvaged and analyzed from fortified bases in Blackfell Oilfields and Red Sands strongholds."
+},
         nameEn: "Advanced Gear Workbench III",
         nameCs: "Pokročilý zbrojířský stůl III",
         categoryEn: "Workbench",
@@ -2177,6 +2355,31 @@ const i18n = {
       },
       {
         id: "t-01g",
+        researchInvention: {
+        "chance": "High (Základní formula)",
+        "materialsCs": [
+                {
+                        "name": "Ocelový ingot",
+                        "amount": "10x"
+                },
+                {
+                        "name": "Kovový šrot",
+                        "amount": "5x"
+                }
+        ],
+        "materialsEn": [
+                {
+                        "name": "Steel Ingot",
+                        "amount": "10x"
+                },
+                {
+                        "name": "Metal Scraps",
+                        "amount": "5x"
+                }
+        ],
+        "reverseEngineeringCs": "Klíčový nástroj nutný k demontáži světových objektů pro Reverse Engineering.",
+        "reverseEngineeringEn": "Crucial tool required to pick up and salvage world objects for Reverse Engineering."
+},
         nameEn: "Disassembly Bench",
         nameCs: "Demontážní stůl (Disassembly Bench)",
         categoryEn: "Workbench",
@@ -2198,6 +2401,47 @@ const i18n = {
       },
       {
         id: "t-01h",
+        researchInvention: {
+        "chance": "High (Optimální poměr)",
+        "materialsCs": [
+                {
+                        "name": "Ocelový ingot",
+                        "amount": "40x"
+                },
+                {
+                        "name": "Elektronické součástky",
+                        "amount": "20x"
+                },
+                {
+                        "name": "Standardní součástky",
+                        "amount": "15x"
+                },
+                {
+                        "name": "Žáruvzdorná cihla",
+                        "amount": "10x"
+                }
+        ],
+        "materialsEn": [
+                {
+                        "name": "Steel Ingot",
+                        "amount": "40x"
+                },
+                {
+                        "name": "Electronic Parts",
+                        "amount": "20x"
+                },
+                {
+                        "name": "Standard Parts",
+                        "amount": "15x"
+                },
+                {
+                        "name": "Refractory Brick",
+                        "amount": "10x"
+                }
+        ],
+        "reverseEngineeringCs": "Lze demontovat a analyzovat v průmyslových továrnách v Chalk Peak.",
+        "reverseEngineeringEn": "Can be salvaged and analyzed from industrial factories across Chalk Peak."
+},
         nameEn: "Electric Furnace",
         nameCs: "Elektrická pec (Electric Furnace)",
         categoryEn: "Refining",
@@ -2242,6 +2486,47 @@ const i18n = {
       /* --- 7. POWER GENERATORS --- */
       {
         id: "t-00a",
+        researchInvention: {
+        "chance": "High (Vysoká šance)",
+        "materialsCs": [
+                {
+                        "name": "Měděný ingot",
+                        "amount": "30x"
+                },
+                {
+                        "name": "Sklo",
+                        "amount": "15x"
+                },
+                {
+                        "name": "Elektronické součástky",
+                        "amount": "10x"
+                },
+                {
+                        "name": "Kovový šrot",
+                        "amount": "20x"
+                }
+        ],
+        "materialsEn": [
+                {
+                        "name": "Copper Ingot",
+                        "amount": "30x"
+                },
+                {
+                        "name": "Glass",
+                        "amount": "15x"
+                },
+                {
+                        "name": "Electronic Parts",
+                        "amount": "10x"
+                },
+                {
+                        "name": "Metal Scraps",
+                        "amount": "20x"
+                }
+        ],
+        "reverseEngineeringCs": "Lze demontovat solární panel v osadách Broken Delta a Iron River pomocí Recycling Tool a analyzovat na stole (100% garantováno).",
+        "reverseEngineeringEn": "Can be recycled from solar panels in Broken Delta and Iron River settlements using a Recycling Tool and analyzed on the bench (100% Guaranteed)."
+},
         nameEn: "Basic Solar Generator",
         nameCs: "Základní solární generátor (20W)",
         categoryEn: "Power Facility",
@@ -2263,6 +2548,63 @@ const i18n = {
       },
       {
         id: "t-00b",
+        researchInvention: {
+        "chance": "High (Optimální receptura)",
+        "materialsCs": [
+                {
+                        "name": "Ocelový ingot",
+                        "amount": "80x"
+                },
+                {
+                        "name": "Sklo",
+                        "amount": "15x"
+                },
+                {
+                        "name": "Součástky (Parts)",
+                        "amount": "15x"
+                },
+                {
+                        "name": "Plast",
+                        "amount": "15x"
+                },
+                {
+                        "name": "Elektronické součástky",
+                        "amount": "15x"
+                },
+                {
+                        "name": "Pojistka (Fuse)",
+                        "amount": "3x"
+                }
+        ],
+        "materialsEn": [
+                {
+                        "name": "Steel Ingot",
+                        "amount": "80x"
+                },
+                {
+                        "name": "Glass",
+                        "amount": "15x"
+                },
+                {
+                        "name": "Parts",
+                        "amount": "15x"
+                },
+                {
+                        "name": "Plastic",
+                        "amount": "15x"
+                },
+                {
+                        "name": "Electronic Parts",
+                        "amount": "15x"
+                },
+                {
+                        "name": "Fuse",
+                        "amount": "3x"
+                }
+        ],
+        "reverseEngineeringCs": "Lze nalézt a recyklovat v průmyslových základnách Chalk Peak a Red Sands pomocí Advanced Recycling Tool.",
+        "reverseEngineeringEn": "Can be found and recycled in Chalk Peak and Red Sands industrial bases using an Advanced Recycling Tool."
+},
         nameEn: "Advanced Solar Generator",
         nameCs: "Pokročilá solární elektrárna (35W)",
         categoryEn: "Power Facility",
@@ -2284,6 +2626,39 @@ const i18n = {
       },
       {
         id: "t-00c",
+        researchInvention: {
+        "chance": "High (Základní)",
+        "materialsCs": [
+                {
+                        "name": "Kovový šrot",
+                        "amount": "40x"
+                },
+                {
+                        "name": "Měděný ingot",
+                        "amount": "20x"
+                },
+                {
+                        "name": "Elektronické součástky",
+                        "amount": "8x"
+                }
+        ],
+        "materialsEn": [
+                {
+                        "name": "Metal Scraps",
+                        "amount": "40x"
+                },
+                {
+                        "name": "Copper Ingot",
+                        "amount": "20x"
+                },
+                {
+                        "name": "Electronic Parts",
+                        "amount": "8x"
+                }
+        ],
+        "reverseEngineeringCs": "Lze najít na farmách v Dayton Wetlands a Broken Delta.",
+        "reverseEngineeringEn": "Can be found on farms in Dayton Wetlands and Broken Delta."
+},
         nameEn: "Small Biomass Generator",
         nameCs: "Malý generátor na biomasu (10W)",
         categoryEn: "Power Facility",
@@ -2326,6 +2701,47 @@ const i18n = {
       },
       {
         id: "t-00e",
+        researchInvention: {
+        "chance": "High (Ověřeno)",
+        "materialsCs": [
+                {
+                        "name": "Ocelový ingot",
+                        "amount": "45x"
+                },
+                {
+                        "name": "Měděný ingot",
+                        "amount": "30x"
+                },
+                {
+                        "name": "Elektronické součástky",
+                        "amount": "20x"
+                },
+                {
+                        "name": "Součástky (Parts)",
+                        "amount": "15x"
+                }
+        ],
+        "materialsEn": [
+                {
+                        "name": "Steel Ingot",
+                        "amount": "45x"
+                },
+                {
+                        "name": "Copper Ingot",
+                        "amount": "30x"
+                },
+                {
+                        "name": "Electronic Parts",
+                        "amount": "20x"
+                },
+                {
+                        "name": "Parts",
+                        "amount": "15x"
+                }
+        ],
+        "reverseEngineeringCs": "Lze demontovat u vodních přečerpávacích stanic a přehrad v Broken Delta a Iron River.",
+        "reverseEngineeringEn": "Can be dismantled near water pumping stations and reservoirs in Broken Delta and Iron River."
+},
         nameEn: "Hydraulic Generator",
         nameCs: "Hydraulická vodní elektrárna (20W)",
         categoryEn: "Power Facility",
