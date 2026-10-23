@@ -727,7 +727,12 @@ function initSearchIndex() {
       }
     }
 
-    item._searchIndex = (csTokens + ' ' + enTokens + ' ' + (item.scenario || '') + ' ' + invTokens + ' ' + gearTokens + ' ' + deviantTokens).toLowerCase();
+    let zoneTokens = '';
+    if (item.zoneType || item.levelRange || item.monolithBossCs || item.mysticCratesCs) {
+      zoneTokens = ` ${item.zoneType || ''} ${item.levelRange || ''} ${item.monolithBossCs || ''} ${item.monolithBossEn || ''} ${item.silosCs || ''} ${item.silosEn || ''} ${(item.mysticCratesCs || []).join(' ')} ${(item.mysticCratesEn || []).join(' ')} ${(item.keyLootCs || []).join(' ')} ${(item.keyLootEn || []).join(' ')} zone zóna region průzkum exploration dungeon silo monolith mystic crate truhla`;
+    }
+
+    item._searchIndex = (csTokens + ' ' + enTokens + ' ' + (item.scenario || '') + ' ' + invTokens + ' ' + gearTokens + ' ' + deviantTokens + ' ' + zoneTokens).toLowerCase();
   });
 }
 
@@ -781,7 +786,7 @@ function handleHashChange() {
     openModal(recipeId, false);
   } else if (hash.startsWith('tab=')) {
     const tabName = hash.replace('tab=', '');
-    if (activeTab !== tabName && ['discovered', 'creative', 'medicine', 'inventions', 'gear', 'deviants'].includes(tabName)) {
+    if (activeTab !== tabName && ['discovered', 'creative', 'medicine', 'inventions', 'gear', 'deviants', 'zones'].includes(tabName)) {
       switchTab(tabName, false);
     }
   }
@@ -822,7 +827,7 @@ window.addEventListener('keydown', function(e) {
 });
 
 function getAllRecipes() {
-  return [...discoveredRecipes, ...creativeDishes, ...medicineRecipes, ...inventionRecipes, ...gearRecipes, ...deviantRecipes];
+  return [...discoveredRecipes, ...creativeDishes, ...medicineRecipes, ...inventionRecipes, ...gearRecipes, ...deviantRecipes, ...zoneRecipes];
 }
 
 function findRecipeById(id) {
@@ -836,6 +841,7 @@ function determineRecipeTab(recipeId) {
   if (inventionRecipes.some(r => r.id === recipeId)) return 'inventions';
   if (gearRecipes.some(r => r.id === recipeId)) return 'gear';
   if (deviantRecipes.some(r => r.id === recipeId)) return 'deviants';
+  if (zoneRecipes.some(r => r.id === recipeId)) return 'zones';
   return 'discovered';
 }
 
@@ -859,6 +865,7 @@ function getActiveDataset() {
     case 'inventions': return inventionRecipes;
     case 'gear': return gearRecipes;
     case 'deviants': return deviantRecipes;
+    case 'zones': return zoneRecipes;
     default: return discoveredRecipes;
   }
 }
@@ -887,6 +894,8 @@ function applyLanguageUI() {
   if (gearTabEl) gearTabEl.innerText = `${t.tabGear || 'Weapons & Armor'} (${gearRecipes.length})`;
   const devTabEl = document.getElementById('tab-txt-deviants');
   if (devTabEl) devTabEl.innerText = `${t.tabDeviants || 'Deviants & Cradle'} (${deviantRecipes.length})`;
+  const zoneTabEl = document.getElementById('tab-txt-zones');
+  if (zoneTabEl) zoneTabEl.innerText = `${t.tabZones || 'Zones & Exploration'} (${zoneRecipes.length})`;
   document.getElementById('calc-title').innerText = t.calcTitle;
   document.getElementById('calc-desc').innerText = t.calcDesc;
   document.getElementById('searchInput').placeholder = t.searchPlaceholder;
@@ -918,7 +927,8 @@ function switchTab(tabId, updateHash = true) {
     { id: 'tab-btn-medicine', name: 'medicine' },
     { id: 'tab-btn-inventions', name: 'inventions' },
     { id: 'tab-btn-gear', name: 'gear' },
-    { id: 'tab-btn-deviants', name: 'deviants' }
+    { id: 'tab-btn-deviants', name: 'deviants' },
+    { id: 'tab-btn-zones', name: 'zones' }
   ];
 
   buttons.forEach(btn => {
@@ -1181,6 +1191,11 @@ function renderRecipeCards(items) {
                 ${currentLang === 'cs' ? (item.categoryCs || 'Deviant') : (item.categoryEn || 'Deviant')}
               </span>
             ` : ''}
+            ${item.levelRange ? `
+              <span class="text-[9px] font-mono uppercase px-1.5 py-0.5 rounded border border-hud-cyan/60 bg-cyan-950/80 text-cyan-300 font-bold flex items-center gap-1 shadow-[0_0_8px_rgba(0,240,255,0.25)]">
+                <i class="fa-solid fa-location-dot text-[8px] text-hud-cyan"></i>${item.levelRange}
+              </span>
+            ` : ''}
           </div>
           <div class="flex items-center gap-2">
             <span class="text-[10px] font-mono uppercase px-2 py-0.5 rounded border ${rar.bg} ${rar.text} ${rar.border} font-bold flex items-center space-x-1">
@@ -1254,6 +1269,27 @@ function renderRecipeCards(items) {
             <i class="fa-solid fa-dna text-emerald-400 text-[10px]"></i>
             <span class="text-slate-400">Cradle:</span>
             <strong class="text-emerald-200 truncate">${currentLang === 'cs' ? item.cradleSynergyCs : item.cradleSynergyEn}</strong>
+          </div>
+        ` : ''}
+
+        <!-- Zone / Region Monolith Boss & Mystic Crates Preview -->
+        ${item.monolithBossCs ? `
+          <div class="mb-2 text-[11px] font-mono text-amber-300 p-2 bg-amber-950/30 border border-amber-500/40 rounded flex items-center justify-between gap-1.5">
+            <span class="text-slate-400 flex items-center gap-1.5 truncate">
+              <i class="fa-solid fa-skull text-amber-400 text-[10px] shrink-0"></i>
+              <span>${currentLang === 'cs' ? 'Boss' : 'Boss'}:</span>
+              <strong class="text-white truncate">${currentLang === 'cs' ? item.monolithBossCs : item.monolithBossEn}</strong>
+            </span>
+            ${item.silosCs ? `<span class="text-[9px] font-mono text-hud-cyan shrink-0 border border-cyan-800/80 px-1 py-0.2 rounded bg-cyan-950/60">${currentLang === 'cs' ? 'Silo' : 'Silo'}</span>` : ''}
+          </div>
+        ` : ''}
+        ${item.mysticCratesCs && item.mysticCratesCs.length > 0 ? `
+          <div class="mb-3 text-[11px] font-mono text-purple-300 p-1.5 bg-purple-950/30 border border-purple-500/40 rounded flex items-center justify-between">
+            <span class="text-slate-300 flex items-center gap-1.5">
+              <i class="fa-solid fa-box-open text-purple-400 text-[10px]"></i>
+              ${currentLang === 'cs' ? 'Mystické truhly' : 'Mystic Crates'}:
+            </span>
+            <strong class="text-hud-cyan font-bold">${item.mysticCratesCs.length}</strong>
           </div>
         ` : ''}
 
@@ -1510,6 +1546,81 @@ function openModal(id, pushHistory = false) {
             <div>
               <strong class="block text-emerald-300 text-[10px] uppercase font-mono">${t.cradleSynergyTitle || 'Doporučená Cradle synergie:'}</strong>
               <span>${currentLang === 'cs' ? item.cradleSynergyCs : item.cradleSynergyEn}</span>
+            </div>
+          </div>
+        ` : ''}
+      </div>
+    ` : ''}
+
+    <!-- Zone Explorer & Map Guide Section -->
+    ${item.zoneType ? `
+      <div class="mb-4 p-4 bg-slate-900/90 border border-hud-cyan/60 rounded-lg shadow-[0_0_20px_rgba(0,240,255,0.15)]">
+        <div class="flex items-center justify-between mb-3 flex-wrap gap-2">
+          <span class="text-xs font-orbitron font-bold text-white flex items-center gap-1.5">
+            <i class="fa-solid fa-map-location-dot text-hud-cyan"></i>
+            ${currentLang === 'cs' ? (item.categoryCs || 'Zóna') : (item.categoryEn || 'Zone')} • <span class="text-hud-cyan">${primaryName}</span>
+          </span>
+          <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-cyan-950/80 text-cyan-300 border border-cyan-500/60 font-bold uppercase">
+            ${item.levelRange || 'Explore'}
+          </span>
+        </div>
+
+        <!-- Monolith Boss & Silos Overview -->
+        ${(item.monolithBossCs || item.silosCs) ? `
+          <div class="mb-3 bg-hud-bg/90 p-3 rounded border border-hud-border">
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs font-mono">
+              ${item.monolithBossCs ? `
+                <div class="p-2 rounded bg-amber-950/30 border border-amber-500/40 text-amber-200">
+                  <span class="text-[10px] text-amber-400 font-bold uppercase block mb-0.5 flex items-center gap-1">
+                    <i class="fa-solid fa-skull"></i>${t.monolithBossTitle || 'Monolit & Hlavní boss:'}
+                  </span>
+                  <strong>${currentLang === 'cs' ? item.monolithBossCs : item.monolithBossEn}</strong>
+                </div>
+              ` : ''}
+              ${item.silosCs ? `
+                <div class="p-2 rounded bg-cyan-950/30 border border-hud-cyan/40 text-cyan-200">
+                  <span class="text-[10px] text-hud-cyan font-bold uppercase block mb-0.5 flex items-center gap-1">
+                    <i class="fa-solid fa-dungeon"></i>${t.silosTitle || 'Přidružená Sila a Dungeony:'}
+                  </span>
+                  <strong>${currentLang === 'cs' ? item.silosCs : item.silosEn}</strong>
+                </div>
+              ` : ''}
+            </div>
+          </div>
+        ` : ''}
+
+        <!-- Mystic Crates Breakdown -->
+        ${item.mysticCratesCs && item.mysticCratesCs.length > 0 ? `
+          <div class="mb-3 bg-purple-950/20 p-3 rounded border border-purple-500/40">
+            <span class="text-[10px] font-mono uppercase text-purple-300 font-bold block mb-2 flex items-center gap-1.5">
+              <i class="fa-solid fa-box-open text-hud-purple"></i>
+              ${t.mysticCratesTitle || 'Lokace Mystických truhel (Mystic Crates):'}
+            </span>
+            <div class="space-y-1.5">
+              ${(currentLang === 'cs' ? item.mysticCratesCs : item.mysticCratesEn).map(c => `
+                <div class="p-2 rounded bg-slate-800/60 border border-slate-700/60 text-xs text-slate-200 flex items-start gap-2">
+                  <i class="fa-solid fa-gem text-hud-purple mt-0.5 text-[10px] shrink-0"></i>
+                  <span>${c}</span>
+                </div>
+              `).join('')}
+            </div>
+          </div>
+        ` : ''}
+
+        <!-- Key Loot, Blueprints & Deviants -->
+        ${item.keyLootCs && item.keyLootCs.length > 0 ? `
+          <div class="p-3 rounded bg-emerald-950/30 border border-emerald-500/40 text-xs">
+            <span class="text-[10px] font-mono uppercase text-emerald-300 font-bold block mb-2 flex items-center gap-1.5">
+              <i class="fa-solid fa-gift text-emerald-400"></i>
+              ${t.keyLootTitle || 'Klíčový loot, mody & Devianti:'}
+            </span>
+            <div class="space-y-1 text-slate-300 font-mono text-[11px]">
+              ${(currentLang === 'cs' ? item.keyLootCs : item.keyLootEn).map(l => `
+                <div class="flex items-start gap-1.5">
+                  <i class="fa-solid fa-check text-emerald-400 mt-0.5 text-[9px] shrink-0"></i>
+                  <span>${l}</span>
+                </div>
+              `).join('')}
             </div>
           </div>
         ` : ''}

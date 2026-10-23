@@ -7,9 +7,14 @@ const i18n = {
         tabInventions: "Vynálezy & Taktika",
         tabGear: "Zbraně & Zbroje",
         tabDeviants: "Devianti & Cradle",
+        tabZones: "Zóny & Průzkum",
         deviantContainmentTitle: "Podmínky Securement Unit (Optimalizace)",
         cradleSynergyTitle: "Doporučená Cradle synergie:",
         deviantSkillTitle: "Aktivní / Teritoriální schopnost:",
+        mysticCratesTitle: "Lokace Mystických truhel (Mystic Crates):",
+        monolithBossTitle: "Monolit & Hlavní boss:",
+        keyLootTitle: "Klíčový loot, mody & Devianti:",
+        silosTitle: "Přidružená Sila a Dungeony:",
         calcTitle: "CHEF MATRIX: VOLNÉ VAŘENÍ A ARCHETYPY",
         calcDesc: "Naklikejte kombinaci masa a surovin pro simulaci archetypů a buffů",
         searchPlaceholder: "Hledat recept, surovinu, účinek nebo scénář...",
@@ -87,9 +92,14 @@ const i18n = {
         tabInventions: "Tech Inventions",
         tabGear: "Weapons & Armor",
         tabDeviants: "Deviants & Cradle",
+        tabZones: "Zones & Exploration",
         deviantContainmentTitle: "Securement Unit Conditions (Optimal Environment)",
         cradleSynergyTitle: "Recommended Cradle Synergy:",
         deviantSkillTitle: "Active / Territory Skill:",
+        mysticCratesTitle: "Mystic Crate Locations:",
+        monolithBossTitle: "Monolith & Primary Boss:",
+        keyLootTitle: "Key Loot, Mods & Deviants:",
+        silosTitle: "Associated Silos & Dungeons:",
         calcTitle: "CHEF MATRIX: FREE COOKING & ARCHETYPES",
         calcDesc: "Select ingredient combinations to simulate meat archetypes and buffs",
         searchPlaceholder: "Search recipe, ingredient, buff effect, or scenario...",
@@ -14561,5 +14571,923 @@ const deviantRecipes = [
     "descriptionCs": "Éterická porcelánová dívka vyzařující konejšivá pole. Vytváří útočiště, do kterého šílenství ani zkaženost pustiny neproniknou."
   }
 ];
+
+const zoneRecipes = [
+  {
+    "id": "zone-01",
+    "nameEn": "Dayton Wetlands (Level 1-10)",
+    "nameCs": "Dayton Wetlands (Úroveň 1-10)",
+    "categoryEn": "Exploration Region",
+    "categoryCs": "Průzkumná zóna",
+    "zoneType": "region",
+    "levelRange": "Lv 1 - 10",
+    "scenario": "core",
+    "rarity": "Common",
+    "workbench": "Teleport Tower & Rift Anchor",
+    "energy": 0,
+    "hydration": 0,
+    "buffDuration": "Doporučená úroveň: 1 - 10",
+    "sourceEn": "World Map - Southern Coastal Riverlands",
+    "sourceCs": "Mapa světa - Jižní pobřežní říční mokřady",
+    "monolithBossEn": "Monolith of Greed (Ravenous Hunter - Level 10)",
+    "monolithBossCs": "Monolith of Greed (Ravenous Hunter - úroveň 10)",
+    "silosEn": "Border outpost near Silo PHI (Broken Delta)",
+    "silosCs": "Hraniční základna u Silo PHI (Broken Delta)",
+    "mysticCratesEn": [
+      "Sutherland Chemical Plant (On top of central distillation tower tank)",
+      "Dayton Hospital (Rooftop helipad elevator maintenance room)",
+      "Citrus County (Attic of the central wooden farmhouse near windmill)"
+    ],
+    "mysticCratesCs": [
+      "Sutherland Chemical Plant (Na vrcholu centrální destilační nádrže)",
+      "Dayton Hospital (Na střešním heliportu v technické místnosti údržby výtahu)",
+      "Citrus County (V podkroví hlavní dřevěné farmářské budovy u větrného mlýna)"
+    ],
+    "keyLootEn": [
+      "Scout & Falcon armor blueprint fragments",
+      "Recurve Bow & Crossbow weapon blueprints",
+      "Deviants: Festering Gel (Monolith) & Buzzy Bee (Citrus County farm puzzle)",
+      "Early resources: Copper Ore, Sulfur, Wood, Plant Fiber"
+    ],
+    "keyLootCs": [
+      "Útržky plánů zbrojí Scout a Falcon",
+      "Zbraňové plány pro Recurve Bow a loveckou kuši",
+      "Devianti: Festering Gel (Monolith) a Buzzy Bee (Puzzle na farmě Citrus County)",
+      "Základní suroviny: Měděná ruda, síra, dřevo a rostlinná vlákna"
+    ],
+    "effectsEn": [
+      "Recommended Player Level: 1 - 10",
+      "Main Settlements: Deadsville (Quest hub, weapon vendor, teleporter)",
+      "Requires 3x Rift Anchors to unlock Monolith of Greed access",
+      "Low contamination - ideal beginner sanctuary for building base territory"
+    ],
+    "effectsCs": [
+      "Doporučená úroveň hráče: 1 - 10",
+      "Hlavní osady: Deadsville (Ústřední obchodní uzel, prodejce zbraní, teleport)",
+      "Vyžaduje aktivaci 3x Rift Anchor pro odemčení přístupu k Monolith of Greed",
+      "Nízké zamoření - ideální počáteční útočiště pro stavbu základny a skleníků"
+    ],
+    "ingredientsEn": [
+      { "name": "Rift Anchors Activated", "amount": "3x / 3x", "isPrimary": true },
+      { "name": "Mystic Crates Found", "amount": "3x" },
+      { "name": "Teleport Towers", "amount": "4x" }
+    ],
+    "ingredientsCs": [
+      { "name": "Aktivované Rift Anchory", "amount": "3x / 3x", "isPrimary": true },
+      { "name": "Otevřené Mystické truhly", "amount": "3x" },
+      { "name": "Teleportační věže", "amount": "4x" }
+    ],
+    "descriptionEn": "A tranquil wetland valley crisscrossed by waterways and overgrown abandoned chemical installations. The starting point for all Meta-Humans.",
+    "descriptionCs": "Poklidné údolí mokřadů protkané říčními toky a zarůstajícími chemickými komplexy. Výchozí bod každého Meta-Humana."
+  },
+  {
+    "id": "zone-02",
+    "nameEn": "Broken Delta (Level 10-20)",
+    "nameCs": "Broken Delta (Úroveň 10-20)",
+    "categoryEn": "Exploration Region",
+    "categoryCs": "Průzkumná zóna",
+    "zoneType": "region",
+    "levelRange": "Lv 10 - 20",
+    "scenario": "core",
+    "rarity": "Fine",
+    "workbench": "Teleport Tower & Rift Anchor",
+    "energy": 0,
+    "hydration": 0,
+    "buffDuration": "Doporučená úroveň: 10 - 20",
+    "sourceEn": "World Map - Central Coastal River Delta",
+    "sourceCs": "Mapa světa - Centrální pobřežní delta řeky",
+    "monolithBossEn": "Monolith of Fog (Treant - Level 20)",
+    "monolithBossCs": "Monolith of Fog (Treant - úroveň 20)",
+    "silosEn": "Securement Silo PHI (Lv 15 - 50)",
+    "silosCs": "Securement Silo PHI (úroveň 15 - 50)",
+    "mysticCratesEn": [
+      "High Banks (2nd floor offices inside the commercial bank)",
+      "Harborside (Inside red cargo container dangling from shipyard crane)",
+      "Sunbury (Town hall upper balcony behind barricade)",
+      "Sunbury Middle School (Gymnasium athletic coach office desk)"
+    ],
+    "mysticCratesCs": [
+      "High Banks (Kanceláře ve 2. patře komerční banky)",
+      "Harborside (Uvnitř červeného kontejneru zavěšeného na přístavním jeřábu)",
+      "Sunbury (Horní balkon radnice za zátarasem)",
+      "Sunbury Middle School (Kancelář sportovního trenéra v tělocvičně)"
+    ],
+    "keyLootEn": [
+      "Heavy Duty set blueprints (Tier 2-3)",
+      "Lonewolf set armor fragments",
+      "Deviants: Lonewolf Whisper, Pup Buddy (High Banks quest), Logg Beaver (Docks)",
+      "Resources: Tin Ore, Iron Ore, Refined Part drops"
+    ],
+    "keyLootCs": [
+      "Plány těžké zbroje Heavy Duty (Tier 2-3)",
+      "Útržky legendárního setu Lonewolf",
+      "Devianti: Pup Buddy (Úkol v High Banks), Logg Beaver (Přístavní doky)",
+      "Suroviny: Cínová ruda, železná ruda a součástky 2. úrovně"
+    ],
+    "effectsEn": [
+      "Recommended Player Level: 10 - 20",
+      "Key Settlements: Meyer's Market (Extensive barter hub, weapon accessories, tavern)",
+      "Requires 4x Rift Anchors to breach Treant's Fog Monolith",
+      "Introduction to industrial contamination and Securement Silo crawling"
+    ],
+    "effectsCs": [
+      "Doporučená úroveň hráče: 10 - 20",
+      "Klíčové osady: Meyer's Market (Velký obchodní trh, doplňky zbraní, hospoda)",
+      "Vyžaduje 4x Rift Anchor k prolomení mlžné bariéry Monolitu Treanta",
+      "První seznámení s průmyslovou kontaminací a dungeony Securement Silo"
+    ],
+    "ingredientsEn": [
+      { "name": "Rift Anchors Activated", "amount": "4x / 4x", "isPrimary": true },
+      { "name": "Mystic Crates Found", "amount": "4x" },
+      { "name": "Teleport Towers", "amount": "5x" }
+    ],
+    "ingredientsCs": [
+      { "name": "Aktivované Rift Anchory", "amount": "4x / 4x", "isPrimary": true },
+      { "name": "Otevřené Mystické truhly", "amount": "4x" },
+      { "name": "Teleportační věže", "amount": "5x" }
+    ],
+    "descriptionEn": "A flooded industrialized river delta dominated by container harbors and ruined towns infested with creeping vines.",
+    "descriptionCs": "Zatopená průmyslová delta řeky plná kontejnerových přístavů a zpustlých měst zarůstajících parazitickými liánami."
+  },
+  {
+    "id": "zone-03",
+    "nameEn": "Iron River (Level 20-30)",
+    "nameCs": "Iron River (Úroveň 20-30)",
+    "categoryEn": "Exploration Region",
+    "categoryCs": "Průzkumná zóna",
+    "zoneType": "region",
+    "levelRange": "Lv 20 - 30",
+    "scenario": "core",
+    "rarity": "Rare",
+    "workbench": "Teleport Tower & Rift Anchor",
+    "energy": 0,
+    "hydration": 0,
+    "buffDuration": "Doporučená úroveň: 20 - 30",
+    "sourceEn": "World Map - Industrial Mining Basin",
+    "sourceCs": "Mapa světa - Průmyslová těžařská kotlina",
+    "monolithBossEn": "Monolith of Mirage (Arachsiam - Level 30)",
+    "monolithBossCs": "Monolith of Mirage (Arachsiam - úroveň 30)",
+    "silosEn": "Securement Silo SIGMA (Lv 25 - 50)",
+    "silosCs": "Securement Silo SIGMA (úroveň 25 - 50)",
+    "mysticCratesEn": [
+      "Highland (Rooftop catwalk of the tallest ruined apartment building)",
+      "Alkirk (Police Department communications room inside main station)",
+      "Refinery Pollution Plant (Suspended metal catwalk hovering over toxic acid vat)",
+      "East Blackfell Junction (Old train depot control office)"
+    ],
+    "mysticCratesCs": [
+      "Highland (Střešní lávka nejvyšší rozpadlé bytovky)",
+      "Alkirk (Spojovací místnost policejního oddělení v hlavní budově)",
+      "Refinery Pollution Plant (Zavěšená lávka přímo nad velkou kyselinovou nádrží)",
+      "East Blackfell Junction (Dispečerská kancelář starého železničního depa)"
+    ],
+    "keyLootEn": [
+      "Agent set blueprints & Tactical vest recipes",
+      "DE.50 Jaws calibration blueprint fragments",
+      "Deviants: Dr. Teddy (Silo SIGMA), Chefosaurus Rex (Cooking challenge)",
+      "Resources: Steel Ingot, Aluminum, Electronic Parts, Acid"
+    ],
+    "keyLootCs": [
+      "Plány taktického setu Agent a neprůstřelných vest",
+      "Útržky kalibrací pro pistoli DE.50 Jaws",
+      "Devianti: Dr. Teddy (Silo SIGMA), Chefosaurus Rex (Kulinářský úkol)",
+      "Suroviny: Ocelové ingoty, hliník, elektronické součástky a kyselina"
+    ],
+    "effectsEn": [
+      "Recommended Player Level: 20 - 30",
+      "Key Settlements: Greywater Camp (Rosetta deserters, black market recipes)",
+      "Requires 4x Rift Anchors to enter Monolith of Mirage (Spider boss)",
+      "Substantial acid production zone - ideal for automated water pump networks"
+    ],
+    "effectsCs": [
+      "Doporučená úroveň hráče: 20 - 30",
+      "Klíčové osady: Greywater Camp (Přeběhlíci z Rosetty, černý trh, unikátní recepty)",
+      "Vyžaduje 4x Rift Anchor ke vstupu do Monolith of Mirage (Pavoučí královna)",
+      "Centrální zóna produkce kyseliny - ideální pro stavbu vodních pumpovacích farem"
+    ],
+    "ingredientsEn": [
+      { "name": "Rift Anchors Activated", "amount": "4x / 4x", "isPrimary": true },
+      { "name": "Mystic Crates Found", "amount": "4x" },
+      { "name": "Teleport Towers", "amount": "5x" }
+    ],
+    "ingredientsCs": [
+      { "name": "Aktivované Rift Anchory", "amount": "4x / 4x", "isPrimary": true },
+      { "name": "Otevřené Mystické truhly", "amount": "4x" },
+      { "name": "Teleportační věže", "amount": "5x" }
+    ],
+    "descriptionEn": "A rust-colored industrial basin heavy with smelting fumes and toxic tailings. Home to heavily armed militant factions and spider abominations.",
+    "descriptionCs": "Zrezivělá těžařská pánev prosycená hutnickým kouřem a toxickým odpadem. Domov ozbrojených frakcí a pavoučích monster."
+  },
+  {
+    "id": "zone-04",
+    "nameEn": "Chalk Peak (Level 30-40)",
+    "nameCs": "Chalk Peak (Úroveň 30-40)",
+    "categoryEn": "Exploration Region",
+    "categoryCs": "Průzkumná zóna",
+    "zoneType": "region",
+    "levelRange": "Lv 30 - 40",
+    "scenario": "core",
+    "rarity": "Epic",
+    "workbench": "Teleport Tower & Rift Anchor",
+    "energy": 0,
+    "hydration": 0,
+    "buffDuration": "Doporučená úroveň: 30 - 40",
+    "sourceEn": "World Map - High Alpine Mountain Ridge",
+    "sourceCs": "Mapa světa - Vysokohorský vápencový hřeben",
+    "monolithBossEn": "Monolith of Thirst (Shadow Hound - Level 40)",
+    "monolithBossCs": "Monolith of Thirst (Shadow Hound - úroveň 40)",
+    "silosEn": "Securement Silo THETA (Lv 35+) & Silo EX1 (Lv 38+)",
+    "silosCs": "Securement Silo THETA (úroveň 35+) a Silo EX1 (úroveň 38+)",
+    "mysticCratesEn": [
+      "Holt Town (Church bell tower attic behind broken pipe)",
+      "Furnace Lair (Deep inside foundry furnace refining room)",
+      "Greenlake Hill (Second floor master bedroom balcony of lakeside manor)",
+      "Abandoned Monolith Outpost (Secure Rosetta command bunker)"
+    ],
+    "mysticCratesCs": [
+      "Holt Town (Podkroví kostelní zvonice za rozbitým potrubím)",
+      "Furnace Lair (Hluboko v hutní tavicí komoře u hlavní pece)",
+      "Greenlake Hill (Balkon hlavní ložnice luxusního panství u jezera)",
+      "Abandoned Monolith Outpost (Vojenský velitelský kryt Rosetta)"
+    ],
+    "keyLootEn": [
+      "Renegade & Lonewolf legendary set pieces",
+      "AWS.338 Bingo & SOCR The Last Valor calibration parts",
+      "Deviants: Lonewolf Whisper (Monolith), Pyro Dino, Shattered Maiden, By-the-Wind",
+      "Resources: Tungsten Ore, Special Part drops, Gold Ore"
+    ],
+    "keyLootCs": [
+      "Díly legendárních setů Renegade a Lonewolf",
+      "Kalibrační součástky pro AWS.338 Bingo a SOCR The Last Valor",
+      "Devianti: Lonewolf Whisper (Monolith), Pyro Dino, Shattered Maiden, By-the-Wind",
+      "Suroviny: Wolframová ruda (Tungsten), zlatá ruda a součástky 4. úrovně"
+    ],
+    "effectsEn": [
+      "Recommended Player Level: 30 - 40",
+      "Key Settlements: Tall Grass Inn (High-altitude refuge, mountain traders)",
+      "Requires 5x Rift Anchors to unlock Shadow Hound Monolith",
+      "Steep cliffs and high verticality - By-the-Wind glider deviant highly recommended"
+    ],
+    "effectsCs": [
+      "Doporučená úroveň hráče: 30 - 40",
+      "Klíčové osady: Tall Grass Inn (Vysokohorské útočiště, horští překupníci)",
+      "Vyžaduje 5x Rift Anchor k odemčení přístupu k Shadow Houndovi",
+      "Strmé srázy a velká převýšení - důrazně doporučen Deviant By-the-Wind pro plachtění"
+    ],
+    "ingredientsEn": [
+      { "name": "Rift Anchors Activated", "amount": "5x / 5x", "isPrimary": true },
+      { "name": "Mystic Crates Found", "amount": "4x" },
+      { "name": "Teleport Towers", "amount": "6x" }
+    ],
+    "ingredientsCs": [
+      { "name": "Aktivované Rift Anchory", "amount": "5x / 5x", "isPrimary": true },
+      { "name": "Otevřené Mystické truhly", "amount": "4x" },
+      { "name": "Teleportační věže", "amount": "6x" }
+    ],
+    "descriptionEn": "Towering chalk ridges and winding switchbacks dotted with abandoned orchards, luxury retreats, and fortified Rosetta research outposts.",
+    "descriptionCs": "Monumentální vápencové hřebeny a klikaté horské serpentiny plné opuštěných sadů, luxusních vil a opevněných základen Rosetty."
+  },
+  {
+    "id": "zone-05",
+    "nameEn": "Red Sands (Level 40-50)",
+    "nameCs": "Red Sands (Úroveň 40-50)",
+    "categoryEn": "Exploration Region",
+    "categoryCs": "Průzkumná zóna",
+    "zoneType": "region",
+    "levelRange": "Lv 40 - 50",
+    "scenario": "core",
+    "rarity": "Legendary",
+    "workbench": "Teleport Tower & Rift Anchor",
+    "energy": 0,
+    "hydration": 0,
+    "buffDuration": "Doporučená úroveň: 40 - 50",
+    "sourceEn": "World Map - Northern Desert Wasteland",
+    "sourceCs": "Mapa světa - Severní pouštní pustina",
+    "monolithBossEn": "Monolith of Purity (Forsaken Giant Raid - Level 50)",
+    "monolithBossCs": "Monolith of Purity (Forsaken Giant Raid - úroveň 50)",
+    "silosEn": "Securement Silo PSI (Lv 45 - 50)",
+    "silosCs": "Securement Silo PSI (úroveň 45 - 50)",
+    "mysticCratesEn": [
+      "Blackfell Oil Field (Central offshore pumping platform control office)",
+      "Alternative Reality Research Institute (Deep underground vault room B3)",
+      "Evergreen Town (Main department store back warehouse)",
+      "70-Zone (Armored military supply depot command post)"
+    ],
+    "mysticCratesCs": [
+      "Blackfell Oil Field (Centrální dispečink hlavní těžební ropné plošiny)",
+      "Alternative Reality Research Institute (Hluboko v podzemním trezoru Rosetty B3)",
+      "Evergreen Town (Zadní sklad hlavního obchodního domu za barikádou)",
+      "70-Zone (Obrněné velitelské stanoviště armádního muničního skladu)"
+    ],
+    "keyLootEn": [
+      "Bastille & Shelterer legendary gear set blueprints",
+      "High-end Level 5 Weapon & Armor mods",
+      "Deviants: Artisan's Touch (Silo PSI), Rebecca (Secret Monolith), Atomic Snail",
+      "Resources: Crude Oil, Stardust Source, Platinum Ore, Premium Fuel"
+    ],
+    "keyLootCs": [
+      "Kompletní plány legendárních setů Bastille a Shelterer",
+      "Špičkové zbraňové a zbrojní modifikace 5. úrovně",
+      "Devianti: Artisan's Touch (Silo PSI), Rebecca (Tajný monolit), Atomic Snail",
+      "Suroviny: Ropa (Crude Oil), Stardust Source, platina a prémiové palivo"
+    ],
+    "effectsEn": [
+      "Recommended Player Level: 40 - 50",
+      "Key Settlements: Blackfell Camp (Endgame trade hub, highest-tier vendors)",
+      "Requires 5x Rift Anchors to unlock Forsaken Giant Monolith Raid",
+      "High Stardust pollution - requires Sanity gummies or Rebecca containment field"
+    ],
+    "effectsCs": [
+      "Doporučená úroveň hráče: 40 - 50",
+      "Klíčové osady: Blackfell Camp (Hlavní endgame centrum, nejvyšší obchodníci ve hře)",
+      "Vyžaduje 5x Rift Anchor k odemčení přístupu k Forsaken Giant Monolitu",
+      "Extrémní stardustové zamoření - nutné nosit želé na Sanity nebo nasadit Rebeccu"
+    ],
+    "ingredientsEn": [
+      { "name": "Rift Anchors Activated", "amount": "5x / 5x", "isPrimary": true },
+      { "name": "Mystic Crates Found", "amount": "4x" },
+      { "name": "Teleport Towers", "amount": "7x" }
+    ],
+    "ingredientsCs": [
+      { "name": "Aktivované Rift Anchory", "amount": "5x / 5x", "isPrimary": true },
+      { "name": "Otevřené Mystické truhly", "amount": "4x" },
+      { "name": "Teleportační věže", "amount": "7x" }
+    ],
+    "descriptionEn": "A merciless sun-scorched desert concealing colossal oil reserves, secret underground research bunkers, and towering stardust monoliths.",
+    "descriptionCs": "Nemilosrdná poušť rozpálená sluncem, která ukrývá gigantická ložiska ropy, tajné podzemní bunkry Rosetty a kolosální stardustové monolity."
+  },
+  {
+    "id": "zone-06",
+    "nameEn": "Blackfell Fallen Zone & Oil Reserve",
+    "nameCs": "Blackfell Fallen Zone (Endgame Farming Hub)",
+    "categoryEn": "Endgame Farming",
+    "categoryCs": "Endgame Farming",
+    "zoneType": "farming",
+    "levelRange": "Lv 45 - 50+",
+    "scenario": "core",
+    "rarity": "Legendary",
+    "workbench": "High-Yield Loot Circuit",
+    "energy": 0,
+    "hydration": 0,
+    "buffDuration": "Farming cyklus: Každé 4 hodiny",
+    "sourceEn": "Red Sands - Blackfell City Ruins & Oil Basin",
+    "sourceCs": "Red Sands - Ruiny města Blackfell a ropná pánev",
+    "monolithBossEn": "Stardust Pollution Zone Bosses & Elites",
+    "monolithBossCs": "Elitní Rosetta velitelé a zamořené anomálie",
+    "silosEn": "Direct access to Silo PSI & Secret Lab",
+    "silosCs": "Přímý přístup k Silo PSI a tajným laboratořím",
+    "mysticCratesEn": [
+      "Blackfell Government Complex (Top floor council hall)",
+      "Blackfell Hospital (Emergency room quarantined bay)",
+      "Contaminated Refinery Tower (Rooftop sniper vantage point)"
+    ],
+    "mysticCratesCs": [
+      "Vládní komplex Blackfell (Zasedací sál v nejvyšším patře)",
+      "Nemocnice Blackfell (Karanténní sekce pohotovosti)",
+      "Kontaminovaná věž rafinerie (Odstřelovačská vyhlídka na střeše)"
+    ],
+    "keyLootEn": [
+      "16+ Weapon & Gear Crates respawning every 4 hours",
+      "Legendary Mod Selection Boxes (Violent, Shrapnel Souvenir, Crit DMG)",
+      "Crude Oil & Mixed Fuel for automated power generation",
+      "Rare Furniture Formulas & Decoration Blueprints"
+    ],
+    "keyLootCs": [
+      "16+ truhel se zbraněmi a zbrojí s respawnem každé 4 hodiny",
+      "Legendární mody 5. úrovně (Violent, Shrapnel Souvenir, Crit DMG)",
+      "Surová ropa a smíšené palivo pro masivní výrobu elektřiny",
+      "Vzácné recepty na nábytek a dekorace do základny"
+    ],
+    "effectsEn": [
+      "Premier endgame mod and formula farming circuit in Once Human",
+      "Yields hundreds of Acid and Crude Oil barrels per farming loop",
+      "Ideal territory location for automated industrial refinery bases",
+      "High enemy density - bring explosive ammo or high-tier Deviant summon"
+    ],
+    "effectsCs": [
+      "Nejvýnosnější okruh na farmení modů a receptů v celé hře Once Human",
+      "Během jedné farmicí trasy poskytuje stovky kusů kyseliny a barelů ropy",
+      "Ideální lokalita pro stavbu těžebních základen s automatickými pumpami",
+      "Vysoká koncentrace monster - doporučena výbušná munice nebo bojový Deviant"
+    ],
+    "ingredientsEn": [
+      { "name": "Loot Crates Checked", "amount": "16x / Run", "isPrimary": true },
+      { "name": "Crude Oil Barrels", "amount": "100x+" },
+      { "name": "Legendary Mods", "amount": "4x+" }
+    ],
+    "ingredientsCs": [
+      { "name": "Prozkoumané loot bedny", "amount": "16x / Kolo", "isPrimary": true },
+      { "name": "Barely ropy (Crude Oil)", "amount": "100x+" },
+      { "name": "Legendární mody", "amount": "4x+" }
+    ],
+    "descriptionEn": "The ruined urban epicenter of Blackfell. Overrun with elite aberrant bio-horrors and prime loot crates containing endgame calibrations.",
+    "descriptionCs": "Zničené městské centrum Blackfell. Překypuje elitními monstry a prvotřídními bednami s nejžádanějšími modifikacemi ve hře."
+  },
+  {
+    "id": "zone-07",
+    "nameEn": "The Way of Winter: Onyx Tundra & Ember Strand",
+    "nameCs": "The Way of Winter (Arktická tundra & Ember Strand)",
+    "categoryEn": "Scenario Territory",
+    "categoryCs": "Území scénáře",
+    "zoneType": "region",
+    "levelRange": "Lv 1 - 50 (Scénář)",
+    "scenario": "winter",
+    "rarity": "Epic",
+    "workbench": "Thermal Tower & Survival Hearth",
+    "energy": 0,
+    "hydration": 0,
+    "buffDuration": "Scénář: The Way of Winter",
+    "sourceEn": "Scenario Map - Northern Arctic Glaciers & Volcanic Fissures",
+    "sourceCs": "Mapa scénáře - Severní ledovce a sopečné pukliny",
+    "monolithBossEn": "Frozen Monolith of Frost (Glacial Colossus)",
+    "monolithBossCs": "Zmrzlý Monolit mrazu (Ledový kolos)",
+    "silosEn": "Sub-zero Silo Cryo-Vaults",
+    "silosCs": "Podzemní kryokomory a arktická sila",
+    "mysticCratesEn": [
+      "Onyx Outpost (Behind frozen blast door melted by flare)",
+      "Thermal Spire Base (Control cockpit in central furnace column)",
+      "Ember Strand Magma Station (Catwalk above active lava pool)"
+    ],
+    "mysticCratesCs": [
+      "Onyx Outpost (Za zamrzlými pancéřovými dveřmi po roztavení ohněm)",
+      "Thermal Spire Base (Řídicí kokpit v centrální topné věži)",
+      "Ember Strand Magma Station (Kovová lávka přímo nad tekoucí lávou)"
+    ],
+    "keyLootEn": [
+      "Thermal Spire defense tech & Cold-resistant armor formulas",
+      "Frost Vortex & Burn archetype specialized calibrations",
+      "Arctic Deviants: Ice Weaver, Magma Hound, Frost Maiden",
+      "Resources: Polar Quartz, Cryo-Liquid, Volcanic Ash"
+    ],
+    "keyLootCs": [
+      "Technologie obrany Thermal Towers a mrazuvzdorné zbroje",
+      "Specializované kalibrace pro Frost Vortex a Burn archetypy",
+      "Arktičtí Devianti: Ledový tkadlec, Magmatický ohař, Mrazivá panna",
+      "Suroviny: Polární křemen, kryokapalina a sopečný popel"
+    ],
+    "effectsEn": [
+      "Dynamic Temperature Survival: Freezing cold vs extreme volcanic heat",
+      "Requires building and defending Thermal Towers to prevent territorial freezing",
+      "Cold reduces movement and drains stamina; warmth restores vitality",
+      "High synergy with Frost Vortex (Icy Rain) and Burn (Pyro Dino) loadouts"
+    ],
+    "effectsCs": [
+      "Dynamické přežití teplot: Třeskutý mráz versus žhnoucí sopečné magma",
+      "Nutnost stavět a bránit termální věže (Thermal Towers) před zamrznutím základny",
+      "Extrémní chlad zpomaluje pohyb a vyčerpává staminu; teplo obnovuje síly",
+      "Skvělá synergie se sestavami Frost Vortex (Icy Rain) a Burn (Pyro Dino)"
+    ],
+    "ingredientsEn": [
+      { "name": "Thermal Tower Active", "amount": "1x", "isPrimary": true },
+      { "name": "Polar Quartz", "amount": "20x" },
+      { "name": "Cold-Resistant Stew", "amount": "5x" }
+    ],
+    "ingredientsCs": [
+      { "name": "Aktivní termální věž (Thermal Tower)", "amount": "1x", "isPrimary": true },
+      { "name": "Polární křemen (Polar Quartz)", "amount": "20x" },
+      { "name": "Mrazuvzdorný guláš", "amount": "5x" }
+    ],
+    "descriptionEn": "A brutal northern frontier of blinding blizzards juxtaposed against subterranean magma eruptions. Survival requires strict mastery over thermal equilibrium.",
+    "descriptionCs": "Nemilosrdná severská divočina bičovaná sněhovými vánicemi v kontrastu se žhavou lávou. Přežití vyžaduje dokonalé řízení teplotní rovnováhy."
+  },
+  {
+    "id": "zone-08",
+    "nameEn": "Prismverse's Clash (Faction Frontlines)",
+    "nameCs": "Prismverse's Clash (Frakční frontová linie)",
+    "categoryEn": "Scenario Territory",
+    "categoryCs": "Území scénáře",
+    "zoneType": "region",
+    "levelRange": "Lv 1 - 50 (PVP)",
+    "scenario": "prismverse",
+    "rarity": "Legendary",
+    "workbench": "Prism Extraction Rig & War Beacon",
+    "energy": 0,
+    "hydration": 0,
+    "buffDuration": "Scénář: Prismverse's Clash",
+    "sourceEn": "Scenario Map - Disputed Frontline Territories",
+    "sourceCs": "Mapa scénáře - Sporná frontová válečná pásma",
+    "monolithBossEn": "Prism Convergence Anomalies & Faction Bosses",
+    "monolithBossCs": "Prismatické anomálie a velitelé frakcí",
+    "silosEn": "Frontline Contested Vaults",
+    "silosCs": "Frontová sporná sila a bunkry",
+    "mysticCratesEn": [
+      "Central Faction Stronghold (War room commander vault)",
+      "Mobile Extraction Convoy (Armored rear transport container)",
+      "Prism Core Facility (Resonance chamber observation desk)"
+    ],
+    "mysticCratesCs": [
+      "Centrální pevnost frakce (Trezor velitelství ve válečné místnosti)",
+      "Mobilní těžební konvoj (Obrněný zadní přepravní kontejner)",
+      "Prism Core Facility (Pozorovací stanoviště rezonanční komory)"
+    ],
+    "keyLootEn": [
+      "Exclusive Faction War medals and tactical cosmetics",
+      "Prism Deviant captures with boosted baseline stat multipliers",
+      "PVP combat calibrations and high-capacity shields",
+      "Resources: Prism Energy Cores, Stardust Ingot batches"
+    ],
+    "keyLootCs": [
+      "Exkluzivní válečné medaile a taktické kosmetické odměny",
+      "Zajatí Prism Devianti s posílenými základními statistikami",
+      "PVP bojové kalibrace zbraní a velkokapacitní energetické štíty",
+      "Suroviny: Jádra Prism Energy a balíky stardustových ingotů"
+    ],
+    "effectsEn": [
+      "Full-scale faction war between Mayfly Coalition and Rosetta Corporation",
+      "Capture and escort mobile Prism Deviants to generate faction territory points",
+      "Continuous tactical PVP skirmishes around extractors and high-yield nodes",
+      "Unlocks unique tactical combat mods tailored specifically for player duels"
+    ],
+    "effectsCs": [
+      "Totální frakční válka mezi Mayfly Coalition a korporací Rosetta",
+      "Lov a bezpečný doprovod mobilních Prism Deviantů pro zisk bodů",
+      "Průběžné taktické PVP střety o energetické těžební stanice",
+      "Odemknutí unikátních bojových modů vyladěných pro duely mezi hráči"
+    ],
+    "ingredientsEn": [
+      { "name": "Faction War Points", "amount": "1000x", "isPrimary": true },
+      { "name": "Prism Energy Core", "amount": "5x" },
+      { "name": "Tactical Beacon", "amount": "1x" }
+    ],
+    "ingredientsCs": [
+      { "name": "Body frakční války", "amount": "1000x", "isPrimary": true },
+      { "name": "Jádro Prism Energy", "amount": "5x" },
+      { "name": "Taktický maják", "amount": "1x" }
+    ],
+    "descriptionEn": "A war-torn battleground where the Mayfly Coalition and Rosetta clash openly to secure and siphon aberrant Prism Deviants.",
+    "descriptionCs": "Válkou rozervané bojiště, kde se koalice Mayfly a korporace Rosetta střetávají v boji o kontrolu nad vzácnými Prism Devianty."
+  },
+  {
+    "id": "zone-09",
+    "nameEn": "Securement Silo PHI",
+    "nameCs": "Securement Silo PHI",
+    "categoryEn": "Securement Silo",
+    "categoryCs": "Securement Silo",
+    "zoneType": "dungeon",
+    "levelRange": "Lv 15 - 50 (Normal / Hard / Master)",
+    "scenario": "core",
+    "rarity": "Fine",
+    "workbench": "Silo Entrance Terminal",
+    "energy": 0,
+    "hydration": 0,
+    "buffDuration": "Doporučený level: 15+",
+    "sourceEn": "Broken Delta (Western border with Dayton Wetlands)",
+    "sourceCs": "Broken Delta (Západní hranice s Dayton Wetlands)",
+    "monolithBossEn": "Flesh Abomination & Acid Vat Overseer",
+    "monolithBossCs": "Zmutovaný masový hybrid v kyselinové lázni",
+    "silosEn": "Sub-level 1 to 3 bio-containment",
+    "silosCs": "Biologické karanténní patro 1 až 3",
+    "mysticCratesEn": [
+      "Terminal decontamination chamber before final elevator",
+      "Secret valve room accessed via crawling drainage pipe"
+    ],
+    "mysticCratesCs": [
+      "Dekontaminační komora před závěrečným výtahem k bossovi",
+      "Tajná místnost s ventily přístupná skrze ventilační potrubí"
+    ],
+    "keyLootEn": [
+      "Deviants: Pyro Dino & Butterfly's Emissary drops",
+      "Glove and Weapon combat mods (Shrapnel Carnage, Burn Amplifier)",
+      "Acid, Energy Links, Controller loot chests"
+    ],
+    "keyLootCs": [
+      "Devianti: Šance na drop Pyro Dino a Butterfly's Emissary",
+      "Rukavicové a zbraňové bojové mody (Shrapnel Carnage, Burn Amplifier)",
+      "Kyselina, Energy Links a bedny otevíratelné Controllerem"
+    ],
+    "effectsEn": [
+      "Low-to-mid tier dungeon perfect for farming weapon calibration blueprints",
+      "Toxic acid pools deal steady damage - keep moving across metal platforms",
+      "Defeating final boss grants choice of high-tier glove mod affixes",
+      "Controller can be used at the exit rift for doubled rare rewards"
+    ],
+    "effectsCs": [
+      "Vynikající dungeon na rané a střední úrovni pro farmení zbraňových kalibrací",
+      "Kyselinové nádrže udělují poškození - přebíhejte po vyvýšených lávkách",
+      "Porážka bosse odemyká výběr špičkových rukavicových modifikací",
+      "Na konci lze použít Controller k získání dvojnásobné porce odměn"
+    ],
+    "ingredientsEn": [
+      { "name": "Controller Used", "amount": "1x / Run", "isPrimary": true },
+      { "name": "Acid Cleanser", "amount": "2x" }
+    ],
+    "ingredientsCs": [
+      { "name": "Použitý Controller", "amount": "1x / Průchod", "isPrimary": true },
+      { "name": "Dekontaminační sérum", "amount": "2x" }
+    ],
+    "descriptionEn": "An underground Rosetta bio-containment facility leaking toxic corrosive sludge and aberrant fungal growths.",
+    "descriptionCs": "Podzemní karanténní zařízení Rosetty, ze kterého uniká žíravý kal a parazitické houbové výrůstky."
+  },
+  {
+    "id": "zone-10",
+    "nameEn": "Securement Silo SIGMA",
+    "nameCs": "Securement Silo SIGMA",
+    "categoryEn": "Securement Silo",
+    "categoryCs": "Securement Silo",
+    "zoneType": "dungeon",
+    "levelRange": "Lv 25 - 50 (Normal / Hard / Master)",
+    "scenario": "core",
+    "rarity": "Rare",
+    "workbench": "Silo Entrance Terminal",
+    "energy": 0,
+    "hydration": 0,
+    "buffDuration": "Doporučený level: 25+",
+    "sourceEn": "Iron River (West of Greywater Camp)",
+    "sourceCs": "Iron River (Západně od Greywater Camp)",
+    "monolithBossEn": "Magnetic Coil Core Overcharger",
+    "monolithBossCs": "Přetížený elektromagnetický rezonátor a elektro-monstra",
+    "silosEn": "Sub-level electromagnetic circuit vaults",
+    "silosCs": "Elektromagnetické podzemní sekce",
+    "mysticCratesEn": [
+      "Magnetic coil puzzle observation room behind blast glass",
+      "Control terminal vault at the generator floor"
+    ],
+    "mysticCratesCs": [
+      "Pozorovací místnost elektromagnetického puzzle za pancéřovým sklem",
+      "Trezor řídicího terminálu na podlaží generátorů"
+    ],
+    "keyLootEn": [
+      "Deviants: Dr. Teddy & Chefosaurus Rex drops",
+      "Torso & Mask combat mods (Fast Gunner Momentum, Frost Vortex Synergy)",
+      "High-grade electronic parts, Controllers, Stardust Link"
+    ],
+    "keyLootCs": [
+      "Devianti: Šance na drop Dr. Teddy a Chefosaurus Rex",
+      "Hrudní a maskové mody (Fast Gunner Momentum, Frost Vortex Synergy)",
+      "Elektronické součástky, Controllery a Stardustová esence"
+    ],
+    "effectsEn": [
+      "Electromagnetic environment requires disabling circuit breakers during combat",
+      "High voltage floor hazards trigger massive electric shock damage",
+      "Primary farming spot for top-tier chest armor combat mods",
+      "Essential stop for players hunting the life-saving Dr. Teddy deviant"
+    ],
+    "effectsCs": [
+      "Elektromagnetické prostředí vyžaduje vypínání jističů během souboje",
+      "Elektrické výboje na podlaze způsobují masivní zranění bleskem",
+      "Hlavní místo pro farmení nejlepších hrudních modifikací zbroje",
+      "Nezbytná zastávka pro hráče lovícího život zachraňujícího Dr. Teddyho"
+    ],
+    "ingredientsEn": [
+      { "name": "Controller Used", "amount": "1x / Run", "isPrimary": true },
+      { "name": "Insulated Boots", "amount": "1x" }
+    ],
+    "ingredientsCs": [
+      { "name": "Použitý Controller", "amount": "1x / Průchod", "isPrimary": true },
+      { "name": "Izolační podložka", "amount": "1x" }
+    ],
+    "descriptionEn": "A high-voltage subterranean test laboratory conducting risky energy conversion experiments on captured anomalies.",
+    "descriptionCs": "Vysokonapěťová podzemní laboratoř provádějící riskantní experimenty s přeměnou energie u lapených anomálií."
+  },
+  {
+    "id": "zone-11",
+    "nameEn": "Securement Silo THETA",
+    "nameCs": "Securement Silo THETA",
+    "categoryEn": "Securement Silo",
+    "categoryCs": "Securement Silo",
+    "zoneType": "dungeon",
+    "levelRange": "Lv 35 - 50 (Normal / Hard / Master / Nightmare)",
+    "scenario": "core",
+    "rarity": "Epic",
+    "workbench": "Silo Entrance Terminal",
+    "energy": 0,
+    "hydration": 0,
+    "buffDuration": "Doporučený level: 35+",
+    "sourceEn": "Chalk Peak (Northern mountain peaks above Tall Grass)",
+    "sourceCs": "Chalk Peak (Severní hory nad Tall Grass Inn)",
+    "monolithBossEn": "Stardust Chimera & Elite Rosetta Shocktrooper Legion",
+    "monolithBossCs": "Stardustová Chiméra a elitní úderná legie Rosetty",
+    "silosEn": "Subterranean cryogenic waste levels",
+    "silosCs": "Podzemní kryogenní patra",
+    "mysticCratesEn": [
+      "Sub-zero cryo-storage vault behind frozen steam pipes",
+      "Upper gantry ventilation catwalk above toxic incinerator"
+    ],
+    "mysticCratesCs": [
+      "Mrazicí kryosklad za zamrzlým parním potrubím",
+      "Horní ventilační lávka přímo nad toxickou spalovnou"
+    ],
+    "keyLootEn": [
+      "Deviants: Shattered Maiden & Pyro Dino drops",
+      "Helmet and Boot combat mods (Crit Multiplier, Elemental Burst)",
+      "Tungsten components, Gold calibrations, Controller chests"
+    ],
+    "keyLootCs": [
+      "Devianti: Šance na drop Shattered Maiden a Pyro Dino",
+      "Helmové a botové bojové mody (Crit Multiplier, Elemental Burst)",
+      "Wolframové součástky, zlaté kalibrace a truhly za Controller"
+    ],
+    "effectsEn": [
+      "High-difficulty endgame Silo featuring intense crowd-control encounters",
+      "Freezing and incinerating environmental hazards alternate across chambers",
+      "Premier farming zone for legendary helmet mods that boost critical strikes",
+      "Nightmare difficulty yields tier-5 pristine calibration blueprints"
+    ],
+    "effectsCs": [
+      "Náročné endgame silo plné divokých potyček s vlnami elitních nepřátel",
+      "Mrazivé a žhnoucí pasti se střídají v jednotlivých komorách",
+      "Nejlepší zóna pro farmení legendárních helem zvyšujících kritické poškození",
+      "Na obtížnost Nightmare padají zlaté kalibrační plány 5. úrovně"
+    ],
+    "ingredientsEn": [
+      { "name": "Controller Used", "amount": "1x / Run", "isPrimary": true },
+      { "name": "Sanity Gummy", "amount": "3x" }
+    ],
+    "ingredientsCs": [
+      { "name": "Použitý Controller", "amount": "1x / Průchod", "isPrimary": true },
+      { "name": "Želé na příčetnost (Sanity Gummy)", "amount": "3x" }
+    ],
+    "descriptionEn": "A fortified deep-mountain silo designed to isolate unstable thermal anomalies. The containment systems have completely breached.",
+    "descriptionCs": "Opevněné hlubinné horské silo navržené pro izolaci nestabilních termálních anomálií, kde došlo k prolomení karantény."
+  },
+  {
+    "id": "zone-12",
+    "nameEn": "Securement Silo PSI",
+    "nameCs": "Securement Silo PSI",
+    "categoryEn": "Securement Silo",
+    "categoryCs": "Securement Silo",
+    "zoneType": "dungeon",
+    "levelRange": "Lv 45 - 50 (Master / Nightmare)",
+    "scenario": "core",
+    "rarity": "Legendary",
+    "workbench": "Silo Entrance Terminal",
+    "energy": 0,
+    "hydration": 0,
+    "buffDuration": "Doporučený level: 45+",
+    "sourceEn": "Red Sands (Deep canyon cavern near border)",
+    "sourceCs": "Red Sands (Hluboký pouštní kaňon u hranic)",
+    "monolithBossEn": "Dimensional Rift Manipulator & Cyber-Aberrant",
+    "monolithBossCs": "Dimenzionální manipulátor a kyborgizovaná anomálie",
+    "silosEn": "Spatial anomaly test vaults",
+    "silosCs": "Prostorové komory prostorového testování",
+    "mysticCratesEn": [
+      "Gravity puzzle chamber on the ceiling walkway",
+      "Terminal treasure vault beyond final portal maze"
+    ],
+    "mysticCratesCs": [
+      "Gravitační puzzle komora na stropní lávce",
+      "Finální trezor za portálovým prostorovým bludištěm"
+    ],
+    "keyLootEn": [
+      "Deviants: Artisan's Touch (Free equipment repair tool generator)",
+      "Pants & Weapon combat mods (Bull's Eye Precision, Unstable Bomber Detonator)",
+      "Pristine Tier-5 Weapon Calibrations, Max Energy Links"
+    ],
+    "keyLootCs": [
+      "Devianti: Šance na vzácný Artisan's Touch (Výrobce opravných sad výbavy)",
+      "Kalhotové a zbraňové mody (Bull's Eye Precision, Unstable Bomber Detonator)",
+      "Bezchybné zbraňové kalibrace 5. úrovně a maximální počet Energy Links"
+    ],
+    "effectsEn": [
+      "The pinnacle endgame dungeon Silo in the core Once Human world",
+      "Features spatial distortion puzzles where rooms shift gravity and orientation",
+      "The definitive location to farm gold combat mods for pants and heavy weaponry",
+      "Master & Nightmare clears unlock maximum loot multiplier at Controller rifts"
+    ],
+    "effectsCs": [
+      "Vrcholné endgame silo v základním světě Once Human",
+      "Obsahuje prostorové anomálie a bludiště, kde se mění směr gravitace",
+      "Klíčová lokace pro zisk zlatých bojových modů pro kalhoty a těžké zbraně",
+      "Průchod na Master a Nightmare odemyká nejvyšší možný násobič odměn"
+    ],
+    "ingredientsEn": [
+      { "name": "Controller Used", "amount": "1x / Run", "isPrimary": true },
+      { "name": "Stardust Energy Core", "amount": "1x" }
+    ],
+    "ingredientsCs": [
+      { "name": "Použitý Controller", "amount": "1x / Průchod", "isPrimary": true },
+      { "name": "Stardustové energetické jádro", "amount": "1x" }
+    ],
+    "descriptionEn": "Rosetta's most secretive spatial research facility. Reality warps within its corridors, creating bizarre anti-gravity anomalies.",
+    "descriptionCs": "Nejlépe střežené zařízení Rosetty pro výzkum dimenzí. Realita se zde deformuje a obrací zemskou gravitaci naruby."
+  },
+  {
+    "id": "zone-13",
+    "nameEn": "Securement Silo EX1",
+    "nameCs": "Securement Silo EX1",
+    "categoryEn": "Securement Silo",
+    "categoryCs": "Securement Silo",
+    "zoneType": "dungeon",
+    "levelRange": "Lv 38 - 50 (Master / Nightmare)",
+    "scenario": "core",
+    "rarity": "Epic",
+    "workbench": "Silo Entrance Terminal",
+    "energy": 0,
+    "hydration": 0,
+    "buffDuration": "Doporučený level: 38+",
+    "sourceEn": "Chalk Peak (Mining caves near Silver Beach)",
+    "sourceCs": "Chalk Peak (Těžařské jeskyně u Silver Beach)",
+    "monolithBossEn": "Mechanized Siren & Cybernetic Bio-Construct",
+    "monolithBossCs": "Mechanizovaná Siréna a kybernetické monstrum",
+    "silosEn": "Sub-surface automation vaults",
+    "silosCs": "Automatizované podzemní výrobní linky",
+    "mysticCratesEn": [
+      "Conveyor assembly floor inside damaged shipping container",
+      "Master control terminal overlooking security grid"
+    ],
+    "mysticCratesCs": [
+      "Montážní hala s dopravníkem uvnitř poškozeného kontejneru",
+      "Hlavní dispečink s výhledem na obranný laserový rošt"
+    ],
+    "keyLootEn": [
+      "Deviants: Pup Buddy drops",
+      "Fire Rate, Magazine Extension, and Fast Gunner weapon mods",
+      "Tungsten alloy batches, Gold Calibrations, Controllers"
+    ],
+    "keyLootCs": [
+      "Devianti: Šance na drop Pup Buddy",
+      "Zbraňové mody pro rychlost střelby, kapacitu zásobníku a Fast Gunner",
+      "Wolframové slitiny, zlaté kalibrace a Controllery"
+    ],
+    "effectsEn": [
+      "Heavily mechanized dungeon filled with robotic security turrets and lasers",
+      "Boss summons sonic wave attacks - dodge behind reinforced pillars",
+      "Prime target for players building high-RPM Fast Gunner (MG4 Predator) loadouts",
+      "Provides rapid clear times for experienced Meta-Humans"
+    ],
+    "effectsCs": [
+      "Těžce mechanizovaný dungeon plný robotických věží a laserových pastí",
+      "Boss vysílá drtivé zvukové tlakové vlny - uhýbejte za masivní betonové sloupy",
+      "Hlavní cíl pro hráče stavějící vysokorychlostní Fast Gunner sestavy (MG4 Predator)",
+      "Umožňuje velmi rychlé průchody (speedruny) pro zkušené hráče"
+    ],
+    "ingredientsEn": [
+      { "name": "Controller Used", "amount": "1x / Run", "isPrimary": true },
+      { "name": "EMP Grenade", "amount": "2x" }
+    ],
+    "ingredientsCs": [
+      { "name": "Použitý Controller", "amount": "1x / Průchod", "isPrimary": true },
+      { "name": "EMP granát", "amount": "2x" }
+    ],
+    "descriptionEn": "An automated mechanical assembly plant retrofitted by Rosetta to mass-produce weaponized cybernetic organisms.",
+    "descriptionCs": "Automatizovaná výrobní linka přestavěná Rosettou pro sériovou produkci kyberneticky vyzbrojených bio-organismů."
+  },
+  {
+    "id": "zone-14",
+    "nameEn": "Monolith of Purity: Forsaken Giant Raid",
+    "nameCs": "Monolith of Purity (Raid na Forsaken Gianta)",
+    "categoryEn": "Endgame Raid",
+    "categoryCs": "Endgame Raid",
+    "zoneType": "raid",
+    "levelRange": "Lv 50 Endgame Raid",
+    "scenario": "core",
+    "rarity": "Legendary",
+    "workbench": "Monolith Portal Chamber",
+    "energy": 0,
+    "hydration": 0,
+    "buffDuration": "Doporučený level: 50 (Endgame)",
+    "sourceEn": "Red Sands (Eastern Forbidden Monolith Crater)",
+    "sourceCs": "Red Sands (Východní zakázaný kráter Monolitu)",
+    "monolithBossEn": "Forsaken Giant (Colossal Stardust Entity)",
+    "monolithBossCs": "Forsaken Giant (Kolosální entita zrozená ze Stardustu)",
+    "silosEn": "Monolith Core Arena",
+    "silosCs": "Centrální aréna Monolitu",
+    "mysticCratesEn": [
+      "Raid victory podium directly below the fallen titan's heart",
+      "Observation balcony accessible before descending into the arena"
+    ],
+    "mysticCratesCs": [
+      "Vítězné pódium přímo pod zhrouceným srdcem padlého titána",
+      "Vyhlídkový balkon přístupný před seskokem do arény"
+    ],
+    "keyLootEn": [
+      "Pristine Tier-5 Legendary Double-Crit Weapon Calibrations",
+      "Legendary Mod Selection Boxes with guaranteed high-tier substats",
+      "Maximum Stardust Energy Core and Controller reward drops",
+      "Exclusive Titles, Avatars, and Weapon Cosmetics"
+    ],
+    "keyLootCs": [
+      "Prvotřídní legendární zbraňové kalibrace 5. úrovně (Double Crit / Double Elemental)",
+      "Legendární výběrové bedny modů se zaručenými prémiovými substaty",
+      "Maximální drop Stardustových jader a Controller odměn ve hře",
+      "Exkluzivní tituly, avatary a prestižní skiny zbraní"
+    ],
+    "effectsEn": [
+      "The most complex, grand-scale raid encounter in the core Once Human storyline",
+      "Requires disciplined coordination: jumping over shockwaves, breaking limb crystals, and dodging laser sweeps",
+      "Failing crystal DPS checks triggers devastating team-wipe cataclysms",
+      "Consuming top-tier foods (Stardust Canned Meat, Bacon Burger) is virtually mandatory"
+    ],
+    "effectsCs": [
+      "Nejkomplexnější a největší raidový boss v celém základním příběhu Once Human",
+      "Vyžaduje disciplinovanou týmovou koordinaci: přeskakování rázových vln, ničení krystalů na končetinách a uhýbání laserům",
+      "Nezvládnutí DPS fáze na krystalech vede k okamžitému zničení celého týmu",
+      "Konzumace špičkových jídel (Stardust Canned Meat, Bacon Burger) je prakticky povinná"
+    ],
+    "ingredientsEn": [
+      { "name": "Controller Used", "amount": "1x / Clear", "isPrimary": true },
+      { "name": "Buff Food Eaten", "amount": "1x" },
+      { "name": "Full Durability Gear", "amount": "1x" }
+    ],
+    "ingredientsCs": [
+      { "name": "Použitý Controller", "amount": "1x / Zdolání", "isPrimary": true },
+      { "name": "Zkonzumované buff jídlo", "amount": "1x" },
+      { "name": "Opravená plná výbava", "amount": "1x" }
+    ],
+    "descriptionEn": "A monolithic crater housing the Forsaken Giant, a towering humanoid manifestation of unfiltered Stardust devastation.",
+    "descriptionCs": "Monolitický kráter uvězňující Forsaken Gianta - tyčící se humanoidní manifestaci nezkrotné stardustové zkázy."
+  }
+];
+
 
 
