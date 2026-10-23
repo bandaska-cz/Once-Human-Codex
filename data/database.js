@@ -6,6 +6,10 @@ const i18n = {
         tabMedicine: "Medicína & Fermentace",
         tabInventions: "Vynálezy & Taktika",
         tabGear: "Zbraně & Zbroje",
+        tabDeviants: "Devianti & Cradle",
+        deviantContainmentTitle: "Podmínky Securement Unit (Optimalizace)",
+        cradleSynergyTitle: "Doporučená Cradle synergie:",
+        deviantSkillTitle: "Aktivní / Teritoriální schopnost:",
         calcTitle: "CHEF MATRIX: VOLNÉ VAŘENÍ A ARCHETYPY",
         calcDesc: "Naklikejte kombinaci masa a surovin pro simulaci archetypů a buffů",
         searchPlaceholder: "Hledat recept, surovinu, účinek nebo scénář...",
@@ -82,7 +86,10 @@ const i18n = {
         tabMedicine: "Medicine & Fermentation",
         tabInventions: "Tech Inventions",
         tabGear: "Weapons & Armor",
-        tabGear: "Zbraně & Zbroje",
+        tabDeviants: "Deviants & Cradle",
+        deviantContainmentTitle: "Securement Unit Conditions (Optimal Environment)",
+        cradleSynergyTitle: "Recommended Cradle Synergy:",
+        deviantSkillTitle: "Active / Territory Skill:",
         calcTitle: "CHEF MATRIX: FREE COOKING & ARCHETYPES",
         calcDesc: "Select ingredient combinations to simulate meat archetypes and buffs",
         searchPlaceholder: "Search recipe, ingredient, buff effect, or scenario...",
@@ -13147,4 +13154,1412 @@ const gearRecipes = [
     "descriptionCs": "Zesílený zásahový oblek chránící před radioaktivní kontaminací a drtivými útoky monster."
   }
 ];
+
+const deviantRecipes = [
+  {
+    "id": "dev-01",
+    "nameEn": "Festering Gel",
+    "nameCs": "Festering Gel (Hnisající gel)",
+    "categoryEn": "Combat Deviant",
+    "categoryCs": "Bojový Deviant",
+    "deviantType": "combat",
+    "scenario": "core",
+    "rarity": "Epic",
+    "workbench": "Isolated Securement Unit",
+    "energy": 0,
+    "hydration": 0,
+    "buffDuration": "Bojové vyvolání: 35s",
+    "sourceEn": "Monolith of Greed (Ravenous Hunter boss - Lv 10+)",
+    "sourceCs": "Monolith of Greed (Boss Ravenous Hunter - úroveň 10+)",
+    "skillEn": "Creates a translucent fortified bio-barrier that deflects hostile projectiles while rapidly restoring player HP and cleansing Sanity pollution.",
+    "skillCs": "Vytvoří opevněnou poloprůhlednou bio-bariéru chránící před útoky, která bleskově regeneruje životy (HP) a čistí kontaminaci psychiky (Sanity).",
+    "cradleSynergyEn": "Deviation Mastery, Healing Transference, Sprint Resonance",
+    "cradleSynergyCs": "Deviation Mastery, Healing Transference, Sprint Resonance",
+    "containmentEn": {
+      "lighting": "Blue Light",
+      "temperature": "Cool (<15°C)",
+      "music": "Classical Music",
+      "surroundings": "Flowers nearby, 5W Electrical Power",
+      "regenRate": "+2.5 Energy & Mood / min"
+    },
+    "containmentCs": {
+      "lighting": "Modré světlo (Blue Light)",
+      "temperature": "Chladno (<15°C)",
+      "music": "Klasická hudba",
+      "surroundings": "Květiny v okolí, Příkon 5W",
+      "regenRate": "+2.5 Energie & Nálada / min"
+    },
+    "effectsEn": [
+      "Combat Role: Barrier Cover, Accelerated HP & Sanity Restoration",
+      "Instant cover anywhere in the field during hazardous boss attacks",
+      "Cleanses accumulated Stardust pollution stacks on meta-humans",
+      "Essential defensive companion for high-tier Monolith and Silo expeditions"
+    ],
+    "effectsCs": [
+      "Bojová role: Ochranný kryt, zrychlená obnova životů (HP) a psychiky (Sanity)",
+      "Okamžitá tvorba krytu přímo na bojišti během drtivých útoků bossů",
+      "Průběžně čistí nastřádané stupně stardustové radiace",
+      "Nepostradatelný obranný společník pro náročné výpravy do sil a monolitů"
+    ],
+    "ingredientsEn": [
+      {
+        "name": "Isolated Securement Unit",
+        "amount": "1x",
+        "isPrimary": true
+      },
+      {
+        "name": "Electricity Power",
+        "amount": "5W"
+      },
+      {
+        "name": "Sanity Gummy (Quick Calm)",
+        "amount": "2x"
+      }
+    ],
+    "ingredientsCs": [
+      {
+        "name": "Izolační zabezpečovací jednotka (Securement Unit)",
+        "amount": "1x",
+        "isPrimary": true
+      },
+      {
+        "name": "Elektrický příkon",
+        "amount": "5W"
+      },
+      {
+        "name": "Želé na příčetnost (Sanity Gummy)",
+        "amount": "2x"
+      }
+    ],
+    "descriptionEn": "A semi-solid bio-gel anomaly pulsating with restorative mucus. Forms protective barriers and soothes human psychic trauma.",
+    "descriptionCs": "Polotuhá biogelová anomálie pulzující regeneračním hlenem. Formuje obranný val a zklidňuje psychické trauma z kontaminace."
+  },
+  {
+    "id": "dev-02",
+    "nameEn": "Lonewolf's Whisper",
+    "nameCs": "Lonewolf's Whisper (Šepot vlka)",
+    "categoryEn": "Combat Deviant",
+    "categoryCs": "Bojový Deviant",
+    "deviantType": "combat",
+    "scenario": "core",
+    "rarity": "Legendary",
+    "workbench": "Isolated Securement Unit",
+    "energy": 0,
+    "hydration": 0,
+    "buffDuration": "Bojové vyvolání: 40s",
+    "sourceEn": "Monolith of Thirst (Shadow Hound boss - Lv 40+)",
+    "sourceCs": "Monolith of Thirst (Boss Shadow Hound - úroveň 40+)",
+    "skillEn": "Summons a pack of spectral wolves that aggressively charge enemies, hold boss aggro, and inflict Vulnerability (+12% DMG taken to all targets).",
+    "skillCs": "Vyvolá smečku spektrálních vlků, kteří divoce napadají nepřátele, strhávají na sebe aggro bossů a udělují zranitelnost (+12% utrpěné poškození).",
+    "cradleSynergyEn": "Lone Wolf Resonance, Status Enhancement, Deadly Reflex",
+    "cradleSynergyCs": "Lone Wolf Resonance, Status Enhancement, Deadly Reflex",
+    "containmentEn": {
+      "lighting": "Red Light",
+      "temperature": "Room Temp (20-25°C)",
+      "music": "Silence",
+      "surroundings": "Toy / Bones nearby, 10W Electrical Power",
+      "regenRate": "+2.8 Energy & Mood / min"
+    },
+    "containmentCs": {
+      "lighting": "Červené světlo (Red Light)",
+      "temperature": "Pokojová teplota (20-25°C)",
+      "music": "Ticho (žádný hluk)",
+      "surroundings": "Hračky a kosti v okolí, Příkon 10W",
+      "regenRate": "+2.8 Energie & Nálada / min"
+    },
+    "effectsEn": [
+      "Combat Role: Aggro diversion, Pack Hunting & Vulnerability debuff",
+      "Applies +12% incoming damage debuff on marked targets",
+      "Keeps aggressive elites and dungeon bosses away from the player",
+      "Unmatched synergy with Shrapnel and Fast Gunner loadouts"
+    ],
+    "effectsCs": [
+      "Bojová role: Odpoutání pozornosti (Aggro), smečkový útok a debuff zranitelnosti",
+      "Aplikuje +12% zvýšení utrpěného poškození na zasažené cíle",
+      "Udržuje nebezpečné elity a bosse daleko od hráče",
+      "Bezkonkurenční synergie se Shrapnel a Fast Gunner sestavami"
+    ],
+    "ingredientsEn": [
+      {
+        "name": "Isolated Securement Unit",
+        "amount": "1x",
+        "isPrimary": true
+      },
+      {
+        "name": "Electricity Power",
+        "amount": "10W"
+      },
+      {
+        "name": "Energy Drink",
+        "amount": "2x"
+      }
+    ],
+    "ingredientsCs": [
+      {
+        "name": "Izolační zabezpečovací jednotka (Securement Unit)",
+        "amount": "1x",
+        "isPrimary": true
+      },
+      {
+        "name": "Elektrický příkon",
+        "amount": "10W"
+      },
+      {
+        "name": "Energetický nápoj (Energy Drink)",
+        "amount": "2x"
+      }
+    ],
+    "descriptionEn": "Echoing the predatory instinct of the wasteland, this wolf manifestation commands phantom beasts to rip apart Stardust-corrupted entities.",
+    "descriptionCs": "Ozvěna dravého instinktu pustiny. Zhmotněný vlk velí přízračným šelmám k roztrhání stardustem znetvořených entit."
+  },
+  {
+    "id": "dev-03",
+    "nameEn": "Butterfly's Emissary",
+    "nameCs": "Butterfly's Emissary (Objetí motýla)",
+    "categoryEn": "Combat Deviant",
+    "categoryCs": "Bojový Deviant",
+    "deviantType": "combat",
+    "scenario": "core",
+    "rarity": "Rare",
+    "workbench": "Isolated Securement Unit",
+    "energy": 0,
+    "hydration": 0,
+    "buffDuration": "Bojové vyvolání: 30s",
+    "sourceEn": "Monolith of Fog (Prologue Quest) / Securement Silo PHI",
+    "sourceCs": "Monolith of Fog (Prologový úkol) / Securement Silo PHI",
+    "skillEn": "Flutters above target enemies, revealing and highlighting Weakspots while increasing Weakspot Damage by +15% and unleashing homing psychic energy.",
+    "skillCs": "Krouží nad nepřáteli, odhaluje a zvýrazňuje slabá místa (Weakspots), zvyšuje Weakspot poškození o +15% a vystřeluje naváděné psychické střely.",
+    "cradleSynergyEn": "Weakspot Mastery, First Shot Resonance, Hawkeye",
+    "cradleSynergyCs": "Weakspot Mastery, First Shot Resonance, Hawkeye",
+    "containmentEn": {
+      "lighting": "Green Light",
+      "temperature": "Warm (25-28°C)",
+      "music": "Nature sounds / Classical",
+      "surroundings": "Flowers & Planter Boxes nearby, 5W Electrical Power",
+      "regenRate": "+2.0 Energy & Mood / min"
+    },
+    "containmentCs": {
+      "lighting": "Zelené světlo (Green Light)",
+      "temperature": "Teplo (25-28°C)",
+      "music": "Zvuky přírody / Klasická hudba",
+      "surroundings": "Květiny a truhlíky s plodinami v okolí, Příkon 5W",
+      "regenRate": "+2.0 Energie & Nálada / min"
+    },
+    "effectsEn": [
+      "Combat Role: Weakspot Highlighting & Sniper Damage Amplification",
+      "+15% bonus damage on all enemy weakpoints",
+      "Fires psychic homing orbs that stun minor mob clusters",
+      "First Deviant acquired by Meta-Humans, highly reliable throughout early-to-mid game"
+    ],
+    "effectsCs": [
+      "Bojová role: Zvýraznění slabin (Weakspots) a násobení poškození odstřelovačů",
+      "+15% bonusové poškození do všech slabých míst nepřátel",
+      "Vystřeluje naváděné psychické koule ochromující běžná monstra",
+      "První Deviant získaný v příběhu, vysoce spolehlivý od začátku až po mid-game"
+    ],
+    "ingredientsEn": [
+      {
+        "name": "Isolated Securement Unit",
+        "amount": "1x",
+        "isPrimary": true
+      },
+      {
+        "name": "Electricity Power",
+        "amount": "5W"
+      },
+      {
+        "name": "Wildflower Bouquet",
+        "amount": "3x"
+      }
+    ],
+    "ingredientsCs": [
+      {
+        "name": "Izolační zabezpečovací jednotka (Securement Unit)",
+        "amount": "1x",
+        "isPrimary": true
+      },
+      {
+        "name": "Elektrický příkon",
+        "amount": "5W"
+      },
+      {
+        "name": "Kytice lučních květů",
+        "amount": "3x"
+      }
+    ],
+    "descriptionEn": "A gentle winged entity born of fractured stardust light. It seeks out fractures in dimensional armor and exposes biological flaws.",
+    "descriptionCs": "Jemná okřídlená bytost zrozená ze stardustového světla. Vyhledává trhliny v dimenzionálním brnění monster a odhaluje jejich slabiny."
+  },
+  {
+    "id": "dev-04",
+    "nameEn": "Pyro Dino",
+    "nameCs": "Pyro Dino (Ohnivý dinosaurus)",
+    "categoryEn": "Combat Deviant",
+    "categoryCs": "Bojový Deviant",
+    "deviantType": "combat",
+    "scenario": "core",
+    "rarity": "Legendary",
+    "workbench": "Isolated Securement Unit",
+    "energy": 0,
+    "hydration": 0,
+    "buffDuration": "Bojové vyvolání: 30s",
+    "sourceEn": "Securement Silo PHI (Lv 35+) / Silo THETA",
+    "sourceCs": "Securement Silo PHI (úroveň 35+) / Silo THETA",
+    "skillEn": "Unleashes searing flame breath creating an expansive Scorched Field. Inflicts intense Burn and grants player +28.5% weapon DMG against burning targets.",
+    "skillCs": "Chrlí sežehující plameny vytvářející žhavou spálenou zónu. Aplikuje popáleniny (Burn) a dává hráči +28.5% zbraňové poškození proti hořícím cílům.",
+    "cradleSynergyEn": "Elemental Overload, Burn Amplifier, Transient Impact",
+    "cradleSynergyCs": "Elemental Overload, Burn Amplifier, Transient Impact",
+    "containmentEn": {
+      "lighting": "Red Light",
+      "temperature": "Very Hot (>35°C)",
+      "music": "Rock / Metal Music",
+      "surroundings": "Campfire / Furnace nearby, 10W Electrical Power",
+      "regenRate": "+3.0 Energy & Mood / min"
+    },
+    "containmentCs": {
+      "lighting": "Červené světlo (Red Light)",
+      "temperature": "Velmi horko (>35°C)",
+      "music": "Rock / Tvrdá hudba",
+      "surroundings": "Ohniště nebo tavicí pec v okolí, Příkon 10W",
+      "regenRate": "+3.0 Energie & Nálada / min"
+    },
+    "effectsEn": [
+      "Combat Role: Area Incineration, Burn Stacks & Massive Weapon Damage Buff",
+      "+28.5% bonus weapon damage vs targets affected by Burn",
+      "Melts swarms of aberrant monsters with continuous thermal damage",
+      "Best-in-slot combat companion for Burn archetype builds (KVD Boom!, etc.)"
+    ],
+    "effectsCs": [
+      "Bojová role: Plošná kremace, kumulace Burn stacků a obří zbraňový buff",
+      "+28.5% bonusové zbraňové poškození proti cílům zasaženým Burn efektem",
+      "Taví vlny monster souvislým termálním žárem",
+      "Nejlepší bojový společník pro Burn archetypy (KVD Boom! apod.)"
+    ],
+    "ingredientsEn": [
+      {
+        "name": "Isolated Securement Unit",
+        "amount": "1x",
+        "isPrimary": true
+      },
+      {
+        "name": "Electricity Power",
+        "amount": "10W"
+      },
+      {
+        "name": "Refined Charcoal / Fuel",
+        "amount": "5x"
+      }
+    ],
+    "ingredientsCs": [
+      {
+        "name": "Izolační zabezpečovací jednotka (Securement Unit)",
+        "amount": "1x",
+        "isPrimary": true
+      },
+      {
+        "name": "Elektrický příkon",
+        "amount": "10W"
+      },
+      {
+        "name": "Rafinované dřevěné uhlí / Palivo",
+        "amount": "5x"
+      }
+    ],
+    "descriptionEn": "A miniature dinosaur cloaked in magma skin and blazing scales. Enjoys thrashing to heavy beats in furnace temperatures.",
+    "descriptionCs": "Miniaturní ještěr zahalený v magmatické kůži a žhnoucích šupinách. Miluje drsnou muziku a teploty u rozpálených pecí."
+  },
+  {
+    "id": "dev-05",
+    "nameEn": "Dr. Teddy",
+    "nameCs": "Dr. Teddy (Doktor Medvídek)",
+    "categoryEn": "Combat Deviant",
+    "categoryCs": "Bojový Deviant",
+    "deviantType": "combat",
+    "scenario": "core",
+    "rarity": "Legendary",
+    "workbench": "Isolated Securement Unit",
+    "energy": 0,
+    "hydration": 0,
+    "buffDuration": "Bojové vyvolání: 40s",
+    "sourceEn": "Securement Silo SIGMA (Lv 30+)",
+    "sourceCs": "Securement Silo SIGMA (úroveň 30+)",
+    "skillEn": "Dedicated battlefield combat medic. Deploys restorative healing mist, and if the player is downed, instantly revives them to full health without consuming Adrenaline.",
+    "skillCs": "Specializovaný polní zdravotník. Rozptyluje regenerační léčivou mlhu a pokud hráč padne k zemi, okamžitě ho oživí na plné HP bez spotřeby Adrenalinu.",
+    "cradleSynergyEn": "Medical Expert, Revival Shield, Second Wind",
+    "cradleSynergyCs": "Medical Expert, Revival Shield, Second Wind",
+    "containmentEn": {
+      "lighting": "Green Light",
+      "temperature": "Pleasant (22°C)",
+      "music": "Pop Music",
+      "surroundings": "Medical Facility / Toys nearby, 10W Electrical Power",
+      "regenRate": "+2.7 Energy & Mood / min"
+    },
+    "containmentCs": {
+      "lighting": "Zelené světlo (Green Light)",
+      "temperature": "Příjemně (22°C)",
+      "music": "Popová hudba",
+      "surroundings": "Lékařský stůl / Hračky v okolí, Příkon 10W",
+      "regenRate": "+2.7 Energie & Nálada / min"
+    },
+    "effectsEn": [
+      "Combat Role: Free Automatic Resurrection & Group Healing Mist",
+      "Zero-cost instant resurrection when defeated in combat",
+      "Continuous AoE heal restoring up to 8% max HP per second",
+      "Invaluable safety net for solo players tackling Master/Nightmare Silos"
+    ],
+    "effectsCs": [
+      "Bojová role: Automatické oživení zdarma a skupinová léčivá mlha",
+      "Okamžité oživení při pádu v boji s nulovými náklady na suroviny",
+      "Průběžné plošné léčení doplňující až 8% max životů za sekundu",
+      "Neocenitelná pojistka pro sólo hráče na Master a Nightmare obtížnostech"
+    ],
+    "ingredientsEn": [
+      {
+        "name": "Isolated Securement Unit",
+        "amount": "1x",
+        "isPrimary": true
+      },
+      {
+        "name": "Electricity Power",
+        "amount": "10W"
+      },
+      {
+        "name": "First Aid Kit",
+        "amount": "2x"
+      }
+    ],
+    "ingredientsCs": [
+      {
+        "name": "Izolační zabezpečovací jednotka (Securement Unit)",
+        "amount": "1x",
+        "isPrimary": true
+      },
+      {
+        "name": "Elektrický příkon",
+        "amount": "10W"
+      },
+      {
+        "name": "Lékárnička první pomoci (First Aid Kit)",
+        "amount": "2x"
+      }
+    ],
+    "descriptionEn": "A patchwork stuffed bear clutching a syringe. Gentle and caring, it refuses to let its bonded human partner succumb to death.",
+    "descriptionCs": "Záplatovaný plyšový medvídek se stříkačkou v tlapce. Laskavý a věrný společník, který odmítá nechat svého člověka padnout."
+  },
+  {
+    "id": "dev-06",
+    "nameEn": "Pup Buddy",
+    "nameCs": "Pup Buddy (Štěněčí parťák)",
+    "categoryEn": "Combat Deviant",
+    "categoryCs": "Bojový Deviant",
+    "deviantType": "combat",
+    "scenario": "core",
+    "rarity": "Epic",
+    "workbench": "Isolated Securement Unit",
+    "energy": 0,
+    "hydration": 0,
+    "buffDuration": "Bojové vyvolání: 35s",
+    "sourceEn": "Broken Delta quest 'A Miracle Journey' (High Banks) / Silo EX1",
+    "sourceCs": "Broken Delta úkol 'A Miracle Journey' (High Banks) / Silo EX1",
+    "skillEn": "Pounces at targeted threats, tackling humanoid elites and monsters to the ground with a 3s Stun knockdown while granting the player +20% sprint speed.",
+    "skillCs": "Vrhá se na označený cíl, sráží humanoidní elity i monstra k zemi s 3vteřinovým omráčením (Stun) a hráči přidává +20% rychlost běhu.",
+    "cradleSynergyEn": "Sprint Resonance, Agility Surge, Takedown Blitz",
+    "cradleSynergyCs": "Sprint Resonance, Agility Surge, Takedown Blitz",
+    "containmentEn": {
+      "lighting": "Natural Sunlight",
+      "temperature": "Warm (24°C)",
+      "music": "Classical Music",
+      "surroundings": "Chew toys & Bones, 5W Electrical Power",
+      "regenRate": "+2.4 Energy & Mood / min"
+    },
+    "containmentCs": {
+      "lighting": "Přirozené denní světlo (Natural Light)",
+      "temperature": "Teplo (24°C)",
+      "music": "Klasická hudba",
+      "surroundings": "Hračky na kousání a kosti, Příkon 5W",
+      "regenRate": "+2.4 Energie & Nálada / min"
+    },
+    "effectsEn": [
+      "Combat Role: Single-target Hard Stun Knockdown & Movement Speed Boost",
+      "Disables heavy ranged snipers and rushing melee elites",
+      "Boosts player stamina recovery and mobility during skirmishes",
+      "Superb crowd control tool for complex tactical encounters"
+    ],
+    "effectsCs": [
+      "Bojová role: Tvrdé sražení a omráčení (Stun) cíle + zrychlení pohybu",
+      "Vyřadí z boje nebezpečné odstřelovače i útočící melee elity",
+      "Zvyšuje obnovu staminy a mobilitu hráče během přestřelek",
+      "Výtečný nástroj pro kontrolu bojiště v náročných potyčkách"
+    ],
+    "ingredientsEn": [
+      {
+        "name": "Isolated Securement Unit",
+        "amount": "1x",
+        "isPrimary": true
+      },
+      {
+        "name": "Electricity Power",
+        "amount": "5W"
+      },
+      {
+        "name": "Animal Bone",
+        "amount": "4x"
+      }
+    ],
+    "ingredientsCs": [
+      {
+        "name": "Izolační zabezpečovací jednotka (Securement Unit)",
+        "amount": "1x",
+        "isPrimary": true
+      },
+      {
+        "name": "Elektrický příkon",
+        "amount": "5W"
+      },
+      {
+        "name": "Zvířecí kosti (Animal Bones)",
+        "amount": "4x"
+      }
+    ],
+    "descriptionEn": "A high-spirited canine anomaly made of boundless starlight energy. Protects its master with fearless tackles.",
+    "descriptionCs": "Nevyčerpatelně energické štěně zrozené z hvězdné esence. Chrání svého pána neohroženými skoky do nepřátel."
+  },
+  {
+    "id": "dev-07",
+    "nameEn": "By-the-Wind",
+    "nameCs": "By-the-Wind (S větrem o závod)",
+    "categoryEn": "Combat Deviant",
+    "categoryCs": "Bojový Deviant",
+    "deviantType": "combat",
+    "scenario": "core",
+    "rarity": "Epic",
+    "workbench": "Isolated Securement Unit",
+    "energy": 0,
+    "hydration": 0,
+    "buffDuration": "Bojové vyvolání: 25s",
+    "sourceEn": "Chalk Peak (Mountain Silo / Silver Beach anomaly crates)",
+    "sourceCs": "Chalk Peak (Horská sila / Anomálie na Silver Beach)",
+    "skillEn": "Creates an upward gravitational thermal updraft that propels the player into the sky, offering smooth aerial glides, air aim-assist, and total fall damage immunity.",
+    "skillCs": "Vytvoří vzestupný gravitační proud vystřelující hráče vysoko do vzduchu. Poskytuje plynulé plachtění, asistenci míření za letu a imunitu proti pádu.",
+    "cradleSynergyEn": "High Ground Mastery, Tactical Leap, Air Mobility",
+    "cradleSynergyCs": "High Ground Mastery, Tactical Leap, Air Mobility",
+    "containmentEn": {
+      "lighting": "Blue Light",
+      "temperature": "Open Air / Breezy (<18°C)",
+      "music": "Silence",
+      "surroundings": "Windy heights / Roof placement, 5W Electrical Power",
+      "regenRate": "+2.2 Energy & Mood / min"
+    },
+    "containmentCs": {
+      "lighting": "Modré světlo (Blue Light)",
+      "temperature": "Otevřený vzduch / Větrno (<18°C)",
+      "music": "Ticho (žádná hudba)",
+      "surroundings": "Vyvýšené místo na střeše, Příkon 5W",
+      "regenRate": "+2.2 Energie & Nálada / min"
+    },
+    "effectsEn": [
+      "Combat Role: Vertical Elevation, Aerial Sniping & Fall Damage Negation",
+      "Launches player above obstacles to snipe over boss barricades",
+      "Enables mid-air bullet-time aiming with heightened stability",
+      "Essential utility tool for vertical exploration and cliff crossing"
+    ],
+    "effectsCs": [
+      "Bojová role: Vertikální výskok, střelba ze vzduchu a negace poškození z pádu",
+      "Vynese hráče nad překážky a umožní pálit přes barikády bossů",
+      "Zpomaluje pád pro přesné zamíření slabin s vyšší stabilitou",
+      "Nepostradatelný pomocník pro vertikální průzkum skalnatých útesů"
+    ],
+    "ingredientsEn": [
+      {
+        "name": "Isolated Securement Unit",
+        "amount": "1x",
+        "isPrimary": true
+      },
+      {
+        "name": "Electricity Power",
+        "amount": "5W"
+      },
+      {
+        "name": "Glider Blueprint / Fabric",
+        "amount": "2x"
+      }
+    ],
+    "ingredientsCs": [
+      {
+        "name": "Izolační zabezpečovací jednotka (Securement Unit)",
+        "amount": "1x",
+        "isPrimary": true
+      },
+      {
+        "name": "Elektrický příkon",
+        "amount": "5W"
+      },
+      {
+        "name": "Látka / Tkanina na padák",
+        "amount": "2x"
+      }
+    ],
+    "descriptionEn": "A wispy atmospheric anomaly manipulating localized barometric pressure. Turns heavy gravitational pull into buoyant flight.",
+    "descriptionCs": "Vzdušná atmosférická anomálie manipulující s lokálním barometrickým tlakem. Mění gravitační tíži v ladný vzestupný let."
+  },
+  {
+    "id": "dev-08",
+    "nameEn": "Shattered Maiden",
+    "nameCs": "Shattered Maiden (Zlomená panna)",
+    "categoryEn": "Combat Deviant",
+    "categoryCs": "Bojový Deviant",
+    "deviantType": "combat",
+    "scenario": "core",
+    "rarity": "Epic",
+    "workbench": "Isolated Securement Unit",
+    "energy": 0,
+    "hydration": 0,
+    "buffDuration": "Bojové vyvolání: 30s",
+    "sourceEn": "Monolith of Frost / Secret Silo in Chalk Peak",
+    "sourceCs": "Monolith of Frost / Tajné silo v Chalk Peak",
+    "skillEn": "Summons a cryogenic singularity forming an icy Frost Vortex that vacuums clusters of enemies into the epicenter, freezing them for devastating critical combos.",
+    "skillCs": "Vyvolá kryogenní singularitu tvořící ledový Frost Vortex, který vtáhne skupinu nepřátel do středu a zmrazí je pro drtivá kritická komba.",
+    "cradleSynergyEn": "Frost Resonance, Vortex Pull, Glacial Impact",
+    "cradleSynergyCs": "Frost Resonance, Vortex Pull, Glacial Impact",
+    "containmentEn": {
+      "lighting": "Blue Light",
+      "temperature": "Sub-Zero (<0°C)",
+      "music": "Dead Silence",
+      "surroundings": "Ice / Cryo Storage nearby, 10W Electrical Power",
+      "regenRate": "+2.9 Energy & Mood / min"
+    },
+    "containmentCs": {
+      "lighting": "Modré světlo (Blue Light)",
+      "temperature": "Mrazivo (<0°C)",
+      "music": "Naprosté ticho",
+      "surroundings": "Led / Chladicí boxy v okolí, Příkon 10W",
+      "regenRate": "+2.9 Energie & Nálada / min"
+    },
+    "effectsEn": [
+      "Combat Role: Frost Vortex Crowd Control, Suction Pull & Ice Freezing",
+      "Gathers dispersed enemies into a tight kill-zone",
+      "Synergizes seamlessly with Frost Vortex weapons (Icy Rain, Abyss Glance)",
+      "Increases shatter critical multiplier against frozen hostiles"
+    ],
+    "effectsCs": [
+      "Bojová role: Frost Vortex kontrola davu, gravitační vcucnutí a zmrazení",
+      "Stáhne rozptýlené nepřátele do jednoho epicentra",
+      "Dokonalá synergie se zbraněmi Frost Vortex (Icy Rain, Abyss Glance)",
+      "Zvyšuje násobič kritického poškození proti zmrazeným cílům"
+    ],
+    "ingredientsEn": [
+      {
+        "name": "Isolated Securement Unit",
+        "amount": "1x",
+        "isPrimary": true
+      },
+      {
+        "name": "Electricity Power",
+        "amount": "10W"
+      },
+      {
+        "name": "Pure Ice Cube",
+        "amount": "5x"
+      }
+    ],
+    "ingredientsCs": [
+      {
+        "name": "Izolační zabezpečovací jednotka (Securement Unit)",
+        "amount": "1x",
+        "isPrimary": true
+      },
+      {
+        "name": "Elektrický příkon",
+        "amount": "10W"
+      },
+      {
+        "name": "Čistý led (Pure Ice)",
+        "amount": "5x"
+      }
+    ],
+    "descriptionEn": "A crystalline effigy encased in razor-sharp ice shards. Radiates absolute zero cold that shatters organic matter.",
+    "descriptionCs": "Krystalická socha uvězněná v ostrých ledových střípcích. Vyzařuje absolutní mráz trhající biologické tkáně na kousky."
+  },
+  {
+    "id": "dev-09",
+    "nameEn": "Digby Boy",
+    "nameCs": "Digby Boy (Chlapec Digby)",
+    "categoryEn": "Territory Deviant",
+    "categoryCs": "Teritoriální Deviant",
+    "deviantType": "territory",
+    "scenario": "core",
+    "rarity": "Rare",
+    "workbench": "Isolated Securement Unit",
+    "energy": 0,
+    "hydration": 0,
+    "buffDuration": "Automatická těžba: Nepřetržitě",
+    "sourceEn": "Mining Silver & Tin Ore nodes across Dayton Wetlands & Broken Delta",
+    "sourceCs": "Těžba stříbrných a cínových ložisek v Dayton Wetlands a Broken Delta",
+    "skillEn": "Autonomously roams the territory and surrounding perimeter, mining Copper, Tin, Iron, Sulfur, Silver, and Stardust Trace directly into base storage.",
+    "skillCs": "Automaticky obchází perimetr základny a těží měď, cín, železo, síru, stříbro a Stardust Trace přímo do teritoriálních beden.",
+    "cradleSynergyEn": "Mining Efficiency, Resource Optimization",
+    "cradleSynergyCs": "Mining Efficiency, Resource Optimization",
+    "containmentEn": {
+      "lighting": "Natural Sunlight",
+      "temperature": "Room Temp (20-25°C)",
+      "music": "Radio Music",
+      "surroundings": "Mining picks / Ore crates nearby, 5W Electrical Power",
+      "regenRate": "+2.5 Energy & Mood / min"
+    },
+    "containmentCs": {
+      "lighting": "Přirozené denní světlo (Natural Light)",
+      "temperature": "Pokojová teplota (20-25°C)",
+      "music": "Hrající rádio",
+      "surroundings": "Krompáče a truhly s rudou v okolí, Příkon 5W",
+      "regenRate": "+2.5 Energie & Nálada / min"
+    },
+    "effectsEn": [
+      "Territory Role: Fully Automated Mineral & Rare Ore Gathering",
+      "Generates steady passive supply of Sulfur, Iron, Silver, and Stardust Trace",
+      "Frees the player from tedious manual pickaxe mining",
+      "Multiple Digby Boys can be deployed for industrial-scale ore extraction"
+    ],
+    "effectsCs": [
+      "Teritoriální role: Plně automatizovaná těžba minerálů a vzácných rud",
+      "Zajišťuje stálý pasivní přísun síry, železa, stříbra i Stardust Trace",
+      "Zbavuje hráče nutnosti zdlouhavého ručního těžení krumpáčem",
+      "Lze nasadit více Digby kluků pro průmyslovou těžbu rud"
+    ],
+    "ingredientsEn": [
+      {
+        "name": "Isolated Securement Unit",
+        "amount": "1x",
+        "isPrimary": true
+      },
+      {
+        "name": "Electricity Power",
+        "amount": "5W"
+      },
+      {
+        "name": "Copper Ingot",
+        "amount": "5x"
+      }
+    ],
+    "ingredientsCs": [
+      {
+        "name": "Izolační zabezpečovací jednotka (Securement Unit)",
+        "amount": "1x",
+        "isPrimary": true
+      },
+      {
+        "name": "Elektrický příkon",
+        "amount": "5W"
+      },
+      {
+        "name": "Měděný ingot (Copper Ingot)",
+        "amount": "5x"
+      }
+    ],
+    "descriptionEn": "A hardworking miniature miner made of ore and pure grit. Happily swings its little pickaxe whenever good music plays on the radio.",
+    "descriptionCs": "Pracovitý malý horník z kovu a skály. Radostně se ohání krumpáčem, jakmile mu v rádiu pustíte dobrou hudbu."
+  },
+  {
+    "id": "dev-10",
+    "nameEn": "Chefosaurus Rex",
+    "nameCs": "Chefosaurus Rex (Šéfkuchař Rex)",
+    "categoryEn": "Territory Deviant",
+    "categoryCs": "Teritoriální Deviant",
+    "deviantType": "territory",
+    "scenario": "core",
+    "rarity": "Legendary",
+    "workbench": "Isolated Securement Unit",
+    "energy": 0,
+    "hydration": 0,
+    "buffDuration": "Gurmánský asistent: Nepřetržitě",
+    "sourceEn": "Securement Silo SIGMA / High Banks cooking quest",
+    "sourceCs": "Securement Silo SIGMA / Kulinářský úkol v High Banks",
+    "skillEn": "Assists the player at the Kitchen Stove. Multiplies Food and Drink buff durations by +100% and infuses secret Gourmet master attributes into dishes.",
+    "skillCs": "Pomáhá u kuchyňského sporáku. Zvyšuje dobu trvání všech buffů z jídel a nápojů o +100% a propůjčuje jídlům gurmánské bonusy.",
+    "cradleSynergyEn": "Nutritional Resonance, Sustained Boost",
+    "cradleSynergyCs": "Nutritional Resonance, Sustained Boost",
+    "containmentEn": {
+      "lighting": "Red Light",
+      "temperature": "Warm (30°C)",
+      "music": "Cooking fire sounds / Upbeat radio",
+      "surroundings": "Kitchen Stove / Food pantry nearby, 10W Electrical Power",
+      "regenRate": "+3.0 Energy & Mood / min"
+    },
+    "containmentCs": {
+      "lighting": "Červené světlo (Red Light)",
+      "temperature": "Teplo (30°C)",
+      "music": "Praskání ohně / Živé rádio",
+      "surroundings": "Kuchyňský sporák a spíž v okolí, Příkon 10W",
+      "regenRate": "+3.0 Energie & Nálada / min"
+    },
+    "effectsEn": [
+      "Territory Role: Food Buff Duration Doubler (+100%) & Gourmet Quality Boost",
+      "Doubles the duration of endgame combat foods (e.g., 30m becomes 60m)",
+      "Increases food preservation time, slowing spoilage in containers",
+      "Essential companion for Min-Max boss raiders and culinary crafters"
+    ],
+    "effectsCs": [
+      "Teritoriální role: Dvojnásobné trvání buffů z jídla (+100%) a gurmánská kvalita",
+      "Zdvojnásobuje trvání bojových pokrmů (např. z 30 minut na 60 minut)",
+      "Zpomaluje kažení uskladněných surovin a hotových pokrmů",
+      "Nezbytnost pro min-maxování nájezdů na bosse a mistry kuchaře"
+    ],
+    "ingredientsEn": [
+      {
+        "name": "Isolated Securement Unit",
+        "amount": "1x",
+        "isPrimary": true
+      },
+      {
+        "name": "Electricity Power",
+        "amount": "10W"
+      },
+      {
+        "name": "Gourmet Spices / Salt",
+        "amount": "5x"
+      }
+    ],
+    "ingredientsCs": [
+      {
+        "name": "Izolační zabezpečovací jednotka (Securement Unit)",
+        "amount": "1x",
+        "isPrimary": true
+      },
+      {
+        "name": "Elektrický příkon",
+        "amount": "10W"
+      },
+      {
+        "name": "Gurmánské koření / Sůl",
+        "amount": "5x"
+      }
+    ],
+    "descriptionEn": "A prehistoric chef sporting a toque and frying pan. Takes culinary precision very seriously and refuses to serve substandard meals.",
+    "descriptionCs": "Prehistorický dinosauří šéfkuchař s bílou čepicí a pánví. Kulinářské umění bere smrtelně vážně a nestrpí žádné polotovary."
+  },
+  {
+    "id": "dev-11",
+    "nameEn": "Electric Eel",
+    "nameCs": "Electric Eel (Elektrický úhoř)",
+    "categoryEn": "Territory Deviant",
+    "categoryCs": "Teritoriální Deviant",
+    "deviantType": "territory",
+    "scenario": "core",
+    "rarity": "Epic",
+    "workbench": "Isolated Securement Unit",
+    "energy": 0,
+    "hydration": 0,
+    "buffDuration": "Zesílení energetické sítě: Nepřetržitě",
+    "sourceEn": "Fishing in freshwater rivers around Meyer's Market or Red Sands",
+    "sourceCs": "Rybaření ve sladkých vodách kolem Meyer's Market nebo v Red Sands",
+    "skillEn": "Placed next to Power Generators (Solar, Biomass, Hydraulic). Boosts generator base electrical wattage by +10W to +15W per generator.",
+    "skillCs": "Umístěný k elektrocentrálám (solární, biomass, vodní). Zvyšuje základní výkon každého generátoru o +10W až +15W.",
+    "cradleSynergyEn": "Grid Overcharge, Power Surge Facility",
+    "cradleSynergyCs": "Grid Overcharge, Power Surge Facility",
+    "containmentEn": {
+      "lighting": "Blue Light",
+      "temperature": "Cool (<18°C)",
+      "music": "Silence",
+      "surroundings": "Water Basin / Generator nearby, 10W Electrical Power",
+      "regenRate": "+2.6 Energy & Mood / min"
+    },
+    "containmentCs": {
+      "lighting": "Modré světlo (Blue Light)",
+      "temperature": "Chladno (<18°C)",
+      "music": "Ticho (žádné rušení)",
+      "surroundings": "Vodní nádrž / Generátor v sousedství, Příkon 10W",
+      "regenRate": "+2.6 Energie & Nálada / min"
+    },
+    "effectsEn": [
+      "Territory Role: Base Power Grid Amplification (+10W to +15W per generator)",
+      "Massively increases wattage available for automated defense turrets and pumps",
+      "Reduces total number of expensive generators required to power large territories",
+      "Crucial for high-tier automated oil refineries and acid farms"
+    ],
+    "effectsCs": [
+      "Teritoriální role: Zesílení elektrické sítě základny (+10W až +15W na generátor)",
+      "Výrazně navyšuje dostupný příkon pro automatické obranné věže a pumpy",
+      "Snižuje počet drahých generátorů nutných pro provoz velkých základen",
+      "Klíčový prvek pro automatické ropné rafinerie a farmy na kyselinu"
+    ],
+    "ingredientsEn": [
+      {
+        "name": "Isolated Securement Unit",
+        "amount": "1x",
+        "isPrimary": true
+      },
+      {
+        "name": "Electricity Power",
+        "amount": "10W"
+      },
+      {
+        "name": "Freshwater Bait / Fish",
+        "amount": "3x"
+      }
+    ],
+    "ingredientsCs": [
+      {
+        "name": "Izolační zabezpečovací jednotka (Securement Unit)",
+        "amount": "1x",
+        "isPrimary": true
+      },
+      {
+        "name": "Elektrický příkon",
+        "amount": "10W"
+      },
+      {
+        "name": "Rybářská návnada / Čerstvá ryba",
+        "amount": "3x"
+      }
+    ],
+    "descriptionEn": "A high-voltage aquatic specimen emitting continuous bio-electric current. Channels massive power surges safely into domestic circuit breakers.",
+    "descriptionCs": "Vysokonapěťový vodní tvor produkující stálý bioelektrický proud. Bezpečně zásobuje domácí rozvaděče masivní dávkou čisté energie."
+  },
+  {
+    "id": "dev-12",
+    "nameEn": "Buzzy Bee",
+    "nameCs": "Buzzy Bee (Pilná včelka)",
+    "categoryEn": "Territory Deviant",
+    "categoryCs": "Teritoriální Deviant",
+    "deviantType": "territory",
+    "scenario": "core",
+    "rarity": "Rare",
+    "workbench": "Isolated Securement Unit",
+    "energy": 0,
+    "hydration": 0,
+    "buffDuration": "Opylení plodin: Nepřetržitě",
+    "sourceEn": "Dayton Wetlands Citrus County puzzle / Broken Delta farms",
+    "sourceCs": "Dayton Wetlands puzzle na farmě Citrus County / farmy v Broken Delta",
+    "skillEn": "Hovering over Planter Boxes, pollinates growing seeds, boosting the mutation chance into rare Deviated Crops (Wheat, Corn, Berries) by up to +35%.",
+    "skillCs": "Létá nad truhlíky a opyluje sazenice, čímž zvyšuje šanci na mutaci ve vzácné mutované plodiny (Deviated pšenice, kukuřice, bobule) až o +35%.",
+    "cradleSynergyEn": "Agricultural Mastery, Mutagenic Bloom",
+    "cradleSynergyCs": "Agricultural Mastery, Mutagenic Bloom",
+    "containmentEn": {
+      "lighting": "Natural Sunlight",
+      "temperature": "Warm (24-27°C)",
+      "music": "Nature sounds / Classical",
+      "surroundings": "Flowers & Planter Boxes nearby, 5W Electrical Power",
+      "regenRate": "+2.4 Energy & Mood / min"
+    },
+    "containmentCs": {
+      "lighting": "Přirozené sluneční světlo (Natural Light)",
+      "temperature": "Teplo (24-27°C)",
+      "music": "Zvuky přírody / Klasická hudba",
+      "surroundings": "Květiny a truhlíky s plodinami v okolí, Příkon 5W",
+      "regenRate": "+2.4 Energie & Nálada / min"
+    },
+    "effectsEn": [
+      "Territory Role: Deviated Crop Mutation Booster (+35% mutation chance)",
+      "Essential for harvesting Deviated crops required in legendary recipes & drinks",
+      "Accelerates plant flowering speed and overall agricultural yield",
+      "Pairs flawlessly with Growshroom automatic farming setups"
+    ],
+    "effectsCs": [
+      "Teritoriální role: Zvyšování šance na mutované plodiny (+35% mutace)",
+      "Nezbytnost pro zisk Deviated surovin do legendárních receptů a nápojů",
+      "Urychluje kvetení rostlin a celkový výnos na polích",
+      "Vynikající synergie v tandemu s automatickým houbovým farmářem (Growshroom)"
+    ],
+    "ingredientsEn": [
+      {
+        "name": "Isolated Securement Unit",
+        "amount": "1x",
+        "isPrimary": true
+      },
+      {
+        "name": "Electricity Power",
+        "amount": "5W"
+      },
+      {
+        "name": "Coneflower Seeds",
+        "amount": "4x"
+      }
+    ],
+    "ingredientsCs": [
+      {
+        "name": "Izolační zabezpečovací jednotka (Securement Unit)",
+        "amount": "1x",
+        "isPrimary": true
+      },
+      {
+        "name": "Elektrický příkon",
+        "amount": "5W"
+      },
+      {
+        "name": "Semínka echinacey (Coneflower Seeds)",
+        "amount": "4x"
+      }
+    ],
+    "descriptionEn": "A golden iridescent bee buzzing with fertile pollen. Whispers life into the soil and coaxes dormant Stardust mutations out of plants.",
+    "descriptionCs": "Zlatavá třpytivá včelka obalená úrodným pylem. Probouzí v půdě život a stimuluje spící stardustové mutace plodin."
+  },
+  {
+    "id": "dev-13",
+    "nameEn": "Growshroom",
+    "nameCs": "Growshroom (Houbový farmář)",
+    "categoryEn": "Territory Deviant",
+    "categoryCs": "Teritoriální Deviant",
+    "deviantType": "territory",
+    "scenario": "core",
+    "rarity": "Rare",
+    "workbench": "Isolated Securement Unit",
+    "energy": 0,
+    "hydration": 0,
+    "buffDuration": "Automatizace zemědělství: Nepřetržitě",
+    "sourceEn": "Harvesting wild mushrooms and forage crates in Dayton Wetlands",
+    "sourceCs": "Sběr divokých hub a truhel v Dayton Wetlands a Broken Delta",
+    "skillEn": "Full greenhouse automation: extracts seeds from territory chests, sows empty planter boxes, applies water, and stores mature crops into designated crates.",
+    "skillCs": "Plná automatizace skleníku: bere semínka z beden, sází je do volných truhlíků, zalévá vodou a zralé plodiny sklízí do určených skladů.",
+    "cradleSynergyEn": "Territory Automation, Botanical Storage",
+    "cradleSynergyCs": "Territory Automation, Botanical Storage",
+    "containmentEn": {
+      "lighting": "Blue Light",
+      "temperature": "Humid / Cool (<20°C)",
+      "music": "Silence",
+      "surroundings": "Wild Mushrooms / Water Barrel nearby, 5W Electrical Power",
+      "regenRate": "+2.3 Energy & Mood / min"
+    },
+    "containmentCs": {
+      "lighting": "Modré světlo (Blue Light)",
+      "temperature": "Vlhko / Chladno (<20°C)",
+      "music": "Ticho (žádný hluk)",
+      "surroundings": "Divoké houby a sud s vodou v okolí, Příkon 5W",
+      "regenRate": "+2.3 Energie & Nálada / min"
+    },
+    "effectsEn": [
+      "Territory Role: 100% Automated Planting, Watering & Harvesting",
+      "Keeps territory farm boxes working continuously while the player explores",
+      "Deposits fresh vegetables, wheat, and fruits straight into storage",
+      "Reduces manual farming chores to near zero"
+    ],
+    "effectsCs": [
+      "Teritoriální role: 100% automatické sázení, zalévání a sklizeň úrody",
+      "Udržuje farmu v nepřetržitém chodu i během vašich výprav do světa",
+      "Ukládá čerstvou zeleninu, pšenici a ovoce přímo do skladovacích beden",
+      "Sráží manuální starost o skleníky na naprosté minimum"
+    ],
+    "ingredientsEn": [
+      {
+        "name": "Isolated Securement Unit",
+        "amount": "1x",
+        "isPrimary": true
+      },
+      {
+        "name": "Electricity Power",
+        "amount": "5W"
+      },
+      {
+        "name": "Fertilized Soil / Compost",
+        "amount": "3x"
+      }
+    ],
+    "ingredientsCs": [
+      {
+        "name": "Izolační zabezpečovací jednotka (Securement Unit)",
+        "amount": "1x",
+        "isPrimary": true
+      },
+      {
+        "name": "Elektrický příkon",
+        "amount": "5W"
+      },
+      {
+        "name": "Hnojená zemina / Kompost",
+        "amount": "3x"
+      }
+    ],
+    "descriptionEn": "A cheerful sentient fungal gardener with a watering can. Delights in keeping crops moist and soil rich.",
+    "descriptionCs": "Veselý houbový zahradník s konvičkou. Nic mu neudělá větší radost než dokonale zalité záhony a bohatá sklizeň."
+  },
+  {
+    "id": "dev-14",
+    "nameEn": "Logg Beaver",
+    "nameCs": "Logg Beaver (Bobr dřevorubec)",
+    "categoryEn": "Territory Deviant",
+    "categoryCs": "Teritoriální Deviant",
+    "deviantType": "territory",
+    "scenario": "core",
+    "rarity": "Rare",
+    "workbench": "Isolated Securement Unit",
+    "energy": 0,
+    "hydration": 0,
+    "buffDuration": "Automatická těžba dřeva: Nepřetržitě",
+    "sourceEn": "Broken Delta docks & chopping large pine trees along waterways",
+    "sourceCs": "Docks v Broken Delta a kácení velkých stromů podél řek",
+    "skillEn": "Fells trees across base territory perimeter, harvesting Logs, Hardwood, Bark, and Plant Fiber directly into territorial storage chests.",
+    "skillCs": "Kácí stromy v perimetru základny, těží kulatinu, tvrdé dřevo, kůru a rostlinná vlákna přímo do skladovacích beden.",
+    "cradleSynergyEn": "Lumberjack Efficiency, Biomass Harvester",
+    "cradleSynergyCs": "Lumberjack Efficiency, Biomass Harvester",
+    "containmentEn": {
+      "lighting": "Natural Sunlight",
+      "temperature": "Room Temp (20°C)",
+      "music": "Silence",
+      "surroundings": "Water Basin / Logs nearby, 5W Electrical Power",
+      "regenRate": "+2.2 Energy & Mood / min"
+    },
+    "containmentCs": {
+      "lighting": "Přirozené denní světlo (Natural Light)",
+      "temperature": "Pokojová teplota (20°C)",
+      "music": "Ticho (žádné rádio)",
+      "surroundings": "Vodní nádrž / Hromada dřeva v okolí, Příkon 5W",
+      "regenRate": "+2.2 Energie & Nálada / min"
+    },
+    "effectsEn": [
+      "Territory Role: Automated Tree Felling & Wood Resource Gathering",
+      "Produces constant supply of Wood, Hardwood, and Plant Fiber",
+      "Prevents trees from obstructing building structures inside the territory",
+      "Fuels biomass generators and construction without manual lumbering"
+    ],
+    "effectsCs": [
+      "Teritoriální role: Automatické kácení stromů a sběr dřevních surovin",
+      "Produkuje stálý přísun dřeva, tvrdého dřeva i rostlinných vláken",
+      "Zabraňuje zarůstání stromů do budov a stavebních konstrukcí",
+      "Zásobuje biomass generátory a stavbu bez nutnosti brát do ruky sekeru"
+    ],
+    "ingredientsEn": [
+      {
+        "name": "Isolated Securement Unit",
+        "amount": "1x",
+        "isPrimary": true
+      },
+      {
+        "name": "Electricity Power",
+        "amount": "5W"
+      },
+      {
+        "name": "Hardwood Logs",
+        "amount": "10x"
+      }
+    ],
+    "ingredientsCs": [
+      {
+        "name": "Izolační zabezpečovací jednotka (Securement Unit)",
+        "amount": "1x",
+        "isPrimary": true
+      },
+      {
+        "name": "Elektrický příkon",
+        "amount": "5W"
+      },
+      {
+        "name": "Kulatina z tvrdého dřeva",
+        "amount": "10x"
+      }
+    ],
+    "descriptionEn": "An industrious beaver with reinforced titanium incisors. Gnaws through massive trunks in seconds with professional pride.",
+    "descriptionCs": "Pracovitý bobr s řezáky zpevněnými titanovými mikročásticemi. Kácí stromy za pár vteřin s profesionální hrdostí."
+  },
+  {
+    "id": "dev-15",
+    "nameEn": "Fetch-A-Lot Bunny",
+    "nameCs": "Fetch-A-Lot Bunny (Zajíček sběrač)",
+    "categoryEn": "Territory Deviant",
+    "categoryCs": "Teritoriální Deviant",
+    "deviantType": "territory",
+    "scenario": "core",
+    "rarity": "Epic",
+    "workbench": "Isolated Securement Unit",
+    "energy": 0,
+    "hydration": 0,
+    "buffDuration": "Sběr vzácných bylin: Nepřetržitě",
+    "sourceEn": "Felling colossal ancient withered trees in Broken Delta & Chalk Peak",
+    "sourceCs": "Kácení prastarých mohutných suchých stromů v Broken Delta a Chalk Peak",
+    "skillEn": "Forages the wild wasteland for rare botanical herbs: Aloe Vera, Coneflower, Saffron, Morel Mushrooms, and brings back exotic crop seeds.",
+    "skillCs": "Pročesává divočinu a sbírá vzácné bylinky: Aloe Vera, třapatku (Coneflower), šafrán, smrže i exotická semínka plodin.",
+    "cradleSynergyEn": "Herbalist Instinct, Flora Preservation",
+    "cradleSynergyCs": "Herbalist Instinct, Flora Preservation",
+    "containmentEn": {
+      "lighting": "Green Light",
+      "temperature": "Warm (23°C)",
+      "music": "Classical Music",
+      "surroundings": "Flowers & Planter Boxes nearby, 5W Electrical Power",
+      "regenRate": "+2.5 Energy & Mood / min"
+    },
+    "containmentCs": {
+      "lighting": "Zelené světlo (Green Light)",
+      "temperature": "Teplo (23°C)",
+      "music": "Klasická hudba",
+      "surroundings": "Květiny a truhlíky v okolí, Příkon 5W",
+      "regenRate": "+2.5 Energie & Nálada / min"
+    },
+    "effectsEn": [
+      "Territory Role: Rare Botanical Foraging & Exotic Seed Harvesting",
+      "Acquires elusive herbs essential for tier-5 apothecary potions",
+      "Delivers rare agricultural seeds without searching dangerous high-level zones",
+      "Saves immense exploration time for dedicated alchemists"
+    ],
+    "effectsCs": [
+      "Teritoriální role: Sběr vzácných bylin a exotických semínek plodin",
+      "Získává těžko dostupné byliny nezbytné pro lektvary 5. úrovně",
+      "Přináší semena bez nutnosti prohledávat nebezpečné zóny světa",
+      "Ušetří desítky hodin průzkumu všem výrobcům medicíny a chemie"
+    ],
+    "ingredientsEn": [
+      {
+        "name": "Isolated Securement Unit",
+        "amount": "1x",
+        "isPrimary": true
+      },
+      {
+        "name": "Electricity Power",
+        "amount": "5W"
+      },
+      {
+        "name": "Wild Berries",
+        "amount": "5x"
+      }
+    ],
+    "ingredientsCs": [
+      {
+        "name": "Izolační zabezpečovací jednotka (Securement Unit)",
+        "amount": "1x",
+        "isPrimary": true
+      },
+      {
+        "name": "Elektrický příkon",
+        "amount": "5W"
+      },
+      {
+        "name": "Lesní plody (Wild Berries)",
+        "amount": "5x"
+      }
+    ],
+    "descriptionEn": "A nimble woodland rabbit carrying an oversized woven wicker basket. Has an uncanny nose for the rarest medicinal plants.",
+    "descriptionCs": "Hbitý lesní králíček s proutěným košíkem na zádech. Má neomylný čich na ty nejvzácnější léčivé rostliny."
+  },
+  {
+    "id": "dev-16",
+    "nameEn": "Artisan's Touch",
+    "nameCs": "Artisan's Touch (Dotek řemeslníka)",
+    "categoryEn": "Production Deviant",
+    "categoryCs": "Výrobní Deviant",
+    "deviantType": "production",
+    "scenario": "core",
+    "rarity": "Legendary",
+    "workbench": "Isolated Securement Unit",
+    "energy": 0,
+    "hydration": 0,
+    "buffDuration": "Výroba opravných sad: Průběžně",
+    "sourceEn": "Securement Silo PSI / Blackfell Fallen Zone chests",
+    "sourceCs": "Securement Silo PSI / Truhly v Blackfell Fallen Zone",
+    "skillEn": "Fabricates Universal All-Purpose Repair Kits over time without consuming metals, adhesives, or high-tier crafting materials.",
+    "skillCs": "Průběžně vyrábí univerzální opravné sady (Universal Repair Kits) bez spotřeby kovů, lepidel a drahých součástek.",
+    "cradleSynergyEn": "Field Maintenance, Armorer's Boon",
+    "cradleSynergyCs": "Field Maintenance, Armorer's Boon",
+    "containmentEn": {
+      "lighting": "Green Light",
+      "temperature": "Room Temp (20-22°C)",
+      "music": "Silence",
+      "surroundings": "Gear Workbench nearby, 10W Electrical Power",
+      "regenRate": "+2.8 Energy & Mood / min"
+    },
+    "containmentCs": {
+      "lighting": "Zelené světlo (Green Light)",
+      "temperature": "Pokojová teplota (20-22°C)",
+      "music": "Ticho (žádné rádio)",
+      "surroundings": "Pracovní stůl na zbroj v okolí, Příkon 10W",
+      "regenRate": "+2.8 Energie & Nálada / min"
+    },
+    "effectsEn": [
+      "Production Role: Free Universal Repair Kit Generation",
+      "Allows repairing legendary weapons and armor anywhere in the field",
+      "Saves immense amounts of Steel/Aluminum and rare Electronic Parts",
+      "A godsend for long endurance dungeon and silo crawling runs"
+    ],
+    "effectsCs": [
+      "Výrobní role: Bezplatná produkce univerzálních sad na opravu výbavy",
+      "Umožňuje opravit legendární zbraně i zbroje kdykoliv přímo v terénu",
+      "Šetří obrovské množství oceli, hliníku a drahých elektronických součástek",
+      "Záchrana při dlouhých výpravách do dungeonů a nepřátelských sil"
+    ],
+    "ingredientsEn": [
+      {
+        "name": "Isolated Securement Unit",
+        "amount": "1x",
+        "isPrimary": true
+      },
+      {
+        "name": "Electricity Power",
+        "amount": "10W"
+      },
+      {
+        "name": "Standard Parts",
+        "amount": "5x"
+      }
+    ],
+    "ingredientsCs": [
+      {
+        "name": "Izolační zabezpečovací jednotka (Securement Unit)",
+        "amount": "1x",
+        "isPrimary": true
+      },
+      {
+        "name": "Elektrický příkon",
+        "amount": "10W"
+      },
+      {
+        "name": "Standardní součástky",
+        "amount": "5x"
+      }
+    ],
+    "descriptionEn": "A set of animated, telekinetic artisan calipers and needles. Restores fractured metallurgy back to pristine integrity.",
+    "descriptionCs": "Sada oživených telekinetických posuvných měřítek a jehel. Vrací poničené metalurgické slitiny do bezchybného stavu."
+  },
+  {
+    "id": "dev-17",
+    "nameEn": "Atomic Snail",
+    "nameCs": "Atomic Snail (Atomový šnek)",
+    "categoryEn": "Production Deviant",
+    "categoryCs": "Výrobní Deviant",
+    "deviantType": "production",
+    "scenario": "core",
+    "rarity": "Epic",
+    "workbench": "Isolated Securement Unit",
+    "energy": 0,
+    "hydration": 0,
+    "buffDuration": "Produkce rychlostního slizu: Průběžně",
+    "sourceEn": "Monolith of Thirst / Broken Delta Coastline",
+    "sourceCs": "Monolith of Thirst / Mořské pobřeží Broken Delta",
+    "skillEn": "Secretes luminescent Stardust Mucus, crafted into Speed Slime consumables granting +25% Sprint Speed and infinite water stamina.",
+    "skillCs": "Vylučuje luminescenční stardustový sliz, ze kterého se vyrábí Speed Slime lektvary zaručující +25% rychlost běhu a neomezenou staminu při plavání.",
+    "cradleSynergyEn": "Bio-Enhancement, Kinetic Surge",
+    "cradleSynergyCs": "Bio-Enhancement, Kinetic Surge",
+    "containmentEn": {
+      "lighting": "Blue Light",
+      "temperature": "Cool (<16°C)",
+      "music": "Silence",
+      "surroundings": "Water Basin / Shoreline nearby, 5W Electrical Power",
+      "regenRate": "+2.5 Energy & Mood / min"
+    },
+    "containmentCs": {
+      "lighting": "Modré světlo (Blue Light)",
+      "temperature": "Chladno (<16°C)",
+      "music": "Ticho (žádný hluk)",
+      "surroundings": "Vodní nádrž v okolí, Příkon 5W",
+      "regenRate": "+2.5 Energie & Nálada / min"
+    },
+    "effectsEn": [
+      "Production Role: Speed Mucus & Tactical Movement Consumables",
+      "+25% player sprint velocity bonus upon consuming Speed Slime",
+      "Prevents drowning and eliminates stamina drain while swimming",
+      "Ideal for speedrunning Silos and rapid map navigation"
+    ],
+    "effectsCs": [
+      "Výrobní role: Produkce rychlostního slizu a lektvarů na pohyb",
+      "+25% bonus k rychlosti běhu hráče po požití Speed Slime",
+      "Eliminuje únavu staminy při plavání a brání utonutí v hluboké vodě",
+      "Ideální pro rychlé průchody sil (speedruny) i svižný pohyb po mapě"
+    ],
+    "ingredientsEn": [
+      {
+        "name": "Isolated Securement Unit",
+        "amount": "1x",
+        "isPrimary": true
+      },
+      {
+        "name": "Electricity Power",
+        "amount": "5W"
+      },
+      {
+        "name": "Pure Water Bottle",
+        "amount": "3x"
+      }
+    ],
+    "ingredientsCs": [
+      {
+        "name": "Izolační zabezpečovací jednotka (Securement Unit)",
+        "amount": "1x",
+        "isPrimary": true
+      },
+      {
+        "name": "Elektrický příkon",
+        "amount": "5W"
+      },
+      {
+        "name": "Láhev čisté vody",
+        "amount": "3x"
+      }
+    ],
+    "descriptionEn": "A mollusk infused with radioactive isotope residue. Leaves behind a gleaming frictionless trail that drastically reduces ground drag.",
+    "descriptionCs": "Měkkýš napuštěný radioaktivními izotopy. Zanechává za sebou lesklou bezfrikční stopu, která eliminuje odpor podkladu."
+  },
+  {
+    "id": "dev-18",
+    "nameEn": "Rebecca - Enchanting Void",
+    "nameCs": "Rebecca - Enchanting Void (Očarované prázdno)",
+    "categoryEn": "Production Deviant",
+    "categoryCs": "Výrobní Deviant",
+    "deviantType": "production",
+    "scenario": "core",
+    "rarity": "Legendary",
+    "workbench": "Isolated Securement Unit",
+    "energy": 0,
+    "hydration": 0,
+    "buffDuration": "Stabilizace psychiky: Nepřetržitě",
+    "sourceEn": "Monolith of Fog / Secret Silo in Red Sands",
+    "sourceCs": "Monolith of Fog / Tajné silo v Red Sands",
+    "skillEn": "Emits a localized calming frequency that completely halts Sanity decay within territory borders and synthesizes Void Dream Crystals.",
+    "skillCs": "Vyzařuje uklidňující frekvenci, která zcela zastavuje pokles příčetnosti (Sanity) uvnitř základny a syntetizuje krystaly Void Dream.",
+    "cradleSynergyEn": "Sanity Anchor, Stardust Immunity",
+    "cradleSynergyCs": "Sanity Anchor, Stardust Immunity",
+    "containmentEn": {
+      "lighting": "Dim / Moon Light",
+      "temperature": "Room Temp (20°C)",
+      "music": "Silence",
+      "surroundings": "Mirror / Crystal display, 10W Electrical Power",
+      "regenRate": "+3.0 Energy & Mood / min"
+    },
+    "containmentCs": {
+      "lighting": "Tlumené / Měsíční světlo (Dim Light)",
+      "temperature": "Pokojová teplota (20°C)",
+      "music": "Naprosté ticho",
+      "surroundings": "Zrcadlo a krystaly v okolí, Příkon 10W",
+      "regenRate": "+3.0 Energie & Nálada / min"
+    },
+    "effectsEn": [
+      "Production Role: Total Sanity Shield & Void Dream Crystal Synthesis",
+      "Eliminates Sanity drops even in territories built in high-pollution biomes",
+      "Crystals used to craft high-potency mental stabilization tonics",
+      "Ultimate safeguard for end-game oil and polluted-zone base locations"
+    ],
+    "effectsCs": [
+      "Výrobní role: Štít proti ztrátě psychiky a syntéza krystalů Void Dream",
+      "Zcela eliminuje pokles Sanity i na základnách postavených v těžce zamořených zónách",
+      "Krystaly slouží k výrobě nejsilnějších psychických stabilizátorů",
+      "Dokonalá ochrana pro endgame základny těžící ropu a kyselinu v kontaminaci"
+    ],
+    "ingredientsEn": [
+      {
+        "name": "Isolated Securement Unit",
+        "amount": "1x",
+        "isPrimary": true
+      },
+      {
+        "name": "Electricity Power",
+        "amount": "10W"
+      },
+      {
+        "name": "Glass",
+        "amount": "5x"
+      }
+    ],
+    "ingredientsCs": [
+      {
+        "name": "Izolační zabezpečovací jednotka (Securement Unit)",
+        "amount": "1x",
+        "isPrimary": true
+      },
+      {
+        "name": "Elektrický příkon",
+        "amount": "10W"
+      },
+      {
+        "name": "Sklo (Glass)",
+        "amount": "5x"
+      }
+    ],
+    "descriptionEn": "An ethereal porcelain girl radiating serene anti-stardust fields. She creates a sanctuary where madness and corruption cannot penetrate.",
+    "descriptionCs": "Éterická porcelánová dívka vyzařující konejšivá pole. Vytváří útočiště, do kterého šílenství ani zkaženost pustiny neproniknou."
+  }
+];
+
 

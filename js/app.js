@@ -719,7 +719,15 @@ function initSearchIndex() {
       gearTokens = ` ${item.archetype || ''} ${item.archetypeCs || ''} ${item.caliber || ''} ${item.weaponType || ''} ${item.weaponTypeCs || ''} ${item.uniquePerkCs || ''} ${item.uniquePerkEn || ''} ${item.recommendedGearCs || ''} ${item.recommendedWeaponsCs || ''} weapon zbraň zbroj armor blueprint`;
     }
 
-    item._searchIndex = (csTokens + ' ' + enTokens + ' ' + (item.scenario || '') + ' ' + invTokens + ' ' + gearTokens).toLowerCase();
+    let deviantTokens = '';
+    if (item.deviantType || item.skillCs || item.cradleSynergyCs) {
+      deviantTokens = ` ${item.deviantType || ''} ${item.deviantTypeCs || ''} ${item.deviantTypeEn || ''} ${item.skillCs || ''} ${item.skillEn || ''} ${item.cradleSynergyCs || ''} ${item.cradleSynergyEn || ''} deviant bestiář securement cradle containment jednotka unit`;
+      if (item.containmentCs) {
+        deviantTokens += ` ${item.containmentCs.lighting || ''} ${item.containmentCs.temperature || ''} ${item.containmentCs.music || ''} ${item.containmentCs.surroundings || ''}`;
+      }
+    }
+
+    item._searchIndex = (csTokens + ' ' + enTokens + ' ' + (item.scenario || '') + ' ' + invTokens + ' ' + gearTokens + ' ' + deviantTokens).toLowerCase();
   });
 }
 
@@ -773,7 +781,7 @@ function handleHashChange() {
     openModal(recipeId, false);
   } else if (hash.startsWith('tab=')) {
     const tabName = hash.replace('tab=', '');
-    if (activeTab !== tabName && ['discovered', 'creative', 'medicine', 'inventions'].includes(tabName)) {
+    if (activeTab !== tabName && ['discovered', 'creative', 'medicine', 'inventions', 'gear', 'deviants'].includes(tabName)) {
       switchTab(tabName, false);
     }
   }
@@ -814,7 +822,7 @@ window.addEventListener('keydown', function(e) {
 });
 
 function getAllRecipes() {
-  return [...discoveredRecipes, ...creativeDishes, ...medicineRecipes, ...inventionRecipes, ...gearRecipes];
+  return [...discoveredRecipes, ...creativeDishes, ...medicineRecipes, ...inventionRecipes, ...gearRecipes, ...deviantRecipes];
 }
 
 function findRecipeById(id) {
@@ -827,6 +835,7 @@ function determineRecipeTab(recipeId) {
   if (medicineRecipes.some(r => r.id === recipeId)) return 'medicine';
   if (inventionRecipes.some(r => r.id === recipeId)) return 'inventions';
   if (gearRecipes.some(r => r.id === recipeId)) return 'gear';
+  if (deviantRecipes.some(r => r.id === recipeId)) return 'deviants';
   return 'discovered';
 }
 
@@ -849,6 +858,7 @@ function getActiveDataset() {
     case 'medicine': return medicineRecipes;
     case 'inventions': return inventionRecipes;
     case 'gear': return gearRecipes;
+    case 'deviants': return deviantRecipes;
     default: return discoveredRecipes;
   }
 }
@@ -875,6 +885,8 @@ function applyLanguageUI() {
   document.getElementById('tab-txt-inventions').innerText = `${t.tabInventions} (${inventionRecipes.length})`;
   const gearTabEl = document.getElementById('tab-txt-gear');
   if (gearTabEl) gearTabEl.innerText = `${t.tabGear || 'Weapons & Armor'} (${gearRecipes.length})`;
+  const devTabEl = document.getElementById('tab-txt-deviants');
+  if (devTabEl) devTabEl.innerText = `${t.tabDeviants || 'Deviants & Cradle'} (${deviantRecipes.length})`;
   document.getElementById('calc-title').innerText = t.calcTitle;
   document.getElementById('calc-desc').innerText = t.calcDesc;
   document.getElementById('searchInput').placeholder = t.searchPlaceholder;
@@ -905,7 +917,8 @@ function switchTab(tabId, updateHash = true) {
     { id: 'tab-btn-creative', name: 'creative' },
     { id: 'tab-btn-medicine', name: 'medicine' },
     { id: 'tab-btn-inventions', name: 'inventions' },
-    { id: 'tab-btn-gear', name: 'gear' }
+    { id: 'tab-btn-gear', name: 'gear' },
+    { id: 'tab-btn-deviants', name: 'deviants' }
   ];
 
   buttons.forEach(btn => {
@@ -1156,6 +1169,18 @@ function renderRecipeCards(items) {
                 ${item.caliber}
               </span>
             ` : ''}
+            ${item.deviantType ? `
+              <span class="text-[9px] font-mono uppercase px-1.5 py-0.5 rounded border ${
+                item.deviantType === 'combat' 
+                  ? 'border-red-500/60 bg-red-950/80 text-red-300 shadow-[0_0_8px_rgba(239,68,68,0.25)]' 
+                  : item.deviantType === 'territory' 
+                    ? 'border-emerald-500/60 bg-emerald-950/80 text-emerald-300 shadow-[0_0_8px_rgba(16,185,129,0.25)]' 
+                    : 'border-cyan-500/60 bg-cyan-950/80 text-cyan-300 shadow-[0_0_8px_rgba(6,182,212,0.25)]'
+              } font-bold flex items-center gap-1">
+                <i class="fa-solid ${item.deviantType === 'combat' ? 'fa-crosshairs' : item.deviantType === 'territory' ? 'fa-house-chimney' : 'fa-industry'} text-[8px]"></i>
+                ${currentLang === 'cs' ? (item.categoryCs || 'Deviant') : (item.categoryEn || 'Deviant')}
+              </span>
+            ` : ''}
           </div>
           <div class="flex items-center gap-2">
             <span class="text-[10px] font-mono uppercase px-2 py-0.5 rounded border ${rar.bg} ${rar.text} ${rar.border} font-bold flex items-center space-x-1">
@@ -1212,6 +1237,23 @@ function renderRecipeCards(items) {
             <i class="fa-solid fa-link text-hud-cyan text-[10px]"></i>
             <span class="text-slate-400">${currentLang === 'cs' ? 'Synergie' : 'Synergy'}:</span>
             <strong class="text-white truncate">${currentLang === 'cs' ? (item.recommendedGearCs || item.recommendedWeaponsCs) : (item.recommendedGearEn || item.recommendedWeaponsEn)}</strong>
+          </div>
+        ` : ''}
+
+        <!-- Deviant Ability Preview -->
+        ${item.skillCs ? `
+          <div class="mb-3 p-2.5 bg-slate-900/90 border border-hud-cyan/40 rounded text-xs text-slate-200 leading-snug">
+            <span class="text-[10px] uppercase font-bold text-hud-cyan block mb-1 flex items-center gap-1">
+              <i class="fa-solid fa-ghost text-[9px]"></i>${currentLang === 'cs' ? 'Schopnost Devianta' : 'Deviant Ability'}
+            </span>
+            ${currentLang === 'cs' ? item.skillCs : item.skillEn}
+          </div>
+        ` : ''}
+        ${item.cradleSynergyCs ? `
+          <div class="mb-3 text-[11px] font-mono text-emerald-300 p-1.5 bg-hud-bg/80 border border-emerald-500/40 rounded flex items-center gap-1.5">
+            <i class="fa-solid fa-dna text-emerald-400 text-[10px]"></i>
+            <span class="text-slate-400">Cradle:</span>
+            <strong class="text-emerald-200 truncate">${currentLang === 'cs' ? item.cradleSynergyCs : item.cradleSynergyEn}</strong>
           </div>
         ` : ''}
 
@@ -1403,6 +1445,72 @@ function openModal(id, pushHistory = false) {
               ${currentLang === 'cs' ? 'Doporučené synergie & sety zbrojí' : 'Recommended Synergies & Sets'}:
             </span>
             <strong class="text-hud-cyan">${currentLang === 'cs' ? (item.recommendedGearCs || item.recommendedWeaponsCs) : (item.recommendedGearEn || item.recommendedWeaponsEn)}</strong>
+          </div>
+        ` : ''}
+      </div>
+    ` : ''}
+
+    <!-- Deviant Containment, Ability & Cradle Synergy Section -->
+    ${item.deviantType ? `
+      <div class="mb-4 p-4 bg-slate-900/90 border border-hud-cyan/60 rounded-lg shadow-[0_0_20px_rgba(0,240,255,0.15)]">
+        <div class="flex items-center justify-between mb-3 flex-wrap gap-2">
+          <span class="text-xs font-orbitron font-bold text-white flex items-center gap-1.5">
+            <i class="fa-solid fa-ghost text-hud-cyan"></i>
+            ${currentLang === 'cs' ? (item.categoryCs || 'Deviant') : (item.categoryEn || 'Deviant')} • <span class="text-hud-cyan">${primaryName}</span>
+          </span>
+          <span class="text-[10px] font-mono px-2 py-0.5 rounded ${
+            item.deviantType === 'combat' ? 'bg-red-950/80 text-red-300 border border-red-500/60' : item.deviantType === 'territory' ? 'bg-emerald-950/80 text-emerald-300 border border-emerald-500/60' : 'bg-cyan-950/80 text-cyan-300 border border-cyan-500/60'
+          } font-bold uppercase">
+            ${currentLang === 'cs' ? (item.deviantTypeCs || item.categoryCs) : (item.deviantTypeEn || item.categoryEn)}
+          </span>
+        </div>
+
+        <!-- Skill & Active function -->
+        ${item.skillCs ? `
+          <div class="text-xs text-slate-200 bg-slate-800/80 p-3 rounded border border-hud-cyan/40 mb-3 leading-relaxed">
+            <strong class="block text-hud-cyan mb-1 text-xs uppercase font-mono flex items-center gap-1.5">
+              <i class="fa-solid fa-bolt"></i>${currentLang === 'cs' ? (t.deviantSkillTitle || 'Aktivní / Teritoriální schopnost:') : (t.deviantSkillTitle || 'Active / Territory Skill:')}
+            </strong>
+            ${currentLang === 'cs' ? item.skillCs : item.skillEn}
+          </div>
+        ` : ''}
+
+        <!-- Containment Unit Optimal Requirements -->
+        ${item.containmentCs ? `
+          <div class="mb-3 bg-hud-bg/90 p-3 rounded border border-hud-border">
+            <span class="text-[10px] font-mono uppercase text-slate-400 font-bold block mb-2 flex items-center justify-between">
+              <span><i class="fa-solid fa-box text-hud-cyan mr-1"></i>${t.deviantContainmentTitle || 'Podmínky Securement Unit (Uchovávání)'}</span>
+              <span class="text-hud-cyan font-bold">${currentLang === 'cs' ? item.containmentCs.regenRate : item.containmentEn.regenRate}</span>
+            </span>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-[11px] font-mono text-slate-300">
+              <div class="p-1.5 rounded bg-slate-800/60 border border-slate-700/60 flex items-center gap-2">
+                <i class="fa-solid fa-lightbulb text-amber-400 shrink-0"></i>
+                <span><strong>${currentLang === 'cs' ? 'Světlo' : 'Light'}:</strong> ${currentLang === 'cs' ? item.containmentCs.lighting : item.containmentEn.lighting}</span>
+              </div>
+              <div class="p-1.5 rounded bg-slate-800/60 border border-slate-700/60 flex items-center gap-2">
+                <i class="fa-solid fa-temperature-half text-cyan-400 shrink-0"></i>
+                <span><strong>${currentLang === 'cs' ? 'Teplota' : 'Temp'}:</strong> ${currentLang === 'cs' ? item.containmentCs.temperature : item.containmentEn.temperature}</span>
+              </div>
+              <div class="p-1.5 rounded bg-slate-800/60 border border-slate-700/60 flex items-center gap-2">
+                <i class="fa-solid fa-music text-purple-400 shrink-0"></i>
+                <span><strong>${currentLang === 'cs' ? 'Zvuk' : 'Audio'}:</strong> ${currentLang === 'cs' ? item.containmentCs.music : item.containmentEn.music}</span>
+              </div>
+              <div class="p-1.5 rounded bg-slate-800/60 border border-slate-700/60 flex items-center gap-2">
+                <i class="fa-solid fa-seedling text-emerald-400 shrink-0"></i>
+                <span><strong>${currentLang === 'cs' ? 'Okolí' : 'Surroundings'}:</strong> ${currentLang === 'cs' ? item.containmentCs.surroundings : item.containmentEn.surroundings}</span>
+              </div>
+            </div>
+          </div>
+        ` : ''}
+
+        <!-- Cradle Synergy -->
+        ${item.cradleSynergyCs ? `
+          <div class="p-2.5 rounded bg-emerald-950/40 border border-emerald-500/50 text-xs text-emerald-200 flex items-start gap-2">
+            <i class="fa-solid fa-dna text-emerald-400 mt-0.5 shrink-0"></i>
+            <div>
+              <strong class="block text-emerald-300 text-[10px] uppercase font-mono">${t.cradleSynergyTitle || 'Doporučená Cradle synergie:'}</strong>
+              <span>${currentLang === 'cs' ? item.cradleSynergyCs : item.cradleSynergyEn}</span>
+            </div>
           </div>
         ` : ''}
       </div>
