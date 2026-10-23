@@ -2,7 +2,7 @@
    ONCE HUMAN CODEX - SERVICE WORKER (OFFLINE PWA CACHING)
    ========================================================================== */
 
-const CACHE_NAME = 'once-human-codex-v1';
+const CACHE_NAME = 'once-human-codex-v2';
 const ASSETS_TO_CACHE = [
   './',
   './index.html',
@@ -33,15 +33,14 @@ self.addEventListener('activate', event => {
 });
 
 self.addEventListener('fetch', event => {
-  // Only cache GET requests
   if (event.request.method !== 'GET') return;
 
   event.respondWith(
     caches.match(event.request).then(cachedResponse => {
       if (cachedResponse) {
-        // Return cached, but fetch fresh in background if online
+        // Return cached immediately, fetch fresh copy in background if online
         fetch(event.request).then(networkResponse => {
-          if (networkResponse && networkResponse.status === 200) {
+          if (networkResponse && (networkResponse.status === 200 || networkResponse.type === 'opaque')) {
             caches.open(CACHE_NAME).then(cache => cache.put(event.request, networkResponse));
           }
         }).catch(() => {});
@@ -49,7 +48,7 @@ self.addEventListener('fetch', event => {
       }
 
       return fetch(event.request).then(networkResponse => {
-        if (!networkResponse || networkResponse.status !== 200 || networkResponse.type !== 'basic') {
+        if (!networkResponse || (networkResponse.status !== 200 && networkResponse.type !== 'opaque')) {
           return networkResponse;
         }
 

@@ -46,7 +46,11 @@ const i18n = {
         plannedItems: "Plánované recepty k výrobě:",
         totalMaterialsTitle: "Celkem potřebné suroviny k farmení:",
         copyDiscordBtn: "Kopírovat pro Discord",
-        discordCopied: "Seznam surovin pro Discord zkopírován do schránky"
+                discordCopied: "Seznam surovin pro Discord zkopírován do schránky",
+        directModeBtn: "Přímé suroviny",
+        rawDecomposeBtn: "Surový rozpad (Přírodní zdroje)",
+        checkedProgress: "Nasbíráno surovin:",
+        uncheckAllBtn: "Odznačit vše"
       },
       en: {
         subtitle: "ALL GAME RECIPES • SYNERGIES • APOTHECARY • FULL TECHNOLOGIES",
@@ -95,7 +99,11 @@ const i18n = {
         plannedItems: "Planned Recipes to Craft:",
         totalMaterialsTitle: "Total Raw Materials Needed for Farming:",
         copyDiscordBtn: "Copy for Discord",
-        discordCopied: "Materials shopping list copied to clipboard"
+                discordCopied: "Materials shopping list copied to clipboard",
+        directModeBtn: "Direct Materials",
+        rawDecomposeBtn: "Raw Nature Breakdown",
+        checkedProgress: "Materials Collected:",
+        uncheckAllBtn: "Uncheck all"
       }
     };
 

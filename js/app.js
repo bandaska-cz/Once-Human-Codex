@@ -24,95 +24,79 @@ let searchDebounceTimer = null;
 
 // Favorites Set stored in localStorage
 
-// Crafting Queue / Farming Planner State
-let craftQueue = [];
+
+// Checked materials set stored in localStorage
+let checkedMaterials = new Set();
 try {
-  const savedQueue = JSON.parse(localStorage.getItem('once_human_craft_queue') || '[]');
-  if (Array.isArray(savedQueue)) craftQueue = savedQueue;
+  const savedChecked = JSON.parse(localStorage.getItem('once_human_checked_mats') || '[]');
+  if (Array.isArray(savedChecked)) checkedMaterials = new Set(savedChecked);
 } catch (e) {
-  craftQueue = [];
+  checkedMaterials = new Set();
 }
 
-function saveCraftQueue() {
+let rawDecompositionMode = localStorage.getItem('once_human_raw_mode') === 'true';
+
+function saveCheckedMaterials() {
   try {
-    localStorage.setItem('once_human_craft_queue', JSON.stringify(craftQueue));
+    localStorage.setItem('once_human_checked_mats', JSON.stringify(Array.from(checkedMaterials)));
   } catch (e) {}
-  updateQueueBadge();
 }
 
-function updateQueueBadge() {
-  const badge = document.getElementById('queue-badge-count');
-  if (badge) {
-    const totalCount = craftQueue.reduce((sum, item) => sum + (item.count || 1), 0);
-    badge.innerText = totalCount;
-    if (totalCount > 0) {
-      badge.classList.remove('hidden');
-    } else {
-      badge.innerText = '0';
-    }
-  }
-}
-
-function addToQueue(recipeId, count = 1, event) {
-  if (event) event.stopPropagation();
-  const recipe = findRecipeById(recipeId);
-  if (!recipe) return;
-
-  const existing = craftQueue.find(q => q.recipeId === recipeId);
-  if (existing) {
-    existing.count = (existing.count || 1) + count;
+function toggleMaterialCheck(matName) {
+  if (checkedMaterials.has(matName)) {
+    checkedMaterials.delete(matName);
   } else {
-    craftQueue.push({ recipeId, count });
+    checkedMaterials.add(matName);
+  }
+  saveCheckedMaterials();
+  renderQueueModalContent();
+}
+
+function uncheckAllMaterials() {
+  checkedMaterials.clear();
+  saveCheckedMaterials();
+  renderQueueModalContent();
+}
+
+function toggleDecompositionMode(mode) {
+  rawDecompositionMode = Boolean(mode);
+  try {
+    localStorage.setItem('once_human_raw_mode', rawDecompositionMode ? 'true' : 'false');
+  } catch (e) {}
+  renderQueueModalContent();
+}
+
+function decomposeSingleIngredient(name, amount, lang = 'cs', depth = 0, visited = new Set()) {
+  if (depth > 5 || visited.has(name)) {
+    return [{ name, amount, isRaw: true }];
   }
 
-  saveCraftQueue();
-
-  const rName = currentLang === 'cs' ? recipe.nameCs : recipe.nameEn;
-  const msg = currentLang === 'cs' ? `Položka "${rName}" přidána do plánu (${count}×)` : `Added "${rName}" to plan (${count}×)`;
-  showNotification(msg);
-
-  // If queue modal is open, re-render it
-  const qModal = document.getElementById('craft-queue-modal');
-  if (qModal && !qModal.classList.contains('hidden')) {
-    renderQueueModalContent();
+  const meta = getIngredientMeta(name);
+  if (!meta || !meta.recipeId) {
+    return [{ name, amount, isRaw: true }];
   }
-}
 
-function updateQueueCount(recipeId, delta) {
-  const item = craftQueue.find(q => q.recipeId === recipeId);
-  if (!item) return;
-
-  item.count = (item.count || 1) + delta;
-  if (item.count <= 0) {
-    removeFromQueue(recipeId);
-    return;
+  const subRecipe = findRecipeById(meta.recipeId);
+  if (!subRecipe) {
+    return [{ name, amount, isRaw: true }];
   }
-  saveCraftQueue();
-  renderQueueModalContent();
-}
 
-function removeFromQueue(recipeId) {
-  craftQueue = craftQueue.filter(q => q.recipeId !== recipeId);
-  saveCraftQueue();
-  renderQueueModalContent();
-}
+  const subVisited = new Set(visited);
+  subVisited.add(name);
 
-function clearQueue() {
-  craftQueue = [];
-  saveCraftQueue();
-  renderQueueModalContent();
-}
+  const subIngredients = lang === 'cs' ? subRecipe.ingredientsCs : subRecipe.ingredientsEn;
+  let results = [];
 
-function openQueueModal() {
-  const modal = document.getElementById('craft-queue-modal');
-  if (!modal) return;
-  renderQueueModalContent();
-  modal.classList.remove('hidden');
-}
+  subIngredients.forEach(subIng => {
+    const match = (subIng.amount || '').match(/\d+/);
+    const subAmtPerCraft = match ? parseInt(match[0], 10) : 1;
+    const totalSubAmt = subAmtPerCraft * amount;
 
-function closeQueueModal() {
-  const modal = document.getElementById('craft-queue-modal');
-  if (modal) modal.classList.add('hidden');
+    const deeper = decomposeSingleIngredient(subIng.name, totalSubAmt, lang, depth + 1, subVisited);
+    results = results.concat(deeper);
+  });
+
+  return results;
 }
 
 function calculateQueueMaterials() {
@@ -130,17 +114,36 @@ function calculateQueueMaterials() {
       const amountPerCraft = match ? parseInt(match[0], 10) : 1;
       const totalAmount = amountPerCraft * mult;
 
-      if (!totals[ing.name]) {
-        const meta = getIngredientMeta(ing.name);
-        totals[ing.name] = {
-          name: ing.name,
-          amount: 0,
-          isPrimary: ing.isPrimary || false,
-          recipeId: meta ? meta.recipeId : null,
-          location: meta ? (currentLang === 'cs' ? meta.locationCs : meta.locationEn) : null
-        };
+      if (rawDecompositionMode) {
+        // Recursive raw decomposition to base natural resources
+        const decomposed = decomposeSingleIngredient(ing.name, totalAmount, currentLang);
+        decomposed.forEach(rawItem => {
+          if (!totals[rawItem.name]) {
+            const meta = getIngredientMeta(rawItem.name);
+            totals[rawItem.name] = {
+              name: rawItem.name,
+              amount: 0,
+              isPrimary: false,
+              recipeId: null,
+              location: meta ? (currentLang === 'cs' ? meta.locationCs : meta.locationEn) : null
+            };
+          }
+          totals[rawItem.name].amount += rawItem.amount;
+        });
+      } else {
+        // Direct recipe materials
+        if (!totals[ing.name]) {
+          const meta = getIngredientMeta(ing.name);
+          totals[ing.name] = {
+            name: ing.name,
+            amount: 0,
+            isPrimary: ing.isPrimary || false,
+            recipeId: meta ? meta.recipeId : null,
+            location: meta ? (currentLang === 'cs' ? meta.locationCs : meta.locationEn) : null
+          };
+        }
+        totals[ing.name].amount += totalAmount;
       }
-      totals[ing.name].amount += totalAmount;
     });
   });
 
@@ -164,9 +167,12 @@ function renderQueueModalContent() {
   }
 
   const materials = calculateQueueMaterials();
+  const totalMatsCount = materials.length;
+  const checkedCount = materials.filter(m => checkedMaterials.has(m.name)).length;
+  const progressPercent = totalMatsCount > 0 ? Math.round((checkedCount / totalMatsCount) * 100) : 0;
 
   content.innerHTML = `
-    <div class="flex items-center justify-between pb-3 mb-4 border-b border-hud-border">
+    <div class="flex items-center justify-between pb-3 mb-4 border-b border-hud-border flex-wrap gap-2">
       <div>
         <h3 class="font-orbitron font-bold text-white text-lg flex items-center gap-2">
           <i class="fa-solid fa-clipboard-check text-hud-cyan"></i>
@@ -181,12 +187,14 @@ function renderQueueModalContent() {
     </div>
 
     <!-- Section 1: Planned recipes list -->
-    <div class="mb-6">
-      <h4 class="text-xs font-mono uppercase text-hud-cyan mb-2 font-bold flex items-center gap-1.5">
-        <i class="fa-solid fa-list-check"></i>
-        <span>${t.plannedItems} (${craftQueue.length})</span>
+    <div class="mb-5 bg-slate-900/40 p-3 rounded-lg border border-slate-800">
+      <h4 class="text-xs font-mono uppercase text-hud-cyan mb-2 font-bold flex items-center justify-between">
+        <span class="flex items-center gap-1.5">
+          <i class="fa-solid fa-list-check"></i>
+          <span>${t.plannedItems} (${craftQueue.length})</span>
+        </span>
       </h4>
-      <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5 max-h-52 overflow-y-auto pr-1">
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2 max-h-44 overflow-y-auto pr-1">
         ${craftQueue.map(item => {
           const recipe = findRecipeById(item.recipeId);
           if (!recipe) return '';
@@ -194,19 +202,19 @@ function renderQueueModalContent() {
           const rar = rarityConfig[recipe.rarity] || rarityConfig.Common;
 
           return `
-            <div class="p-2.5 bg-hud-bg border border-hud-border rounded flex items-center justify-between gap-2">
-              <div class="truncate">
-                <div class="flex items-center gap-1.5">
+            <div class="p-2 bg-hud-bg border border-hud-border rounded flex items-center justify-between gap-1.5">
+              <div class="truncate mr-1">
+                <div class="flex items-center gap-1">
                   <span class="w-1.5 h-1.5 rounded-full ${rar.dot}"></span>
                   <span class="text-xs font-medium text-white truncate cursor-pointer hover:text-hud-cyan" onclick="openModal('${recipe.id}', true)">${name}</span>
                 </div>
-                <div class="text-[10px] font-mono text-slate-500 truncate">${recipe.workbench}</div>
+                <div class="text-[9px] font-mono text-slate-500 truncate">${recipe.workbench}</div>
               </div>
               <div class="flex items-center gap-1 shrink-0">
-                <button onclick="updateQueueCount('${recipe.id}', -1)" class="w-6 h-6 rounded bg-slate-800 hover:bg-slate-700 text-slate-300 flex items-center justify-center font-bold text-xs">-</button>
-                <span class="w-7 text-center font-mono font-bold text-hud-cyan text-xs">${item.count}</span>
-                <button onclick="updateQueueCount('${recipe.id}', 1)" class="w-6 h-6 rounded bg-slate-800 hover:bg-slate-700 text-slate-300 flex items-center justify-center font-bold text-xs">+</button>
-                <button onclick="removeFromQueue('${recipe.id}')" class="ml-1 text-slate-500 hover:text-red-400 p-1">
+                <button onclick="updateQueueCount('${recipe.id}', -1)" class="w-5 h-5 rounded bg-slate-800 hover:bg-slate-700 text-slate-300 flex items-center justify-center font-bold text-xs cursor-pointer">-</button>
+                <span class="w-5 text-center font-mono font-bold text-hud-cyan text-xs">${item.count}</span>
+                <button onclick="updateQueueCount('${recipe.id}', 1)" class="w-5 h-5 rounded bg-slate-800 hover:bg-slate-700 text-slate-300 flex items-center justify-center font-bold text-xs cursor-pointer">+</button>
+                <button onclick="removeFromQueue('${recipe.id}')" class="text-slate-500 hover:text-red-400 p-0.5 cursor-pointer ml-0.5">
                   <i class="fa-solid fa-xmark text-xs"></i>
                 </button>
               </div>
@@ -216,31 +224,86 @@ function renderQueueModalContent() {
       </div>
     </div>
 
-    <!-- Section 2: Aggregated Raw Materials Shopping List -->
-    <div class="mb-4">
-      <div class="flex items-center justify-between mb-2">
-        <h4 class="text-xs font-mono uppercase text-amber-400 font-bold flex items-center gap-1.5">
-          <i class="fa-solid fa-boxes-stacked"></i>
-          <span>${t.totalMaterialsTitle}</span>
-        </h4>
-        <button onclick="copyQueueToDiscord()" class="px-3 py-1 bg-hud-cyan/20 hover:bg-hud-cyan/30 border border-hud-cyan/60 rounded text-hud-cyan hover:text-white text-xs font-mono flex items-center gap-1.5 transition cursor-pointer">
-          <i class="fa-solid fa-copy text-xs"></i>
-          <span>${t.copyDiscordBtn}</span>
-        </button>
+    <!-- Section 2: Aggregated Raw Materials Shopping List with Mode Toggle & Checkbox Progress -->
+    <div class="mb-3">
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-3">
+        <!-- Direct vs Raw Mode Switcher -->
+        <div class="flex items-center bg-hud-card border border-hud-border rounded p-1 text-xs font-mono">
+          <button 
+            type="button"
+            onclick="toggleDecompositionMode(false)" 
+            class="px-2.5 py-1 rounded transition font-bold cursor-pointer ${!rawDecompositionMode ? 'bg-hud-cyan text-black shadow' : 'text-slate-400 hover:text-white'}"
+          >
+            ${t.directModeBtn}
+          </button>
+          <button 
+            type="button"
+            onclick="toggleDecompositionMode(true)" 
+            class="px-2.5 py-1 rounded transition font-bold cursor-pointer flex items-center gap-1 ${rawDecompositionMode ? 'bg-hud-cyan text-black shadow' : 'text-slate-400 hover:text-white'}"
+          >
+            <i class="fa-solid fa-leaf text-[10px]"></i>
+            <span>${t.rawDecomposeBtn}</span>
+          </button>
+        </div>
+
+        <div class="flex items-center gap-2">
+          <button onclick="uncheckAllMaterials()" class="text-[11px] font-mono text-slate-400 hover:text-slate-200 underline cursor-pointer">
+            ${t.uncheckAllBtn}
+          </button>
+          <button onclick="copyQueueToDiscord()" class="px-3 py-1 bg-hud-cyan/20 hover:bg-hud-cyan/30 border border-hud-cyan/60 rounded text-hud-cyan hover:text-white text-xs font-mono flex items-center gap-1.5 transition cursor-pointer">
+            <i class="fa-solid fa-copy text-xs"></i>
+            <span>${t.copyDiscordBtn}</span>
+          </button>
+        </div>
       </div>
 
-      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2 max-h-64 overflow-y-auto pr-1">
+      <!-- Checklist Progress Bar -->
+      <div class="mb-3 p-2.5 bg-hud-bg/80 border border-hud-border rounded-lg">
+        <div class="flex items-center justify-between text-xs font-mono mb-1.5">
+          <span class="text-slate-300 flex items-center gap-1.5">
+            <i class="fa-solid fa-bars-progress text-hud-cyan"></i>
+            <span>${t.checkedProgress}</span>
+            <strong class="text-hud-cyan">${checkedCount} / ${totalMatsCount}</strong>
+          </span>
+          <span class="font-bold ${progressPercent === 100 ? 'text-emerald-400' : 'text-hud-cyan'}">${progressPercent}%</span>
+        </div>
+        <div class="w-full bg-slate-800 rounded-full h-2 overflow-hidden">
+          <div class="h-2 rounded-full transition-all duration-300 ${progressPercent === 100 ? 'bg-emerald-400 shadow-[0_0_10px_rgba(52,211,153,0.5)]' : 'bg-hud-cyan shadow-[0_0_8px_rgba(0,240,255,0.4)]'}" style="width: ${progressPercent}%"></div>
+        </div>
+      </div>
+
+      <!-- Materials Grid with Checkboxes -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2.5 max-h-72 overflow-y-auto pr-1">
         ${materials.map(mat => {
-          const isCrafted = Boolean(mat.recipeId);
+          const isChecked = checkedMaterials.has(mat.name);
+          const isCrafted = Boolean(mat.recipeId) && !rawDecompositionMode;
+
           return `
-            <div class="p-2 bg-hud-bg/90 border ${isCrafted ? 'border-hud-cyan/50' : 'border-hud-border'} rounded flex items-center justify-between text-xs">
-              <div class="truncate mr-2">
-                <span class="${mat.isPrimary ? 'text-amber-300 font-semibold' : 'text-slate-200'} truncate block" title="${mat.name}">
-                  ${isCrafted ? '<i class="fa-solid fa-wrench text-[10px] text-hud-cyan mr-1"></i>' : ''}${mat.name}
-                </span>
-                ${mat.location ? `<span class="text-[9px] font-mono text-slate-500 truncate block">${mat.location}</span>` : ''}
+            <div 
+              onclick="toggleMaterialCheck('${mat.name.replace(/'/g, "\\'")}')"
+              class="p-2.5 rounded border transition-all flex items-center justify-between text-xs cursor-pointer select-none ${
+                isChecked 
+                  ? 'bg-emerald-950/30 border-emerald-500/50 opacity-60' 
+                  : isCrafted 
+                    ? 'bg-hud-bg/90 border-hud-cyan/50 hover:border-hud-cyan' 
+                    : 'bg-hud-bg/90 border-hud-border hover:border-slate-500'
+              }"
+            >
+              <div class="flex items-center gap-2 truncate mr-2">
+                <input 
+                  type="checkbox" 
+                  ${isChecked ? 'checked' : ''} 
+                  onclick="event.stopPropagation(); toggleMaterialCheck('${mat.name.replace(/'/g, "\\'")}')"
+                  class="w-4 h-4 rounded border-slate-700 bg-slate-900 text-hud-cyan focus:ring-0 cursor-pointer accent-cyan-400 shrink-0"
+                >
+                <div class="truncate">
+                  <span class="${isChecked ? 'line-through text-slate-400' : mat.isPrimary ? 'text-amber-300 font-semibold' : 'text-slate-200'} truncate block" title="${mat.name}">
+                    ${isCrafted ? '<i class="fa-solid fa-wrench text-[10px] text-hud-cyan mr-1"></i>' : ''}${mat.name}
+                  </span>
+                  ${mat.location ? `<span class="text-[9px] font-mono text-slate-500 truncate block">${mat.location}</span>` : ''}
+                </div>
               </div>
-              <span class="font-mono font-bold text-hud-cyan bg-slate-900/80 px-2 py-0.5 rounded border border-slate-700 shrink-0">
+              <span class="font-mono font-bold ${isChecked ? 'text-emerald-400 bg-emerald-950/50' : 'text-hud-cyan bg-slate-900/80'} px-2 py-0.5 rounded border border-slate-700 shrink-0">
                 ${mat.amount}×
               </span>
             </div>
@@ -264,9 +327,11 @@ function copyQueueToDiscord() {
     text += `• ${rName} (${item.count}×)\n`;
   });
 
-  text += `\n**${currentLang === 'cs' ? 'Potřebné suroviny celkem' : 'Total Materials Required'}:**\n`;
+  text += `\n**${currentLang === 'cs' ? (rawDecompositionMode ? 'Základní přírodní suroviny celkem' : 'Potřebné suroviny celkem') : (rawDecompositionMode ? 'Base Raw Nature Materials' : 'Total Materials Required')}:**\n`;
   materials.forEach(mat => {
-    text += `• ${mat.name}: **${mat.amount}×**\n`;
+    const isChecked = checkedMaterials.has(mat.name);
+    const checkIcon = isChecked ? '✅ ' : '⬜ ';
+    text += `${checkIcon}${mat.name}: **${mat.amount}×**\n`;
   });
 
   if (navigator.clipboard && navigator.clipboard.writeText) {
