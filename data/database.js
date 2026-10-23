@@ -1361,6 +1361,7 @@ const i18n = {
 
 
 
+
       /* --- 1. REFINING & METALLURGY RECIPES --- */
       {
         id: "tech-glass",
@@ -9838,6 +9839,1408 @@ const i18n = {
     ],
     "descriptionEn": "Shock-resistant landing net designed for safely capturing electrogenic aquatic life and deviants.",
     "descriptionCs": "Speciální dielektrický podběrák pro bezpečné vylovení silně elektrizujících vodních tvorů a Deviantů."
+  },
+
+  {
+    "id": "furn-01",
+    "researchInvention": {
+      "chance": "High (Vysoká šance)",
+      "materialsCs": [
+        {
+          "name": "Dřevo",
+          "amount": "50x"
+        },
+        {
+          "name": "Ocelový ingot",
+          "amount": "20x"
+        },
+        {
+          "name": "Standardní součástky",
+          "amount": "15x"
+        },
+        {
+          "name": "Sklo",
+          "amount": "8x"
+        }
+      ],
+      "materialsEn": [
+        {
+          "name": "Wood",
+          "amount": "50x"
+        },
+        {
+          "name": "Steel Ingot",
+          "amount": "20x"
+        },
+        {
+          "name": "Standard Parts",
+          "amount": "15x"
+        },
+        {
+          "name": "Glass",
+          "amount": "8x"
+        }
+      ],
+      "reverseEngineeringCs": "Lze demontovat z architektonických ateliérů a projekčních kanceláří v Greywater Campu a Blackfellu.",
+      "reverseEngineeringEn": "Can be salvaged from architectural bureaus and drafting studios in Greywater Camp and Blackfell."
+    },
+    "nameEn": "Designer Workbench (Design Desk)",
+    "nameCs": "Rýsovací stůl - Výroba nábytku (Designer Workbench)",
+    "categoryEn": "Furniture & Decor",
+    "categoryCs": "Nábytek & Vybavení",
+    "scenario": "core",
+    "rarity": "Fine",
+    "workbench": "Territory Build Mode",
+    "energy": 0,
+    "hydration": 0,
+    "buffDuration": "Blueprint Translation & Decor Crafting",
+    "sourceEn": "Interior Architecture & Design Memetic",
+    "sourceCs": "Architektura a interiérový design v Memetics",
+    "effectsEn": [
+      "Converts recovered furniture formula blueprints into craftable interior items",
+      "Crafts architectural building packs, custom wallpapers, floorings, and decorative lighting",
+      "Central hub for raising territory comfort and aesthetic rating"
+    ],
+    "effectsCs": [
+      "Převádí nalezené blueprinty a formule na vyrobitelné položky nábytku",
+      "Vyrábí architektonické prvky, tapety, podlahy a dekorativní osvětlení",
+      "Centrální pracoviště pro zvyšování komfortu a estetického hodnocení základny"
+    ],
+    "ingredientsEn": [
+      {
+        "name": "Wood",
+        "amount": "40x",
+        "isPrimary": true
+      },
+      {
+        "name": "Steel Ingot",
+        "amount": "15x"
+      },
+      {
+        "name": "Standard Parts",
+        "amount": "10x"
+      },
+      {
+        "name": "Glass",
+        "amount": "5x"
+      }
+    ],
+    "ingredientsCs": [
+      {
+        "name": "Dřevo",
+        "amount": "40x",
+        "isPrimary": true
+      },
+      {
+        "name": "Ocelový ingot",
+        "amount": "15x"
+      },
+      {
+        "name": "Standardní součástky",
+        "amount": "10x"
+      },
+      {
+        "name": "Sklo",
+        "amount": "5x"
+      }
+    ],
+    "descriptionEn": "Essential drafting station turning loose blueprint sketches into finished furniture, tiles, and wallpapers.",
+    "descriptionCs": "Klíčový rýsovací stůl pro převod nalezených formulí na hotový nábytek, obklady a tapety."
+  },
+
+  {
+    "id": "furn-02",
+    "researchInvention": {
+      "chance": "High (Vysoká šance)",
+      "materialsCs": [
+        {
+          "name": "Dřevo",
+          "amount": "40x"
+        },
+        {
+          "name": "Látka / Textil",
+          "amount": "20x"
+        },
+        {
+          "name": "Měděný ingot",
+          "amount": "5x"
+        }
+      ],
+      "materialsEn": [
+        {
+          "name": "Wood",
+          "amount": "40x"
+        },
+        {
+          "name": "Fabric",
+          "amount": "20x"
+        },
+        {
+          "name": "Copper Ingot",
+          "amount": "5x"
+        }
+      ],
+      "reverseEngineeringCs": "Lze analyzovat z opuštěných obytných domů a chatek v Dayton Wetlands.",
+      "reverseEngineeringEn": "Can be analyzed from abandoned cabins and farmhouses across Dayton Wetlands."
+    },
+    "nameEn": "Simple Wooden Bed",
+    "nameCs": "Základní dřevěná postel (Simple Wooden Bed)",
+    "categoryEn": "Furniture & Decor",
+    "categoryCs": "Nábytek & Vybavení",
+    "scenario": "core",
+    "rarity": "Common",
+    "workbench": "Territory Build Mode",
+    "energy": 0,
+    "hydration": 0,
+    "buffDuration": "HP & Sanity Sleeping Recovery",
+    "sourceEn": "Basic Survival & Living Memetic",
+    "sourceCs": "Základní bydlení a přežití v Memetics",
+    "effectsEn": [
+      "Allows the player to lie down and sleep, smoothly restoring Health and Sanity",
+      "Skips night-time hours to sunrise when sleeping",
+      "Acts as a comfortable respawn coordinate anchor within personal territory"
+    ],
+    "effectsCs": [
+      "Umožňuje hráči ulehnout a spát, přičemž plynule regeneruje Zdraví (HP) a Sanity",
+      "Při spánku urychluje noční čas a posouvá hru do ranního rozbřesku",
+      "Slouží jako bezpečný bod pro probuzení na území základny"
+    ],
+    "ingredientsEn": [
+      {
+        "name": "Wood",
+        "amount": "30x",
+        "isPrimary": true
+      },
+      {
+        "name": "Fabric",
+        "amount": "15x"
+      },
+      {
+        "name": "Rawhide",
+        "amount": "5x"
+      }
+    ],
+    "ingredientsCs": [
+      {
+        "name": "Dřevo",
+        "amount": "30x",
+        "isPrimary": true
+      },
+      {
+        "name": "Látka / Textil",
+        "amount": "15x"
+      },
+      {
+        "name": "Surová kůže (Rawhide)",
+        "amount": "5x"
+      }
+    ],
+    "descriptionEn": "Simple wooden frame with cloth bedding providing restful recuperation and restorative sleep.",
+    "descriptionCs": "Základní dřevěná postel s matrací pro odpočinek, regeneraci zdraví a přečkání nebezpečné noci."
+  },
+
+  {
+    "id": "furn-03",
+    "researchInvention": {
+      "chance": "High (Vysoká šance)",
+      "materialsCs": [
+        {
+          "name": "Dřevo",
+          "amount": "50x"
+        },
+        {
+          "name": "Ocelový ingot",
+          "amount": "15x"
+        },
+        {
+          "name": "Látka / Textil",
+          "amount": "30x"
+        },
+        {
+          "name": "Kůže (Leather)",
+          "amount": "15x"
+        }
+      ],
+      "materialsEn": [
+        {
+          "name": "Wood",
+          "amount": "50x"
+        },
+        {
+          "name": "Steel Ingot",
+          "amount": "15x"
+        },
+        {
+          "name": "Fabric",
+          "amount": "30x"
+        },
+        {
+          "name": "Leather",
+          "amount": "15x"
+        }
+      ],
+      "reverseEngineeringCs": "Lze rozebrat z luxusních hotelových apartmá v Meyer's Market a Blackfell City.",
+      "reverseEngineeringEn": "Can be salvaged from master bedroom suites in Meyer's Market and Blackfell City."
+    },
+    "nameEn": "Comfortable Double Bed",
+    "nameCs": "Luxusní manželská postel (Comfortable Double Bed)",
+    "categoryEn": "Furniture & Decor",
+    "categoryCs": "Nábytek & Vybavení",
+    "scenario": "core",
+    "rarity": "Fine",
+    "workbench": "Territory Build Mode",
+    "energy": 0,
+    "hydration": 0,
+    "buffDuration": "+50% Sleep Regen & Well-Rested Buff",
+    "sourceEn": "Interior Comfort & Luxury Memetic",
+    "sourceCs": "Komfort a luxusní nábytek v Memetics",
+    "effectsEn": [
+      "Accelerates HP and Sanity restoration speed by +50% compared to basic beds",
+      "Grants 'Well-Rested' status buff (+10% EXP gain for 60 minutes) upon waking",
+      "Accommodates up to two squad members simultaneously"
+    ],
+    "effectsCs": [
+      "Zrychluje obnovu HP a Sanity o +50 % oproti základní posteli",
+      "Po probuzení uděluje buff 'Odpočatý' (+10 % bonus k zisku EXP na 60 minut)",
+      "Poskytuje prostor pro odpočinek dvou členů týmu současně"
+    ],
+    "ingredientsEn": [
+      {
+        "name": "Wood",
+        "amount": "40x",
+        "isPrimary": true
+      },
+      {
+        "name": "Steel Ingot",
+        "amount": "10x"
+      },
+      {
+        "name": "Fabric",
+        "amount": "25x"
+      },
+      {
+        "name": "Leather",
+        "amount": "10x"
+      }
+    ],
+    "ingredientsCs": [
+      {
+        "name": "Dřevo",
+        "amount": "40x",
+        "isPrimary": true
+      },
+      {
+        "name": "Ocelový ingot",
+        "amount": "10x"
+      },
+      {
+        "name": "Látka / Textil",
+        "amount": "25x"
+      },
+      {
+        "name": "Kůže (Leather)",
+        "amount": "10x"
+      }
+    ],
+    "descriptionEn": "Plush double-occupancy spring bed providing rapid restoration and an invigorating experience buff.",
+    "descriptionCs": "Komfortní manželská postel s pružinovou matrací zaručující bleskové zotavení a EXP bonus."
+  },
+
+  {
+    "id": "furn-04",
+    "researchInvention": {
+      "chance": "High (Vysoká šance)",
+      "materialsCs": [
+        {
+          "name": "Měděný ingot",
+          "amount": "15x"
+        },
+        {
+          "name": "Sklo",
+          "amount": "12x"
+        },
+        {
+          "name": "Elektronické součástky",
+          "amount": "6x"
+        }
+      ],
+      "materialsEn": [
+        {
+          "name": "Copper Ingot",
+          "amount": "15x"
+        },
+        {
+          "name": "Glass",
+          "amount": "12x"
+        },
+        {
+          "name": "Electronic Parts",
+          "amount": "6x"
+        }
+      ],
+      "reverseEngineeringCs": "Lze demontovat ze starých továrních hal a skladů v Broken Delta.",
+      "reverseEngineeringEn": "Can be dismantled from abandoned industrial workshop halls across Broken Delta."
+    },
+    "nameEn": "Industrial Ceiling Lamp",
+    "nameCs": "Závěsný průmyslový lustr (Ceiling Lamp)",
+    "categoryEn": "Furniture & Decor",
+    "categoryCs": "Nábytek & Vybavení",
+    "scenario": "core",
+    "rarity": "Common",
+    "workbench": "Territory Build Mode",
+    "energy": 2,
+    "hydration": 0,
+    "buffDuration": "Wide Ambient Illumination",
+    "sourceEn": "Interior Illumination Memetic",
+    "sourceCs": "Osvětlení základny v Memetics",
+    "effectsEn": [
+      "Provides wide-angle ceiling illumination for spacious base workshops and living areas",
+      "Consumes only 2W electrical power while completely dispelling darkness gloom",
+      "Increases territory aesthetic rating"
+    ],
+    "effectsCs": [
+      "Zajišťuje širokoúhlé stropní osvětlení pro dílny, výrobní haly a obývací pokoje",
+      "Spotřebovává pouze 2 W energie a spolehlivě zahání veškeré stíny v místnosti",
+      "Zvyšuje estetické hodnocení a přehlednost základny"
+    ],
+    "ingredientsEn": [
+      {
+        "name": "Copper Ingot",
+        "amount": "10x",
+        "isPrimary": true
+      },
+      {
+        "name": "Glass",
+        "amount": "8x"
+      },
+      {
+        "name": "Electronic Parts",
+        "amount": "4x"
+      }
+    ],
+    "ingredientsCs": [
+      {
+        "name": "Měděný ingot",
+        "amount": "10x",
+        "isPrimary": true
+      },
+      {
+        "name": "Sklo",
+        "amount": "8x"
+      },
+      {
+        "name": "Elektronické součástky",
+        "amount": "4x"
+      }
+    ],
+    "descriptionEn": "Durable metal-cage overhead pendant light banishing gloomy shadows from interior rooms.",
+    "descriptionCs": "Průmyslové stropní svítidlo v kovové kleci pro jasné osvětlení pracovních prostor."
+  },
+
+  {
+    "id": "furn-05",
+    "researchInvention": {
+      "chance": "High (Vysoká šance)",
+      "materialsCs": [
+        {
+          "name": "Bronzový ingot",
+          "amount": "12x"
+        },
+        {
+          "name": "Sklo",
+          "amount": "8x"
+        },
+        {
+          "name": "Dřevěné uhlí",
+          "amount": "5x"
+        }
+      ],
+      "materialsEn": [
+        {
+          "name": "Bronze Ingot",
+          "amount": "12x"
+        },
+        {
+          "name": "Glass",
+          "amount": "8x"
+        },
+        {
+          "name": "Charcoal",
+          "amount": "5x"
+        }
+      ],
+      "reverseEngineeringCs": "Lze analyzovat z uličního osvětlení a verand v Harborside.",
+      "reverseEngineeringEn": "Can be analyzed from street lanterns and porch lights throughout Harborside."
+    },
+    "nameEn": "Wall-Mounted Sconce Lantern",
+    "nameCs": "Nástěnná lucerna / lampa (Wall Sconce)",
+    "categoryEn": "Furniture & Decor",
+    "categoryCs": "Nábytek & Vybavení",
+    "scenario": "core",
+    "rarity": "Common",
+    "workbench": "Territory Build Mode",
+    "energy": 1,
+    "hydration": 0,
+    "buffDuration": "Warm Perimeter Wall Lighting",
+    "sourceEn": "Interior Illumination Memetic",
+    "sourceCs": "Osvětlení základny v Memetics",
+    "effectsEn": [
+      "Low-profile wall fixture casting a warm welcoming glow along corridors and entrances",
+      "Consumes only 1W of grid power (or functions as an ambient oil lamp)",
+      "Weather-resistant glass hood suitable for exterior facades"
+    ],
+    "effectsCs": [
+      "Kompaktní nástěnné světlo vyzařující příjemné hřejivé světlo podél chodeb a vchodů",
+      "Spotřebovává pouze 1 W z elektrické sítě (nebo funguje jako olejová svítilna)",
+      "Voděodolný skleněný kryt vhodný pro venkovní fasády a terasy"
+    ],
+    "ingredientsEn": [
+      {
+        "name": "Bronze Ingot",
+        "amount": "8x",
+        "isPrimary": true
+      },
+      {
+        "name": "Glass",
+        "amount": "6x"
+      },
+      {
+        "name": "Charcoal",
+        "amount": "2x"
+      }
+    ],
+    "ingredientsCs": [
+      {
+        "name": "Bronzový ingot",
+        "amount": "8x",
+        "isPrimary": true
+      },
+      {
+        "name": "Sklo",
+        "amount": "6x"
+      },
+      {
+        "name": "Dřevěné uhlí",
+        "amount": "2x"
+      }
+    ],
+    "descriptionEn": "Classic bronze wall lantern providing cozy accent lighting along doors and staircases.",
+    "descriptionCs": "Klasická bronzová nástěnná lucerna pro útulné osvětlení dveří, schodišť a teras."
+  },
+
+  {
+    "id": "furn-06",
+    "researchInvention": {
+      "chance": "High (Vysoká šance)",
+      "materialsCs": [
+        {
+          "name": "Ocelový ingot",
+          "amount": "20x"
+        },
+        {
+          "name": "Elektronické součástky",
+          "amount": "12x"
+        },
+        {
+          "name": "Sklo",
+          "amount": "15x"
+        },
+        {
+          "name": "Standardní součástky",
+          "amount": "10x"
+        }
+      ],
+      "materialsEn": [
+        {
+          "name": "Steel Ingot",
+          "amount": "20x"
+        },
+        {
+          "name": "Electronic Parts",
+          "amount": "12x"
+        },
+        {
+          "name": "Glass",
+          "amount": "15x"
+        },
+        {
+          "name": "Standard Parts",
+          "amount": "10x"
+        }
+      ],
+      "reverseEngineeringCs": "Lze rozebrat z vojenských kontrolních stanovišť v Iron River a Chalk Peak.",
+      "reverseEngineeringEn": "Can be salvaged from military checkpoints and guard towers in Iron River and Chalk Peak."
+    },
+    "nameEn": "Heavy Standing Floodlight",
+    "nameCs": "Stojací bezpečnostní reflektor (Heavy Floodlight)",
+    "categoryEn": "Furniture & Decor",
+    "categoryCs": "Nábytek & Vybavení",
+    "scenario": "core",
+    "rarity": "Fine",
+    "workbench": "Territory Build Mode",
+    "energy": 10,
+    "hydration": 0,
+    "buffDuration": "Long-Range Perimeter Illumination",
+    "sourceEn": "Base Defense & Security Memetic",
+    "sourceCs": "Obrana a bezpečnost základny v Memetics",
+    "effectsEn": [
+      "Casts an intense high-candela halogen beam covering long approach angles",
+      "Pierces thick darkness and reveals cloaked or skulking enemies during night sieges",
+      "Essential spotlight for directing automated turret fire into kill-zones"
+    ],
+    "effectsCs": [
+      "Vrhá intenzivní halogenový kužel světla pokrývající přístupové cesty k základně",
+      "Proniká temnotou a odhaluje plížící se nepřátele během nočních nájezdů",
+      "Klíčový reflektor pro nasvícení zóny palby pro automatické věže"
+    ],
+    "ingredientsEn": [
+      {
+        "name": "Steel Ingot",
+        "amount": "15x",
+        "isPrimary": true
+      },
+      {
+        "name": "Electronic Parts",
+        "amount": "8x"
+      },
+      {
+        "name": "Glass",
+        "amount": "10x"
+      },
+      {
+        "name": "Standard Parts",
+        "amount": "6x"
+      }
+    ],
+    "ingredientsCs": [
+      {
+        "name": "Ocelový ingot",
+        "amount": "15x",
+        "isPrimary": true
+      },
+      {
+        "name": "Elektronické součástky",
+        "amount": "8x"
+      },
+      {
+        "name": "Sklo",
+        "amount": "10x"
+      },
+      {
+        "name": "Standardní součástky",
+        "amount": "6x"
+      }
+    ],
+    "descriptionEn": "High-output security spotlight bathing base approaches in blinding halogen light.",
+    "descriptionCs": "Výkonný bezpečnostní reflektor pro nasvícení perimetru a obranu základny v noci."
+  },
+
+  {
+    "id": "furn-07",
+    "researchInvention": {
+      "chance": "High (Vysoká šance)",
+      "materialsCs": [
+        {
+          "name": "Kůže (Leather)",
+          "amount": "20x"
+        },
+        {
+          "name": "Dřevo",
+          "amount": "25x"
+        },
+        {
+          "name": "Látka / Textil",
+          "amount": "15x"
+        },
+        {
+          "name": "Měděný ingot",
+          "amount": "5x"
+        }
+      ],
+      "materialsEn": [
+        {
+          "name": "Leather",
+          "amount": "20x"
+        },
+        {
+          "name": "Wood",
+          "amount": "25x"
+        },
+        {
+          "name": "Fabric",
+          "amount": "15x"
+        },
+        {
+          "name": "Copper Ingot",
+          "amount": "5x"
+        }
+      ],
+      "reverseEngineeringCs": "Lze demontovat z ředitelských kanceláří v bankách Blackfell a Meyer's Market.",
+      "reverseEngineeringEn": "Can be salvaged from executive bank suites across Blackfell and Meyer's Market."
+    },
+    "nameEn": "Executive Leather Armchair",
+    "nameCs": "Kožené čalouněné křeslo (Leather Armchair)",
+    "categoryEn": "Furniture & Decor",
+    "categoryCs": "Nábytek & Vybavení",
+    "scenario": "core",
+    "rarity": "Common",
+    "workbench": "Territory Build Mode",
+    "energy": 0,
+    "hydration": 0,
+    "buffDuration": "Awake Sanity Recuperation",
+    "sourceEn": "Interior Comfort & Living Memetic",
+    "sourceCs": "Interiérový komfort v Memetics",
+    "effectsEn": [
+      "Provides comfortable seating that steadily restores Sanity without requiring sleep",
+      "Ideal resting spot between dungeon preparation and territory crafting",
+      "Increases base coziness rating"
+    ],
+    "effectsCs": [
+      "Pohodlné posezení, které plynule obnovuje Sanity bez nutnosti spát",
+      "Ideální místo k odpočinku mezi výpravami do dungeonů a výrobou na základně",
+      "Zvyšuje útulnost a komfort vnitřních prostor"
+    ],
+    "ingredientsEn": [
+      {
+        "name": "Leather",
+        "amount": "15x",
+        "isPrimary": true
+      },
+      {
+        "name": "Wood",
+        "amount": "20x"
+      },
+      {
+        "name": "Fabric",
+        "amount": "10x"
+      },
+      {
+        "name": "Metal Scraps",
+        "amount": "5x"
+      }
+    ],
+    "ingredientsCs": [
+      {
+        "name": "Kůže (Leather)",
+        "amount": "15x",
+        "isPrimary": true
+      },
+      {
+        "name": "Dřevo",
+        "amount": "20x"
+      },
+      {
+        "name": "Látka / Textil",
+        "amount": "10x"
+      },
+      {
+        "name": "Kovový šrot",
+        "amount": "5x"
+      }
+    ],
+    "descriptionEn": "Cushioned full-grain leather armchair for quiet reflection and stress relief.",
+    "descriptionCs": "Měkké kožené křeslo pro klidný odpočinek u krbu a plynulou regeneraci duševního zdraví."
+  },
+
+  {
+    "id": "furn-08",
+    "researchInvention": {
+      "chance": "High (Vysoká šance)",
+      "materialsCs": [
+        {
+          "name": "Látka / Textil",
+          "amount": "30x"
+        },
+        {
+          "name": "Dřevo",
+          "amount": "35x"
+        },
+        {
+          "name": "Kůže (Leather)",
+          "amount": "15x"
+        },
+        {
+          "name": "Guma (Rubber)",
+          "amount": "10x"
+        }
+      ],
+      "materialsEn": [
+        {
+          "name": "Fabric",
+          "amount": "30x"
+        },
+        {
+          "name": "Wood",
+          "amount": "35x"
+        },
+        {
+          "name": "Leather",
+          "amount": "15x"
+        },
+        {
+          "name": "Rubber",
+          "amount": "10x"
+        }
+      ],
+      "reverseEngineeringCs": "Lze analyzovat z obývacích pokojů v luxusních vilách v Chalk Peak.",
+      "reverseEngineeringEn": "Can be analyzed from living room lounges in Chalk Peak suburban estates."
+    },
+    "nameEn": "Comfortable Living Sofa",
+    "nameCs": "Rohová čalouněná pohovka (Living Room Sofa)",
+    "categoryEn": "Furniture & Decor",
+    "categoryCs": "Nábytek & Vybavení",
+    "scenario": "core",
+    "rarity": "Fine",
+    "workbench": "Territory Build Mode",
+    "energy": 0,
+    "hydration": 0,
+    "buffDuration": "Multi-Player Squad Comfort Hub",
+    "sourceEn": "Interior Comfort & Living Memetic",
+    "sourceCs": "Interiérový komfort v Memetics",
+    "effectsEn": [
+      "Seats up to four team members simultaneously for pre-raid briefing",
+      "Grants a minor Stamina recovery boost to sitting players",
+      "Stately centerpiece for territory communal living rooms"
+    ],
+    "effectsCs": [
+      "Pohodlné sezení až pro 4 členy týmu současně při plánování raidů",
+      "Poskytuje mírný bonus k regeneraci Staminy sedícím hráčům",
+      "Stylová dominanta společenského obývacího pokoje na základně"
+    ],
+    "ingredientsEn": [
+      {
+        "name": "Fabric",
+        "amount": "25x",
+        "isPrimary": true
+      },
+      {
+        "name": "Wood",
+        "amount": "30x"
+      },
+      {
+        "name": "Leather",
+        "amount": "12x"
+      },
+      {
+        "name": "Rubber",
+        "amount": "8x"
+      }
+    ],
+    "ingredientsCs": [
+      {
+        "name": "Látka / Textil",
+        "amount": "25x",
+        "isPrimary": true
+      },
+      {
+        "name": "Dřevo",
+        "amount": "30x"
+      },
+      {
+        "name": "Kůže (Leather)",
+        "amount": "12x"
+      },
+      {
+        "name": "Guma (Rubber)",
+        "amount": "8x"
+      }
+    ],
+    "descriptionEn": "Wide sectional couch upholstered in durable fabric, offering a gathering spot for team strategizing.",
+    "descriptionCs": "Prostorná čalouněná pohovka pro společné posezení týmu a přátelské rozhovory."
+  },
+
+  {
+    "id": "furn-09",
+    "researchInvention": {
+      "chance": "High (Vysoká šance)",
+      "materialsCs": [
+        {
+          "name": "Dřevo",
+          "amount": "50x"
+        },
+        {
+          "name": "Bronzový ingot",
+          "amount": "15x"
+        },
+        {
+          "name": "Lepidlo (Adhesive)",
+          "amount": "8x"
+        }
+      ],
+      "materialsEn": [
+        {
+          "name": "Wood",
+          "amount": "50x"
+        },
+        {
+          "name": "Bronze Ingot",
+          "amount": "15x"
+        },
+        {
+          "name": "Adhesive",
+          "amount": "8x"
+        }
+      ],
+      "reverseEngineeringCs": "Lze získat z opuštěných restaurací a jídelen v Broken Delta.",
+      "reverseEngineeringEn": "Can be obtained from abandoned dining establishments in Broken Delta."
+    },
+    "nameEn": "Mahogany Dining Table",
+    "nameCs": "Mahagonový jídelní stůl (Mahogany Dining Table)",
+    "categoryEn": "Furniture & Decor",
+    "categoryCs": "Nábytek & Vybavení",
+    "scenario": "core",
+    "rarity": "Common",
+    "workbench": "Territory Build Mode",
+    "energy": 0,
+    "hydration": 0,
+    "buffDuration": "Communal Meal Service Surface",
+    "sourceEn": "Interior Comfort & Living Memetic",
+    "sourceCs": "Interiérový komfort v Memetics",
+    "effectsEn": [
+      "Provides placement slots where dishes and drinks can be served for shared team dining",
+      "Increases meal consumption efficiency when dining with squad mates",
+      "Classic banquet aesthetic"
+    ],
+    "effectsCs": [
+      "Nabízí servírovací sloty pro položení uvařených jídel a nápojů pro celý tým",
+      "Zvyšuje efektivitu stolování při společném jídle se spoluhráči",
+      "Klasický elegantní stůl pro hostiny a oslavy úspěšných výprav"
+    ],
+    "ingredientsEn": [
+      {
+        "name": "Wood",
+        "amount": "40x",
+        "isPrimary": true
+      },
+      {
+        "name": "Bronze Ingot",
+        "amount": "10x"
+      },
+      {
+        "name": "Adhesive",
+        "amount": "5x"
+      }
+    ],
+    "ingredientsCs": [
+      {
+        "name": "Dřevo",
+        "amount": "40x",
+        "isPrimary": true
+      },
+      {
+        "name": "Bronzový ingot",
+        "amount": "10x"
+      },
+      {
+        "name": "Lepidlo (Adhesive)",
+        "amount": "5x"
+      }
+    ],
+    "descriptionEn": "Sturdy polished hardwood dining table built to host lavish banquets and festive gatherings.",
+    "descriptionCs": "Masivní leštěný jídelní stůl pro servírování buffovacích pokrmů celému týmu."
+  },
+
+  {
+    "id": "furn-10",
+    "researchInvention": {
+      "chance": "High (Vysoká šance)",
+      "materialsCs": [
+        {
+          "name": "Dřevo",
+          "amount": "55x"
+        },
+        {
+          "name": "Ocelový ingot",
+          "amount": "15x"
+        },
+        {
+          "name": "Sklo",
+          "amount": "10x"
+        }
+      ],
+      "materialsEn": [
+        {
+          "name": "Wood",
+          "amount": "55x"
+        },
+        {
+          "name": "Steel Ingot",
+          "amount": "15x"
+        },
+        {
+          "name": "Glass",
+          "amount": "10x"
+        }
+      ],
+      "reverseEngineeringCs": "Lze rozebrat z městských knihoven a školních učeben v Dayton Wetlands a Iron River.",
+      "reverseEngineeringEn": "Can be salvaged from town libraries and high school classrooms in Dayton Wetlands and Iron River."
+    },
+    "nameEn": "Scholar's Bookshelf",
+    "nameCs": "Knihovna badatele / Archiv formulí (Scholar's Bookshelf)",
+    "categoryEn": "Furniture & Decor",
+    "categoryCs": "Nábytek & Vybavení",
+    "scenario": "core",
+    "rarity": "Fine",
+    "workbench": "Territory Build Mode",
+    "energy": 0,
+    "hydration": 0,
+    "buffDuration": "16 Slots Formula & Lore Archive",
+    "sourceEn": "Interior Comfort & Design Memetic",
+    "sourceCs": "Architektura a zázemí v Memetics",
+    "effectsEn": [
+      "Provides 16 dedicated archive slots for organizing recipes, formula blueprints, and lore notes",
+      "Keeps valuable blueprint copies safe from clutter",
+      "Lends an intellectual atmosphere to personal territory libraries"
+    ],
+    "effectsCs": [
+      "Nabízí 16 vyhrazených archivačních slotů pro ukládání receptů, blueprintů a deníků",
+      "Chrání cenné formulové svitky před chaotickým poztrácením v běžných truhlách",
+      "Dodává základně styl badatelské knihovny a archivu"
+    ],
+    "ingredientsEn": [
+      {
+        "name": "Wood",
+        "amount": "45x",
+        "isPrimary": true
+      },
+      {
+        "name": "Steel Ingot",
+        "amount": "10x"
+      },
+      {
+        "name": "Glass",
+        "amount": "6x"
+      }
+    ],
+    "ingredientsCs": [
+      {
+        "name": "Dřevo",
+        "amount": "45x",
+        "isPrimary": true
+      },
+      {
+        "name": "Ocelový ingot",
+        "amount": "10x"
+      },
+      {
+        "name": "Sklo",
+        "amount": "6x"
+      }
+    ],
+    "descriptionEn": "Tall wood-and-glass bookcase for filing away treasured blueprints, lore journals, and recipes.",
+    "descriptionCs": "Vysoká prosklená knihovna pro přehledné uspořádání formulí, receptů a příběhových deníků."
+  },
+
+  {
+    "id": "furn-11",
+    "researchInvention": {
+      "chance": "High (Vysoká šance)",
+      "materialsCs": [
+        {
+          "name": "Štěrk (Gravel)",
+          "amount": "30x"
+        },
+        {
+          "name": "Ocelový ingot",
+          "amount": "20x"
+        },
+        {
+          "name": "Guma (Rubber)",
+          "amount": "12x"
+        },
+        {
+          "name": "Sklo",
+          "amount": "5x"
+        }
+      ],
+      "materialsEn": [
+        {
+          "name": "Gravel",
+          "amount": "30x"
+        },
+        {
+          "name": "Steel Ingot",
+          "amount": "20x"
+        },
+        {
+          "name": "Rubber",
+          "amount": "12x"
+        },
+        {
+          "name": "Glass",
+          "amount": "5x"
+        }
+      ],
+      "reverseEngineeringCs": "Lze analyzovat z koupelen v moderních obytných domech v Blackfell City.",
+      "reverseEngineeringEn": "Can be analyzed from residential bathrooms in modern Blackfell City estates."
+    },
+    "nameEn": "Porcelain Bathtub",
+    "nameCs": "Porcelánová koupelnová vana (Porcelain Bathtub)",
+    "categoryEn": "Furniture & Decor",
+    "categoryCs": "Nábytek & Vybavení",
+    "scenario": "core",
+    "rarity": "Fine",
+    "workbench": "Territory Build Mode",
+    "energy": 0,
+    "hydration": 0,
+    "buffDuration": "Pollution Cleansing & Sanity Restoration",
+    "sourceEn": "Interior Sanitation & Comfort Memetic",
+    "sourceCs": "Hygiena a sanitační zařízení v Memetics",
+    "effectsEn": [
+      "Connects to territory plumbing; taking a bath removes body dirt and accumulated environmental Pollution",
+      "Rapidly restores Sanity while relaxing in warm clean water",
+      "Grants a refreshing cleanliness buff"
+    ],
+    "effectsCs": [
+      "Připojuje se k vodovodnímu potrubí; horká koupel smývá tělesnou špínu a nahromaděné znečištění (Pollution)",
+      "Bleskově regeneruje Sanity během relaxace v čisté vodě",
+      "Dodává hráči osvěžující hygienický pocit čistoty"
+    ],
+    "ingredientsEn": [
+      {
+        "name": "Gravel",
+        "amount": "25x",
+        "isPrimary": true
+      },
+      {
+        "name": "Steel Ingot",
+        "amount": "15x"
+      },
+      {
+        "name": "Rubber",
+        "amount": "8x"
+      },
+      {
+        "name": "Purified Water",
+        "amount": "10x"
+      }
+    ],
+    "ingredientsCs": [
+      {
+        "name": "Štěrk (Gravel)",
+        "amount": "25x",
+        "isPrimary": true
+      },
+      {
+        "name": "Ocelový ingot",
+        "amount": "15x"
+      },
+      {
+        "name": "Guma (Rubber)",
+        "amount": "8x"
+      },
+      {
+        "name": "Čistá voda",
+        "amount": "10x"
+      }
+    ],
+    "descriptionEn": "Smooth ceramic tub connected to running water, washing away external radiation and mental stress.",
+    "descriptionCs": "Hladká porcelánová vana pro smytí radiace a znečištění a bleskovou obnovu duševní pohody."
+  },
+
+  {
+    "id": "furn-12",
+    "researchInvention": {
+      "chance": "High (Vysoká šance)",
+      "materialsCs": [
+        {
+          "name": "Štěrk (Gravel)",
+          "amount": "25x"
+        },
+        {
+          "name": "Ocelový ingot",
+          "amount": "15x"
+        },
+        {
+          "name": "Guma (Rubber)",
+          "amount": "8x"
+        }
+      ],
+      "materialsEn": [
+        {
+          "name": "Gravel",
+          "amount": "25x"
+        },
+        {
+          "name": "Steel Ingot",
+          "amount": "15x"
+        },
+        {
+          "name": "Rubber",
+          "amount": "8x"
+        }
+      ],
+      "reverseEngineeringCs": "Lze demontovat z toalet v nemocnicích a veřejných budovách v Iron River.",
+      "reverseEngineeringEn": "Can be salvaged from hospital washrooms and municipal facilities in Iron River."
+    },
+    "nameEn": "Modern Flush Toilet",
+    "nameCs": "Splachovací toaleta (Flush Toilet)",
+    "categoryEn": "Furniture & Decor",
+    "categoryCs": "Nábytek & Vybavení",
+    "scenario": "core",
+    "rarity": "Common",
+    "workbench": "Territory Build Mode",
+    "energy": 0,
+    "hydration": 0,
+    "buffDuration": "Sanitation & Organic Fertilizer Feedstock",
+    "sourceEn": "Interior Sanitation & Comfort Memetic",
+    "sourceCs": "Hygiena a sanitační zařízení v Memetics",
+    "effectsEn": [
+      "Functional commode hooked to territory water lines providing hygiene comfort",
+      "Passively yields organic matter input for territory Compost Bins to produce crop fertilizer",
+      "Raises base sanitation standard"
+    ],
+    "effectsCs": [
+      "Funkční splachovací toaleta napojená na vodu zvyšující hygienický standard báze",
+      "Pasivně generuje organický materiál pro kompostéry na výrobu zemědělských hnojiv",
+      "Zabraňuje postihům z nepohodlí a špatné hygieny"
+    ],
+    "ingredientsEn": [
+      {
+        "name": "Gravel",
+        "amount": "20x",
+        "isPrimary": true
+      },
+      {
+        "name": "Steel Ingot",
+        "amount": "10x"
+      },
+      {
+        "name": "Rubber",
+        "amount": "5x"
+      }
+    ],
+    "ingredientsCs": [
+      {
+        "name": "Štěrk (Gravel)",
+        "amount": "20x",
+        "isPrimary": true
+      },
+      {
+        "name": "Ocelový ingot",
+        "amount": "10x"
+      },
+      {
+        "name": "Guma (Rubber)",
+        "amount": "5x"
+      }
+    ],
+    "descriptionEn": "Ceramic toilet with running flush mechanics that channels organic waste into agricultural compost.",
+    "descriptionCs": "Keramická splachovací toaleta napojená na vodovod, poskytující suroviny pro kompostér."
+  },
+
+  {
+    "id": "furn-13",
+    "researchInvention": {
+      "chance": "High (Vysoká šance)",
+      "materialsCs": [
+        {
+          "name": "Bronzový ingot",
+          "amount": "15x"
+        },
+        {
+          "name": "Dřevo",
+          "amount": "25x"
+        },
+        {
+          "name": "Sklo",
+          "amount": "8x"
+        },
+        {
+          "name": "Standardní součástky",
+          "amount": "8x"
+        }
+      ],
+      "materialsEn": [
+        {
+          "name": "Bronze Ingot",
+          "amount": "15x"
+        },
+        {
+          "name": "Wood",
+          "amount": "25x"
+        },
+        {
+          "name": "Glass",
+          "amount": "8x"
+        },
+        {
+          "name": "Standard Parts",
+          "amount": "8x"
+        }
+      ],
+      "reverseEngineeringCs": "Lze nalézt a analyzovat v hodinářstvích a starožitnictvích v Harborside.",
+      "reverseEngineeringEn": "Can be discovered and analyzed in clockmaker shops and antiques in Harborside."
+    },
+    "nameEn": "Grandfather Wall Clock",
+    "nameCs": "Nástěnné kyvadlové hodiny (Grandfather Clock)",
+    "categoryEn": "Furniture & Decor",
+    "categoryCs": "Nábytek & Vybavení",
+    "scenario": "core",
+    "rarity": "Common",
+    "workbench": "Territory Build Mode",
+    "energy": 0,
+    "hydration": 0,
+    "buffDuration": "In-Game Timekeeping & Day Phase",
+    "sourceEn": "Interior Decoration & Living Memetic",
+    "sourceCs": "Dekorace a bydlení v Memetics",
+    "effectsEn": [
+      "Accurately displays the current in-game territory hour and day/night transitions",
+      "Helps players schedule solar generation windows and night-time defense preparations",
+      "Pleasant rhythmic ticking adds life to indoor rooms"
+    ],
+    "effectsCs": [
+      "Přesně ukazuje aktuální herní čas, střídání dne a noci a fáze počasí",
+      "Pomáhá plánovat optimální čas pro solární výrobu a přípravu na noční obrany",
+      "Uklidňující tikání oživuje obytné prostory základny"
+    ],
+    "ingredientsEn": [
+      {
+        "name": "Bronze Ingot",
+        "amount": "12x",
+        "isPrimary": true
+      },
+      {
+        "name": "Wood",
+        "amount": "20x"
+      },
+      {
+        "name": "Glass",
+        "amount": "5x"
+      },
+      {
+        "name": "Standard Parts",
+        "amount": "5x"
+      }
+    ],
+    "ingredientsCs": [
+      {
+        "name": "Bronzový ingot",
+        "amount": "12x",
+        "isPrimary": true
+      },
+      {
+        "name": "Dřevo",
+        "amount": "20x"
+      },
+      {
+        "name": "Sklo",
+        "amount": "5x"
+      },
+      {
+        "name": "Standardní součástky",
+        "amount": "5x"
+      }
+    ],
+    "descriptionEn": "Precision pendulum clock keeping meticulous track of hours and the dangerous dusk cycle.",
+    "descriptionCs": "Přesné kyvadlové hodiny sledující běh času a příchod nebezpečného soumraku."
+  },
+
+  {
+    "id": "furn-14",
+    "researchInvention": {
+      "chance": "High (Vysoká šance)",
+      "materialsCs": [
+        {
+          "name": "Ocelový ingot",
+          "amount": "20x"
+        },
+        {
+          "name": "Elektronické součástky",
+          "amount": "15x"
+        },
+        {
+          "name": "Měděný ingot",
+          "amount": "12x"
+        },
+        {
+          "name": "Plast",
+          "amount": "10x"
+        }
+      ],
+      "materialsEn": [
+        {
+          "name": "Steel Ingot",
+          "amount": "20x"
+        },
+        {
+          "name": "Electronic Parts",
+          "amount": "15x"
+        },
+        {
+          "name": "Copper Ingot",
+          "amount": "12x"
+        },
+        {
+          "name": "Plastic",
+          "amount": "10x"
+        }
+      ],
+      "reverseEngineeringCs": "Lze demontovat z barů, kaváren a diskoték v Meyer's Market a Tall Grass Inn.",
+      "reverseEngineeringEn": "Can be salvaged from lounges, cafes, and diners across Meyer's Market and Tall Grass Inn."
+    },
+    "nameEn": "Retro Radio & Jukebox",
+    "nameCs": "Retro rádio & Jukebox (Radio & Jukebox)",
+    "categoryEn": "Furniture & Decor",
+    "categoryCs": "Nábytek & Vybavení",
+    "scenario": "core",
+    "rarity": "Fine",
+    "workbench": "Territory Build Mode",
+    "energy": 5,
+    "hydration": 0,
+    "buffDuration": "+30% Nearby Deviant Mood Recharge",
+    "sourceEn": "Interior Acoustics & Entertainment Memetic",
+    "sourceCs": "Akustika a zábava v Memetics",
+    "effectsEn": [
+      "Plays collected cassette tapes, vinyl records, and territory radio broadcasts",
+      "Significantly speeds up Mood recovery for Deviants residing in nearby Securement Units (+30% recovery rate)",
+      "Creates an atmospheric retro audio backdrop for the base"
+    ],
+    "effectsCs": [
+      "Přehrává nalezené magnetofonové kazety, vinyly a rozhlasové stanice světa Nalcott",
+      "Výrazně zrychluje regeneraci nálady (Mood) všech Deviantů v blízkých izolačních jednotkách (+30 %)",
+      "Vytváří skvělou atmosféru na základně se stylovou hudbou"
+    ],
+    "ingredientsEn": [
+      {
+        "name": "Steel Ingot",
+        "amount": "15x",
+        "isPrimary": true
+      },
+      {
+        "name": "Electronic Parts",
+        "amount": "12x"
+      },
+      {
+        "name": "Copper Ingot",
+        "amount": "10x"
+      },
+      {
+        "name": "Plastic",
+        "amount": "8x"
+      }
+    ],
+    "ingredientsCs": [
+      {
+        "name": "Ocelový ingot",
+        "amount": "15x",
+        "isPrimary": true
+      },
+      {
+        "name": "Elektronické součástky",
+        "amount": "12x"
+      },
+      {
+        "name": "Měděný ingot",
+        "amount": "10x"
+      },
+      {
+        "name": "Plast",
+        "amount": "8x"
+      }
+    ],
+    "descriptionEn": "Classic vintage audio player broadcasting tunes that soothe human minds and delight captured Deviants.",
+    "descriptionCs": "Klasický hudební přehrávač, jehož melodie uklidňují lidskou mysl a zrychlují regeneraci Deviantů."
   }
 ];
 
