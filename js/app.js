@@ -20,6 +20,7 @@ let selectedCategory = 'all';
 let selectedRarity = 'all';
 let sortCriterion = 'name-asc';
 let favoritesOnly = false;
+let selectedEffectTag = 'all';
 let searchDebounceTimer = null;
 
 // Favorites Set stored in localStorage
@@ -419,6 +420,127 @@ function toggleFavoritesOnly() {
 /* ==========================================================================
    PRE-COMPUTED SEARCH INDEX FOR ULTRA-FAST LOOKUPS
    ========================================================================== */
+
+function selectEffectTag(tag) {
+  selectedEffectTag = tag;
+  const tags = ['all', 'combat', 'survival', 'utility', 'archetypes', 'thermal'];
+  tags.forEach(t => {
+    const el = document.getElementById('tag-pill-' + t);
+    if (!el) return;
+    if (t === tag) {
+      el.className = "tag-pill px-2.5 py-1 rounded border text-[11px] transition whitespace-nowrap bg-hud-cyan text-black border-hud-cyan font-bold shadow cursor-pointer";
+    } else {
+      el.className = "tag-pill px-2.5 py-1 rounded border text-[11px] transition whitespace-nowrap bg-hud-bg text-slate-300 border-hud-border hover:border-hud-cyan hover:text-white cursor-pointer";
+    }
+  });
+  applyFiltersAndSort();
+}
+
+function matchesEffectTag(item, tag) {
+  if (tag === 'all') return true;
+  const effectsText = ((item.effectsCs || []).join(' ') + ' ' + (item.effectsEn || []).join(' ')).toLowerCase();
+  
+  if (tag === 'combat') {
+    return /damage|dmg|crit|weakspot|attack|poškození|útok|zásah|zbraň/i.test(effectsText);
+  }
+  if (tag === 'survival') {
+    return /sanity|pollution|odolnost|hp|health|regenerace|znečištění|léčení|bleed|krvácení/i.test(effectsText);
+  }
+  if (tag === 'utility') {
+    return /batoh|carry|weight|mining|krumpáč|těžba|stamina|výdrž|rychlost|speed|skok|jump|pádem/i.test(effectsText);
+  }
+  if (tag === 'archetypes') {
+    return /shrapnel|burn|frost|vortex|shock|bomber|fast gunner|fortress|archetyp|bounce/i.test(effectsText);
+  }
+  if (tag === 'thermal') {
+    return /cold|frost|cryo|chlad|mráz|heat|warmth|teplota|arktický|winter|oheň|burn/i.test(effectsText);
+  }
+  return true;
+}
+
+function shareRecipeLink(recipeId) {
+  const url = window.location.origin + window.location.pathname + '#recipe/' + recipeId;
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(url).catch(() => fallbackCopy(url));
+  } else {
+    fallbackCopy(url);
+  }
+  const t = i18n[currentLang];
+  showNotification(t.shareNotice || 'Link copied to clipboard!');
+}
+
+function openBackupModal() {
+  const modal = document.getElementById('backup-modal');
+  if (modal) modal.classList.remove('hidden');
+}
+
+function closeBackupModal() {
+  const modal = document.getElementById('backup-modal');
+  if (modal) modal.classList.add('hidden');
+}
+
+function exportUserData() {
+  const data = {
+    app: "OnceHumanCodex",
+    version: 1,
+    exportedAt: new Date().toISOString(),
+    favorites: Array.from(favorites),
+    craftQueue: craftQueue,
+    checkedMaterials: Array.from(checkedMaterials),
+    lang: currentLang
+  };
+
+  const blob = new Blob([JSON.stringify(data, null, 2)], { type: "application/json" });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = `once-human-codex-backup-${new Date().toISOString().slice(0, 10)}.json`;
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+}
+
+function importUserData(event) {
+  const file = event.target.files?.[0];
+  if (!file) return;
+
+  const reader = new FileReader();
+  reader.onload = function(e) {
+    try {
+      const data = JSON.parse(e.target.result);
+      if (!data || typeof data !== 'object') throw new Error('Invalid format');
+
+      if (Array.isArray(data.favorites)) {
+        favorites = new Set(data.favorites);
+        saveFavorites();
+      }
+      if (Array.isArray(data.craftQueue)) {
+        craftQueue = data.craftQueue;
+        saveCraftQueue();
+      }
+      if (Array.isArray(data.checkedMaterials)) {
+        checkedMaterials = new Set(data.checkedMaterials);
+        saveCheckedMaterials();
+      }
+      if (data.lang && (data.lang === 'cs' || data.lang === 'en')) {
+        setLanguage(data.lang);
+      }
+
+      applyFiltersAndSort();
+      updateQueueBadge();
+      closeBackupModal();
+      const t = i18n[currentLang];
+      showNotification(t.importSuccess || 'Data successfully restored!');
+    } catch (err) {
+      console.error(err);
+      const t = i18n[currentLang];
+      showNotification(t.importError || 'Invalid backup file format');
+    }
+  };
+  reader.readAsText(file);
+}
+
 function initSearchIndex() {
   getAllRecipes().forEach(item => {
     const csTokens = [
@@ -512,6 +634,11 @@ function updateUrlHash(type, id) {
 window.addEventListener('keydown', function(e) {
   if (e.key === 'Escape') {
     const modal = document.getElementById('detail-modal');
+    const backupModal = document.getElementById('backup-modal');
+    if (backupModal && !backupModal.classList.contains('hidden')) {
+      closeBackupModal();
+      return;
+    }
     const queueModal = document.getElementById('craft-queue-modal');
     if (queueModal && !queueModal.classList.contains('hidden')) {
       closeQueueModal();
@@ -748,6 +875,10 @@ function applyFiltersAndSort() {
 
     const itemCat = currentLang === 'cs' ? item.categoryCs : item.categoryEn;
     if (selectedCategory !== 'all' && itemCat !== selectedCategory) {
+      return false;
+    }
+
+    if (selectedEffectTag !== 'all' && !matchesEffectTag(item, selectedEffectTag)) {
       return false;
     }
 
@@ -1106,12 +1237,16 @@ function openModal(id, pushHistory = false) {
 
     <div class="pt-3 border-t border-hud-border flex items-center justify-between text-xs font-mono text-slate-400">
       <span>${t.workbenchLabel} <strong class="text-white">${item.workbench}</strong></span>
-      <div class="flex items-center gap-2">
+      <div class="flex items-center gap-2 flex-wrap">
+        <button onclick="shareRecipeLink('${item.id}')" title="Kopírovat odkaz na recept / Share link" class="px-2.5 py-1.5 bg-hud-surface hover:bg-hud-bg border border-hud-border hover:border-hud-cyan rounded text-slate-300 hover:text-hud-cyan font-mono text-xs transition flex items-center gap-1.5 cursor-pointer">
+          <i class="fa-solid fa-link text-xs text-hud-cyan"></i>
+          <span class="hidden sm:inline">${t.shareBtn || 'Sdílet'}</span>
+        </button>
         <button onclick="addToQueue('${item.id}', 1, event)" class="px-3 py-1.5 bg-cyan-950/80 hover:bg-cyan-900 border border-hud-cyan/60 rounded text-hud-cyan hover:text-white font-mono text-xs transition flex items-center gap-1.5 cursor-pointer">
           <i class="fa-solid fa-plus text-xs"></i>
           <span>${t.addToQueue}</span>
         </button>
-        <button onclick="copyRecipeName('${item.nameEn}')" class="px-3 py-1.5 bg-slate-800 hover:bg-slate-700 border border-slate-600 rounded text-slate-300 hover:text-white transition">
+        <button onclick="copyRecipeName('${item.nameEn}')" class="px-3 py-1.5 bg-slate-800 hover:bg-slate-700 border border-slate-600 rounded text-slate-300 hover:text-white transition cursor-pointer">
           <i class="fa-solid fa-copy mr-1"></i> ${t.copyBtn}
         </button>
       </div>
@@ -1136,6 +1271,8 @@ function closeModal() {
 }
 
 window.addEventListener('click', function(e) {
+  const backupModal = document.getElementById('backup-modal');
+  if (e.target === backupModal) closeBackupModal();
   const queueModal = document.getElementById('craft-queue-modal');
   if (e.target === queueModal) closeQueueModal();
   const modal = document.getElementById('detail-modal');

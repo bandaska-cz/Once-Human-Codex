@@ -95,6 +95,17 @@
           <span id="queue-badge-count" class="bg-hud-cyan text-black px-1.5 py-0.2 rounded-full font-bold text-[10px] ml-1">0</span>
         </button>
 
+                <!-- Data Backup & Sync Button -->
+        <button 
+          id="backup-toggle-btn"
+          onclick="openBackupModal()" 
+          title="Záloha a přenos dat (Export / Import)"
+          class="inline-flex items-center space-x-1.5 bg-hud-card hover:bg-hud-cyan/15 border border-hud-border hover:border-hud-cyan text-slate-300 hover:text-white px-2.5 py-1.5 rounded transition-all text-xs font-mono cursor-pointer"
+        >
+          <i class="fa-solid fa-cloud-arrow-up text-hud-cyan"></i>
+          <span class="hidden lg:inline" id="backup-btn-label">Záloha</span>
+        </button>
+
         <!-- GitHub Repository Button -->
         <a href="https://github.com/bandaska-cz/Once-Human-Codex" 
            target="_blank" 
@@ -286,6 +297,17 @@
         </div>
       </div>
 
+            <!-- Quick Buff Effect Pills -->
+      <div class="mt-3 pt-3 border-t border-hud-border/40 flex items-center gap-1.5 overflow-x-auto pb-1 text-xs font-mono">
+        <span class="text-slate-500 text-[10px] uppercase font-bold shrink-0 mr-1"><i class="fa-solid fa-tags text-hud-cyan mr-1"></i>Efekt:</span>
+        <button type="button" onclick="selectEffectTag('all')" id="tag-pill-all" class="tag-pill px-2.5 py-1 rounded border text-[11px] transition whitespace-nowrap bg-hud-cyan text-black border-hud-cyan font-bold shadow cursor-pointer">Vše</button>
+        <button type="button" onclick="selectEffectTag('combat')" id="tag-pill-combat" class="tag-pill px-2.5 py-1 rounded border text-[11px] transition whitespace-nowrap bg-hud-bg text-slate-300 border-hud-border hover:border-hud-cyan hover:text-white cursor-pointer">🎯 Útok & Crit</button>
+        <button type="button" onclick="selectEffectTag('survival')" id="tag-pill-survival" class="tag-pill px-2.5 py-1 rounded border text-[11px] transition whitespace-nowrap bg-hud-bg text-slate-300 border-hud-border hover:border-hud-cyan hover:text-white cursor-pointer">🛡️ Sanity & Život</button>
+        <button type="button" onclick="selectEffectTag('utility')" id="tag-pill-utility" class="tag-pill px-2.5 py-1 rounded border text-[11px] transition whitespace-nowrap bg-hud-bg text-slate-300 border-hud-border hover:border-hud-cyan hover:text-white cursor-pointer">📦 Nosnost & Těžba</button>
+        <button type="button" onclick="selectEffectTag('archetypes')" id="tag-pill-archetypes" class="tag-pill px-2.5 py-1 rounded border text-[11px] transition whitespace-nowrap bg-hud-bg text-slate-300 border-hud-border hover:border-hud-cyan hover:text-white cursor-pointer">⚡ Archetypy</button>
+        <button type="button" onclick="selectEffectTag('thermal')" id="tag-pill-thermal" class="tag-pill px-2.5 py-1 rounded border text-[11px] transition whitespace-nowrap bg-hud-bg text-slate-300 border-hud-border hover:border-hud-cyan hover:text-white cursor-pointer">❄️ Termika & Mráz</button>
+      </div>
+
       <!-- Quick Stats & Counter -->
       <div class="mt-3 pt-3 border-t border-hud-border/40 flex items-center justify-between text-[11px] font-mono text-slate-400">
         <span id="results-count">Zobrazeno záznamů: <strong class="text-hud-cyan">0</strong></span>
@@ -331,6 +353,56 @@
 
       <div id="queue-modal-content">
         <!-- Rendered dynamically -->
+      </div>
+    </div>
+  </div>
+
+  
+  <!-- ==================== DATA BACKUP & SYNC MODAL ==================== -->
+  <div id="backup-modal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm">
+    <div class="bg-hud-surface border border-hud-cyan/50 rounded-lg max-w-md w-full p-6 relative max-h-[90vh] overflow-y-auto shadow-[0_0_30px_rgba(0,240,255,0.25)]">
+      <!-- Close Button -->
+      <button onclick="closeBackupModal()" title="Zavřít (Esc)" class="absolute top-4 right-4 text-slate-400 hover:text-white transition w-8 h-8 rounded border border-hud-border flex items-center justify-center bg-hud-card cursor-pointer">
+        <i class="fa-solid fa-xmark text-sm"></i>
+      </button>
+
+      <div class="flex items-center gap-2.5 mb-2 pb-3 border-b border-hud-border">
+        <div class="w-8 h-8 rounded bg-hud-cyan/10 border border-hud-cyan flex items-center justify-center text-hud-cyan">
+          <i class="fa-solid fa-database text-sm"></i>
+        </div>
+        <div>
+          <h3 id="backup-modal-title" class="font-orbitron font-bold text-white text-base">ZÁLOHA A PŘENOS DAT</h3>
+          <p id="backup-modal-desc" class="text-[11px] font-mono text-slate-400">Exportujte své oblíbené recepty a výrobní plán do JSON souboru.</p>
+        </div>
+      </div>
+
+      <div class="space-y-4 my-4">
+        <!-- Export Box -->
+        <div class="p-3.5 bg-hud-bg border border-hud-border rounded-lg">
+          <div class="text-xs font-bold text-white mb-1 flex items-center gap-1.5">
+            <i class="fa-solid fa-file-export text-hud-cyan"></i>
+            <span>Exportovat data</span>
+          </div>
+          <p class="text-[11px] text-slate-400 mb-3">Stáhněte si záložní soubor obsahující vaše označené oblíbené položky i aktuální výrobní plán.</p>
+          <button onclick="exportUserData()" class="w-full py-2 bg-hud-cyan/20 hover:bg-hud-cyan/30 border border-hud-cyan/60 rounded text-hud-cyan hover:text-white text-xs font-mono font-bold transition flex items-center justify-center gap-2 cursor-pointer">
+            <i class="fa-solid fa-download"></i>
+            <span id="btn-export-label">Stáhnout zálohu (JSON)</span>
+          </button>
+        </div>
+
+        <!-- Import Box -->
+        <div class="p-3.5 bg-hud-bg border border-hud-border rounded-lg">
+          <div class="text-xs font-bold text-white mb-1 flex items-center gap-1.5">
+            <i class="fa-solid fa-file-import text-amber-400"></i>
+            <span>Importovat data</span>
+          </div>
+          <p class="text-[11px] text-slate-400 mb-3">Obnovte svá data ze záložního JSON souboru z jiného zařízení nebo prohlížeče.</p>
+          <label class="w-full py-2 bg-slate-800 hover:bg-slate-700 border border-slate-600 rounded text-slate-200 hover:text-white text-xs font-mono font-bold transition flex items-center justify-center gap-2 cursor-pointer">
+            <i class="fa-solid fa-upload"></i>
+            <span id="btn-import-label">Vybrat soubor k importu</span>
+            <input type="file" id="backup-file-input" accept=".json" onchange="importUserData(event)" class="hidden">
+          </label>
+        </div>
       </div>
     </div>
   </div>

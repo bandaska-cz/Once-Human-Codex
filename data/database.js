@@ -50,7 +50,22 @@ const i18n = {
         directModeBtn: "Přímé suroviny",
         rawDecomposeBtn: "Surový rozpad (Přírodní zdroje)",
         checkedProgress: "Nasbíráno surovin:",
-        uncheckAllBtn: "Odznačit vše"
+                uncheckAllBtn: "Odznačit vše",
+        tagAll: "Vše",
+        tagCombat: "🎯 Útok & Crit",
+        tagSurvival: "🛡️ Sanity & Život",
+        tagUtility: "📦 Nosnost & Těžba",
+        tagArchetypes: "⚡ Archetypy",
+        tagThermal: "❄️ Termika & Mráz",
+        shareBtn: "Sdílet odkaz",
+        shareNotice: "Přímý odkaz na recept zkopírován do schránky",
+        dataBackupBtn: "Data",
+        dataBackupTitle: "ZÁLOHA A PŘENOS DAT",
+        dataBackupDesc: "Exportujte nebo importujte své oblíbené recepty a výrobní plán.",
+        exportBtn: "Exportovat do souboru",
+        importBtn: "Importovat ze souboru",
+        importSuccess: "Data úspěšně obnovena!",
+        importError: "Neplatný formát záložního souboru"
       },
       en: {
         subtitle: "ALL GAME RECIPES • SYNERGIES • APOTHECARY • FULL TECHNOLOGIES",
@@ -103,7 +118,22 @@ const i18n = {
         directModeBtn: "Direct Materials",
         rawDecomposeBtn: "Raw Nature Breakdown",
         checkedProgress: "Materials Collected:",
-        uncheckAllBtn: "Uncheck all"
+                uncheckAllBtn: "Uncheck all",
+        tagAll: "All",
+        tagCombat: "🎯 Attack & Crit",
+        tagSurvival: "🛡️ Sanity & HP",
+        tagUtility: "📦 Carry & Mining",
+        tagArchetypes: "⚡ Archetypes",
+        tagThermal: "❄️ Thermal & Cold",
+        shareBtn: "Share Link",
+        shareNotice: "Direct recipe link copied to clipboard",
+        dataBackupBtn: "Data",
+        dataBackupTitle: "DATA BACKUP & TRANSFER",
+        dataBackupDesc: "Export or import your pinned recipes and crafting queue.",
+        exportBtn: "Export to File",
+        importBtn: "Import from File",
+        importSuccess: "Data successfully restored!",
+        importError: "Invalid backup file format"
       }
     };
 
