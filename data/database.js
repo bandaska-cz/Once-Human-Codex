@@ -1,7 +1,7 @@
 const i18n = {
       cs: {
         subtitle: "VŠECHNY HERNÍ RECEPTY • SYNERGIE • CHEMOVĚDA • KOMPLETNÍ TECHNOLOGIE",
-        tabDiscovered: "Discovered Cooking (43)",
+        tabDiscovered: "Discovered Cooking",
         tabCreative: "Creative Cooking & Synergie",
         tabMedicine: "Medicína & Fermentace",
         tabInventions: "Vynálezy & Taktika",
@@ -76,7 +76,7 @@ const i18n = {
       },
       en: {
         subtitle: "ALL GAME RECIPES • SYNERGIES • APOTHECARY • FULL TECHNOLOGIES",
-        tabDiscovered: "Discovered Cooking (43)",
+        tabDiscovered: "Discovered Cooking",
         tabCreative: "Creative Cooking & Synergies",
         tabMedicine: "Medicine & Fermentation",
         tabInventions: "Tech Inventions & Weapons",
@@ -1358,6 +1358,7 @@ const i18n = {
        TAB 4: COMPLETE FUNCTIONAL TECHNOLOGIES & RECIPE PRODUCTS
        ========================================================================== */
     const inventionRecipes = [
+
       /* --- 1. REFINING & METALLURGY RECIPES --- */
       {
         id: "tech-glass",
@@ -5150,8 +5151,2095 @@ const i18n = {
         ingredientsCs: [{ name: "Ocelový ingot", amount: "15x", isPrimary: true }, { name: "Zdroj hvězdného prachu (Stardust)", amount: "4x" }, { name: "Elektronické součástky", amount: "6x" }],
         descriptionEn: "Spatial anchor trap clustering enemies together for devastating explosive combos.",
         descriptionCs: "Gravitační past stahující monstra do jednoho bodu pod palbu kulometů a granátů."
+      },
+
+  {
+    "id": "t-04a",
+    "researchInvention": {
+      "chance": "High (Vysoká šance)",
+      "materialsCs": [
+        {
+          "name": "Sklo",
+          "amount": "25x"
+        },
+        {
+          "name": "Elektronické součástky",
+          "amount": "15x"
+        },
+        {
+          "name": "Ocelový ingot",
+          "amount": "20x"
+        },
+        {
+          "name": "Standardní součástky",
+          "amount": "15x"
+        }
+      ],
+      "materialsEn": [
+        {
+          "name": "Glass",
+          "amount": "25x"
+        },
+        {
+          "name": "Electronic Parts",
+          "amount": "15x"
+        },
+        {
+          "name": "Steel Ingot",
+          "amount": "20x"
+        },
+        {
+          "name": "Standard Parts",
+          "amount": "15x"
+        }
+      ],
+      "reverseEngineeringCs": "Lze demontovat ze zabezpečených laboratoří a karanténních zón v Rosetta základnách v Iron River a Chalk Peak.",
+      "reverseEngineeringEn": "Can be salvaged from securement labs and containment chambers in Rosetta bases across Iron River and Chalk Peak."
+    },
+    "nameEn": "Isolated Securement Unit",
+    "nameCs": "Izolační jednotka pro Devianty",
+    "categoryEn": "Territory Facility",
+    "categoryCs": "Zařízení teritoria",
+    "scenario": "core",
+    "rarity": "Fine",
+    "workbench": "Territory Build Mode",
+    "energy": 10,
+    "hydration": 0,
+    "buffDuration": "Deviant Mood & Power Recovery",
+    "sourceEn": "Deviation Management Memetic",
+    "sourceCs": "Správa a chov Deviantů v Memetics",
+    "effectsEn": [
+      "Stores and regenerates 1 captured Deviant",
+      "Restores Mood and Deviant Power over time",
+      "Allows environmental tuning (lights, music, thermal balance) to speed up recovery"
+    ],
+    "effectsCs": [
+      "Bezpečně ukládá a regeneruje 1 chyceného Devianta",
+      "Průběžně doplňuje Náladu (Mood) a Deviační sílu",
+      "Umožňuje ladění prostředí (světla, rádio, teplota) pro zrychlení regenerace"
+    ],
+    "ingredientsEn": [
+      {
+        "name": "Glass",
+        "amount": "20x",
+        "isPrimary": true
+      },
+      {
+        "name": "Steel Ingot",
+        "amount": "15x"
+      },
+      {
+        "name": "Electronic Parts",
+        "amount": "10x"
+      },
+      {
+        "name": "Metal Scraps",
+        "amount": "20x"
       }
-    ];
+    ],
+    "ingredientsCs": [
+      {
+        "name": "Sklo",
+        "amount": "20x",
+        "isPrimary": true
+      },
+      {
+        "name": "Ocelový ingot",
+        "amount": "15x"
+      },
+      {
+        "name": "Elektronické součástky",
+        "amount": "10x"
+      },
+      {
+        "name": "Kovový šrot",
+        "amount": "20x"
+      }
+    ],
+    "descriptionEn": "Essential containment unit to house and recharge your Deviants with environmental optimization.",
+    "descriptionCs": "Nezbytné izolační zařízení pro bezpečné uložení, krmení a dobíjení síly vašich Deviantů."
+  },
+
+  {
+    "id": "t-05a",
+    "researchInvention": {
+      "chance": "High (Vysoká šance)",
+      "materialsCs": [
+        {
+          "name": "Ocelový ingot",
+          "amount": "25x"
+        },
+        {
+          "name": "Standardní součástky",
+          "amount": "20x"
+        },
+        {
+          "name": "Elektronické součástky",
+          "amount": "12x"
+        },
+        {
+          "name": "Guma (Rubber)",
+          "amount": "10x"
+        }
+      ],
+      "materialsEn": [
+        {
+          "name": "Steel Ingot",
+          "amount": "25x"
+        },
+        {
+          "name": "Standard Parts",
+          "amount": "20x"
+        },
+        {
+          "name": "Electronic Parts",
+          "amount": "12x"
+        },
+        {
+          "name": "Rubber",
+          "amount": "10x"
+        }
+      ],
+      "reverseEngineeringCs": "Lze analyzovat z opuštěných autoservisů a benzínových stanic v Broken Delta a Iron River.",
+      "reverseEngineeringEn": "Can be analyzed from abandoned auto repair garages and gas stations in Broken Delta and Iron River."
+    },
+    "nameEn": "Small Garage",
+    "nameCs": "Malá garáž (Small Garage)",
+    "categoryEn": "Territory Facility",
+    "categoryCs": "Zařízení teritoria",
+    "scenario": "core",
+    "rarity": "Common",
+    "workbench": "Territory Build Mode",
+    "energy": 0,
+    "hydration": 0,
+    "buffDuration": "Motorcycle Assembly & Maintenance",
+    "sourceEn": "Vehicles & Mobility Memetic",
+    "sourceCs": "Vozidla a mobilita v Memetics",
+    "effectsEn": [
+      "Allows crafting, repairing, and customizing the Motorcycle",
+      "Acts as a dedicated vehicle respawn and recall pad",
+      "Refuels and repairs parked vehicles"
+    ],
+    "effectsCs": [
+      "Umožňuje výrobu, opravu a úpravy Motocyklu",
+      "Slouží jako platforma pro přivolání a respawn motorky",
+      "Doplňuje palivo a opravuje zaparkovaný stroj"
+    ],
+    "ingredientsEn": [
+      {
+        "name": "Steel Ingot",
+        "amount": "20x",
+        "isPrimary": true
+      },
+      {
+        "name": "Copper Ingot",
+        "amount": "15x"
+      },
+      {
+        "name": "Electronic Parts",
+        "amount": "10x"
+      },
+      {
+        "name": "Standard Parts",
+        "amount": "15x"
+      }
+    ],
+    "ingredientsCs": [
+      {
+        "name": "Ocelový ingot",
+        "amount": "20x",
+        "isPrimary": true
+      },
+      {
+        "name": "Měděný ingot",
+        "amount": "15x"
+      },
+      {
+        "name": "Elektronické součástky",
+        "amount": "10x"
+      },
+      {
+        "name": "Standardní součástky",
+        "amount": "15x"
+      }
+    ],
+    "descriptionEn": "Dedicated garage bay for assembling, maintaining, and recalling personal two-wheeled vehicles.",
+    "descriptionCs": "Základní garážové stání určené pro montáž, údržbu a přivolávání lehkých motocyklů."
+  },
+
+  {
+    "id": "t-05b",
+    "researchInvention": {
+      "chance": "High (Vysoká šance)",
+      "materialsCs": [
+        {
+          "name": "Hliníkový ingot",
+          "amount": "30x"
+        },
+        {
+          "name": "Ocelový ingot",
+          "amount": "35x"
+        },
+        {
+          "name": "Zušlechtěné součástky",
+          "amount": "20x"
+        },
+        {
+          "name": "Elektronické součástky",
+          "amount": "15x"
+        }
+      ],
+      "materialsEn": [
+        {
+          "name": "Aluminum Ingot",
+          "amount": "30x"
+        },
+        {
+          "name": "Steel Ingot",
+          "amount": "35x"
+        },
+        {
+          "name": "Refined Parts",
+          "amount": "20x"
+        },
+        {
+          "name": "Electronic Parts",
+          "amount": "15x"
+        }
+      ],
+      "reverseEngineeringCs": "Lze rozebrat z velkých nákladních autodílen a servisních ramp v Chalk Peak a Red Sands.",
+      "reverseEngineeringEn": "Can be salvaged from heavy automotive bays and repair stations in Chalk Peak and Red Sands."
+    },
+    "nameEn": "Large Garage",
+    "nameCs": "Velká garáž (Large Garage)",
+    "categoryEn": "Territory Facility",
+    "categoryCs": "Zařízení teritoria",
+    "scenario": "core",
+    "rarity": "Fine",
+    "workbench": "Territory Build Mode",
+    "energy": 15,
+    "hydration": 0,
+    "buffDuration": "Four-Wheeler & Truck Bay",
+    "sourceEn": "Advanced Vehicles Memetic",
+    "sourceCs": "Pokročilá vozidla v Memetics",
+    "effectsEn": [
+      "Enables crafting and tuning of the All-Terrain Vehicle (4x4 ATV) and Retro Coupe",
+      "Supports multi-passenger vehicle repairs and fuel logistics",
+      "Expands vehicle trunk storage capacity"
+    ],
+    "effectsCs": [
+      "Umožňuje výrobu a tuning terénní čtyřkolky (4x4 ATV) a vozu Retro Coupe",
+      "Zajišťuje servis a tankování vícemístných vozidel",
+      "Rozšiřuje úložnou kapacitu kufrů vozidel"
+    ],
+    "ingredientsEn": [
+      {
+        "name": "Aluminum Ingot",
+        "amount": "25x",
+        "isPrimary": true
+      },
+      {
+        "name": "Steel Ingot",
+        "amount": "30x"
+      },
+      {
+        "name": "Electronic Parts",
+        "amount": "15x"
+      },
+      {
+        "name": "Refined Parts",
+        "amount": "15x"
+      }
+    ],
+    "ingredientsCs": [
+      {
+        "name": "Hliníkový ingot",
+        "amount": "25x",
+        "isPrimary": true
+      },
+      {
+        "name": "Ocelový ingot",
+        "amount": "30x"
+      },
+      {
+        "name": "Elektronické součástky",
+        "amount": "15x"
+      },
+      {
+        "name": "Zušlechtěné součástky",
+        "amount": "15x"
+      }
+    ],
+    "descriptionEn": "Heavy-duty vehicle staging bay for four-wheeled trucks, off-roaders, and luxury cruisers.",
+    "descriptionCs": "Velká montážní plošina pro výrobu, údržbu a vylepšování čtyřkolových a terénních aut."
+  },
+
+  {
+    "id": "t-veh-01",
+    "researchInvention": {
+      "chance": "High (Vysoká šance)",
+      "materialsCs": [
+        {
+          "name": "Ocelový ingot",
+          "amount": "30x"
+        },
+        {
+          "name": "Guma (Rubber)",
+          "amount": "20x"
+        },
+        {
+          "name": "Standardní součástky",
+          "amount": "25x"
+        },
+        {
+          "name": "Měděný ingot",
+          "amount": "15x"
+        }
+      ],
+      "materialsEn": [
+        {
+          "name": "Steel Ingot",
+          "amount": "30x"
+        },
+        {
+          "name": "Rubber",
+          "amount": "20x"
+        },
+        {
+          "name": "Standard Parts",
+          "amount": "25x"
+        },
+        {
+          "name": "Copper Ingot",
+          "amount": "15x"
+        }
+      ],
+      "reverseEngineeringCs": "Lze nalézt a analyzovat z vraků motorek podél dálnic v Dayton Wetlands a Broken Delta.",
+      "reverseEngineeringEn": "Can be analyzed from motorcycle wrecks along highways in Dayton Wetlands and Broken Delta."
+    },
+    "nameEn": "Motorcycle",
+    "nameCs": "Motocykl (Motorcycle)",
+    "categoryEn": "Territory Facility",
+    "categoryCs": "Zařízení teritoria",
+    "scenario": "core",
+    "rarity": "Common",
+    "workbench": "Small Garage (Malá garáž)",
+    "energy": 0,
+    "hydration": 0,
+    "buffDuration": "High Mobility Solo Scout",
+    "sourceEn": "Vehicles & Mobility Memetic",
+    "sourceCs": "Vozidla v Memetics",
+    "effectsEn": [
+      "Fast agile ground travel across roads and light terrain",
+      "Low fuel consumption (Portable Mixed Fuel)",
+      "Instant summon to player location via hotkey"
+    ],
+    "effectsCs": [
+      "Rychlé a obratné cestování po silnicích i lehkém terénu",
+      "Nízká spotřeba paliva (Portable Mixed Fuel)",
+      "Možnost okamžitého přivolání k hráči pomocí klávesové zkratky"
+    ],
+    "ingredientsEn": [
+      {
+        "name": "Steel Ingot",
+        "amount": "25x",
+        "isPrimary": true
+      },
+      {
+        "name": "Rubber",
+        "amount": "15x"
+      },
+      {
+        "name": "Standard Parts",
+        "amount": "20x"
+      },
+      {
+        "name": "Electronic Parts",
+        "amount": "8x"
+      }
+    ],
+    "ingredientsCs": [
+      {
+        "name": "Ocelový ingot",
+        "amount": "25x",
+        "isPrimary": true
+      },
+      {
+        "name": "Guma (Rubber)",
+        "amount": "15x"
+      },
+      {
+        "name": "Standardní součástky",
+        "amount": "20x"
+      },
+      {
+        "name": "Elektronické součástky",
+        "amount": "8x"
+      }
+    ],
+    "descriptionEn": "Nimble single-seater motorcycle for rapid map exploration and solo resource runs.",
+    "descriptionCs": "Obratný jednomístný motocykl pro rychlý průzkum světa a přesuny mezi osadami."
+  },
+
+  {
+    "id": "t-veh-02",
+    "researchInvention": {
+      "chance": "High (Vysoká šance)",
+      "materialsCs": [
+        {
+          "name": "Hliníkový ingot",
+          "amount": "35x"
+        },
+        {
+          "name": "Ocelový ingot",
+          "amount": "40x"
+        },
+        {
+          "name": "Guma (Rubber)",
+          "amount": "30x"
+        },
+        {
+          "name": "Zušlechtěné součástky",
+          "amount": "25x"
+        }
+      ],
+      "materialsEn": [
+        {
+          "name": "Aluminum Ingot",
+          "amount": "35x"
+        },
+        {
+          "name": "Steel Ingot",
+          "amount": "40x"
+        },
+        {
+          "name": "Rubber",
+          "amount": "30x"
+        },
+        {
+          "name": "Refined Parts",
+          "amount": "25x"
+        }
+      ],
+      "reverseEngineeringCs": "Lze rozebrat z armádních hlídkových terénních vozidel v Chalk Peak a Red Sands.",
+      "reverseEngineeringEn": "Can be salvaged from military patrol off-roaders in Chalk Peak and Red Sands."
+    },
+    "nameEn": "All-Terrain Vehicle (4x4 ATV)",
+    "nameCs": "Terénní čtyřkolka (4x4 ATV)",
+    "categoryEn": "Territory Facility",
+    "categoryCs": "Zařízení teritoria",
+    "scenario": "core",
+    "rarity": "Fine",
+    "workbench": "Large Garage (Velká garáž)",
+    "energy": 0,
+    "hydration": 0,
+    "buffDuration": "Off-Road Quad Squad Vehicle",
+    "sourceEn": "Advanced Vehicles Memetic",
+    "sourceCs": "Pokročilá vozidla v Memetics",
+    "effectsEn": [
+      "Superior hill climbing and rocky terrain traversal",
+      "Seats up to 4 squad members",
+      "Integrated cargo storage box for team loot"
+    ],
+    "effectsCs": [
+      "Vynikající průchodnost kopcovitým a skalnatým terénem",
+      "Kapacita až pro 4 členy týmu",
+      "Vestavěný nákladní kufr pro převoz kořisti"
+    ],
+    "ingredientsEn": [
+      {
+        "name": "Aluminum Ingot",
+        "amount": "30x",
+        "isPrimary": true
+      },
+      {
+        "name": "Steel Ingot",
+        "amount": "35x"
+      },
+      {
+        "name": "Rubber",
+        "amount": "25x"
+      },
+      {
+        "name": "Refined Parts",
+        "amount": "20x"
+      }
+    ],
+    "ingredientsCs": [
+      {
+        "name": "Hliníkový ingot",
+        "amount": "30x",
+        "isPrimary": true
+      },
+      {
+        "name": "Ocelový ingot",
+        "amount": "35x"
+      },
+      {
+        "name": "Guma (Rubber)",
+        "amount": "25x"
+      },
+      {
+        "name": "Zušlechtěné součástky",
+        "amount": "20x"
+      }
+    ],
+    "descriptionEn": "Rugged four-wheel drive ATV designed for harsh wilderness and steep mountains.",
+    "descriptionCs": "Masivní terénní čtyřkolka pro přepravu týmu v drsných horských a pouštních podmínkách."
+  },
+
+  {
+    "id": "t-veh-03",
+    "researchInvention": {
+      "chance": "High (Vysoká šance)",
+      "materialsCs": [
+        {
+          "name": "Hliníkový ingot",
+          "amount": "40x"
+        },
+        {
+          "name": "Ocelový ingot",
+          "amount": "45x"
+        },
+        {
+          "name": "Elektronické součástky",
+          "amount": "25x"
+        },
+        {
+          "name": "Guma (Rubber)",
+          "amount": "30x"
+        }
+      ],
+      "materialsEn": [
+        {
+          "name": "Aluminum Ingot",
+          "amount": "40x"
+        },
+        {
+          "name": "Steel Ingot",
+          "amount": "45x"
+        },
+        {
+          "name": "Electronic Parts",
+          "amount": "25x"
+        },
+        {
+          "name": "Rubber",
+          "amount": "30x"
+        }
+      ],
+      "reverseEngineeringCs": "Lze analyzovat z vraků městských sedanů v Blackfell a Tall Grass Inn.",
+      "reverseEngineeringEn": "Can be analyzed from luxury vehicle wrecks in Blackfell and Tall Grass Inn."
+    },
+    "nameEn": "Retro Coupe",
+    "nameCs": "Retro Coupe (Osobní automobil)",
+    "categoryEn": "Territory Facility",
+    "categoryCs": "Zařízení teritoria",
+    "scenario": "core",
+    "rarity": "Fine",
+    "workbench": "Large Garage (Velká garáž)",
+    "energy": 0,
+    "hydration": 0,
+    "buffDuration": "High-Speed Highway Cruiser",
+    "sourceEn": "Advanced Vehicles Memetic",
+    "sourceCs": "Pokročilá vozidla v Memetics",
+    "effectsEn": [
+      "Highest top speed on paved roads and highways",
+      "Spacious rear trunk inventory",
+      "Enclosed cabin offering partial weather and pollution protection"
+    ],
+    "effectsCs": [
+      "Nejvyšší maximální rychlost na zpevněných silnicích a dálnicích",
+      "Prostorný zadní kufr pro velké zásoby",
+      "Uzavřená kabina poskytující částečnou ochranu před počasím a znečištěním"
+    ],
+    "ingredientsEn": [
+      {
+        "name": "Aluminum Ingot",
+        "amount": "35x",
+        "isPrimary": true
+      },
+      {
+        "name": "Steel Ingot",
+        "amount": "40x"
+      },
+      {
+        "name": "Rubber",
+        "amount": "25x"
+      },
+      {
+        "name": "Electronic Parts",
+        "amount": "20x"
+      }
+    ],
+    "ingredientsCs": [
+      {
+        "name": "Hliníkový ingot",
+        "amount": "35x",
+        "isPrimary": true
+      },
+      {
+        "name": "Ocelový ingot",
+        "amount": "40x"
+      },
+      {
+        "name": "Guma (Rubber)",
+        "amount": "25x"
+      },
+      {
+        "name": "Elektronické součástky",
+        "amount": "20x"
+      }
+    ],
+    "descriptionEn": "Fast passenger car built for speed runs along highways and long-distance travel.",
+    "descriptionCs": "Rychlý silniční automobil pro pohodlné cestování po hlavních dálničních tazích."
+  },
+
+  {
+    "id": "t-06a",
+    "researchInvention": {
+      "chance": "High (Vysoká šance)",
+      "materialsCs": [
+        {
+          "name": "Dřevo",
+          "amount": "50x"
+        },
+        {
+          "name": "Ocelový ingot",
+          "amount": "20x"
+        },
+        {
+          "name": "Guma (Rubber)",
+          "amount": "15x"
+        },
+        {
+          "name": "Sklo",
+          "amount": "12x"
+        }
+      ],
+      "materialsEn": [
+        {
+          "name": "Wood",
+          "amount": "50x"
+        },
+        {
+          "name": "Steel Ingot",
+          "amount": "20x"
+        },
+        {
+          "name": "Rubber",
+          "amount": "15x"
+        },
+        {
+          "name": "Glass",
+          "amount": "12x"
+        }
+      ],
+      "reverseEngineeringCs": "Lze demontovat ze starých sklepů a farem v Broken Delta a Iron River.",
+      "reverseEngineeringEn": "Can be dismantled from old cellars and farm breweries in Broken Delta and Iron River."
+    },
+    "nameEn": "Fermentation Barrel",
+    "nameCs": "Kvasný & Pivovarský sud (Fermentation Barrel)",
+    "categoryEn": "Territory Facility",
+    "categoryCs": "Zařízení teritoria",
+    "scenario": "core",
+    "rarity": "Fine",
+    "workbench": "Territory Build Mode",
+    "energy": 0,
+    "hydration": 0,
+    "buffDuration": "Passive Acid & Brew Production",
+    "sourceEn": "Fermentation & Brewing Memetic",
+    "sourceCs": "Kvašení a chemie v Memetics",
+    "effectsEn": [
+      "Ferments Mutated Crops and Purified Water into Acid passively",
+      "Brews alcoholic beverages (Beer, Wine) for buffs and sanity",
+      "Produces vinegar and specialty chemical liquids"
+    ],
+    "effectsCs": [
+      "Pasivně vyrábí nedostatkovou Kyselinu (Acid) z mutovaných plodin a čisté vody",
+      "Umožňuje vaření piva a vína pro buffy a obnovu Sanity",
+      "Produkuje kvasný ocet a suroviny pro chemickou syntézu"
+    ],
+    "ingredientsEn": [
+      {
+        "name": "Wood",
+        "amount": "40x",
+        "isPrimary": true
+      },
+      {
+        "name": "Steel Ingot",
+        "amount": "15x"
+      },
+      {
+        "name": "Rubber",
+        "amount": "10x"
+      },
+      {
+        "name": "Glass",
+        "amount": "10x"
+      }
+    ],
+    "ingredientsCs": [
+      {
+        "name": "Dřevo",
+        "amount": "40x",
+        "isPrimary": true
+      },
+      {
+        "name": "Ocelový ingot",
+        "amount": "15x"
+      },
+      {
+        "name": "Guma (Rubber)",
+        "amount": "10x"
+      },
+      {
+        "name": "Sklo",
+        "amount": "10x"
+      }
+    ],
+    "descriptionEn": "Crucial facility for converting mutated wheat and clean water into valuable Acid and brewables.",
+    "descriptionCs": "Klíčové zařízení pro pasivní výrobu Kyseliny (Acid) a alkoholických nápojů z mutovaného obilí."
+  },
+
+  {
+    "id": "t-06b",
+    "researchInvention": {
+      "chance": "High (Vysoká šance)",
+      "materialsCs": [
+        {
+          "name": "Ocelový ingot",
+          "amount": "25x"
+        },
+        {
+          "name": "Elektronické součástky",
+          "amount": "15x"
+        },
+        {
+          "name": "Standardní součástky",
+          "amount": "15x"
+        },
+        {
+          "name": "Sklo",
+          "amount": "12x"
+        }
+      ],
+      "materialsEn": [
+        {
+          "name": "Steel Ingot",
+          "amount": "25x"
+        },
+        {
+          "name": "Electronic Parts",
+          "amount": "15x"
+        },
+        {
+          "name": "Standard Parts",
+          "amount": "15x"
+        },
+        {
+          "name": "Glass",
+          "amount": "12x"
+        }
+      ],
+      "reverseEngineeringCs": "Lze demontovat z obytných kuchyní v Dayton Wetlands a Meyer's Market.",
+      "reverseEngineeringEn": "Can be salvaged from residential kitchens in Dayton Wetlands and Meyer's Market."
+    },
+    "nameEn": "Refrigerator",
+    "nameCs": "Chladnička / Lednice (Refrigerator)",
+    "categoryEn": "Territory Facility",
+    "categoryCs": "Zařízení teritoria",
+    "scenario": "core",
+    "rarity": "Fine",
+    "workbench": "Territory Build Mode",
+    "energy": 10,
+    "hydration": 0,
+    "buffDuration": "90% Food Spoilage Reduction",
+    "sourceEn": "Food Preservation Memetic",
+    "sourceCs": "Uchovávání potravin v Memetics",
+    "effectsEn": [
+      "Slows perishable food decay by 90% while powered",
+      "Stores raw meats, harvested vegetables, and prepared dishes",
+      "Requires constant 10W electrical connection"
+    ],
+    "effectsCs": [
+      "Zpomaluje kažení uskladněného jídla a surovin o 90 %",
+      "Uchovává čerstvé maso, zeleninu i uvařené pokrmy",
+      "Vyžaduje nepřetržité elektrické napájení 10 W"
+    ],
+    "ingredientsEn": [
+      {
+        "name": "Steel Ingot",
+        "amount": "20x",
+        "isPrimary": true
+      },
+      {
+        "name": "Electronic Parts",
+        "amount": "12x"
+      },
+      {
+        "name": "Glass",
+        "amount": "10x"
+      },
+      {
+        "name": "Metal Scraps",
+        "amount": "15x"
+      }
+    ],
+    "ingredientsCs": [
+      {
+        "name": "Ocelový ingot",
+        "amount": "20x",
+        "isPrimary": true
+      },
+      {
+        "name": "Elektronické součástky",
+        "amount": "12x"
+      },
+      {
+        "name": "Sklo",
+        "amount": "10x"
+      },
+      {
+        "name": "Kovový šrot",
+        "amount": "15x"
+      }
+    ],
+    "descriptionEn": "Essential powered appliance that preserves fresh produce and cooked meals for extended periods.",
+    "descriptionCs": "Nezbytný elektrický spotřebič chránící vaše zásoby jídla před rychlým zkažením."
+  },
+
+  {
+    "id": "t-06c",
+    "researchInvention": {
+      "chance": "High (Vysoká šance)",
+      "materialsCs": [
+        {
+          "name": "Dřevo",
+          "amount": "40x"
+        },
+        {
+          "name": "Motouz / Rostlinná vlákna",
+          "amount": "25x"
+        },
+        {
+          "name": "Měděný ingot",
+          "amount": "10x"
+        }
+      ],
+      "materialsEn": [
+        {
+          "name": "Wood",
+          "amount": "40x"
+        },
+        {
+          "name": "Twine / Plant Fiber",
+          "amount": "25x"
+        },
+        {
+          "name": "Copper Ingot",
+          "amount": "10x"
+        }
+      ],
+      "reverseEngineeringCs": "Lze analyzovat z loveckých kempů a chatek v Dayton Wetlands a Broken Delta.",
+      "reverseEngineeringEn": "Can be analyzed from hunter camps and cabins across Dayton Wetlands and Broken Delta."
+    },
+    "nameEn": "Meat Dryer",
+    "nameCs": "Sušička masa (Meat Dryer)",
+    "categoryEn": "Territory Facility",
+    "categoryCs": "Zařízení teritoria",
+    "scenario": "core",
+    "rarity": "Common",
+    "workbench": "Territory Build Mode",
+    "energy": 0,
+    "hydration": 0,
+    "buffDuration": "Passive Meat Curing",
+    "sourceEn": "Basic Food Preservation Memetic",
+    "sourceCs": "Základní uchovávání potravin v Memetics",
+    "effectsEn": [
+      "Converts raw meat into long-lasting Jerky without power",
+      "Prevents meat from rotting when no refrigerator is available",
+      "Low maintenance passive processing"
+    ],
+    "effectsCs": [
+      "Pasivně přeměňuje syrové maso na sušené maso (Jerky) s dlouhou trvanlivostí",
+      "Chrání maso před zkažením i bez elektrické energie",
+      "Nevyžaduje žádné palivo ani dohled"
+    ],
+    "ingredientsEn": [
+      {
+        "name": "Wood",
+        "amount": "30x",
+        "isPrimary": true
+      },
+      {
+        "name": "Twine",
+        "amount": "10x"
+      },
+      {
+        "name": "Metal Scraps",
+        "amount": "10x"
+      }
+    ],
+    "ingredientsCs": [
+      {
+        "name": "Dřevo",
+        "amount": "30x",
+        "isPrimary": true
+      },
+      {
+        "name": "Motouz",
+        "amount": "10x"
+      },
+      {
+        "name": "Kovový šrot",
+        "amount": "10x"
+      }
+    ],
+    "descriptionEn": "Simple wooden frame for air-drying harvested meats into nutritious, non-perishable rations.",
+    "descriptionCs": "Dřevěný rám pro sušení masa na vzduchu, vytvářející trvanlivé polní zásoby."
+  },
+
+  {
+    "id": "t-06d",
+    "researchInvention": {
+      "chance": "High (Vysoká šance)",
+      "materialsCs": [
+        {
+          "name": "Bronzový ingot",
+          "amount": "20x"
+        },
+        {
+          "name": "Ocelový ingot",
+          "amount": "15x"
+        },
+        {
+          "name": "Dřevěné uhlí",
+          "amount": "15x"
+        }
+      ],
+      "materialsEn": [
+        {
+          "name": "Bronze Ingot",
+          "amount": "20x"
+        },
+        {
+          "name": "Steel Ingot",
+          "amount": "15x"
+        },
+        {
+          "name": "Charcoal",
+          "amount": "15x"
+        }
+      ],
+      "reverseEngineeringCs": "Lze analyzovat ze starých rodinných domů a usedlostí v Broken Delta.",
+      "reverseEngineeringEn": "Can be analyzed from old farmsteads and rural homes in Broken Delta."
+    },
+    "nameEn": "Cooking Stove",
+    "nameCs": "Litinový sporák (Cooking Stove)",
+    "categoryEn": "Territory Facility",
+    "categoryCs": "Zařízení teritoria",
+    "scenario": "core",
+    "rarity": "Common",
+    "workbench": "Territory Build Mode",
+    "energy": 0,
+    "hydration": 0,
+    "buffDuration": "Culinary Station II",
+    "sourceEn": "Culinary Arts Memetic",
+    "sourceCs": "Kuchařské umění v Memetics",
+    "effectsEn": [
+      "Unlocks Tier 2 and Tier 3 cooking recipes",
+      "Allows cooking stews, roasts, and multi-ingredient buff meals",
+      "Uses Charcoal or Wood as combustible fuel"
+    ],
+    "effectsCs": [
+      "Odemyká pokročilejší recepty Tier 2 a 3 pro vaření",
+      "Umožňuje přípravu výživných polévek, pečení a buffovacích jídel",
+      "Používá dřevěné uhlí nebo dřevo jako palivo"
+    ],
+    "ingredientsEn": [
+      {
+        "name": "Bronze Ingot",
+        "amount": "15x",
+        "isPrimary": true
+      },
+      {
+        "name": "Steel Ingot",
+        "amount": "10x"
+      },
+      {
+        "name": "Gravel",
+        "amount": "15x"
+      }
+    ],
+    "ingredientsCs": [
+      {
+        "name": "Bronzový ingot",
+        "amount": "15x",
+        "isPrimary": true
+      },
+      {
+        "name": "Ocelový ingot",
+        "amount": "10x"
+      },
+      {
+        "name": "Štěrk (Gravel)",
+        "amount": "15x"
+      }
+    ],
+    "descriptionEn": "Upgraded charcoal-fueled range enabling complex nutritional dishes beyond simple campfires.",
+    "descriptionCs": "Litinový kuchyňský sporák na dřevěné uhlí pro přípravu kvalitnějších a silnějších jídel."
+  },
+
+  {
+    "id": "t-06e",
+    "researchInvention": {
+      "chance": "High (Vysoká šance)",
+      "materialsCs": [
+        {
+          "name": "Hliníkový ingot",
+          "amount": "25x"
+        },
+        {
+          "name": "Ocelový ingot",
+          "amount": "30x"
+        },
+        {
+          "name": "Elektronické součástky",
+          "amount": "20x"
+        },
+        {
+          "name": "Sklo",
+          "amount": "15x"
+        }
+      ],
+      "materialsEn": [
+        {
+          "name": "Aluminum Ingot",
+          "amount": "25x"
+        },
+        {
+          "name": "Steel Ingot",
+          "amount": "30x"
+        },
+        {
+          "name": "Electronic Parts",
+          "amount": "20x"
+        },
+        {
+          "name": "Glass",
+          "amount": "15x"
+        }
+      ],
+      "reverseEngineeringCs": "Lze demontovat z kuchyní luxusních hotelů a restaurací v Blackfell a Chalk Peak.",
+      "reverseEngineeringEn": "Can be salvaged from high-end hotel kitchens and restaurant complexes in Blackfell and Chalk Peak."
+    },
+    "nameEn": "Integrated Kitchen",
+    "nameCs": "Integrovaná kuchyňská linka (Integrated Kitchen)",
+    "categoryEn": "Territory Facility",
+    "categoryCs": "Zařízení teritoria",
+    "scenario": "core",
+    "rarity": "Fine",
+    "workbench": "Territory Build Mode",
+    "energy": 10,
+    "hydration": 0,
+    "buffDuration": "Top-Tier Master Cuisine",
+    "sourceEn": "Master Chef Memetic",
+    "sourceCs": "Mistrovské vaření v Memetics",
+    "effectsEn": [
+      "Prepares all Tier 4 and Tier 5 elite endgame dishes and drinks",
+      "Integrated water connection and electric heating (10W)",
+      "Reduces cooking time by 30%"
+    ],
+    "effectsCs": [
+      "Umožňuje přípravu veškerých elitních Tier 4 a 5 pokrmů a nápojů",
+      "Přímé napojení na vodovodní rozvody a elektrický ohřev (10 W)",
+      "Zkracuje čas přípravy pokrmů o 30 %"
+    ],
+    "ingredientsEn": [
+      {
+        "name": "Aluminum Ingot",
+        "amount": "20x",
+        "isPrimary": true
+      },
+      {
+        "name": "Steel Ingot",
+        "amount": "25x"
+      },
+      {
+        "name": "Electronic Parts",
+        "amount": "15x"
+      },
+      {
+        "name": "Glass",
+        "amount": "10x"
+      }
+    ],
+    "ingredientsCs": [
+      {
+        "name": "Hliníkový ingot",
+        "amount": "20x",
+        "isPrimary": true
+      },
+      {
+        "name": "Ocelový ingot",
+        "amount": "25x"
+      },
+      {
+        "name": "Elektronické součástky",
+        "amount": "15x"
+      },
+      {
+        "name": "Sklo",
+        "amount": "10x"
+      }
+    ],
+    "descriptionEn": "State-of-the-art electric kitchen island for high-efficiency mass meal production.",
+    "descriptionCs": "Špičková moderní elektrická kuchyně pro automatizované vaření nejlepších buffovacích delikates."
+  },
+
+  {
+    "id": "t-07a",
+    "researchInvention": {
+      "chance": "High (Vysoká šance)",
+      "materialsCs": [
+        {
+          "name": "Ocelový ingot",
+          "amount": "35x"
+        },
+        {
+          "name": "Zušlechtěné součástky",
+          "amount": "20x"
+        },
+        {
+          "name": "Elektronické součástky",
+          "amount": "15x"
+        },
+        {
+          "name": "Guma (Rubber)",
+          "amount": "20x"
+        }
+      ],
+      "materialsEn": [
+        {
+          "name": "Steel Ingot",
+          "amount": "35x"
+        },
+        {
+          "name": "Refined Parts",
+          "amount": "20x"
+        },
+        {
+          "name": "Electronic Parts",
+          "amount": "15x"
+        },
+        {
+          "name": "Rubber",
+          "amount": "20x"
+        }
+      ],
+      "reverseEngineeringCs": "Lze demontovat v ropných rafinériích a chemických provozech v Iron River a Blackfell Oilfields.",
+      "reverseEngineeringEn": "Can be salvaged from oil refineries and chemical plants in Iron River and Blackfell Oilfields."
+    },
+    "nameEn": "Fuel Refinery",
+    "nameCs": "Rafinérie paliva (Fuel Refinery)",
+    "categoryEn": "Territory Facility",
+    "categoryCs": "Zařízení teritoria",
+    "scenario": "core",
+    "rarity": "Fine",
+    "workbench": "Territory Build Mode",
+    "energy": 20,
+    "hydration": 0,
+    "buffDuration": "Crude Oil to Fuel Conversion",
+    "sourceEn": "Petroleum Refining Memetic",
+    "sourceCs": "Zpracování ropy v Memetics",
+    "effectsEn": [
+      "Refines Crude Oil into Portable Mixed Fuel and Premium Fuel",
+      "Essential for sustaining generator networks and vehicle fleets",
+      "Automated continuous processing"
+    ],
+    "effectsCs": [
+      "Rafinuje surovou ropu (Crude Oil) na Portable Mixed Fuel a prémiový benzín",
+      "Základní zdroj paliva pro spalovací generátory a motorová vozidla",
+      "Automatický kontinuální provoz"
+    ],
+    "ingredientsEn": [
+      {
+        "name": "Steel Ingot",
+        "amount": "30x",
+        "isPrimary": true
+      },
+      {
+        "name": "Refined Parts",
+        "amount": "15x"
+      },
+      {
+        "name": "Electronic Parts",
+        "amount": "12x"
+      },
+      {
+        "name": "Rubber",
+        "amount": "15x"
+      }
+    ],
+    "ingredientsCs": [
+      {
+        "name": "Ocelový ingot",
+        "amount": "30x",
+        "isPrimary": true
+      },
+      {
+        "name": "Zušlechtěné součástky",
+        "amount": "15x"
+      },
+      {
+        "name": "Elektronické součástky",
+        "amount": "12x"
+      },
+      {
+        "name": "Guma (Rubber)",
+        "amount": "15x"
+      }
+    ],
+    "descriptionEn": "Industrial cracker unit transforming raw oil deposits into refined vehicle and generator fuel.",
+    "descriptionCs": "Průmyslová rafinérská jednotka pro přeměnu vytěžené ropy na pohonné hmoty a palivo."
+  },
+
+  {
+    "id": "t-08a",
+    "researchInvention": {
+      "chance": "High (Vysoká šance)",
+      "materialsCs": [
+        {
+          "name": "Dřevo",
+          "amount": "40x"
+        },
+        {
+          "name": "Měděný ingot",
+          "amount": "10x"
+        },
+        {
+          "name": "Štěrk (Gravel)",
+          "amount": "10x"
+        }
+      ],
+      "materialsEn": [
+        {
+          "name": "Wood",
+          "amount": "40x"
+        },
+        {
+          "name": "Copper Ingot",
+          "amount": "10x"
+        },
+        {
+          "name": "Gravel",
+          "amount": "10x"
+        }
+      ],
+      "reverseEngineeringCs": "Lze najít a analyzovat v jakémkoli opuštěném skladišti v Dayton Wetlands.",
+      "reverseEngineeringEn": "Can be found and analyzed in any abandoned warehouse across Dayton Wetlands."
+    },
+    "nameEn": "Wooden Storage Crate",
+    "nameCs": "Základní dřevěná truhla (Wooden Storage Crate)",
+    "categoryEn": "Territory Facility",
+    "categoryCs": "Zařízení teritoria",
+    "scenario": "core",
+    "rarity": "Common",
+    "workbench": "Territory Build Mode",
+    "energy": 0,
+    "hydration": 0,
+    "buffDuration": "16 Item Slots Storage",
+    "sourceEn": "Basic Logistics Memetic",
+    "sourceCs": "Základní logistika v Memetics",
+    "effectsEn": [
+      "Provides 16 inventory slots for resource stockpiling",
+      "Can be tagged and labeled for warehouse sorting",
+      "Quick craft access within territory boundaries"
+    ],
+    "effectsCs": [
+      "Poskytuje 16 úložných slotů pro skladování surovin",
+      "Lze označit popiskem pro přehlednou organizaci základny",
+      "Suroviny jsou ihned dostupné pro výrobu v celém teritoriu"
+    ],
+    "ingredientsEn": [
+      {
+        "name": "Wood",
+        "amount": "30x",
+        "isPrimary": true
+      },
+      {
+        "name": "Copper Ingot",
+        "amount": "5x"
+      }
+    ],
+    "ingredientsCs": [
+      {
+        "name": "Dřevo",
+        "amount": "30x",
+        "isPrimary": true
+      },
+      {
+        "name": "Měděný ingot",
+        "amount": "5x"
+      }
+    ],
+    "descriptionEn": "Standard wooden box providing early game storage capacity for ores, timber, and loot.",
+    "descriptionCs": "Základní dřevěná bedna pro uskladnění kořisti a materiálů v rané fázi hry."
+  },
+
+  {
+    "id": "t-08b",
+    "researchInvention": {
+      "chance": "High (Vysoká šance)",
+      "materialsCs": [
+        {
+          "name": "Dřevo",
+          "amount": "65x"
+        },
+        {
+          "name": "Bronzový ingot",
+          "amount": "15x"
+        },
+        {
+          "name": "Motouz",
+          "amount": "15x"
+        }
+      ],
+      "materialsEn": [
+        {
+          "name": "Wood",
+          "amount": "65x"
+        },
+        {
+          "name": "Bronze Ingot",
+          "amount": "15x"
+        },
+        {
+          "name": "Twine",
+          "amount": "15x"
+        }
+      ],
+      "reverseEngineeringCs": "Lze analyzovat z obchodních skladů a tržišť v Meyer's Market.",
+      "reverseEngineeringEn": "Can be analyzed from merchant storage sheds in Meyer's Market."
+    },
+    "nameEn": "Large Wooden Storage Crate",
+    "nameCs": "Velká dřevěná truhla (Large Wooden Storage Crate)",
+    "categoryEn": "Territory Facility",
+    "categoryCs": "Zařízení teritoria",
+    "scenario": "core",
+    "rarity": "Common",
+    "workbench": "Territory Build Mode",
+    "energy": 0,
+    "hydration": 0,
+    "buffDuration": "24 Item Slots Storage",
+    "sourceEn": "Intermediate Logistics Memetic",
+    "sourceCs": "Střední logistika v Memetics",
+    "effectsEn": [
+      "Expands storage to 24 slots",
+      "Sturdier structure resistant to minor territory skirmishes",
+      "Supports automated territory crafting routing"
+    ],
+    "effectsCs": [
+      "Rozšiřuje úložný prostor na 24 slotů",
+      "Pevnější konstrukce odolná proti lehkému poškození",
+      "Podporuje automatické napojení na výrobní stoly v bázi"
+    ],
+    "ingredientsEn": [
+      {
+        "name": "Wood",
+        "amount": "50x",
+        "isPrimary": true
+      },
+      {
+        "name": "Bronze Ingot",
+        "amount": "10x"
+      },
+      {
+        "name": "Twine",
+        "amount": "10x"
+      }
+    ],
+    "ingredientsCs": [
+      {
+        "name": "Dřevo",
+        "amount": "50x",
+        "isPrimary": true
+      },
+      {
+        "name": "Bronzový ingot",
+        "amount": "10x"
+      },
+      {
+        "name": "Motouz",
+        "amount": "10x"
+      }
+    ],
+    "descriptionEn": "Reinforced wooden container with expanded volume for serious gatherers.",
+    "descriptionCs": "Prostornější dřevěná truhla s 24 sloty pro náročnější farmení a skladování."
+  },
+
+  {
+    "id": "t-08c",
+    "researchInvention": {
+      "chance": "High (Vysoká šance)",
+      "materialsCs": [
+        {
+          "name": "Ocelový ingot",
+          "amount": "25x"
+        },
+        {
+          "name": "Standardní součástky",
+          "amount": "15x"
+        },
+        {
+          "name": "Kovový šrot",
+          "amount": "20x"
+        }
+      ],
+      "materialsEn": [
+        {
+          "name": "Steel Ingot",
+          "amount": "25x"
+        },
+        {
+          "name": "Standard Parts",
+          "amount": "15x"
+        },
+        {
+          "name": "Metal Scraps",
+          "amount": "20x"
+        }
+      ],
+      "reverseEngineeringCs": "Lze získat z armádních skladů zbraní a kasáren v Iron River.",
+      "reverseEngineeringEn": "Can be obtained from military armories and barracks in Iron River."
+    },
+    "nameEn": "Reinforced Metal Storage Crate",
+    "nameCs": "Zesílená kovová truhla (Reinforced Metal Crate)",
+    "categoryEn": "Territory Facility",
+    "categoryCs": "Zařízení teritoria",
+    "scenario": "core",
+    "rarity": "Fine",
+    "workbench": "Territory Build Mode",
+    "energy": 0,
+    "hydration": 0,
+    "buffDuration": "32 Item Slots Storage",
+    "sourceEn": "Advanced Logistics Memetic",
+    "sourceCs": "Pokročilá logistika v Memetics",
+    "effectsEn": [
+      "Heavy duty 32 slots capacity",
+      "High blast and bullet resistance during Prime Wars and Purifications",
+      "Secure lockdown storage"
+    ],
+    "effectsCs": [
+      "Velká kapacita 32 úložných slotů",
+      "Vysoká odolnost vůči výbuchům a střelbě během purifikace a Prime War",
+      "Bezpečné uložení nejcennějších materiálů a výstroje"
+    ],
+    "ingredientsEn": [
+      {
+        "name": "Steel Ingot",
+        "amount": "20x",
+        "isPrimary": true
+      },
+      {
+        "name": "Standard Parts",
+        "amount": "10x"
+      },
+      {
+        "name": "Metal Scraps",
+        "amount": "15x"
+      }
+    ],
+    "ingredientsCs": [
+      {
+        "name": "Ocelový ingot",
+        "amount": "20x",
+        "isPrimary": true
+      },
+      {
+        "name": "Standardní součástky",
+        "amount": "10x"
+      },
+      {
+        "name": "Kovový šrot",
+        "amount": "15x"
+      }
+    ],
+    "descriptionEn": "High-durability all-steel chest capable of weathering territorial sieges while organizing large stocks.",
+    "descriptionCs": "Vysoce odolná ocelová truhla s 32 sloty, která odolá i těžkým útokům na základnu."
+  },
+
+  {
+    "id": "t-08d",
+    "researchInvention": {
+      "chance": "High (Vysoká šance)",
+      "materialsCs": [
+        {
+          "name": "Wolframový ingot",
+          "amount": "30x"
+        },
+        {
+          "name": "Zdroj hvězdného prachu (Stardust)",
+          "amount": "20x"
+        },
+        {
+          "name": "Zušlechtěné součástky",
+          "amount": "20x"
+        },
+        {
+          "name": "Elektronické součástky",
+          "amount": "12x"
+        }
+      ],
+      "materialsEn": [
+        {
+          "name": "Tungsten Ingot",
+          "amount": "30x"
+        },
+        {
+          "name": "Stardust Source",
+          "amount": "20x"
+        },
+        {
+          "name": "Refined Parts",
+          "amount": "20x"
+        },
+        {
+          "name": "Electronic Parts",
+          "amount": "12x"
+        }
+      ],
+      "reverseEngineeringCs": "Lze nalézt v hlubinných výzkumných trezorech v Red Sands a Blackfell.",
+      "reverseEngineeringEn": "Can be discovered in deep research vaults across Red Sands and Blackfell."
+    },
+    "nameEn": "Stardust Storage Crate",
+    "nameCs": "Hvězdná úložná schránka (Stardust Storage Crate)",
+    "categoryEn": "Territory Facility",
+    "categoryCs": "Zařízení teritoria",
+    "scenario": "core",
+    "rarity": "Epic",
+    "workbench": "Territory Build Mode",
+    "energy": 0,
+    "hydration": 0,
+    "buffDuration": "40 Item Slots Master Storage",
+    "sourceEn": "Master Logistics Memetic",
+    "sourceCs": "Mistrovská logistika v Memetics",
+    "effectsEn": [
+      "Maximum capacity of 40 item slots",
+      "Stardust shielding preventing anomalous degradation",
+      "Pinnacle territory storage solution"
+    ],
+    "effectsCs": [
+      "Maximální úložná kapacita 40 slotů",
+      "Hvězdné stínění chránící před anomální degradací",
+      "Špičkové logistické řešení pro endgame základny"
+    ],
+    "ingredientsEn": [
+      {
+        "name": "Tungsten Ingot",
+        "amount": "25x",
+        "isPrimary": true
+      },
+      {
+        "name": "Stardust Source",
+        "amount": "15x"
+      },
+      {
+        "name": "Refined Parts",
+        "amount": "15x"
+      }
+    ],
+    "ingredientsCs": [
+      {
+        "name": "Wolframový ingot",
+        "amount": "25x",
+        "isPrimary": true
+      },
+      {
+        "name": "Zdroj hvězdného prachu (Stardust)",
+        "amount": "15x"
+      },
+      {
+        "name": "Zušlechtěné součástky",
+        "amount": "15x"
+      }
+    ],
+    "descriptionEn": "Top-tier vault reinforced with stardust alloy offering enormous volume and supreme defense.",
+    "descriptionCs": "Elitní trezorová schránka s wolframovou slitinou a hvězdným prachem pro největší sbírky."
+  },
+
+  {
+    "id": "t-08e",
+    "researchInvention": {
+      "chance": "High (Vysoká šance)",
+      "materialsCs": [
+        {
+          "name": "Ocelový ingot",
+          "amount": "15x"
+        },
+        {
+          "name": "Dřevo",
+          "amount": "25x"
+        },
+        {
+          "name": "Standardní součástky",
+          "amount": "8x"
+        }
+      ],
+      "materialsEn": [
+        {
+          "name": "Steel Ingot",
+          "amount": "15x"
+        },
+        {
+          "name": "Wood",
+          "amount": "25x"
+        },
+        {
+          "name": "Standard Parts",
+          "amount": "8x"
+        }
+      ],
+      "reverseEngineeringCs": "Lze rozebrat ze zbrojnic a střelnic v Dayton Wetlands a Broken Delta.",
+      "reverseEngineeringEn": "Can be salvaged from armories and firing ranges in Dayton Wetlands and Broken Delta."
+    },
+    "nameEn": "Weapon Display Rack",
+    "nameCs": "Stojan na zbraně (Weapon Display Rack)",
+    "categoryEn": "Territory Facility",
+    "categoryCs": "Zařízení teritoria",
+    "scenario": "core",
+    "rarity": "Common",
+    "workbench": "Territory Build Mode",
+    "energy": 0,
+    "hydration": 0,
+    "buffDuration": "Armory Weapon Staging",
+    "sourceEn": "Interior & Armory Memetic",
+    "sourceCs": "Vnitřní vybavení a zbrojnice v Memetics",
+    "effectsEn": [
+      "Displays primary firearms or melee weapons on base walls or floors",
+      "Quick-swap loadouts right inside your personal armory",
+      "Decorative armory presentation"
+    ],
+    "effectsCs": [
+      "Vystavuje střelné i chladné zbraně na zdi nebo na podlaze základny",
+      "Umožňuje bleskovou výměnu zbraňových sestav přímo v základně",
+      "Efektní dekorativní prvek pro zbrojnici"
+    ],
+    "ingredientsEn": [
+      {
+        "name": "Steel Ingot",
+        "amount": "10x",
+        "isPrimary": true
+      },
+      {
+        "name": "Wood",
+        "amount": "20x"
+      },
+      {
+        "name": "Standard Parts",
+        "amount": "5x"
+      }
+    ],
+    "ingredientsCs": [
+      {
+        "name": "Ocelový ingot",
+        "amount": "10x",
+        "isPrimary": true
+      },
+      {
+        "name": "Dřevo",
+        "amount": "20x"
+      },
+      {
+        "name": "Standardní součástky",
+        "amount": "5x"
+      }
+    ],
+    "descriptionEn": "Functional wall mount to proudly showcase your best weapons and manage armory loadouts.",
+    "descriptionCs": "Funkční stojan na zbraně pro vystavení vaší výzbroje a rychlé přezbrojení."
+  },
+
+  {
+    "id": "t-08f",
+    "researchInvention": {
+      "chance": "High (Vysoká šance)",
+      "materialsCs": [
+        {
+          "name": "Ocelový ingot",
+          "amount": "18x"
+        },
+        {
+          "name": "Látka / Textil",
+          "amount": "15x"
+        },
+        {
+          "name": "Standardní součástky",
+          "amount": "8x"
+        }
+      ],
+      "materialsEn": [
+        {
+          "name": "Steel Ingot",
+          "amount": "18x"
+        },
+        {
+          "name": "Fabric",
+          "amount": "15x"
+        },
+        {
+          "name": "Standard Parts",
+          "amount": "8x"
+        }
+      ],
+      "reverseEngineeringCs": "Lze analyzovat z obchodů s oděvy a taktickou výstrojí v Meyer's Market.",
+      "reverseEngineeringEn": "Can be analyzed from tactical gear boutiques in Meyer's Market."
+    },
+    "nameEn": "Armor Display Rack",
+    "nameCs": "Stojan na zbroj / Manekýn (Armor Display Rack)",
+    "categoryEn": "Territory Facility",
+    "categoryCs": "Zařízení teritoria",
+    "scenario": "core",
+    "rarity": "Common",
+    "workbench": "Territory Build Mode",
+    "energy": 0,
+    "hydration": 0,
+    "buffDuration": "Armor Set Display & Swap",
+    "sourceEn": "Interior & Armory Memetic",
+    "sourceCs": "Vnitřní vybavení a zbrojnice v Memetics",
+    "effectsEn": [
+      "Holds a full 6-piece armor suit (Helmet, Mask, Top, Pants, Gloves, Boots)",
+      "Enables one-click gear set swapping",
+      "Preserves durability while displayed"
+    ],
+    "effectsCs": [
+      "Uchovává kompletní 6dílný set zbroje (Helma, Maska, Vesta, Kalhoty, Rukavice, Boty)",
+      "Umožňuje převlečení celého setu na jedno kliknutí",
+      "Vystavená zbroj neztrácí odolnost"
+    ],
+    "ingredientsEn": [
+      {
+        "name": "Steel Ingot",
+        "amount": "12x",
+        "isPrimary": true
+      },
+      {
+        "name": "Wood",
+        "amount": "15x"
+      },
+      {
+        "name": "Fabric",
+        "amount": "10x"
+      }
+    ],
+    "ingredientsCs": [
+      {
+        "name": "Ocelový ingot",
+        "amount": "12x",
+        "isPrimary": true
+      },
+      {
+        "name": "Dřevo",
+        "amount": "15x"
+      },
+      {
+        "name": "Látka / Textil",
+        "amount": "10x"
+      }
+    ],
+    "descriptionEn": "Full-body armor mannequin for organizing and quick-equipping specialized armor sets.",
+    "descriptionCs": "Stojan ve formě manekýna pro vystavení a okamžité obléknutí kompletního setu zbroje."
+  },
+
+  {
+    "id": "t-09a",
+    "researchInvention": {
+      "chance": "High (Vysoká šance)",
+      "materialsCs": [
+        {
+          "name": "Dřevo",
+          "amount": "30x"
+        },
+        {
+          "name": "Štěrk (Gravel)",
+          "amount": "15x"
+        },
+        {
+          "name": "Rostlinná vlákna",
+          "amount": "20x"
+        }
+      ],
+      "materialsEn": [
+        {
+          "name": "Wood",
+          "amount": "30x"
+        },
+        {
+          "name": "Gravel",
+          "amount": "15x"
+        },
+        {
+          "name": "Plant Fiber",
+          "amount": "20x"
+        }
+      ],
+      "reverseEngineeringCs": "Lze analyzovat ze skleníků a farem v Dayton Wetlands.",
+      "reverseEngineeringEn": "Can be analyzed from community greenhouses and farmlands across Dayton Wetlands."
+    },
+    "nameEn": "Planter Box",
+    "nameCs": "Pěstební truhlík (Planter Box)",
+    "categoryEn": "Territory Facility",
+    "categoryCs": "Zařízení teritoria",
+    "scenario": "core",
+    "rarity": "Common",
+    "workbench": "Territory Build Mode",
+    "energy": 0,
+    "hydration": 0,
+    "buffDuration": "Crop Cultivation",
+    "sourceEn": "Basic Agriculture Memetic",
+    "sourceCs": "Základní zemědělství v Memetics",
+    "effectsEn": [
+      "Allows planting seeds (wheat, corn, herbs, berries, mushrooms)",
+      "Compatible with automatic irrigation sprinklers and UV grow lights",
+      "Can be placed inside indoor greenhouses or rooftop gardens"
+    ],
+    "effectsCs": [
+      "Umožňuje výsev semínek (pšenice, kukuřice, bylinky, houby)",
+      "Kompatibilní s automatickými zavlažovači a UV pěstitelským světlem",
+      "Lze umístit do skleníků, pokojů i na střechu"
+    ],
+    "ingredientsEn": [
+      {
+        "name": "Wood",
+        "amount": "20x",
+        "isPrimary": true
+      },
+      {
+        "name": "Gravel",
+        "amount": "10x"
+      },
+      {
+        "name": "Plant Fiber",
+        "amount": "15x"
+      }
+    ],
+    "ingredientsCs": [
+      {
+        "name": "Dřevo",
+        "amount": "20x",
+        "isPrimary": true
+      },
+      {
+        "name": "Štěrk (Gravel)",
+        "amount": "10x"
+      },
+      {
+        "name": "Rostlinná vlákna",
+        "amount": "15x"
+      }
+    ],
+    "descriptionEn": "Essential soil planter for cultivating crops, mushrooms, and medicinal herbs at your base.",
+    "descriptionCs": "Základní dřevěný záhon pro spolehlivé pěstování plodin a bylinek na základně."
+  },
+
+  {
+    "id": "t-09b",
+    "researchInvention": {
+      "chance": "High (Vysoká šance)",
+      "materialsCs": [
+        {
+          "name": "Hlína / Jíl (Loam)",
+          "amount": "20x"
+        },
+        {
+          "name": "Štěrk (Gravel)",
+          "amount": "20x"
+        },
+        {
+          "name": "Dřevěné uhlí",
+          "amount": "8x"
+        },
+        {
+          "name": "Bronzový ingot",
+          "amount": "8x"
+        }
+      ],
+      "materialsEn": [
+        {
+          "name": "Loam / Clay",
+          "amount": "20x"
+        },
+        {
+          "name": "Gravel",
+          "amount": "20x"
+        },
+        {
+          "name": "Charcoal",
+          "amount": "8x"
+        },
+        {
+          "name": "Bronze Ingot",
+          "amount": "8x"
+        }
+      ],
+      "reverseEngineeringCs": "Lze najít v botanických zahradách a zemědělských stanicích v Broken Delta a Iron River.",
+      "reverseEngineeringEn": "Can be found in botanical reserves and agricultural outposts across Broken Delta and Iron River."
+    },
+    "nameEn": "Loam Planter Box",
+    "nameCs": "Hliněný pěstební box (Loam Planter Box)",
+    "categoryEn": "Territory Facility",
+    "categoryCs": "Zařízení teritoria",
+    "scenario": "core",
+    "rarity": "Fine",
+    "workbench": "Territory Build Mode",
+    "energy": 0,
+    "hydration": 0,
+    "buffDuration": "+20% Crop Growth Rate",
+    "sourceEn": "Advanced Agriculture Memetic",
+    "sourceCs": "Pokročilé zemědělství v Memetics",
+    "effectsEn": [
+      "Superior soil moisture retention and nutrient delivery",
+      "Increases crop growth rate by 20%",
+      "Higher chance of yielding mutated seeds and doubled harvest"
+    ],
+    "effectsCs": [
+      "Špičkové zadržování vláhy a distribuce živin",
+      "Zrychluje růst plodin o 20 %",
+      "Vyšší šance na sklizeň mutovaných plodin a dvojnásobnou úrodu"
+    ],
+    "ingredientsEn": [
+      {
+        "name": "Loam",
+        "amount": "15x",
+        "isPrimary": true
+      },
+      {
+        "name": "Gravel",
+        "amount": "15x"
+      },
+      {
+        "name": "Charcoal",
+        "amount": "5x"
+      },
+      {
+        "name": "Bronze Ingot",
+        "amount": "5x"
+      }
+    ],
+    "ingredientsCs": [
+      {
+        "name": "Hlína / Jíl (Loam)",
+        "amount": "15x",
+        "isPrimary": true
+      },
+      {
+        "name": "Štěrk (Gravel)",
+        "amount": "15x"
+      },
+      {
+        "name": "Dřevěné uhlí",
+        "amount": "5x"
+      },
+      {
+        "name": "Bronzový ingot",
+        "amount": "5x"
+      }
+    ],
+    "descriptionEn": "Enriched loam bed optimizing moisture and fertilizer absorption for bumper crop yields.",
+    "descriptionCs": "Obohacený hliněný záhon pro maximalizaci výnosů a zrychlený růst plodin."
+  },
+
+  {
+    "id": "t-09c",
+    "researchInvention": {
+      "chance": "High (Vysoká šance)",
+      "materialsCs": [
+        {
+          "name": "Ocelový ingot",
+          "amount": "25x"
+        },
+        {
+          "name": "Guma (Rubber)",
+          "amount": "15x"
+        },
+        {
+          "name": "Standardní součástky",
+          "amount": "12x"
+        }
+      ],
+      "materialsEn": [
+        {
+          "name": "Steel Ingot",
+          "amount": "25x"
+        },
+        {
+          "name": "Rubber",
+          "amount": "15x"
+        },
+        {
+          "name": "Standard Parts",
+          "amount": "12x"
+        }
+      ],
+      "reverseEngineeringCs": "Lze rozebrat z vodárenských věží a přečerpávacích stanic v Iron River.",
+      "reverseEngineeringEn": "Can be salvaged from water supply towers and pumping depots in Iron River."
+    },
+    "nameEn": "Water Storage Tank",
+    "nameCs": "Nádrž na vodu (Water Storage Tank)",
+    "categoryEn": "Territory Facility",
+    "categoryCs": "Zařízení teritoria",
+    "scenario": "core",
+    "rarity": "Common",
+    "workbench": "Territory Build Mode",
+    "energy": 0,
+    "hydration": 0,
+    "buffDuration": "500 Water Buffer Reservoir",
+    "sourceEn": "Water Logistics Memetic",
+    "sourceCs": "Vodní hospodářství v Memetics",
+    "effectsEn": [
+      "Buffers and stores up to 500 units of Dirty, Purified, or Polluted Water",
+      "Features directional input and output pipe connectors",
+      "Essential buffer between pumps and filtration systems"
+    ],
+    "effectsCs": [
+      "Uchovává až 500 jednotek čisté, znečištěné nebo kalné vody",
+      "Disponuje vstupním a výstupním potrubním ventilem pro vodovodní síť",
+      "Zabraňuje přetékání a výpadkům mezi čerpadly a filtry"
+    ],
+    "ingredientsEn": [
+      {
+        "name": "Steel Ingot",
+        "amount": "20x",
+        "isPrimary": true
+      },
+      {
+        "name": "Rubber",
+        "amount": "10x"
+      },
+      {
+        "name": "Standard Parts",
+        "amount": "8x"
+      }
+    ],
+    "ingredientsCs": [
+      {
+        "name": "Ocelový ingot",
+        "amount": "20x",
+        "isPrimary": true
+      },
+      {
+        "name": "Guma (Rubber)",
+        "amount": "10x"
+      },
+      {
+        "name": "Standardní součástky",
+        "amount": "8x"
+      }
+    ],
+    "descriptionEn": "High-capacity fluid cistern ensuring constant water pressure and continuous supply for crops and filters.",
+    "descriptionCs": "Velkoobjemová nádrž na vodu zajišťující stálý tlak a zásobu pro zavlažování a filtrace."
+  }
+];
 
     /* ==========================================================================
        APP ENGINE, FILTERING, SORTING & CALCULATION LOGIC

@@ -861,10 +861,10 @@ function setLanguage(lang) {
 function applyLanguageUI() {
   const t = i18n[currentLang];
   document.getElementById('ui-subtitle').innerText = t.subtitle;
-  document.getElementById('tab-txt-discovered').innerText = t.tabDiscovered;
-  document.getElementById('tab-txt-creative').innerText = t.tabCreative;
-  document.getElementById('tab-txt-medicine').innerText = t.tabMedicine;
-  document.getElementById('tab-txt-inventions').innerText = t.tabInventions;
+  document.getElementById('tab-txt-discovered').innerText = `${t.tabDiscovered} (${discoveredRecipes.length})`;
+  document.getElementById('tab-txt-creative').innerText = `${t.tabCreative} (${creativeDishes.length})`;
+  document.getElementById('tab-txt-medicine').innerText = `${t.tabMedicine} (${medicineRecipes.length})`;
+  document.getElementById('tab-txt-inventions').innerText = `${t.tabInventions} (${inventionRecipes.length})`;
   document.getElementById('calc-title').innerText = t.calcTitle;
   document.getElementById('calc-desc').innerText = t.calcDesc;
   document.getElementById('searchInput').placeholder = t.searchPlaceholder;
