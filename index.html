@@ -448,6 +448,10 @@
        INGREDIENTS KNOWLEDGE BASE & RECIPE CROSS-LINK MAP
        ========================================================================== */
     const ingredientKnowledgeBase = {
+      "Glass": { locationCs: "Tavení štěrku (Gravel) a dřevěného uhlí v peci (Furnace). Lze také získat demontáží skleněného šrotu.", locationEn: "Smelted from Gravel and Charcoal in a Furnace, or salvaged at Disassembly Bench.", recipeId: "tech-glass" },
+      "Sklo": { locationCs: "Tavení štěrku (Gravel) a dřevěného uhlí v peci (Furnace). Lze také získat demontáží skleněného šrotu.", locationEn: "Smelted from Gravel and Charcoal in a Furnace, or salvaged at Disassembly Bench.", recipeId: "tech-glass" },
+      "Charcoal": { locationCs: "Vypalování dřeva (Wood) v peci (Furnace / Electric Furnace).", locationEn: "Produced by burning Wood in a Furnace or Electric Furnace.", recipeId: "tech-charcoal" },
+      "Dřevěné uhlí": { locationCs: "Vypalování dřeva (Wood) v peci (Furnace / Electric Furnace).", locationEn: "Produced by burning Wood in a Furnace or Electric Furnace.", recipeId: "tech-charcoal" },
       "Copper Ingot": { locationCs: "Tavení měděné rudy a dřevěného uhlí v peci.", locationEn: "Smelted from Copper Ore and Charcoal at a Furnace.", recipeId: "b-07" },
       "Měděný ingot": { locationCs: "Tavení měděné rudy a dřevěného uhlí v peci.", locationEn: "Smelted from Copper Ore and Charcoal at a Furnace.", recipeId: "b-07" },
       "Bronze Ingot": { locationCs: "Tavení měděné a cínové rudy v peci.", locationEn: "Smelted from Copper and Tin Ore in a Furnace.", recipeId: "b-08" },
@@ -1609,6 +1613,48 @@
        ========================================================================== */
     const inventionRecipes = [
       /* --- 1. REFINING & METALLURGY RECIPES --- */
+      {
+        id: "tech-glass",
+        nameEn: "Glass",
+        nameCs: "Sklo",
+        categoryEn: "Refining",
+        categoryCs: "Tavení & Kovy",
+        scenario: "core",
+        rarity: "Common",
+        workbench: "Furnace / Electric Furnace",
+        energy: 0,
+        hydration: 0,
+        buffDuration: "Crafting Material",
+        sourceEn: "Basic Smelting Memetic Node",
+        sourceCs: "Základní tavení v memetickém stromu",
+        effectsEn: ["Fundamental silicate glass used for lighting fixtures, solar collectors, and greenhouses"],
+        effectsCs: ["Základní křemičité sklo pro solární panely, pěstitelská světla i hydroponii"],
+        ingredientsEn: [{ name: "Gravel", amount: "3x", isPrimary: true }, { name: "Charcoal", amount: "1x" }],
+        ingredientsCs: [{ name: "Štěrk (Gravel)", amount: "3x", isPrimary: true }, { name: "Dřevěné uhlí", amount: "1x" }],
+        descriptionEn: "Clear tempered glass pane smelted from raw mineral gravel and charcoal.",
+        descriptionCs: "Průzračné sklo tavené v peci z drceného štěrku a dřevěného uhlí."
+      },
+      {
+        id: "tech-charcoal",
+        nameEn: "Charcoal",
+        nameCs: "Dřevěné uhlí",
+        categoryEn: "Refining",
+        categoryCs: "Tavení & Kovy",
+        scenario: "core",
+        rarity: "Common",
+        workbench: "Furnace / Electric Furnace",
+        energy: 0,
+        hydration: 0,
+        buffDuration: "Crafting Material",
+        sourceEn: "Basic Smelting Memetic Node",
+        sourceCs: "Základní tavení v memetickém stromu",
+        effectsEn: ["Essential high-heat carbon fuel for metallurgy, glassblowing, and gunpowder synthesis"],
+        effectsCs: ["Klíčové uhlíkaté palivo pro tavení kovů, sklářství i výrobu střelného prachu"],
+        ingredientsEn: [{ name: "Wood", amount: "5x", isPrimary: true }],
+        ingredientsCs: [{ name: "Dřevo", amount: "5x", isPrimary: true }],
+        descriptionEn: "Carbonized wood fuel burnt under low oxygen conditions for industrial kilns.",
+        descriptionCs: "Kvalitní dřevěné uhlí pro tavení rud a syntézu výbušnin."
+      },
       {
         id: "b-07",
         nameEn: "Copper Ingot",
