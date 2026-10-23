@@ -1359,6 +1359,7 @@ const i18n = {
        ========================================================================== */
     const inventionRecipes = [
 
+
       /* --- 1. REFINING & METALLURGY RECIPES --- */
       {
         id: "tech-glass",
@@ -7238,6 +7239,1654 @@ const i18n = {
     ],
     "descriptionEn": "High-capacity fluid cistern ensuring constant water pressure and continuous supply for crops and filters.",
     "descriptionCs": "Velkoobjemová nádrž na vodu zajišťující stálý tlak a zásobu pro zavlažování a filtrace."
+  },
+
+  {
+    "id": "spec-01",
+    "researchInvention": {
+      "chance": "High (Vysoká šance)",
+      "materialsCs": [
+        {
+          "name": "Wolframový ingot",
+          "amount": "25x"
+        },
+        {
+          "name": "Elektronické součástky",
+          "amount": "20x"
+        },
+        {
+          "name": "Sklo",
+          "amount": "15x"
+        },
+        {
+          "name": "Úložná baterie",
+          "amount": "3x"
+        }
+      ],
+      "materialsEn": [
+        {
+          "name": "Tungsten Ingot",
+          "amount": "25x"
+        },
+        {
+          "name": "Electronic Parts",
+          "amount": "20x"
+        },
+        {
+          "name": "Glass",
+          "amount": "15x"
+        },
+        {
+          "name": "Storage Battery",
+          "amount": "3x"
+        }
+      ],
+      "reverseEngineeringCs": "Lze analyzovat z těžebních souprav Rosetta v hlubinných dolech Red Sands.",
+      "reverseEngineeringEn": "Can be analyzed from Rosetta survey drilling rigs in deep Red Sands mines."
+    },
+    "nameEn": "Solar Drill",
+    "nameCs": "Solární těžební vrták (Solar Drill)",
+    "categoryEn": "Memetic Special",
+    "categoryCs": "Memetická specializace",
+    "scenario": "core",
+    "rarity": "Epic",
+    "workbench": "Advanced Supplies Workbench",
+    "energy": 0,
+    "hydration": 0,
+    "buffDuration": "Infinite Sun Durability & +100% Ore Yield",
+    "sourceEn": "Memetic Specialization (Lvl 20 - 35 Pool)",
+    "sourceCs": "Memetická specializace (Výběr Lvl 20 - 35)",
+    "effectsEn": [
+      "Automatically recharges durability when exposed to direct sunlight (never breaks outdoors)",
+      "Yields +100% ore yield when mining Copper, Tin, Iron, Aluminum, and Tungsten",
+      "Can mine Gold and Silver ore if crafted with high-tier ingots"
+    ],
+    "effectsCs": [
+      "Automaticky doplňuje svou výdrž na přímém slunci (venku se nikdy nezničí)",
+      "Dává +100 % vytěžené rudy u mědi, cínu, železa, hliníku i wolframu",
+      "Při výrobě z drahých kovů dokáže těžit i zlaté a stříbrné žíly"
+    ],
+    "ingredientsEn": [
+      {
+        "name": "Tungsten Ingot",
+        "amount": "20x",
+        "isPrimary": true
+      },
+      {
+        "name": "Electronic Parts",
+        "amount": "15x"
+      },
+      {
+        "name": "Glass",
+        "amount": "10x"
+      },
+      {
+        "name": "Storage Battery",
+        "amount": "2x"
+      }
+    ],
+    "ingredientsCs": [
+      {
+        "name": "Wolframový ingot",
+        "amount": "20x",
+        "isPrimary": true
+      },
+      {
+        "name": "Elektronické součástky",
+        "amount": "15x"
+      },
+      {
+        "name": "Sklo",
+        "amount": "10x"
+      },
+      {
+        "name": "Úložná baterie",
+        "amount": "2x"
+      }
+    ],
+    "descriptionEn": "Legendary mining drill powered by solar cells, eliminating repair costs and doubling gathered ore quantities.",
+    "descriptionCs": "Kultovní těžební nástroj, který se na slunci sám dobíjí a zdvojnásobuje veškeré vytěžené rudy."
+  },
+
+  {
+    "id": "spec-02",
+    "researchInvention": {
+      "chance": "High (Vysoká šance)",
+      "materialsCs": [
+        {
+          "name": "Síra (Sulfur)",
+          "amount": "50x"
+        },
+        {
+          "name": "Kyselina (Acid)",
+          "amount": "10x"
+        },
+        {
+          "name": "Sklo",
+          "amount": "15x"
+        },
+        {
+          "name": "Elektronické součástky",
+          "amount": "10x"
+        }
+      ],
+      "materialsEn": [
+        {
+          "name": "Sulfur",
+          "amount": "50x"
+        },
+        {
+          "name": "Acid",
+          "amount": "10x"
+        },
+        {
+          "name": "Glass",
+          "amount": "15x"
+        },
+        {
+          "name": "Electronic Parts",
+          "amount": "10x"
+        }
+      ],
+      "reverseEngineeringCs": "Lze demontovat z chemických laboratoří v rafineriích Iron River a Chalk Peak.",
+      "reverseEngineeringEn": "Can be salvaged from chemical synthesizer labs in Iron River and Chalk Peak refineries."
+    },
+    "nameEn": "Sulfur Chemist",
+    "nameCs": "Chemik síry - Výroba kyseliny (Sulfur Chemist)",
+    "categoryEn": "Memetic Special",
+    "categoryCs": "Memetická specializace",
+    "scenario": "core",
+    "rarity": "Epic",
+    "workbench": "Supplies Workbench",
+    "energy": 0,
+    "hydration": 0,
+    "buffDuration": "Instant Lab Acid Synthesis",
+    "sourceEn": "Memetic Specialization (Lvl 15 - 30 Pool)",
+    "sourceCs": "Memetická specializace (Výběr Lvl 15 - 30)",
+    "effectsEn": [
+      "Enables direct lab synthesis of Acid from Sulfur and Energy Links",
+      "Completely bypasses slow fermentation barrel crop cycles",
+      "Instant mass-scale Acid production on demand"
+    ],
+    "effectsCs": [
+      "Umožňuje přímou laboratorní syntézu Kyseliny (Acid) ze Síry a Energy Linků",
+      "Zcela eliminuje nutnost čekat hodiny na kvasné sudy a pěstování obilí",
+      "Okamžitá masová produkce kyseliny pro tavení ingotů a výrobu munice"
+    ],
+    "ingredientsEn": [
+      {
+        "name": "Sulfur",
+        "amount": "5x",
+        "isPrimary": true
+      },
+      {
+        "name": "Energy Link",
+        "amount": "50x"
+      }
+    ],
+    "ingredientsCs": [
+      {
+        "name": "Síra (Sulfur)",
+        "amount": "5x",
+        "isPrimary": true
+      },
+      {
+        "name": "Energy Link",
+        "amount": "50x"
+      }
+    ],
+    "descriptionEn": "Highly sought-after recipe converting abundant sulfur and currency directly into critical crafting acid.",
+    "descriptionCs": "Nejžádanější specializace pro přímou přeměnu síry na nedostatkovou kyselinu bez čekání na fermentaci."
+  },
+
+  {
+    "id": "spec-03",
+    "researchInvention": {
+      "chance": "High (Vysoká šance)",
+      "materialsCs": [
+        {
+          "name": "Ocelový ingot",
+          "amount": "20x"
+        },
+        {
+          "name": "Elektronické součástky",
+          "amount": "15x"
+        },
+        {
+          "name": "Standardní součástky",
+          "amount": "15x"
+        },
+        {
+          "name": "Guma (Rubber)",
+          "amount": "10x"
+        }
+      ],
+      "materialsEn": [
+        {
+          "name": "Steel Ingot",
+          "amount": "20x"
+        },
+        {
+          "name": "Electronic Parts",
+          "amount": "15x"
+        },
+        {
+          "name": "Standard Parts",
+          "amount": "15x"
+        },
+        {
+          "name": "Rubber",
+          "amount": "10x"
+        }
+      ],
+      "reverseEngineeringCs": "Lze rozebrat z elitních dílen zbrojířů v Blackfell a Greywater Campu.",
+      "reverseEngineeringEn": "Can be salvaged from master gunsmith workshops in Blackfell and Greywater Camp."
+    },
+    "nameEn": "Artisan's Touch",
+    "nameCs": "Dotek řemeslníka - Polní oprava (Artisan's Touch)",
+    "categoryEn": "Memetic Special",
+    "categoryCs": "Memetická specializace",
+    "scenario": "core",
+    "rarity": "Epic",
+    "workbench": "Intermediate Supplies Workbench",
+    "energy": 0,
+    "hydration": 0,
+    "buffDuration": "Instant Field Durability Restore",
+    "sourceEn": "Memetic Specialization (Lvl 25 - 40 Pool)",
+    "sourceCs": "Memetická specializace (Výběr Lvl 25 - 40)",
+    "effectsEn": [
+      "Crafts single-use repair kits that restore equipped weapon or armor durability anywhere in the field",
+      "Requires zero workbench visits or spare raw materials during tough dungeon crawls",
+      "Ensures continuous combat effectiveness during Prime Wars and Silos"
+    ],
+    "effectsCs": [
+      "Vyrábí jednorázovou opravnou soupravu, která plně obnoví výdrž zbraně či zbroje kdekoli v terénu",
+      "Nevyžaduje návrat na základnu k opravárenskému stolu ani vzácné opravné suroviny",
+      "Klíčová výbava pro dlouhé dungeony (Silos), Monolithy a Prime Wars"
+    ],
+    "ingredientsEn": [
+      {
+        "name": "Steel Ingot",
+        "amount": "15x",
+        "isPrimary": true
+      },
+      {
+        "name": "Electronic Parts",
+        "amount": "10x"
+      },
+      {
+        "name": "Standard Parts",
+        "amount": "10x"
+      },
+      {
+        "name": "Rubber",
+        "amount": "8x"
+      }
+    ],
+    "ingredientsCs": [
+      {
+        "name": "Ocelový ingot",
+        "amount": "15x",
+        "isPrimary": true
+      },
+      {
+        "name": "Elektronické součástky",
+        "amount": "10x"
+      },
+      {
+        "name": "Standardní součástky",
+        "amount": "10x"
+      },
+      {
+        "name": "Guma (Rubber)",
+        "amount": "8x"
+      }
+    ],
+    "descriptionEn": "Emergency portable maintenance kit instantly restoring durability to worn guns and armor on the fly.",
+    "descriptionCs": "Pohotovostní polní opravná souprava pro okamžitou obnovu opotřebované výstroje přímo v boji."
+  },
+
+  {
+    "id": "spec-04",
+    "researchInvention": {
+      "chance": "High (Vysoká šance)",
+      "materialsCs": [
+        {
+          "name": "Kůže (Leather)",
+          "amount": "30x"
+        },
+        {
+          "name": "Látka / Textil",
+          "amount": "35x"
+        },
+        {
+          "name": "Ocelový ingot",
+          "amount": "15x"
+        },
+        {
+          "name": "Guma (Rubber)",
+          "amount": "15x"
+        }
+      ],
+      "materialsEn": [
+        {
+          "name": "Leather",
+          "amount": "30x"
+        },
+        {
+          "name": "Fabric",
+          "amount": "35x"
+        },
+        {
+          "name": "Steel Ingot",
+          "amount": "15x"
+        },
+        {
+          "name": "Rubber",
+          "amount": "15x"
+        }
+      ],
+      "reverseEngineeringCs": "Lze analyzovat z expedičních batohů a armádní výstroje v Chalk Peak.",
+      "reverseEngineeringEn": "Can be analyzed from expedition backpacks and tactical ruck frames in Chalk Peak."
+    },
+    "nameEn": "Backpack Expansion",
+    "nameCs": "Rozšíření nosnosti batohu (Backpack Expansion)",
+    "categoryEn": "Memetic Special",
+    "categoryCs": "Memetická specializace",
+    "scenario": "core",
+    "rarity": "Rare",
+    "workbench": "Supplies Workbench",
+    "energy": 0,
+    "hydration": 0,
+    "buffDuration": "+40 to +80 kg Permanent Carry Weight",
+    "sourceEn": "Memetic Specialization (Lvl 10 - 25 Pool)",
+    "sourceCs": "Memetická specializace (Výběr Lvl 10 - 25)",
+    "effectsEn": [
+      "Crafts ergonomic structural harness permanently increasing carry weight by +40 kg to +80 kg",
+      "Reduces encumbrance penalties while hauling heavy ores and building blocks",
+      "Stackable with culinary carry weight food buffs"
+    ],
+    "effectsCs": [
+      "Vyrábí ergonomický zádový postroj, který trvale navyšuje nosnost postavy o +40 kg až +80 kg",
+      "Předchází přetížení při nošení těžkých rud, stavebních dílů a zásob",
+      "Plně se sčítá s jídlem zvyšujícím nosnost batohu"
+    ],
+    "ingredientsEn": [
+      {
+        "name": "Leather",
+        "amount": "20x",
+        "isPrimary": true
+      },
+      {
+        "name": "Fabric",
+        "amount": "25x"
+      },
+      {
+        "name": "Steel Ingot",
+        "amount": "10x"
+      },
+      {
+        "name": "Rubber",
+        "amount": "10x"
+      }
+    ],
+    "ingredientsCs": [
+      {
+        "name": "Kůže (Leather)",
+        "amount": "20x",
+        "isPrimary": true
+      },
+      {
+        "name": "Látka / Textil",
+        "amount": "25x"
+      },
+      {
+        "name": "Ocelový ingot",
+        "amount": "10x"
+      },
+      {
+        "name": "Guma (Rubber)",
+        "amount": "10x"
+      }
+    ],
+    "descriptionEn": "Reinforced frame and utility straps providing a huge permanent boost to maximum carrying capacity.",
+    "descriptionCs": "Zesílená výztuž batohu poskytující masivní trvalé navýšení nosnosti pro těžaře a průzkumníky."
+  },
+
+  {
+    "id": "spec-05",
+    "researchInvention": {
+      "chance": "High (Vysoká šance)",
+      "materialsCs": [
+        {
+          "name": "Zdroj hvězdného prachu (Stardust)",
+          "amount": "15x"
+        },
+        {
+          "name": "Čistá voda",
+          "amount": "10x"
+        },
+        {
+          "name": "Cukr",
+          "amount": "5x"
+        },
+        {
+          "name": "Sklo",
+          "amount": "5x"
+        }
+      ],
+      "materialsEn": [
+        {
+          "name": "Stardust Source",
+          "amount": "15x"
+        },
+        {
+          "name": "Purified Water",
+          "amount": "10x"
+        },
+        {
+          "name": "Sugar",
+          "amount": "5x"
+        },
+        {
+          "name": "Glass",
+          "amount": "5x"
+        }
+      ],
+      "reverseEngineeringCs": "Lze analyzovat z výzkumných automatů na nápoje v Rosetta laboratořích v Red Sands.",
+      "reverseEngineeringEn": "Can be analyzed from vending dispensers in classified Rosetta Red Sands laboratories."
+    },
+    "nameEn": "Stardust Energy Drink",
+    "nameCs": "Energetický nápoj z hvězdného prachu (Stardust Energy Drink)",
+    "categoryEn": "Memetic Special",
+    "categoryCs": "Memetická specializace",
+    "scenario": "core",
+    "rarity": "Fine",
+    "workbench": "Cooking Stove / Integrated Kitchen",
+    "energy": 0,
+    "hydration": 40,
+    "buffDuration": "30s Infinite Stamina Sprint",
+    "sourceEn": "Memetic Specialization (Lvl 15 - 35 Pool)",
+    "sourceCs": "Memetická specializace (Výběr Lvl 15 - 35)",
+    "effectsEn": [
+      "Instantly replenishes 100% of maximum Stamina",
+      "Grants unlimited sprinting, climbing, and rolling stamina for 30 seconds",
+      "Increases movement speed by +10%"
+    ],
+    "effectsCs": [
+      "Okamžitě doplňuje 100 % maximální Staminy",
+      "Poskytuje nekonečnou staminu pro sprint, šplhání a úskoky po dobu 30 sekund",
+      "Zvyšuje rychlost pohybu o +10 %"
+    ],
+    "ingredientsEn": [
+      {
+        "name": "Stardust Source",
+        "amount": "2x",
+        "isPrimary": true
+      },
+      {
+        "name": "Purified Water",
+        "amount": "2x"
+      },
+      {
+        "name": "Corn",
+        "amount": "2x"
+      },
+      {
+        "name": "Sugar",
+        "amount": "1x"
+      }
+    ],
+    "ingredientsCs": [
+      {
+        "name": "Zdroj hvězdného prachu (Stardust)",
+        "amount": "2x",
+        "isPrimary": true
+      },
+      {
+        "name": "Čistá voda",
+        "amount": "2x"
+      },
+      {
+        "name": "Kukuřice",
+        "amount": "2x"
+      },
+      {
+        "name": "Cukr",
+        "amount": "1x"
+      }
+    ],
+    "descriptionEn": "Hyper-stimulating beverage providing boundless energy for intense combat and rapid repositioning.",
+    "descriptionCs": "Extrémně povzbuzující nápoj pro okamžité obnovení staminy a nekonečný sprint v krizových chvílích."
+  },
+
+  {
+    "id": "spec-06",
+    "researchInvention": {
+      "chance": "High (Vysoká šance)",
+      "materialsCs": [
+        {
+          "name": "Zdroj hvězdného prachu (Stardust)",
+          "amount": "12x"
+        },
+        {
+          "name": "Třapatka (Coneflower)",
+          "amount": "15x"
+        },
+        {
+          "name": "Čistá voda",
+          "amount": "10x"
+        },
+        {
+          "name": "Sklo",
+          "amount": "5x"
+        }
+      ],
+      "materialsEn": [
+        {
+          "name": "Stardust Source",
+          "amount": "12x"
+        },
+        {
+          "name": "Coneflower",
+          "amount": "15x"
+        },
+        {
+          "name": "Purified Water",
+          "amount": "10x"
+        },
+        {
+          "name": "Glass",
+          "amount": "5x"
+        }
+      ],
+      "reverseEngineeringCs": "Lze rozebrat z bylinkářských sušiček a svatyň v lesích Chalk Peak.",
+      "reverseEngineeringEn": "Can be salvaged from herbal drying racks and shrines in Chalk Peak forests."
+    },
+    "nameEn": "Stardust Tea",
+    "nameCs": "Čaj z hvězdného prachu (Stardust Tea)",
+    "categoryEn": "Memetic Special",
+    "categoryCs": "Memetická specializace",
+    "scenario": "core",
+    "rarity": "Fine",
+    "workbench": "Cooking Stove / Integrated Kitchen",
+    "energy": 0,
+    "hydration": 50,
+    "buffDuration": "30m Sanity Regen & Pollution Ward",
+    "sourceEn": "Memetic Specialization (Lvl 20 - 40 Pool)",
+    "sourceCs": "Memetická specializace (Výběr Lvl 20 - 40)",
+    "effectsEn": [
+      "Restores 1 Sanity point every 2 seconds for 30 minutes",
+      "Reduces Sanity drain from ambient Pollution by 50%",
+      "Prevents maximum HP reduction caused by heavy anomalous mist"
+    ],
+    "effectsCs": [
+      "Obnovuje 1 bod Sanity každé 2 sekundy po dobu 30 minut",
+      "Snižuje ztrátu Sanity způsobenou znečištěním (Pollution) o 50 %",
+      "Zabraňuje zmenšování maximálního zdraví při pobytu v anomálních zónách"
+    ],
+    "ingredientsEn": [
+      {
+        "name": "Stardust Source",
+        "amount": "2x",
+        "isPrimary": true
+      },
+      {
+        "name": "Purified Water",
+        "amount": "2x"
+      },
+      {
+        "name": "Coneflower",
+        "amount": "3x"
+      }
+    ],
+    "ingredientsCs": [
+      {
+        "name": "Zdroj hvězdného prachu (Stardust)",
+        "amount": "2x",
+        "isPrimary": true
+      },
+      {
+        "name": "Čistá voda",
+        "amount": "2x"
+      },
+      {
+        "name": "Třapatka (Coneflower)",
+        "amount": "3x"
+      }
+    ],
+    "descriptionEn": "Soothing brew maintaining mental clarity and insulating the mind from harsh radioactive pollution.",
+    "descriptionCs": "Léčivý čaj chránící mysl před znečištěním a průběžně obnovující zdravý rozum (Sanity)."
+  },
+
+  {
+    "id": "spec-07",
+    "researchInvention": {
+      "chance": "High (Vysoká šance)",
+      "materialsCs": [
+        {
+          "name": "Ocelový ingot",
+          "amount": "25x"
+        },
+        {
+          "name": "Zušlechtěné součástky",
+          "amount": "15x"
+        },
+        {
+          "name": "Elektronické součástky",
+          "amount": "12x"
+        },
+        {
+          "name": "Žáruvzdorný jíl (Fire Clay)",
+          "amount": "10x"
+        }
+      ],
+      "materialsEn": [
+        {
+          "name": "Steel Ingot",
+          "amount": "25x"
+        },
+        {
+          "name": "Refined Parts",
+          "amount": "15x"
+        },
+        {
+          "name": "Electronic Parts",
+          "amount": "12x"
+        },
+        {
+          "name": "Fire Clay",
+          "amount": "10x"
+        }
+      ],
+      "reverseEngineeringCs": "Lze analyzovat z přesných metalurgických pecí v Blackfell Ocelárnách.",
+      "reverseEngineeringEn": "Can be analyzed from high-precision metallurgical furnaces in Blackfell Steel Mills."
+    },
+    "nameEn": "Precision Smelting",
+    "nameCs": "Přesné tavení kovů (Precision Smelting)",
+    "categoryEn": "Memetic Special",
+    "categoryCs": "Memetická specializace",
+    "scenario": "core",
+    "rarity": "Epic",
+    "workbench": "Electric Furnace",
+    "energy": 0,
+    "hydration": 0,
+    "buffDuration": "-30% Ore & Fuel Cost per Ingot",
+    "sourceEn": "Memetic Specialization (Lvl 20 - 45 Pool)",
+    "sourceCs": "Memetická specializace (Výběr Lvl 20 - 45)",
+    "effectsEn": [
+      "Reduces ore and charcoal consumption by 30% for all high-tier ingots (Steel, Aluminum, Tungsten)",
+      "Speeds up electric smelting cycles by 25%",
+      "Massive compound resource savings for guild and fortress builders"
+    ],
+    "effectsCs": [
+      "Snižuje spotřebu rudy a paliva o 30 % při tavení všech pokročilých ingotů (Ocel, Hliník, Wolfram)",
+      "Zrychluje dobu tavení v elektrické peci o 25 %",
+      "Masivní úspora surovin při stavbě velkých základen a výrobě munice"
+    ],
+    "ingredientsEn": [
+      {
+        "name": "Steel Ingot",
+        "amount": "20x",
+        "isPrimary": true
+      },
+      {
+        "name": "Refined Parts",
+        "amount": "10x"
+      },
+      {
+        "name": "Electronic Parts",
+        "amount": "8x"
+      }
+    ],
+    "ingredientsCs": [
+      {
+        "name": "Ocelový ingot",
+        "amount": "20x",
+        "isPrimary": true
+      },
+      {
+        "name": "Zušlechtěné součástky",
+        "amount": "10x"
+      },
+      {
+        "name": "Elektronické součástky",
+        "amount": "8x"
+      }
+    ],
+    "descriptionEn": "Refined thermal induction technique drastically curtailing raw ore input requirements for metallurgy.",
+    "descriptionCs": "Pokročilá technologie indukčního ohřevu snižující náklady na tavení ingotů o téměř třetinu."
+  },
+
+  {
+    "id": "spec-08",
+    "researchInvention": {
+      "chance": "High (Vysoká šance)",
+      "materialsCs": [
+        {
+          "name": "Elektronické součástky",
+          "amount": "25x"
+        },
+        {
+          "name": "Ocelový ingot",
+          "amount": "20x"
+        },
+        {
+          "name": "Standardní součástky",
+          "amount": "20x"
+        },
+        {
+          "name": "Sklo",
+          "amount": "10x"
+        }
+      ],
+      "materialsEn": [
+        {
+          "name": "Electronic Parts",
+          "amount": "25x"
+        },
+        {
+          "name": "Steel Ingot",
+          "amount": "20x"
+        },
+        {
+          "name": "Standard Parts",
+          "amount": "20x"
+        },
+        {
+          "name": "Glass",
+          "amount": "10x"
+        }
+      ],
+      "reverseEngineeringCs": "Lze analyzovat ze servisních diagnostických terminálů v Iron River a Chalk Peak.",
+      "reverseEngineeringEn": "Can be analyzed from diagnostic maintenance terminals in Iron River and Chalk Peak."
+    },
+    "nameEn": "Electronic Scrapper",
+    "nameCs": "Recyklace elektroniky (Electronic Scrapper)",
+    "categoryEn": "Memetic Special",
+    "categoryCs": "Memetická specializace",
+    "scenario": "core",
+    "rarity": "Fine",
+    "workbench": "Disassembly Bench",
+    "energy": 0,
+    "hydration": 0,
+    "buffDuration": "+50% Components from Salvage",
+    "sourceEn": "Memetic Specialization (Lvl 10 - 30 Pool)",
+    "sourceCs": "Memetická specializace (Výběr Lvl 10 - 30)",
+    "effectsEn": [
+      "Increases Electronic Parts and Refined Parts yield by +50% when disassembling junk and scrap",
+      "Boosts salvage output from computers, circuit boards, and appliances",
+      "Essential perk for maintaining electronic part reserves"
+    ],
+    "effectsCs": [
+      "Zvyšuje zisk elektronických a zušlechtěných součástek o +50 % při rozebírání šrotu na demontážním stole",
+      "Zvyšuje výtěžnost ze starých počítačů, desek plošných spojů a elektrospotřebičů",
+      "Nenahraditelná specializace pro zajištění dostatku elektroniky pro pokročilé stroje"
+    ],
+    "ingredientsEn": [
+      {
+        "name": "Electronic Parts",
+        "amount": "20x",
+        "isPrimary": true
+      },
+      {
+        "name": "Steel Ingot",
+        "amount": "15x"
+      },
+      {
+        "name": "Standard Parts",
+        "amount": "15x"
+      }
+    ],
+    "ingredientsCs": [
+      {
+        "name": "Elektronické součástky",
+        "amount": "20x",
+        "isPrimary": true
+      },
+      {
+        "name": "Ocelový ingot",
+        "amount": "15x"
+      },
+      {
+        "name": "Standardní součástky",
+        "amount": "15x"
+      }
+    ],
+    "descriptionEn": "Precision dismantling protocol recovering half again as many delicate circuits from raw scrap.",
+    "descriptionCs": "Specializovaný rozkladný protokol maximalizující zisk elektronických čipů a součástek ze šrotu."
+  },
+
+  {
+    "id": "spec-09",
+    "researchInvention": {
+      "chance": "High (Vysoká šance)",
+      "materialsCs": [
+        {
+          "name": "Hliníkový ingot",
+          "amount": "30x"
+        },
+        {
+          "name": "Kyselina (Acid)",
+          "amount": "20x"
+        },
+        {
+          "name": "Elektronické součástky",
+          "amount": "20x"
+        },
+        {
+          "name": "Guma (Rubber)",
+          "amount": "15x"
+        }
+      ],
+      "materialsEn": [
+        {
+          "name": "Aluminum Ingot",
+          "amount": "30x"
+        },
+        {
+          "name": "Acid",
+          "amount": "20x"
+        },
+        {
+          "name": "Electronic Parts",
+          "amount": "20x"
+        },
+        {
+          "name": "Rubber",
+          "amount": "15x"
+        }
+      ],
+      "reverseEngineeringCs": "Lze demontovat z velkokapacitních rozvoden v Red Sands.",
+      "reverseEngineeringEn": "Can be salvaged from heavy battery transformer banks in Red Sands."
+    },
+    "nameEn": "High-Capacity Storage Battery",
+    "nameCs": "Vysokokapacitní akumulátor (High-Capacity Battery)",
+    "categoryEn": "Memetic Special",
+    "categoryCs": "Memetická specializace",
+    "scenario": "core",
+    "rarity": "Fine",
+    "workbench": "Territory Build Mode",
+    "energy": 0,
+    "hydration": 0,
+    "buffDuration": "4000 Wh Massive Energy Storage",
+    "sourceEn": "Memetic Specialization (Lvl 25 - 45 Pool)",
+    "sourceCs": "Memetická specializace (Výběr Lvl 25 - 45)",
+    "effectsEn": [
+      "Quadruples electrical storage capacity to 4000 Wh per cell",
+      "Stores surplus daytime solar and wind energy for overnight facility operation",
+      "Prevents base power grid blackout during night-time defense purifications"
+    ],
+    "effectsCs": [
+      "Čtyřnásobně zvyšuje kapacitu akumulátoru na 4000 Wh na jednu buňku",
+      "Ukládá denní přebytky ze solárních a větrných elektráren pro noční provoz báze",
+      "Zabraňuje výpadkům obranných věží a ledniček během nočních nájezdů"
+    ],
+    "ingredientsEn": [
+      {
+        "name": "Aluminum Ingot",
+        "amount": "25x",
+        "isPrimary": true
+      },
+      {
+        "name": "Acid",
+        "amount": "15x"
+      },
+      {
+        "name": "Electronic Parts",
+        "amount": "15x"
+      },
+      {
+        "name": "Rubber",
+        "amount": "10x"
+      }
+    ],
+    "ingredientsCs": [
+      {
+        "name": "Hliníkový ingot",
+        "amount": "25x",
+        "isPrimary": true
+      },
+      {
+        "name": "Kyselina (Acid)",
+        "amount": "15x"
+      },
+      {
+        "name": "Elektronické součástky",
+        "amount": "15x"
+      },
+      {
+        "name": "Guma (Rubber)",
+        "amount": "10x"
+      }
+    ],
+    "descriptionEn": "Industrial accumulator module banking massive reserves of surplus wattage for around-the-clock power.",
+    "descriptionCs": "Velkokapacitní bateriové úložiště pro bezproblémový noční chod těžkých strojů a obranných věží."
+  },
+
+  {
+    "id": "spec-10",
+    "researchInvention": {
+      "chance": "High (Vysoká šance)",
+      "materialsCs": [
+        {
+          "name": "Wolframový ingot",
+          "amount": "25x"
+        },
+        {
+          "name": "Standardní součástky",
+          "amount": "20x"
+        },
+        {
+          "name": "Elektronické součástky",
+          "amount": "15x"
+        }
+      ],
+      "materialsEn": [
+        {
+          "name": "Tungsten Ingot",
+          "amount": "25x"
+        },
+        {
+          "name": "Standard Parts",
+          "amount": "20x"
+        },
+        {
+          "name": "Electronic Parts",
+          "amount": "15x"
+        }
+      ],
+      "reverseEngineeringCs": "Lze analyzovat z armádních automatických palebných stanovišť v Chalk Peak.",
+      "reverseEngineeringEn": "Can be analyzed from automated military firing stations in Chalk Peak."
+    },
+    "nameEn": "Automated Turret: Heavy Upgrade",
+    "nameCs": "Těžkometná obranná věž (Heavy Turret Upgrade)",
+    "categoryEn": "Memetic Special",
+    "categoryCs": "Memetická specializace",
+    "scenario": "core",
+    "rarity": "Epic",
+    "workbench": "Territory Build Mode",
+    "energy": 20,
+    "hydration": 0,
+    "buffDuration": "+25% Fire Rate & -30% Ammo Use",
+    "sourceEn": "Memetic Specialization (Lvl 30 - 50 Pool)",
+    "sourceCs": "Memetická specializace (Výběr Lvl 30 - 50)",
+    "effectsEn": [
+      "Increases turret firing rate by +25% and engagement range by 15 meters",
+      "Reduces ammunition consumption by 30% via predictive targeting algorithms",
+      "Enhances base defense resilience against elite Prime War elites"
+    ],
+    "effectsCs": [
+      "Zvyšuje kadenci obranných věží o +25 % a dostřel o 15 metrů",
+      "Snižuje spotřebu munice o 30 % díky prediktivnímu zaměřovacímu algoritmu",
+      "Zásadně posiluje obranu základny proti elitním deviantům a bossům"
+    ],
+    "ingredientsEn": [
+      {
+        "name": "Tungsten Ingot",
+        "amount": "20x",
+        "isPrimary": true
+      },
+      {
+        "name": "Standard Parts",
+        "amount": "15x"
+      },
+      {
+        "name": "Electronic Parts",
+        "amount": "12x"
+      }
+    ],
+    "ingredientsCs": [
+      {
+        "name": "Wolframový ingot",
+        "amount": "20x",
+        "isPrimary": true
+      },
+      {
+        "name": "Standardní součástky",
+        "amount": "15x"
+      },
+      {
+        "name": "Elektronické součástky",
+        "amount": "12x"
+      }
+    ],
+    "descriptionEn": "Military-spec targeting and actuator enhancement boosting territorial sentry firepower and ammo economy.",
+    "descriptionCs": "Vojenský upgrade obranných věží zvyšující jejich palebnou sílu a šetřící zásoby munice."
+  },
+
+  {
+    "id": "spec-11",
+    "researchInvention": {
+      "chance": "High (Vysoká šance)",
+      "materialsCs": [
+        {
+          "name": "Hliníkový ingot",
+          "amount": "20x"
+        },
+        {
+          "name": "Sklo",
+          "amount": "15x"
+        },
+        {
+          "name": "Koření (Spice)",
+          "amount": "15x"
+        },
+        {
+          "name": "Dřevěné uhlí",
+          "amount": "10x"
+        }
+      ],
+      "materialsEn": [
+        {
+          "name": "Aluminum Ingot",
+          "amount": "20x"
+        },
+        {
+          "name": "Glass",
+          "amount": "15x"
+        },
+        {
+          "name": "Spice",
+          "amount": "15x"
+        },
+        {
+          "name": "Charcoal",
+          "amount": "10x"
+        }
+      ],
+      "reverseEngineeringCs": "Lze analyzovat z kulinářských akademií v Blackfell City.",
+      "reverseEngineeringEn": "Can be analyzed from culinary institutes across Blackfell City."
+    },
+    "nameEn": "Gourmet Master",
+    "nameCs": "Gurmánský mistr - Dvojnásobné buffy (Gourmet Master)",
+    "categoryEn": "Memetic Special",
+    "categoryCs": "Memetická specializace",
+    "scenario": "core",
+    "rarity": "Rare",
+    "workbench": "Cooking Stove / Integrated Kitchen",
+    "energy": 0,
+    "hydration": 0,
+    "buffDuration": "+100% Meal Buff Duration",
+    "sourceEn": "Memetic Specialization (Lvl 15 - 35 Pool)",
+    "sourceCs": "Memetická specializace (Výběr Lvl 15 - 35)",
+    "effectsEn": [
+      "Doubles the duration of all consumed food and drink buffs from 30 to 60 minutes",
+      "Increases meal nutrient values (Energy and Hydration restore) by +25%",
+      "Huge quality-of-life boost for boss runs and farming expeditions"
+    ],
+    "effectsCs": [
+      "Zdvojnásobuje dobu trvání všech snězených pokrmů a nápojů z 30 na 60 minut",
+      "Zvyšuje nutriční hodnoty pokrmů (obnovu Energie a Hydratace) o +25 %",
+      "Obrovské usnadnění pro náročné boss fighty, dungeony a farmící výpravy"
+    ],
+    "ingredientsEn": [
+      {
+        "name": "Aluminum Ingot",
+        "amount": "15x",
+        "isPrimary": true
+      },
+      {
+        "name": "Glass",
+        "amount": "10x"
+      },
+      {
+        "name": "Spice",
+        "amount": "10x"
+      }
+    ],
+    "ingredientsCs": [
+      {
+        "name": "Hliníkový ingot",
+        "amount": "15x",
+        "isPrimary": true
+      },
+      {
+        "name": "Sklo",
+        "amount": "10x"
+      },
+      {
+        "name": "Koření (Spice)",
+        "amount": "10x"
+      }
+    ],
+    "descriptionEn": "Culinary mastery extending the beneficial properties of gourmet dishes to a full hour of sustained performance.",
+    "descriptionCs": "Kuchařské umění prodlužující veškeré buffy z jídla na celou hodinu."
+  },
+
+  {
+    "id": "spec-12",
+    "researchInvention": {
+      "chance": "High (Vysoká šance)",
+      "materialsCs": [
+        {
+          "name": "Guma (Rubber)",
+          "amount": "20x"
+        },
+        {
+          "name": "Sklo",
+          "amount": "15x"
+        },
+        {
+          "name": "Plast",
+          "amount": "15x"
+        },
+        {
+          "name": "Měděný ingot",
+          "amount": "12x"
+        }
+      ],
+      "materialsEn": [
+        {
+          "name": "Rubber",
+          "amount": "20x"
+        },
+        {
+          "name": "Glass",
+          "amount": "15x"
+        },
+        {
+          "name": "Plastic",
+          "amount": "15x"
+        },
+        {
+          "name": "Copper Ingot",
+          "amount": "12x"
+        }
+      ],
+      "reverseEngineeringCs": "Lze rozebrat z meteorologických a hydrologických stanic v Broken Delta.",
+      "reverseEngineeringEn": "Can be salvaged from meteorology and atmospheric testing posts in Broken Delta."
+    },
+    "nameEn": "Portable Rainwater Collector",
+    "nameCs": "Přenosný zachytávač vody (Portable Rain Collector)",
+    "categoryEn": "Memetic Special",
+    "categoryCs": "Memetická specializace",
+    "scenario": "core",
+    "rarity": "Common",
+    "workbench": "Supplies Workbench",
+    "energy": 0,
+    "hydration": 0,
+    "buffDuration": "Passive Backpack Water Generation",
+    "sourceEn": "Memetic Specialization (Lvl 5 - 20 Pool)",
+    "sourceCs": "Memetická specializace (Výběr Lvl 5 - 20)",
+    "effectsEn": [
+      "Wearable atmospheric condenser passively gathering Purified Water over time into canteen",
+      "Triple generation speed during rainy or misty weather",
+      "Completely negates thirst concerns during extended wilderness scouting"
+    ],
+    "effectsCs": [
+      "Nosný kondenzační modul, který pasivně plní polní láhev čistou pitnou vodou",
+      "Trojnásobná rychlost doplňování vody během deště a mlhy",
+      "Zcela eliminuje starosti s dehydratací při dlouhých cestách divočinou"
+    ],
+    "ingredientsEn": [
+      {
+        "name": "Rubber",
+        "amount": "15x",
+        "isPrimary": true
+      },
+      {
+        "name": "Glass",
+        "amount": "10x"
+      },
+      {
+        "name": "Plastic",
+        "amount": "10x"
+      },
+      {
+        "name": "Copper Ingot",
+        "amount": "8x"
+      }
+    ],
+    "ingredientsCs": [
+      {
+        "name": "Guma (Rubber)",
+        "amount": "15x",
+        "isPrimary": true
+      },
+      {
+        "name": "Sklo",
+        "amount": "10x"
+      },
+      {
+        "name": "Plast",
+        "amount": "10x"
+      },
+      {
+        "name": "Měděný ingot",
+        "amount": "8x"
+      }
+    ],
+    "descriptionEn": "Backpack-mounted condensation condenser continuously trickling pure drinking water directly into your flasks.",
+    "descriptionCs": "Praktický zádový kondenzátor, který z vlhkosti vzduchu a deště nepřetržitě vyrábí čistou pitnou vodu."
+  },
+
+  {
+    "id": "spec-13",
+    "researchInvention": {
+      "chance": "High (Vysoká šance)",
+      "materialsCs": [
+        {
+          "name": "Ocelový ingot",
+          "amount": "30x"
+        },
+        {
+          "name": "Zušlechtěné součástky",
+          "amount": "20x"
+        },
+        {
+          "name": "Elektronické součástky",
+          "amount": "15x"
+        },
+        {
+          "name": "Palivo (Fuel)",
+          "amount": "20x"
+        }
+      ],
+      "materialsEn": [
+        {
+          "name": "Steel Ingot",
+          "amount": "30x"
+        },
+        {
+          "name": "Refined Parts",
+          "amount": "20x"
+        },
+        {
+          "name": "Electronic Parts",
+          "amount": "15x"
+        },
+        {
+          "name": "Fuel",
+          "amount": "20x"
+        }
+      ],
+      "reverseEngineeringCs": "Lze demontovat z lesnických velko-kombinátů v Iron River a Chalk Peak.",
+      "reverseEngineeringEn": "Can be salvaged from forestry complexes in Iron River and Chalk Peak."
+    },
+    "nameEn": "Turbo Logging Chainsaw",
+    "nameCs": "Motorová pila s turbo pohonem (Turbo Chainsaw)",
+    "categoryEn": "Memetic Special",
+    "categoryCs": "Memetická specializace",
+    "scenario": "core",
+    "rarity": "Fine",
+    "workbench": "Advanced Supplies Workbench",
+    "energy": 0,
+    "hydration": 0,
+    "buffDuration": "+100% Chopping Speed & +50% Wood Yield",
+    "sourceEn": "Memetic Specialization (Lvl 20 - 40 Pool)",
+    "sourceCs": "Memetická specializace (Výběr Lvl 20 - 40)",
+    "effectsEn": [
+      "Fells entire trees in under 2 seconds with high-rpm carbide blade",
+      "Yields +50% more Wood (Logs) and valuable Tree Sap per trunk",
+      "Greatly accelerates lumber stocking for massive base construction"
+    ],
+    "effectsCs": [
+      "Pokácí vzrostlý strom za necelé 2 sekundy díky vysokootáčkovému motoru",
+      "Dává o +50 % více dřeva i vzácné pryskyřice (Sap) z každého kmene",
+      "Výrazně urychluje těžbu dřeva pro stavbu velkých dřevěných sídel"
+    ],
+    "ingredientsEn": [
+      {
+        "name": "Steel Ingot",
+        "amount": "25x",
+        "isPrimary": true
+      },
+      {
+        "name": "Refined Parts",
+        "amount": "15x"
+      },
+      {
+        "name": "Electronic Parts",
+        "amount": "10x"
+      },
+      {
+        "name": "Portable Mixed Fuel",
+        "amount": "15x"
+      }
+    ],
+    "ingredientsCs": [
+      {
+        "name": "Ocelový ingot",
+        "amount": "25x",
+        "isPrimary": true
+      },
+      {
+        "name": "Zušlechtěné součástky",
+        "amount": "15x"
+      },
+      {
+        "name": "Elektronické součástky",
+        "amount": "10x"
+      },
+      {
+        "name": "Přenosné palivo (Fuel)",
+        "amount": "15x"
+      }
+    ],
+    "descriptionEn": "High-power gas chainsaw slicing through timber effortlessly while collecting extra resin and sap.",
+    "descriptionCs": "Vysoce výkonná motorová pila pro bleskurychlou těžbu dřeva a sběr cenné pryskyřice."
+  },
+
+  {
+    "id": "spec-14",
+    "researchInvention": {
+      "chance": "High (Vysoká šance)",
+      "materialsCs": [
+        {
+          "name": "Wolframový ingot",
+          "amount": "20x"
+        },
+        {
+          "name": "Střelný prach",
+          "amount": "30x"
+        },
+        {
+          "name": "Kyselina (Acid)",
+          "amount": "12x"
+        },
+        {
+          "name": "Zdroj hvězdného prachu (Stardust)",
+          "amount": "8x"
+        }
+      ],
+      "materialsEn": [
+        {
+          "name": "Tungsten Ingot",
+          "amount": "20x"
+        },
+        {
+          "name": "Gunpowder",
+          "amount": "30x"
+        },
+        {
+          "name": "Acid",
+          "amount": "12x"
+        },
+        {
+          "name": "Stardust Source",
+          "amount": "8x"
+        }
+      ],
+      "reverseEngineeringCs": "Lze získat z elitních muničních trezorů v základnách Rosetta v Red Sands.",
+      "reverseEngineeringEn": "Can be obtained from elite ordnance lockers in Red Sands Rosetta facilities."
+    },
+    "nameEn": "Tungsten AP Overpressure Ammo",
+    "nameCs": "Vysokotlaké wolframové AP střelivo (Overpressure AP)",
+    "categoryEn": "Memetic Special",
+    "categoryCs": "Memetická specializace",
+    "scenario": "core",
+    "rarity": "Epic",
+    "workbench": "Supplies Workbench",
+    "energy": 0,
+    "hydration": 0,
+    "buffDuration": "+40% Armor Penetration & +25% Weakspot",
+    "sourceEn": "Memetic Specialization (Lvl 35 - 50 Pool)",
+    "sourceCs": "Memetická specializace (Výběr Lvl 35 - 50)",
+    "effectsEn": [
+      "Ignores 40% of target damage mitigation on armored Great Ones and Silo bosses",
+      "Increases Weakspot multiplier damage by +25%",
+      "Premier endgame raiding ammunition"
+    ],
+    "effectsCs": [
+      "Ignoruje 40 % zbroje a redukce poškození u obrněných bossů a Great Ones",
+      "Navyšuje poškození do slabých míst (Weakspot) o +25 %",
+      "Prvotřídní munice pro nejtěžší endgame raidové výzvy"
+    ],
+    "ingredientsEn": [
+      {
+        "name": "Tungsten Ingot",
+        "amount": "15x",
+        "isPrimary": true
+      },
+      {
+        "name": "Gunpowder",
+        "amount": "25x"
+      },
+      {
+        "name": "Acid",
+        "amount": "8x"
+      },
+      {
+        "name": "Stardust Source",
+        "amount": "5x"
+      }
+    ],
+    "ingredientsCs": [
+      {
+        "name": "Wolframový ingot",
+        "amount": "15x",
+        "isPrimary": true
+      },
+      {
+        "name": "Střelný prach",
+        "amount": "25x"
+      },
+      {
+        "name": "Kyselina (Acid)",
+        "amount": "8x"
+      },
+      {
+        "name": "Zdroj hvězdného prachu (Stardust)",
+        "amount": "5x"
+      }
+    ],
+    "descriptionEn": "Overcharged tungsten rounds delivering devastating piercing kinetic energy against hardened enemy armor.",
+    "descriptionCs": "Přetlakové wolframové projektily navržené pro proražení nejtěžších zbrojí a ničení slabých míst bossů."
+  },
+
+  {
+    "id": "spec-15",
+    "researchInvention": {
+      "chance": "High (Vysoká šance)",
+      "materialsCs": [
+        {
+          "name": "Ocelový ingot",
+          "amount": "25x"
+        },
+        {
+          "name": "Plast",
+          "amount": "30x"
+        },
+        {
+          "name": "Elektronické součástky",
+          "amount": "15x"
+        },
+        {
+          "name": "Guma (Rubber)",
+          "amount": "15x"
+        }
+      ],
+      "materialsEn": [
+        {
+          "name": "Steel Ingot",
+          "amount": "25x"
+        },
+        {
+          "name": "Plastic",
+          "amount": "30x"
+        },
+        {
+          "name": "Electronic Parts",
+          "amount": "15x"
+        },
+        {
+          "name": "Rubber",
+          "amount": "15x"
+        }
+      ],
+      "reverseEngineeringCs": "Lze demontovat z potravinářských balicích závodů v Meyer's Market a Iron River.",
+      "reverseEngineeringEn": "Can be salvaged from food packaging facilities in Meyer's Market and Iron River."
+    },
+    "nameEn": "Vacuum Food Sealer",
+    "nameCs": "Vakuová balička potravin (Vacuum Food Sealer)",
+    "categoryEn": "Memetic Special",
+    "categoryCs": "Memetická specializace",
+    "scenario": "core",
+    "rarity": "Fine",
+    "workbench": "Territory Build Mode",
+    "energy": 10,
+    "hydration": 0,
+    "buffDuration": "Infinite Shelf-Life MRE Packaging",
+    "sourceEn": "Memetic Specialization (Lvl 20 - 40 Pool)",
+    "sourceCs": "Memetická specializace (Výběr Lvl 20 - 40)",
+    "effectsEn": [
+      "Hermetically seals any cooked meal into a military MRE ration",
+      "Stops all expiration and spoilage indefinitely (0% spoilage decay)",
+      "Enables players to stockpile seasonal and scenario buff meals forever"
+    ],
+    "effectsCs": [
+      "Hermeticky vakuuje jakékoli uvařené jídlo do odolných MRE balíčků",
+      "Zcela zastavuje kažení (trvanlivost je neomezená – jídlo se nikdy nezkazí)",
+      "Umožňuje vytvořit neomezenou zásobu nejlepších buffovacích jídel pro celou sezónu"
+    ],
+    "ingredientsEn": [
+      {
+        "name": "Steel Ingot",
+        "amount": "20x",
+        "isPrimary": true
+      },
+      {
+        "name": "Plastic",
+        "amount": "25x"
+      },
+      {
+        "name": "Electronic Parts",
+        "amount": "12x"
+      },
+      {
+        "name": "Rubber",
+        "amount": "10x"
+      }
+    ],
+    "ingredientsCs": [
+      {
+        "name": "Ocelový ingot",
+        "amount": "20x",
+        "isPrimary": true
+      },
+      {
+        "name": "Plast",
+        "amount": "25x"
+      },
+      {
+        "name": "Elektronické součástky",
+        "amount": "12x"
+      },
+      {
+        "name": "Guma (Rubber)",
+        "amount": "10x"
+      }
+    ],
+    "descriptionEn": "Packaging machine vacuum-sealing delicate cuisine into shelf-stable rations that never rot.",
+    "descriptionCs": "Konzervační přístroj, který vakuově balí uvařená jídla do trvanlivých MRE s nekonečnou expirací."
+  },
+
+  {
+    "id": "spec-16",
+    "researchInvention": {
+      "chance": "High (Vysoká šance)",
+      "materialsCs": [
+        {
+          "name": "Elektronické součástky",
+          "amount": "25x"
+        },
+        {
+          "name": "Ocelový ingot",
+          "amount": "20x"
+        },
+        {
+          "name": "Měděný ingot",
+          "amount": "20x"
+        },
+        {
+          "name": "Sklo",
+          "amount": "12x"
+        }
+      ],
+      "materialsEn": [
+        {
+          "name": "Electronic Parts",
+          "amount": "25x"
+        },
+        {
+          "name": "Steel Ingot",
+          "amount": "20x"
+        },
+        {
+          "name": "Copper Ingot",
+          "amount": "20x"
+        },
+        {
+          "name": "Glass",
+          "amount": "12x"
+        }
+      ],
+      "reverseEngineeringCs": "Lze analyzovat z počítačových sálových jednotek v bankách Blackfell a Red Sands.",
+      "reverseEngineeringEn": "Can be analyzed from mainframe computer arrays in Blackfell and Red Sands banking centers."
+    },
+    "nameEn": "Trade Chipset Manufacturer",
+    "nameCs": "Výroba obchodních čipsetů (Trade Chipsets)",
+    "categoryEn": "Memetic Special",
+    "categoryCs": "Memetická specializace",
+    "scenario": "core",
+    "rarity": "Epic",
+    "workbench": "Advanced Supplies Workbench",
+    "energy": 0,
+    "hydration": 0,
+    "buffDuration": "25,000 Weekly Energy Links Profit",
+    "sourceEn": "Memetic Specialization (Lvl 30 - 50 Pool)",
+    "sourceCs": "Memetická specializace (Výběr Lvl 30 - 50)",
+    "effectsEn": [
+      "Crafts highly lucrative Combo Chipsets using standard electronics and metal ingots",
+      "Can be liquidated at NPC settlement vendors for up to 25,000 Energy Links every week",
+      "Premier method to hit the weekly merchant currency cap"
+    ],
+    "effectsCs": [
+      "Umožňuje pájení cenných kombinovaných čipsetů (Combo Chipset) z běžných součástek a ingotů",
+      "Lze je prodávat NPC obchodníkům v osadách až za 25 000 Energy Linků týdně",
+      "Nejefektivnější způsob, jak každý týden vybrat maximální limit herní měny od obchodníků"
+    ],
+    "ingredientsEn": [
+      {
+        "name": "Electronic Parts",
+        "amount": "20x",
+        "isPrimary": true
+      },
+      {
+        "name": "Steel Ingot",
+        "amount": "15x"
+      },
+      {
+        "name": "Copper Ingot",
+        "amount": "15x"
+      },
+      {
+        "name": "Glass",
+        "amount": "8x"
+      }
+    ],
+    "ingredientsCs": [
+      {
+        "name": "Elektronické součástky",
+        "amount": "20x",
+        "isPrimary": true
+      },
+      {
+        "name": "Ocelový ingot",
+        "amount": "15x"
+      },
+      {
+        "name": "Měděný ingot",
+        "amount": "15x"
+      },
+      {
+        "name": "Sklo",
+        "amount": "8x"
+      }
+    ],
+    "descriptionEn": "Micro-soldering technique turning raw components into valuable commodity chips traded to merchants for pure profit.",
+    "descriptionCs": "Specializovaná výrobní technologie na produkci drahých obchodních čipsetů pro prodej u NPC obchodníků."
   }
 ];
 
