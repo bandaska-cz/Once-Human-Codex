@@ -207,6 +207,7 @@ const i18n = {
        TAB 1: COMPLETE 43 DISCOVERED WORLD FORMULAS (CORE + WINTER)
        ========================================================================== */
     const discoveredRecipes = [
+
       {
         id: "b-01",
         nameEn: "Purified Water",
@@ -983,8 +984,736 @@ const i18n = {
         ingredientsCs: [{ name: "Dýně", amount: "3x", isPrimary: true }, { name: "Čistá voda", amount: "2x" }, { name: "Cukr", amount: "1x" }],
         descriptionEn: "Effervescent sweet pumpkin puree stimulating reflex speed.",
         descriptionCs: "Jemně perlivá polévka zvyšující kadenci a rychlost úderů."
+      },
+
+  {
+    "id": "d-34",
+    "nameEn": "Honey Glazed Meat",
+    "nameCs": "Medem glazované maso (Honey Glazed Meat)",
+    "categoryEn": "Food",
+    "categoryCs": "Jídlo",
+    "scenario": "core",
+    "rarity": "Fine",
+    "workbench": "Kitchen Stove",
+    "energy": 80,
+    "hydration": 0,
+    "buffDuration": "1800s (30 min)",
+    "sourceEn": "Alternate Reality Research Institute (6901, -1495) - northern outdoor patio table",
+    "sourceCs": "Alternate Reality Research Institute (6901, -1495) – stůl v severní venkovní jídelně",
+    "effectsEn": [
+      "Max HP +300",
+      "Weapon DMG bonus +12%",
+      "Restores 2% of maximum HP on every enemy kill"
+    ],
+    "effectsCs": [
+      "Maximální HP +300",
+      "Bonus k poškození zbraněmi +12%",
+      "Obnoví 2% maximálního zdraví za každého zabitého nepřítele"
+    ],
+    "ingredientsEn": [
+      {
+        "name": "Deer Meat",
+        "amount": "2x",
+        "isPrimary": true
+      },
+      {
+        "name": "Aloe",
+        "amount": "2x"
+      },
+      {
+        "name": "Purified Water",
+        "amount": "1x"
+      },
+      {
+        "name": "Refined Sugar",
+        "amount": "1x"
       }
-    ];
+    ],
+    "ingredientsCs": [
+      {
+        "name": "Jelení maso",
+        "amount": "2x",
+        "isPrimary": true
+      },
+      {
+        "name": "Aloe",
+        "amount": "2x"
+      },
+      {
+        "name": "Čistá filtrovaná voda",
+        "amount": "1x"
+      },
+      {
+        "name": "Rafinovaný cukr",
+        "amount": "1x"
+      }
+    ],
+    "descriptionEn": "Succulent chunks of deer meat braised in sweet glaze, invigorating the hunter with vital stamina.",
+    "descriptionCs": "Šťavnaté kousky jeleního masa vařené ve sladké glazuře, dodávající lovci vitalitu a zdraví."
+  },
+
+  {
+    "id": "d-35",
+    "nameEn": "Fish & Chips",
+    "nameCs": "Rybí hranolky s měsíčníkem (Fish & Chips)",
+    "categoryEn": "Food",
+    "categoryCs": "Jídlo",
+    "scenario": "core",
+    "rarity": "Rare",
+    "workbench": "Kitchen Stove",
+    "energy": 90,
+    "hydration": 0,
+    "buffDuration": "1800s (30 min)",
+    "sourceEn": "Evergreen settlement (4294, -2364) - WHW Cafe table next to the counter",
+    "sourceCs": "Evergreen osada (4294, -2364) – stůl vedle pultu v WHW Café",
+    "effectsEn": [
+      "Swim Speed +40%",
+      "Underwater Lung Capacity +100%",
+      "Firearm Reload Speed +15%"
+    ],
+    "effectsCs": [
+      "Rychlost plavání +40%",
+      "Kapacita plic pod vodou +100%",
+      "Rychlost přebíjení zbraní +15%"
+    ],
+    "ingredientsEn": [
+      {
+        "name": "Sunfish",
+        "amount": "1x",
+        "isPrimary": true
+      },
+      {
+        "name": "Potato",
+        "amount": "2x"
+      },
+      {
+        "name": "Cooking Oil",
+        "amount": "2x"
+      },
+      {
+        "name": "Deviated Peppercorn",
+        "amount": "1x"
+      }
+    ],
+    "ingredientsCs": [
+      {
+        "name": "Měsíčník / Sunfish",
+        "amount": "1x",
+        "isPrimary": true
+      },
+      {
+        "name": "Brambory",
+        "amount": "2x"
+      },
+      {
+        "name": "Rostlinný olej na vaření",
+        "amount": "2x"
+      },
+      {
+        "name": "Mutovaný pepř",
+        "amount": "1x"
+      }
+    ],
+    "descriptionEn": "Crispy battered Sunfish served with golden fries; an all-time classic sea comfort dish.",
+    "descriptionCs": "Křupavé kousky měsíčníka v těstíčku podávané se smaženými hranolky; klasika pro průzkum vodního světa."
+  },
+
+  {
+    "id": "d-36",
+    "nameEn": "Yuanbao Dumplings",
+    "nameCs": "Knedlíčky Yuanbao (Peněžní taštičky štěstí)",
+    "categoryEn": "Food",
+    "categoryCs": "Jídlo",
+    "scenario": "core",
+    "rarity": "Epic",
+    "workbench": "Kitchen Stove",
+    "energy": 85,
+    "hydration": 0,
+    "buffDuration": "1800s (30 min)",
+    "sourceEn": "Tall Grass Inn - Urban Food diner counter near the front entrance",
+    "sourceCs": "Tall Grass Inn – barový pult v jídelně Urban Food u hlavního vchodu",
+    "effectsEn": [
+      "High NPC merchant resale value (300+ Energy Links per unit)",
+      "Energy Link drops from monsters +25%",
+      "Critical Damage +15%"
+    ],
+    "effectsCs": [
+      "Vysoká prodejní cena u NPC obchodníků (300+ Energy Linků za kus)",
+      "Zisk Energy Linků z monster +25%",
+      "Kritické poškození +15%"
+    ],
+    "ingredientsEn": [
+      {
+        "name": "Wheat Flour",
+        "amount": "3x",
+        "isPrimary": true
+      },
+      {
+        "name": "Cabbage",
+        "amount": "2x"
+      },
+      {
+        "name": "Raw Meat",
+        "amount": "2x"
+      },
+      {
+        "name": "Cooking Oil",
+        "amount": "1x"
+      }
+    ],
+    "ingredientsCs": [
+      {
+        "name": "Pšeničná mouka",
+        "amount": "3x",
+        "isPrimary": true
+      },
+      {
+        "name": "Zelí",
+        "amount": "2x"
+      },
+      {
+        "name": "Syrové maso",
+        "amount": "2x"
+      },
+      {
+        "name": "Rostlinný olej na vaření",
+        "amount": "1x"
+      }
+    ],
+    "descriptionEn": "Traditional ingot-shaped festive dumplings bringing immense wealth, fortune, and high vendor resale profits.",
+    "descriptionCs": "Tradiční taštičky ve tvaru zlatých slitků přinášející štěstí, bohatství a obrovský zisk při prodeji obchodníkům."
+  },
+
+  {
+    "id": "d-37",
+    "nameEn": "Whimsical Drink",
+    "nameCs": "Rozmarný halucinogenní nápoj (Whimsical Drink)",
+    "categoryEn": "Drink",
+    "categoryCs": "Nápoj",
+    "scenario": "core",
+    "rarity": "Rare",
+    "workbench": "Kitchen Stove",
+    "energy": 0,
+    "hydration": 60,
+    "buffDuration": "1800s (30 min)",
+    "sourceEn": "Brewery Estate (Chalk Peak 1932, -2982) - kitchen counter in the northern manor",
+    "sourceCs": "Brewery Estate (Chalk Peak 1932, -2982) – kuchyňská linka v severním panském domě",
+    "effectsEn": [
+      "Status DMG +20% (Burn, Shock, Frost, Bleed)",
+      "Restores 100 Sanity immediately",
+      "Whimsical visual aura and slight sensory detachment"
+    ],
+    "effectsCs": [
+      "Statusové poškození +20% (Zápal, Šok, Mráz, Krvácení)",
+      "Okamžitě obnoví 100 bodů Sanity",
+      "Zvláštní anomální aura a lehké smyslové halucinace"
+    ],
+    "ingredientsEn": [
+      {
+        "name": "Purified Water",
+        "amount": "2x",
+        "isPrimary": true
+      },
+      {
+        "name": "Deviated Saffron",
+        "amount": "2x"
+      },
+      {
+        "name": "Ice Cube",
+        "amount": "2x"
+      },
+      {
+        "name": "Refined Sugar",
+        "amount": "1x"
+      }
+    ],
+    "ingredientsCs": [
+      {
+        "name": "Čistá filtrovaná voda",
+        "amount": "2x",
+        "isPrimary": true
+      },
+      {
+        "name": "Mutovaný šafrán",
+        "amount": "2x"
+      },
+      {
+        "name": "Kostka ledu",
+        "amount": "2x"
+      },
+      {
+        "name": "Rafinovaný cukr",
+        "amount": "1x"
+      }
+    ],
+    "descriptionEn": "Mysterious effervescent cocktail causing mild sensory detachment while unleashing latent elemental psi-energy.",
+    "descriptionCs": "Tajemný šumivý koktejl způsobující lehké smyslové halucinace a posilující elementální poškození zbraní."
+  },
+
+  {
+    "id": "d-38",
+    "nameEn": "Stardust Canned Fruit",
+    "nameCs": "Hvězdná ovocná konzerva (Stardust Canned Fruit)",
+    "categoryEn": "Canned Food",
+    "categoryCs": "Konzerva",
+    "scenario": "core",
+    "rarity": "Rare",
+    "workbench": "Kitchen Stove",
+    "energy": 60,
+    "hydration": 40,
+    "buffDuration": "1800s (30 min)",
+    "sourceEn": "Iron River (6071, -2596) - kitchen counter in an abandoned riverside shack",
+    "sourceCs": "Iron River (6071, -2596) – kuchyňský stůl v opuštěné pobřežní chatce",
+    "effectsEn": [
+      "Never spoils (infinite shelf life)",
+      "Pollution Resistance +35",
+      "Stamina recovery rate +25%"
+    ],
+    "effectsCs": [
+      "Nikdy se nezkazí (neomezená trvanlivost)",
+      "Odolnost vůči znečištění (Pollution) +35",
+      "Rychlost obnovy staminy +25%"
+    ],
+    "ingredientsEn": [
+      {
+        "name": "Wild Berries",
+        "amount": "4x",
+        "isPrimary": true
+      },
+      {
+        "name": "Stardust Source",
+        "amount": "2x"
+      },
+      {
+        "name": "Refined Sugar",
+        "amount": "2x"
+      },
+      {
+        "name": "Aluminum Ingot",
+        "amount": "1x"
+      }
+    ],
+    "ingredientsCs": [
+      {
+        "name": "Lesní plody",
+        "amount": "4x",
+        "isPrimary": true
+      },
+      {
+        "name": "Zdroj hvězdného prachu (Stardust)",
+        "amount": "2x"
+      },
+      {
+        "name": "Rafinovaný cukr",
+        "amount": "2x"
+      },
+      {
+        "name": "Hliníkový ingot",
+        "amount": "1x"
+      }
+    ],
+    "descriptionEn": "Hermetically preserved compote infused with stardust, protecting explorers traversing toxic miasma.",
+    "descriptionCs": "Hermeticky uzavřený ovocný kompot napuštěný hvězdným prachem chránící před anomálním znečištěním."
+  },
+
+  {
+    "id": "d-39",
+    "nameEn": "Stardust Canned Meat",
+    "nameCs": "Hvězdná masová konzerva (Stardust Canned Meat)",
+    "categoryEn": "Canned Food",
+    "categoryCs": "Konzerva",
+    "scenario": "core",
+    "rarity": "Epic",
+    "workbench": "Kitchen Stove",
+    "energy": 90,
+    "hydration": 0,
+    "buffDuration": "1800s (30 min)",
+    "sourceEn": "Red Sands military fortress mess hall (5200, -1120)",
+    "sourceCs": "Red Sands – vojenská jídelna a kantýna v pevnosti (5200, -1120)",
+    "effectsEn": [
+      "Never spoils (infinite shelf life)",
+      "Firearm DMG +15%",
+      "Max HP +250",
+      "Damage against Great Ones bosses +10%"
+    ],
+    "effectsCs": [
+      "Nikdy se nezkazí (neomezená trvanlivost)",
+      "Poškození střelnými zbraněmi +15%",
+      "Maximální HP +250",
+      "Poškození proti Great Ones bossům +10%"
+    ],
+    "ingredientsEn": [
+      {
+        "name": "Raw Meat",
+        "amount": "4x",
+        "isPrimary": true
+      },
+      {
+        "name": "Stardust Source",
+        "amount": "2x"
+      },
+      {
+        "name": "Cooking Oil",
+        "amount": "1x"
+      },
+      {
+        "name": "Aluminum Ingot",
+        "amount": "1x"
+      }
+    ],
+    "ingredientsCs": [
+      {
+        "name": "Syrové maso",
+        "amount": "4x",
+        "isPrimary": true
+      },
+      {
+        "name": "Zdroj hvězdného prachu (Stardust)",
+        "amount": "2x"
+      },
+      {
+        "name": "Rostlinný olej na vaření",
+        "amount": "1x"
+      },
+      {
+        "name": "Hliníkový ingot",
+        "amount": "1x"
+      }
+    ],
+    "descriptionEn": "Military combat ration sealed with stardust preservatives, delivering sustained combat aggression.",
+    "descriptionCs": "Armádní bojová konzerva se stabilizovaným masem zvyšující palebnou sílu proti největším hrozbám."
+  },
+
+  {
+    "id": "d-40",
+    "nameEn": "All-Weather Combat Stew",
+    "nameCs": "Polévka pro boj za každého počasí (All-Weather Combat)",
+    "categoryEn": "Food",
+    "categoryCs": "Jídlo",
+    "scenario": "winter",
+    "rarity": "Epic",
+    "workbench": "Kitchen Stove",
+    "energy": 85,
+    "hydration": 45,
+    "buffDuration": "1800s (30 min)",
+    "sourceEn": "The Way of Winter - Polar Research Outpost kitchen counter",
+    "sourceCs": "The Way of Winter – kuchyňský stůl v Polární výzkumné stanici",
+    "effectsEn": [
+      "Max Stamina +30%",
+      "Cold & Heat Resistance +30",
+      "Cures and prevents Hypothermia and Heatstroke"
+    ],
+    "effectsCs": [
+      "Maximální výdrž (Stamina) +30%",
+      "Odolnost proti mrazu i horku +30",
+      "Léčí a spolehlivě chrání před podchlazením i úpalem"
+    ],
+    "ingredientsEn": [
+      {
+        "name": "Ice Melon",
+        "amount": "2x",
+        "isPrimary": true
+      },
+      {
+        "name": "Spikemato",
+        "amount": "2x"
+      },
+      {
+        "name": "Mint",
+        "amount": "2x"
+      },
+      {
+        "name": "Sunny Ginger",
+        "amount": "2x"
+      }
+    ],
+    "ingredientsCs": [
+      {
+        "name": "Ledový meloun",
+        "amount": "2x",
+        "isPrimary": true
+      },
+      {
+        "name": "Spikemato",
+        "amount": "2x"
+      },
+      {
+        "name": "Máta",
+        "amount": "2x"
+      },
+      {
+        "name": "Zázvor",
+        "amount": "2x"
+      }
+    ],
+    "descriptionEn": "Ingenious thermal-balancing broth stabilizing core body temperature in blazing deserts and arctic snowstorms.",
+    "descriptionCs": "Vyvážený termální vývar udržující stabilní tělesnou teplotu i v těch nejkrutějších mrazech a vánicích."
+  },
+
+  {
+    "id": "d-41",
+    "nameEn": "Canned Spicy Rabbit Dices",
+    "nameCs": "Pikantní králičí konzerva (Canned Spicy Rabbit)",
+    "categoryEn": "Canned Food",
+    "categoryCs": "Konzerva",
+    "scenario": "winter",
+    "rarity": "Rare",
+    "workbench": "Kitchen Stove",
+    "energy": 80,
+    "hydration": 0,
+    "buffDuration": "1800s (30 min)",
+    "sourceEn": "The Way of Winter - Hunter cabin in Frosty Crag",
+    "sourceCs": "The Way of Winter – lovecká srubová chata v oblasti Frosty Crag",
+    "effectsEn": [
+      "Cold Resistance +25",
+      "Fast Gunner Trigger Chance +15%",
+      "Never spoils (infinite shelf life)"
+    ],
+    "effectsCs": [
+      "Odolnost proti mrazu +25",
+      "Šance na spuštění Fast Gunner archetypu +15%",
+      "Nikdy se nezkazí (neomezená trvanlivost)"
+    ],
+    "ingredientsEn": [
+      {
+        "name": "Rabbit Meat",
+        "amount": "3x",
+        "isPrimary": true
+      },
+      {
+        "name": "Peppercorn",
+        "amount": "2x"
+      },
+      {
+        "name": "Cooking Oil",
+        "amount": "1x"
+      },
+      {
+        "name": "Aluminum Ingot",
+        "amount": "1x"
+      }
+    ],
+    "ingredientsCs": [
+      {
+        "name": "Králičí maso",
+        "amount": "3x",
+        "isPrimary": true
+      },
+      {
+        "name": "Pepř",
+        "amount": "2x"
+      },
+      {
+        "name": "Rostlinný olej na vaření",
+        "amount": "1x"
+      },
+      {
+        "name": "Hliníkový ingot",
+        "amount": "1x"
+      }
+    ],
+    "descriptionEn": "Peppered rabbit meat preserved in aluminum, keeping wandering frontiersmen warm and sharp in sub-zero snow.",
+    "descriptionCs": "Kořeněné králičí maso v plechu zahřívající organismus a podporující rychlou palbu ze zbraní."
+  },
+
+  {
+    "id": "d-42",
+    "nameEn": "Grilled Meat",
+    "nameCs": "Jednoduché grilované maso (Grilled Meat)",
+    "categoryEn": "Food",
+    "categoryCs": "Jídlo",
+    "scenario": "core",
+    "rarity": "Common",
+    "workbench": "Campfire / Cooking Stove",
+    "energy": 50,
+    "hydration": 0,
+    "buffDuration": "600s (10 min)",
+    "sourceEn": "Default Starter Recipe (Unlocked at level 1 Campfire)",
+    "sourceCs": "Základní výchozí recept (Dostupný od 1. úrovně u táborového ohně)",
+    "effectsEn": [
+      "Energy +50",
+      "Restores 150 HP over 10 seconds"
+    ],
+    "effectsCs": [
+      "Energie +50",
+      "Postupně vyléčí 150 HP během 10 sekund"
+    ],
+    "ingredientsEn": [
+      {
+        "name": "Raw Meat",
+        "amount": "1x",
+        "isPrimary": true
+      }
+    ],
+    "ingredientsCs": [
+      {
+        "name": "Syrové maso",
+        "amount": "1x",
+        "isPrimary": true
+      }
+    ],
+    "descriptionEn": "Simple roasted meat grilled over an open campfire; the universal staple of wilderness survival.",
+    "descriptionCs": "Opečený plátek masa na otevřeném ohni; základní pokrm každého začínajícího přeživšího."
+  },
+
+  {
+    "id": "d-43",
+    "nameEn": "Meat Jerky",
+    "nameCs": "Trvanlivé sušené maso (Meat Jerky)",
+    "categoryEn": "Food",
+    "categoryCs": "Jídlo",
+    "scenario": "core",
+    "rarity": "Common",
+    "workbench": "Meat Dryer",
+    "energy": 55,
+    "hydration": 0,
+    "buffDuration": "900s (15 min)",
+    "sourceEn": "Meat Dryer Facility Recipe",
+    "sourceCs": "Sušička masa (Vyžaduje Meat Dryer na základně)",
+    "effectsEn": [
+      "Spoilage time extended to 7 real-time days",
+      "Carry Weight +10 kg",
+      "Energy +55"
+    ],
+    "effectsCs": [
+      "Doba trvanlivosti prodloužena na 7 reálných dní",
+      "Nosnost batohu +10 kg",
+      "Energie +55"
+    ],
+    "ingredientsEn": [
+      {
+        "name": "Raw Meat",
+        "amount": "2x",
+        "isPrimary": true
+      },
+      {
+        "name": "Salt",
+        "amount": "1x"
+      }
+    ],
+    "ingredientsCs": [
+      {
+        "name": "Syrové maso",
+        "amount": "2x",
+        "isPrimary": true
+      },
+      {
+        "name": "Sůl",
+        "amount": "1x"
+      }
+    ],
+    "descriptionEn": "Salted and air-dried meat strip lasting days in your rucksack without spoiling.",
+    "descriptionCs": "Solené sušené maso z dřevěného sušicího rámu s extrémně dlouhou dobou trvanlivosti."
+  },
+
+  {
+    "id": "d-44",
+    "nameEn": "Roasted Fish",
+    "nameCs": "Pečená ryba na ohni (Roasted Fish)",
+    "categoryEn": "Food",
+    "categoryCs": "Jídlo",
+    "scenario": "core",
+    "rarity": "Common",
+    "workbench": "Campfire / Cooking Stove",
+    "energy": 45,
+    "hydration": 10,
+    "buffDuration": "600s (10 min)",
+    "sourceEn": "Default Angling Starter Recipe",
+    "sourceCs": "Základní rybářský recept u ohniště",
+    "effectsEn": [
+      "Energy +45",
+      "Hydration +10",
+      "Swim Speed +15%"
+    ],
+    "effectsCs": [
+      "Energie +45",
+      "Hydratace +10",
+      "Rychlost plavání +15%"
+    ],
+    "ingredientsEn": [
+      {
+        "name": "Small Freshwater Fish",
+        "amount": "1x",
+        "isPrimary": true
+      }
+    ],
+    "ingredientsCs": [
+      {
+        "name": "Malá sladkovodní ryba",
+        "amount": "1x",
+        "isPrimary": true
+      }
+    ],
+    "descriptionEn": "Freshly caught fish roasted on wooden skewers over embers.",
+    "descriptionCs": "Čerstvě ulovená ryba pečená na špejli nad žhavými uhlíky."
+  },
+
+  {
+    "id": "d-45",
+    "nameEn": "Assorted Canned Food",
+    "nameCs": "Smíšená polní konzerva (Assorted Canned Food)",
+    "categoryEn": "Canned Food",
+    "categoryCs": "Konzerva",
+    "scenario": "core",
+    "rarity": "Common",
+    "workbench": "Kitchen Stove",
+    "energy": 70,
+    "hydration": 20,
+    "buffDuration": "1200s (20 min)",
+    "sourceEn": "Meyer's Market grocery store basement",
+    "sourceCs": "Meyer's Market – suterén v opuštěném obchodě s potravinami",
+    "effectsEn": [
+      "Never spoils (infinite shelf life)",
+      "Energy +70, Hydration +20",
+      "Max HP +150"
+    ],
+    "effectsCs": [
+      "Nikdy se nezkazí (neomezená trvanlivost)",
+      "Energie +70, Hydratace +20",
+      "Maximální HP +150"
+    ],
+    "ingredientsEn": [
+      {
+        "name": "Raw Meat",
+        "amount": "2x",
+        "isPrimary": true
+      },
+      {
+        "name": "Corn",
+        "amount": "2x"
+      },
+      {
+        "name": "Aluminum Ingot",
+        "amount": "1x"
+      },
+      {
+        "name": "Salt",
+        "amount": "1x"
+      }
+    ],
+    "ingredientsCs": [
+      {
+        "name": "Syrové maso",
+        "amount": "2x",
+        "isPrimary": true
+      },
+      {
+        "name": "Kukuřice",
+        "amount": "2x"
+      },
+      {
+        "name": "Hliníkový ingot",
+        "amount": "1x"
+      },
+      {
+        "name": "Sůl",
+        "amount": "1x"
+      }
+    ],
+    "descriptionEn": "Universal field ration preserving meat and vegetables in durable aluminum.",
+    "descriptionCs": "Všestranná armádní konzerva kombinující maso a zeleninu s neomezenou trvanlivostí."
+  }
+];
 
     /* ==========================================================================
        TAB 2: CREATIVE COOKING & MEAT ARCHETYPE SYNERGIES
