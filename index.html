@@ -106,6 +106,17 @@
           <span class="hidden lg:inline" id="backup-btn-label">Záloha</span>
         </button>
 
+        <!-- Power Grid & Acid Automation Calculator Button -->
+        <button 
+          id="grid-calc-btn"
+          onclick="openGridCalcModal()" 
+          title="Kalkulátor energetické sítě & farmy na kyselinu"
+          class="inline-flex items-center space-x-1.5 bg-hud-card hover:bg-amber-500/15 border border-amber-500/40 hover:border-amber-400 text-amber-300 hover:text-white px-2.5 py-1.5 rounded transition-all text-xs font-mono shadow-[0_0_10px_rgba(245,158,11,0.15)] cursor-pointer"
+        >
+          <i class="fa-solid fa-bolt-lightning text-amber-400"></i>
+          <span class="hidden md:inline" id="grid-calc-btn-label">Síť & Kyselina</span>
+        </button>
+
         <!-- GitHub Repository Button -->
         <a href="https://github.com/bandaska-cz/Once-Human-Codex" 
            target="_blank" 
@@ -418,6 +429,48 @@
             <input type="file" id="backup-file-input" accept=".json" onchange="importUserData(event)" class="hidden">
           </label>
         </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== POWER GRID & ACID AUTOMATION CALCULATOR MODAL ==================== -->
+  <div id="grid-calc-modal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm">
+    <div class="bg-hud-surface border border-amber-500/50 rounded-lg max-w-3xl w-full p-6 relative max-h-[90vh] overflow-y-auto shadow-[0_0_30px_rgba(245,158,11,0.25)]">
+      <!-- Close Button -->
+      <button onclick="closeGridCalcModal()" title="Zavřít (Esc)" class="absolute top-4 right-4 text-slate-400 hover:text-white transition w-8 h-8 rounded border border-hud-border flex items-center justify-center bg-hud-card cursor-pointer">
+        <i class="fa-solid fa-xmark text-sm"></i>
+      </button>
+
+      <!-- Modal Header -->
+      <div class="flex items-center gap-3 mb-4 pb-3 border-b border-hud-border">
+        <div class="w-10 h-10 rounded bg-amber-500/10 border border-amber-500/60 flex items-center justify-center text-amber-400 shadow-[0_0_15px_rgba(245,158,11,0.3)]">
+          <i class="fa-solid fa-bolt-lightning text-lg"></i>
+        </div>
+        <div>
+          <h3 id="grid-modal-title" class="font-orbitron font-bold text-white text-base sm:text-lg">KALKULÁTOR ENERGETICKÉ SÍTĚ & AUTOMATIZACE KYSELINY</h3>
+          <p id="grid-modal-desc" class="text-xs font-mono text-slate-400">Simulace výkonu generátorů, spotřeby báze a hodinové výtěžnosti farem na kyselinu.</p>
+        </div>
+      </div>
+
+      <!-- Tab Switcher (Power Grid vs Acid Farm) -->
+      <div class="flex gap-2 mb-5 border-b border-hud-border/60 pb-3">
+        <button id="grid-tab-btn-power" onclick="switchGridCalcTab('power')" class="px-4 py-2 rounded font-orbitron text-xs font-bold transition-all bg-amber-500 text-black shadow-[0_0_12px_rgba(245,158,11,0.4)] flex items-center gap-2">
+          <i class="fa-solid fa-plug"></i>
+          <span id="grid-tab-lbl-power">Energetická síť</span>
+        </button>
+        <button id="grid-tab-btn-acid" onclick="switchGridCalcTab('acid')" class="px-4 py-2 rounded font-orbitron text-xs font-bold transition-all bg-hud-card text-slate-300 hover:text-white border border-hud-border flex items-center gap-2">
+          <i class="fa-solid fa-flask"></i>
+          <span id="grid-tab-lbl-acid">Farma na kyselinu</span>
+        </button>
+        <button onclick="resetGridCalc()" title="Resetovat kalkulátor na výchozí hodnoty" class="ml-auto px-3 py-1.5 rounded bg-slate-800 hover:bg-slate-700 border border-slate-700 text-slate-400 hover:text-white text-xs font-mono transition flex items-center gap-1.5 cursor-pointer">
+          <i class="fa-solid fa-rotate-left"></i>
+          <span>Reset</span>
+        </button>
+      </div>
+
+      <!-- Container where current calculator tab is dynamically rendered -->
+      <div id="grid-calc-content">
+        <!-- Rendered by renderGridCalc() -->
       </div>
     </div>
   </div>

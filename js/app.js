@@ -809,6 +809,11 @@ window.addEventListener('keydown', function(e) {
       closeBackupModal();
       return;
     }
+    const gridModal = document.getElementById('grid-calc-modal');
+    if (gridModal && !gridModal.classList.contains('hidden')) {
+      closeGridCalcModal();
+      return;
+    }
     const queueModal = document.getElementById('craft-queue-modal');
     if (queueModal && !queueModal.classList.contains('hidden')) {
       closeQueueModal();
@@ -899,6 +904,17 @@ function applyLanguageUI() {
   document.getElementById('calc-title').innerText = t.calcTitle;
   document.getElementById('calc-desc').innerText = t.calcDesc;
   document.getElementById('searchInput').placeholder = t.searchPlaceholder;
+
+  const gridBtnLabel = document.getElementById('grid-calc-btn-label');
+  if (gridBtnLabel) gridBtnLabel.innerText = currentLang === 'cs' ? 'Síť & Kyselina' : 'Grid & Acid';
+  const gridTitle = document.getElementById('grid-modal-title');
+  if (gridTitle) gridTitle.innerText = t.gridCalcTitle || 'KALKULÁTOR ENERGETICKÉ SÍTĚ & AUTOMATIZACE KYSELINY';
+  const gridDesc = document.getElementById('grid-modal-desc');
+  if (gridDesc) gridDesc.innerText = t.gridCalcDesc || 'Simulace výkonu generátorů, spotřeby báze a hodinové výtěžnosti farem na kyselinu.';
+  const gridTabPower = document.getElementById('grid-tab-lbl-power');
+  if (gridTabPower) gridTabPower.innerText = t.gridTabPower || 'Energetická síť';
+  const gridTabAcid = document.getElementById('grid-tab-lbl-acid');
+  if (gridTabAcid) gridTabAcid.innerText = t.gridTabAcid || 'Farma na kyselinu';
 
   // Language buttons visual sync
   const csBtn = document.getElementById('lang-cs');
@@ -2013,4 +2029,445 @@ function resetSynergyCalc() {
   document.getElementById('calc-slot-enhancer').value = 'none';
   calculateSynergies();
 }
+
+/* ==========================================================================
+   POWER GRID & ACID AUTOMATION CALCULATOR ENGINE
+   ========================================================================== */
+
+let gridCalcState = {
+  activeTab: 'power',
+  generators: {
+    solarBasic: 2,
+    solarAdvanced: 1,
+    biomassSmall: 0,
+    biomassLarge: 0,
+    hydraulic: 0,
+    fuel: 0,
+    deviation: 0
+  },
+  eels: 1,
+  consumers: {
+    pump: 4,
+    purifier: 2,
+    turret: 2,
+    smelter: 1,
+    stove: 1,
+    fridge: 1,
+    growLight: 2,
+    securement5w: 3,
+    securement10w: 1
+  },
+  acidFarm: {
+    pumps: 4,
+    purifiers: 2,
+    barrels: 4
+  }
+};
+
+const gridSpecs = {
+  generators: {
+    solarBasic: { nameCs: "Základní solární panel", nameEn: "Basic Solar Generator", watts: 20, icon: "fa-solar-panel" },
+    solarAdvanced: { nameCs: "Pokročilý solární panel", nameEn: "Advanced Solar Generator", watts: 40, icon: "fa-solar-panel" },
+    biomassSmall: { nameCs: "Malý generátor na biomasu", nameEn: "Small Biomass Generator", watts: 20, icon: "fa-seedling" },
+    biomassLarge: { nameCs: "Velký generátor na biomasu", nameEn: "Large Biomass Generator", watts: 35, icon: "fa-fire-burner" },
+    hydraulic: { nameCs: "Hydraulická vodní elektrárna", nameEn: "Hydraulic Generator", watts: 30, icon: "fa-water" },
+    fuel: { nameCs: "Palivový generátor na ropu", nameEn: "Fuel Generator", watts: 30, icon: "fa-gas-pump" },
+    deviation: { nameCs: "Generátor na odchylky (Deviation)", nameEn: "Deviation Energy Generator", watts: 35, icon: "fa-ghost" }
+  },
+  consumers: {
+    pump: { nameCs: "Vodní čerpadlo (Voda / Ropa)", nameEn: "Water / Oil Pump", watts: 10, icon: "fa-faucet-drip" },
+    purifier: { nameCs: "Osmotická čistička", nameEn: "Osmosis Purifier", watts: 10, icon: "fa-filter" },
+    turret: { nameCs: "Automatická obranná věž", nameEn: "Automated Defense Turret", watts: 10, icon: "fa-shield-halved" },
+    smelter: { nameCs: "Elektrická tavicí pec", nameEn: "Electric Smelter", watts: 10, icon: "fa-fire" },
+    stove: { nameCs: "Elektrický kuchyňský sporák", nameEn: "Kitchen Electric Stove", watts: 10, icon: "fa-utensils" },
+    fridge: { nameCs: "Lednice na potraviny", nameEn: "Food Refrigerator", watts: 5, icon: "fa-snowflake" },
+    growLight: { nameCs: "Pěstitelské UV světlo", nameEn: "Botanical Grow Light", watts: 5, icon: "fa-sun" },
+    securement5w: { nameCs: "Jednotka Devianta (5W)", nameEn: "Securement Unit (5W)", watts: 5, icon: "fa-box" },
+    securement10w: { nameCs: "Zesílená jednotka Devianta (10W)", nameEn: "High-Power Unit (10W)", watts: 10, icon: "fa-boxes-stacked" }
+  }
+};
+
+function openGridCalcModal() {
+  const modal = document.getElementById('grid-calc-modal');
+  if (modal) {
+    modal.classList.remove('hidden');
+    renderGridCalc();
+  }
+}
+
+function closeGridCalcModal() {
+  const modal = document.getElementById('grid-calc-modal');
+  if (modal) {
+    modal.classList.add('hidden');
+  }
+}
+
+function switchGridCalcTab(tab) {
+  gridCalcState.activeTab = tab;
+  const btnPower = document.getElementById('grid-tab-btn-power');
+  const btnAcid = document.getElementById('grid-tab-btn-acid');
+  if (tab === 'power') {
+    if (btnPower) btnPower.className = "px-4 py-2 rounded font-orbitron text-xs font-bold transition-all bg-amber-500 text-black shadow-[0_0_12px_rgba(245,158,11,0.4)] flex items-center gap-2";
+    if (btnAcid) btnAcid.className = "px-4 py-2 rounded font-orbitron text-xs font-bold transition-all bg-hud-card text-slate-300 hover:text-white border border-hud-border flex items-center gap-2";
+  } else {
+    if (btnAcid) btnAcid.className = "px-4 py-2 rounded font-orbitron text-xs font-bold transition-all bg-amber-500 text-black shadow-[0_0_12px_rgba(245,158,11,0.4)] flex items-center gap-2";
+    if (btnPower) btnPower.className = "px-4 py-2 rounded font-orbitron text-xs font-bold transition-all bg-hud-card text-slate-300 hover:text-white border border-hud-border flex items-center gap-2";
+  }
+  renderGridCalc();
+}
+
+function updateGridGen(key, delta) {
+  const curr = gridCalcState.generators[key] || 0;
+  gridCalcState.generators[key] = Math.max(0, Math.min(20, curr + delta));
+  renderGridCalc();
+}
+
+function updateGridEels(delta) {
+  const curr = gridCalcState.eels || 0;
+  gridCalcState.eels = Math.max(0, Math.min(5, curr + delta));
+  renderGridCalc();
+}
+
+function updateGridConsumer(key, delta) {
+  const curr = gridCalcState.consumers[key] || 0;
+  gridCalcState.consumers[key] = Math.max(0, Math.min(50, curr + delta));
+  renderGridCalc();
+}
+
+function updateAcidFarm(key, delta) {
+  const curr = gridCalcState.acidFarm[key] || 0;
+  gridCalcState.acidFarm[key] = Math.max(0, Math.min(30, curr + delta));
+  renderGridCalc();
+}
+
+function resetGridCalc() {
+  gridCalcState = {
+    activeTab: gridCalcState.activeTab,
+    generators: {
+      solarBasic: 2,
+      solarAdvanced: 1,
+      biomassSmall: 0,
+      biomassLarge: 0,
+      hydraulic: 0,
+      fuel: 0,
+      deviation: 0
+    },
+    eels: 1,
+    consumers: {
+      pump: 4,
+      purifier: 2,
+      turret: 2,
+      smelter: 1,
+      stove: 1,
+      fridge: 1,
+      growLight: 2,
+      securement5w: 3,
+      securement10w: 1
+    },
+    acidFarm: {
+      pumps: 4,
+      purifiers: 2,
+      barrels: 4
+    }
+  };
+  renderGridCalc();
+}
+
+function renderGridCalc() {
+  const container = document.getElementById('grid-calc-content');
+  if (!container) return;
+
+  if (gridCalcState.activeTab === 'power') {
+    renderPowerGridTab(container);
+  } else {
+    renderAcidFarmTab(container);
+  }
+}
+
+function renderPowerGridTab(container) {
+  const totalGenCount = Object.values(gridCalcState.generators).reduce((a, b) => a + b, 0);
+  const rawGenWatts = Object.entries(gridCalcState.generators).reduce((acc, [k, count]) => acc + count * gridSpecs.generators[k].watts, 0);
+  const eelBonusWatts = totalGenCount * (gridCalcState.eels * 12);
+  const totalGenWatts = rawGenWatts + eelBonusWatts;
+
+  const totalConsumerWatts = Object.entries(gridCalcState.consumers).reduce((acc, [k, count]) => acc + count * gridSpecs.consumers[k].watts, 0);
+  const balanceWatts = totalGenWatts - totalConsumerWatts;
+
+  let balanceColor = 'text-hud-cyan border-hud-cyan/50 bg-cyan-950/40 shadow-[0_0_15px_rgba(0,240,255,0.2)]';
+  let balanceIcon = 'fa-circle-check';
+  let balanceTextCs = `+${balanceWatts}W (STABILNÍ SÍŤ - Plný provoz a bezpečná rezerva)`;
+  let balanceTextEn = `+${balanceWatts}W (STABLE GRID - Full operation with safe reserve)`;
+
+  if (balanceWatts === 0) {
+    balanceColor = 'text-amber-400 border-amber-500/50 bg-amber-950/40 shadow-[0_0_15px_rgba(245,158,11,0.2)]';
+    balanceIcon = 'fa-triangle-exclamation';
+    balanceTextCs = `0W (VYROVNANÁ SÍŤ - Žádná rezerva pro další spotřebiče)`;
+    balanceTextEn = `0W (BALANCED GRID - Zero reserve for new facilities)`;
+  } else if (balanceWatts < 0) {
+    balanceColor = 'text-red-400 border-red-500/60 bg-red-950/60 shadow-[0_0_20px_rgba(239,68,68,0.3)] animate-pulse';
+    balanceIcon = 'fa-triangle-exclamation';
+    balanceTextCs = `${balanceWatts}W (PŘETÍŽENÍ SÍTĚ! Výpadky proudu a vyřazená obrana!)`;
+    balanceTextEn = `${balanceWatts}W (GRID OVERLOAD! Power blackouts & offline turrets!)`;
+  }
+
+  container.innerHTML = `
+    <!-- Real-time HUD Power Dashboard -->
+    <div class="mb-5 p-4 rounded-lg border ${balanceColor} flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+      <div class="flex items-center gap-3">
+        <i class="fa-solid ${balanceIcon} text-2xl shrink-0"></i>
+        <div>
+          <span class="text-[10px] font-mono uppercase tracking-wider block opacity-80">
+            ${currentLang === 'cs' ? 'Stav energetické sítě základny' : 'Base Territory Grid Status'}
+          </span>
+          <h4 class="font-orbitron font-bold text-sm sm:text-base">
+            ${currentLang === 'cs' ? balanceTextCs : balanceTextEn}
+          </h4>
+        </div>
+      </div>
+      <div class="flex items-center gap-4 text-xs font-mono shrink-0">
+        <div class="text-right">
+          <span class="text-slate-400 text-[10px] block">${currentLang === 'cs' ? 'Výroba celkem' : 'Total Generated'}</span>
+          <strong class="text-amber-400 text-sm">${totalGenWatts} W</strong>
+          ${eelBonusWatts > 0 ? `<span class="text-emerald-400 text-[9px] block">+${eelBonusWatts}W úhoř</span>` : ''}
+        </div>
+        <div class="h-8 w-px bg-slate-700"></div>
+        <div class="text-left">
+          <span class="text-slate-400 text-[10px] block">${currentLang === 'cs' ? 'Spotřeba celkem' : 'Total Demand'}</span>
+          <strong class="text-hud-cyan text-sm">${totalConsumerWatts} W</strong>
+        </div>
+      </div>
+    </div>
+
+    <!-- Eel Booster Callout -->
+    <div class="mb-5 p-3 rounded-lg bg-emerald-950/30 border border-emerald-500/40 flex items-center justify-between flex-wrap gap-2 text-xs">
+      <div class="flex items-center gap-2">
+        <i class="fa-solid fa-bolt text-emerald-400 text-base"></i>
+        <div>
+          <span class="font-bold text-emerald-300 block">
+            ${currentLang === 'cs' ? 'Bonus Devianta: Elektrický úhoř (Electric Eel)' : 'Deviant Bonus: Electric Eel'}
+          </span>
+          <span class="text-[11px] text-slate-300 font-mono">
+            ${currentLang === 'cs' ? 'Posiluje KAŽDÝ generátor o +12W čistého výkonu!' : 'Overcharges EVERY generator by +12W base power!'}
+          </span>
+        </div>
+      </div>
+      <div class="flex items-center gap-2 bg-slate-900/80 px-2.5 py-1 rounded border border-slate-700 font-mono">
+        <span class="text-slate-400 text-[11px]">${currentLang === 'cs' ? 'Aktivní úhoři' : 'Active Eels'}:</span>
+        <button onclick="updateGridEels(-1)" class="w-6 h-6 rounded bg-slate-800 hover:bg-slate-700 text-white flex items-center justify-center font-bold text-xs">-</button>
+        <span class="text-emerald-300 font-bold px-1">${gridCalcState.eels}</span>
+        <button onclick="updateGridEels(1)" class="w-6 h-6 rounded bg-slate-800 hover:bg-slate-700 text-white flex items-center justify-center font-bold text-xs">+</button>
+      </div>
+    </div>
+
+    <!-- Generator & Consumer Columns -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+      <!-- Left: Generators -->
+      <div class="p-4 rounded-lg bg-hud-bg border border-hud-border">
+        <h5 class="text-xs font-orbitron font-bold text-amber-400 mb-3 flex items-center gap-1.5 uppercase">
+          <i class="fa-solid fa-plug text-amber-400"></i>
+          ${currentLang === 'cs' ? 'Zdroje energie (Generátory)' : 'Power Sources (Generators)'}
+        </h5>
+        <div class="space-y-2.5">
+          ${Object.entries(gridSpecs.generators).map(([k, spec]) => {
+            const count = gridCalcState.generators[k] || 0;
+            const singleGenOutput = spec.watts + (gridCalcState.eels * 12);
+            return `
+              <div class="p-2 rounded bg-slate-800/70 border border-slate-700 flex items-center justify-between text-xs font-mono">
+                <div class="flex items-center gap-2">
+                  <i class="fa-solid ${spec.icon} text-amber-400 text-xs w-4 text-center"></i>
+                  <div>
+                    <span class="text-slate-200 block text-[11px]">${currentLang === 'cs' ? spec.nameCs : spec.nameEn}</span>
+                    <span class="text-[10px] text-slate-400">${singleGenOutput}W / ks</span>
+                  </div>
+                </div>
+                <div class="flex items-center gap-1.5">
+                  <button onclick="updateGridGen('${k}', -1)" class="w-6 h-6 rounded bg-slate-700 hover:bg-slate-600 text-white flex items-center justify-center font-bold text-xs cursor-pointer">-</button>
+                  <span class="w-6 text-center text-white font-bold">${count}</span>
+                  <button onclick="updateGridGen('${k}', 1)" class="w-6 h-6 rounded bg-slate-700 hover:bg-slate-600 text-white flex items-center justify-center font-bold text-xs cursor-pointer">+</button>
+                </div>
+              </div>
+            `;
+          }).join('')}
+        </div>
+      </div>
+
+      <!-- Right: Consumers -->
+      <div class="p-4 rounded-lg bg-hud-bg border border-hud-border">
+        <h5 class="text-xs font-orbitron font-bold text-hud-cyan mb-3 flex items-center gap-1.5 uppercase">
+          <i class="fa-solid fa-power-off text-hud-cyan"></i>
+          ${currentLang === 'cs' ? 'Spotřebiče & Zařízení základny' : 'Base Appliances & Facilities'}
+        </h5>
+        <div class="space-y-2.5">
+          ${Object.entries(gridSpecs.consumers).map(([k, spec]) => {
+            const count = gridCalcState.consumers[k] || 0;
+            return `
+              <div class="p-2 rounded bg-slate-800/70 border border-slate-700 flex items-center justify-between text-xs font-mono">
+                <div class="flex items-center gap-2">
+                  <i class="fa-solid ${spec.icon} text-hud-cyan text-xs w-4 text-center"></i>
+                  <div>
+                    <span class="text-slate-200 block text-[11px]">${currentLang === 'cs' ? spec.nameCs : spec.nameEn}</span>
+                    <span class="text-[10px] text-slate-400">${spec.watts}W / ks</span>
+                  </div>
+                </div>
+                <div class="flex items-center gap-1.5">
+                  <button onclick="updateGridConsumer('${k}', -1)" class="w-6 h-6 rounded bg-slate-700 hover:bg-slate-600 text-white flex items-center justify-center font-bold text-xs cursor-pointer">-</button>
+                  <span class="w-6 text-center text-white font-bold">${count}</span>
+                  <button onclick="updateGridConsumer('${k}', 1)" class="w-6 h-6 rounded bg-slate-700 hover:bg-slate-600 text-white flex items-center justify-center font-bold text-xs cursor-pointer">+</button>
+                </div>
+              </div>
+            `;
+          }).join('')}
+        </div>
+      </div>
+    </div>
+  `;
+}
+
+function renderAcidFarmTab(container) {
+  const pumps = gridCalcState.acidFarm.pumps;
+  const purifiers = gridCalcState.acidFarm.purifiers;
+  const barrels = gridCalcState.acidFarm.barrels;
+
+  // Rates in Once Human:
+  // 1 pump in polluted water = 12 polluted water / hr
+  const pollutedWaterPerHour = pumps * 12;
+
+  // 1 osmosis purifier processes 30 polluted water / hr -> 15 impure acid / hr + pure water
+  const purifierWaterCapacityPerHour = purifiers * 30;
+  const waterProcessedPerHour = Math.min(pollutedWaterPerHour, purifierWaterCapacityPerHour);
+  const impureAcidProducedPerHour = Math.floor(waterProcessedPerHour / 2);
+
+  // 1 fermentation barrel processes 6 impure acid / hr -> 3 pure acid / hr
+  const barrelImpureCapacityPerHour = barrels * 6;
+  const impureAcidProcessedPerHour = Math.min(impureAcidProducedPerHour, barrelImpureCapacityPerHour);
+  const pureAcidPerHour = Math.floor(impureAcidProcessedPerHour / 2);
+  const pureAcidPerDay = pureAcidPerHour * 24;
+
+  const farmPowerWatts = (pumps * 10) + (purifiers * 10);
+
+  let statusClass = 'border-emerald-500/60 bg-emerald-950/30 text-emerald-300';
+  let statusTextCs = '✅ Dokonale vyvážený výrobní řetězec! Pumpy, čističky i kvasné sudy běží na 100% kapacity.';
+  let statusTextEn = '✅ Perfectly balanced production pipeline! Pumps, purifiers and barrels operating at 100% capacity.';
+
+  if (pumps > 0 && purifiers === 0) {
+    statusClass = 'border-red-500/60 bg-red-950/40 text-red-300';
+    statusTextCs = '❌ Chybí osmotické čističky! Znečištěná voda se hromadí a nepřeměňuje na nečistou kyselinu.';
+    statusTextEn = '❌ Missing Osmosis Purifiers! Polluted water is backing up without being converted.';
+  } else if (purifiers > 0 && barrels === 0) {
+    statusClass = 'border-amber-500/60 bg-amber-950/40 text-amber-300';
+    statusTextCs = '⚠️ Chybí kvasné sudy! Vyrábíte nečistou kyselinu, ale nemáte ji kde nechat zkvasit na čistou kyselinu.';
+    statusTextEn = '⚠️ Missing Fermentation Barrels! Impure acid is produced but cannot ferment into Pure Acid.';
+  } else if (pollutedWaterPerHour > purifierWaterCapacityPerHour) {
+    statusClass = 'border-amber-500/60 bg-amber-950/40 text-amber-300';
+    statusTextCs = `⚠️ Úzké hrdlo: Pumpy těží ${pollutedWaterPerHour} l/h, ale čističky stíhají jen ${purifierWaterCapacityPerHour} l/h. Přidejte čističku!`;
+    statusTextEn = `⚠️ Bottleneck: Pumps extract ${pollutedWaterPerHour} /h, but purifiers handle only ${purifierWaterCapacityPerHour} /h. Add more purifiers!`;
+  } else if (impureAcidProducedPerHour > barrelImpureCapacityPerHour) {
+    statusClass = 'border-amber-500/60 bg-amber-950/40 text-amber-300';
+    statusTextCs = `⚠️ Úzké hrdlo: Čističky produkují ${impureAcidProducedPerHour} nečisté kyseliny/h, ale sudy stíhají zpracovat jen ${barrelImpureCapacityPerHour}/h. Přidejte kvasné sudy!`;
+    statusTextEn = `⚠️ Bottleneck: Purifiers produce ${impureAcidProducedPerHour} impure acid/h, but barrels process only ${barrelImpureCapacityPerHour}/h. Add barrels!`;
+  }
+
+  container.innerHTML = `
+    <!-- Top Result Banner -->
+    <div class="mb-5 p-4 rounded-lg border border-hud-purple/60 bg-purple-950/40 flex flex-col md:flex-row items-start md:items-center justify-between gap-4 shadow-[0_0_20px_rgba(181,23,158,0.2)]">
+      <div>
+        <span class="text-[10px] font-mono uppercase tracking-wider text-purple-300 block">
+          ${currentLang === 'cs' ? 'Konečný výnos čisté kyseliny (Acid)' : 'Net Pure Acid Production Rate'}
+        </span>
+        <div class="flex items-baseline gap-3 mt-1">
+          <h4 class="font-orbitron font-bold text-2xl text-white">
+            ~${pureAcidPerHour} <span class="text-sm font-mono text-hud-cyan font-normal">${currentLang === 'cs' ? 'ks / hod' : 'pcs / hr'}</span>
+          </h4>
+          <span class="text-sm font-mono text-amber-400 font-bold">
+            (~${pureAcidPerDay} ${currentLang === 'cs' ? 'ks / 24 hod' : 'pcs / 24 hrs'})
+          </span>
+        </div>
+      </div>
+      <div class="text-xs font-mono text-slate-300 text-right bg-slate-900/80 p-2.5 rounded border border-slate-700">
+        <div><span class="text-slate-400">${currentLang === 'cs' ? 'Příkon farmy' : 'Farm Power'}:</span> <strong class="text-amber-400">${farmPowerWatts} W</strong></div>
+        <div><span class="text-slate-400">${currentLang === 'cs' ? 'Znečištěná voda' : 'Polluted Water'}:</span> <strong class="text-cyan-300">${pollutedWaterPerHour} / h</strong></div>
+      </div>
+    </div>
+
+    <!-- Bottleneck Diagnosis Box -->
+    <div class="mb-5 p-3 rounded-lg border text-xs font-mono ${statusClass}">
+      ${currentLang === 'cs' ? statusTextCs : statusTextEn}
+    </div>
+
+    <!-- Interactive Facility Configurator -->
+    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-5">
+      <!-- 1. Water Pumps -->
+      <div class="p-3.5 rounded-lg bg-hud-bg border border-hud-border flex flex-col justify-between">
+        <div>
+          <div class="flex items-center justify-between mb-2">
+            <span class="text-xs font-orbitron font-bold text-white flex items-center gap-1.5">
+              <i class="fa-solid fa-faucet-drip text-hud-cyan"></i>
+              ${currentLang === 'cs' ? '1. Vodní pumpy' : '1. Water Pumps'}
+            </span>
+            <span class="text-[10px] font-mono px-1.5 py-0.5 rounded bg-slate-800 text-slate-300 border border-slate-700">10W</span>
+          </div>
+          <p class="text-[11px] text-slate-400 mb-3">
+            ${currentLang === 'cs' ? 'Čerpají znečištěnou vodu v zamořené oblasti (Pollution > 1).' : 'Extracts Polluted Water in contaminated zones.'}
+          </p>
+        </div>
+        <div class="flex items-center justify-between bg-slate-800/80 p-1.5 rounded border border-slate-700 font-mono">
+          <button onclick="updateAcidFarm('pumps', -1)" class="w-7 h-7 rounded bg-slate-700 hover:bg-slate-600 text-white font-bold cursor-pointer">-</button>
+          <span class="text-sm font-bold text-hud-cyan">${pumps} ks</span>
+          <button onclick="updateAcidFarm('pumps', 1)" class="w-7 h-7 rounded bg-slate-700 hover:bg-slate-600 text-white font-bold cursor-pointer">+</button>
+        </div>
+      </div>
+
+      <!-- 2. Osmosis Purifiers -->
+      <div class="p-3.5 rounded-lg bg-hud-bg border border-hud-border flex flex-col justify-between">
+        <div>
+          <div class="flex items-center justify-between mb-2">
+            <span class="text-xs font-orbitron font-bold text-white flex items-center gap-1.5">
+              <i class="fa-solid fa-filter text-amber-400"></i>
+              ${currentLang === 'cs' ? '2. Osmóza' : '2. Osmosis'}
+            </span>
+            <span class="text-[10px] font-mono px-1.5 py-0.5 rounded bg-slate-800 text-slate-300 border border-slate-700">10W</span>
+          </div>
+          <p class="text-[11px] text-slate-400 mb-3">
+            ${currentLang === 'cs' ? 'Mění 2x znečištěnou vodu na 1x nečistou kyselinu (Impure Acid).' : 'Converts 2x Polluted Water into 1x Impure Acid.'}
+          </p>
+        </div>
+        <div class="flex items-center justify-between bg-slate-800/80 p-1.5 rounded border border-slate-700 font-mono">
+          <button onclick="updateAcidFarm('purifiers', -1)" class="w-7 h-7 rounded bg-slate-700 hover:bg-slate-600 text-white font-bold cursor-pointer">-</button>
+          <span class="text-sm font-bold text-amber-400">${purifiers} ks</span>
+          <button onclick="updateAcidFarm('purifiers', 1)" class="w-7 h-7 rounded bg-slate-700 hover:bg-slate-600 text-white font-bold cursor-pointer">+</button>
+        </div>
+      </div>
+
+      <!-- 3. Fermentation Barrels -->
+      <div class="p-3.5 rounded-lg bg-hud-bg border border-hud-border flex flex-col justify-between">
+        <div>
+          <div class="flex items-center justify-between mb-2">
+            <span class="text-xs font-orbitron font-bold text-white flex items-center gap-1.5">
+              <i class="fa-solid fa-wine-bottle text-purple-400"></i>
+              ${currentLang === 'cs' ? '3. Kvasné sudy' : '3. Barrels'}
+            </span>
+            <span class="text-[10px] font-mono px-1.5 py-0.5 rounded bg-emerald-950 text-emerald-300 border border-emerald-800">0W (Pasivní)</span>
+          </div>
+          <p class="text-[11px] text-slate-400 mb-3">
+            ${currentLang === 'cs' ? 'Zkvasí 2x nečistou kyselinu + čistou vodu na 1x čistou kyselinu.' : 'Ferments 2x Impure Acid + Pure Water into 1x Pure Acid.'}
+          </p>
+        </div>
+        <div class="flex items-center justify-between bg-slate-800/80 p-1.5 rounded border border-slate-700 font-mono">
+          <button onclick="updateAcidFarm('barrels', -1)" class="w-7 h-7 rounded bg-slate-700 hover:bg-slate-600 text-white font-bold cursor-pointer">-</button>
+          <span class="text-sm font-bold text-purple-400">${barrels} ks</span>
+          <button onclick="updateAcidFarm('barrels', 1)" class="w-7 h-7 rounded bg-slate-700 hover:bg-slate-600 text-white font-bold cursor-pointer">+</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Optimization Pro-Tips -->
+    <div class="p-3 bg-slate-900/90 rounded border border-slate-800 text-xs font-mono text-slate-400 leading-relaxed">
+      <span class="text-hud-cyan font-bold block mb-1 flex items-center gap-1.5">
+        <i class="fa-solid fa-lightbulb"></i>${currentLang === 'cs' ? 'Zlaté pravidlo optimálního zapojení farmy na kyselinu' : 'Golden Rule of Acid Automation'}:
+      </span>
+      <span>${currentLang === 'cs' ? 'Ideální vyvážený poměr je <strong>2 Vodní čerpadla : 1 Osmotická čistička : 2 Kvasné sudy</strong>. Vodu přivádějte gravitací (sudy níže než pumpy) nebo použijte malé přetlakové ventily, abyste předešli zpětnému toku kapaliny.' : 'Ideal balanced ratio is <strong>2 Water Pumps : 1 Osmosis Purifier : 2 Fermentation Barrels</strong>. Utilize gravity feed (barrels lower than pumps) to avoid flow stagnation.'}</span>
+    </div>
+  `;
+}
+
 
